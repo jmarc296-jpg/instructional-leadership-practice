@@ -18,8 +18,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
+
 
 a {
   color: inherit;
@@ -161,4 +162,7 @@ textarea {
   .container {
     padding: 16px;
   }
+}h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
 }
