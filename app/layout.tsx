@@ -1,18 +1,15 @@
+import { Inter } from 'next/font/google'
 import './globals.css'
-import type { Metadata } from 'next'
 import { AppShell } from '@/components/app-shell'
 
-export const metadata: Metadata = {
-  title: 'Instructional Leadership Practice',
-  description: 'Scenario-based quiz and review cards for instructional leaders.'
-}
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <AppShell>{children}</AppShell>
       </body>
     </html>
