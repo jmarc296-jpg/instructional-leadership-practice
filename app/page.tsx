@@ -5,10 +5,10 @@ import { QUESTION_BANK } from '@/data/questions'
 import { buildSessionPerformance, selectNextQuestion } from '@/lib/adaptive'
 import { getAnalyticsSnapshot, getFavorites, getProgress } from '@/lib/local-store'
 import type { AnalyticsSnapshot, Card, Domain, SessionSettings } from '@/types'
-import { PracticeView } from '@/components/practice-view'
-import { AnalyticsView } from '@/components/analytics-view'
-import { FavoritesView } from '@/components/favorites-view'
-import { ResponseHistoryView } from '@/components/response-history-view'
+import { PracticeView } from '@/app/components/components/practice-view'
+import { AnalyticsView } from '@/app/components/components/analytics-view'
+import { FavoritesView } from '@/app/components/components/favorites-view'
+import { ResponseHistoryView } from '@/app/components/components/response-history-view'
 
 type View = 'practice' | 'analytics' | 'favorites' | 'history'
 type PracticeFilter = 'all' | Domain
@@ -157,7 +157,7 @@ export default function Page() {
     }
 
     if (weakestDomain === strongestDomain) {
-      return `Your responses are clustering. Push for sharper distinction in your reasoning.`
+      return 'Your responses are clustering. Push for sharper distinction in your reasoning.'
     }
 
     return `Strongest: ${strongestDomain}. Tighten: ${weakestDomain}. Focus on naming the issue faster and making the highest-leverage move explicit.`
@@ -177,7 +177,6 @@ export default function Page() {
   function handleChangeView(nextView: View) {
     setView(nextView)
 
-    // Reset only what matters per view
     if (nextView === 'practice') {
       if (!currentCard) loadNextCard(true)
     }
