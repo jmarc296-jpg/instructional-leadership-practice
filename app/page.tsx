@@ -197,9 +197,7 @@ export default function Page() {
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
-                {v === 'history'
-                  ? 'History'
-                  : v.charAt(0).toUpperCase() + v.slice(1)}
+                {v === 'history' ? 'History' : v.charAt(0).toUpperCase() + v.slice(1)}
               </button>
             ))}
           </div>
