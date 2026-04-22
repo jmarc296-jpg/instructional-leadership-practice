@@ -38,6 +38,7 @@
     "components/ai-question-generator.tsx",
     "components/analytics-cards.tsx",
     "components/bulk-upload-form.tsx",
-    "components/favorites-list.tsx"
+    "components/favorites-list.tsx",
+    "components/auth-panel.tsx"
   ]
 }
