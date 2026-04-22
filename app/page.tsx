@@ -69,35 +69,30 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* RIGHT VISUAL PANEL */}
-          <div className="rounded-3xl p-8 bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-lg">
-            <div className="text-xs uppercase tracking-[0.25em] opacity-80 mb-6">
-              Leadership Growth Snapshot
-            </div>
+          <div className="rounded-3xl overflow-hidden shadow-lg relative min-h-[420px]">
+  <img
+    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+    alt="school leadership meeting"
+    className="w-full h-full object-cover"
+  />
 
-            <div className="space-y-4">
-              <div className="rounded-2xl bg-white/10 p-4">
-                <div className="text-xs opacity-75 mb-1">Judgment Score</div>
-                <div className="text-2xl font-bold">8.4 / 10</div>
-              </div>
+  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-              <div className="rounded-2xl bg-white/10 p-4">
-                <div className="text-xs opacity-75 mb-1">Coaching Precision</div>
-                <div className="text-2xl font-bold">81%</div>
-              </div>
+  <div className="absolute bottom-0 left-0 p-8 text-white">
+    <div className="text-xs uppercase tracking-[0.25em] mb-3 opacity-80">
+      Real-world leadership reps
+    </div>
 
-              <div className="rounded-2xl bg-white/10 p-4">
-                <div className="text-xs opacity-75 mb-1">Response Quality</div>
-                <div className="text-2xl font-bold">Strong Trend</div>
-              </div>
+    <h3 className="text-2xl font-bold mb-2">
+      Practice decisions leaders face every day
+    </h3>
 
-              <div className="rounded-2xl bg-white/10 p-4">
-                <div className="text-xs opacity-75 mb-1">Revision Growth</div>
-                <div className="text-2xl font-bold">+2.1 pts</div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <p className="text-sm opacity-90 max-w-sm">
+      Coaching conversations. Data meetings. Instructional decisions.
+      Build sharper judgment before the real moment arrives.
+    </p>
+  </div>
+</div>
 
         {/* PRACTICE FILTERS */}
         <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
