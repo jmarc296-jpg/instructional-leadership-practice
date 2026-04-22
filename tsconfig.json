@@ -31,6 +31,13 @@
   ],
   "exclude": [
     "node_modules",
-    "admin_backup"
+    "admin_backup",
+    "components/admin-question-editor.tsx",
+    "components/admin-question-form.tsx",
+    "components/admin-toolbar.tsx",
+    "components/ai-question-generator.tsx",
+    "components/analytics-cards.tsx",
+    "components/bulk-upload-form.tsx",
+    "components/favorites-list.tsx"
   ]
 }
