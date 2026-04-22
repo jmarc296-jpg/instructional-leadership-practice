@@ -7,12 +7,10 @@ import {
   clearWrittenResponse,
   getAllWrittenResponses,
   getResponseVersions,
-  restoreResponseVersion,
-  type ResponseHistoryEntry,
-  type ResponseVersion
+  restoreResponseVersion
 } from '@/lib/local-store'
 import { analyzeResponse, type ResponseSignal } from '@/lib/response-insights'
-import type { Domain } from '@/types'
+import type { Domain, ResponseHistoryEntry, ResponseVersion } from '@/types'
 
 type Props = {
   onOpenCard: (cardId: string) => void
