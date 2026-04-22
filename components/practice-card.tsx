@@ -98,9 +98,9 @@ export function PracticeCard({
   const isEditedFromSaved = writtenResponse.trim() !== savedResponse.trim()
 
   const revisionLabel = useMemo(() => {
-    if (!hasSavedResponse) return 'Write your response'
-    if (versionCount <= 1) return 'Revise your previous response'
-    return `Revise your previous response (${versionCount} versions)`
+    if (!hasSavedResponse) return 'Write Your Leadership Response'
+    if (versionCount <= 1) return 'Revise Your Previous Response'
+    return `Revise Previous Response (${versionCount} versions)`
   }, [hasSavedResponse, versionCount])
 
   const autoScore = useMemo(() => {
@@ -161,7 +161,9 @@ export function PracticeCard({
 
   function handleNextWithGuard() {
     if (isEditedFromSaved) {
-      const confirmLeave = confirm('You have unsaved changes. Save before moving on?')
+      const confirmLeave = confirm(
+        'You have unsaved changes. Save before moving on?'
+      )
 
       if (confirmLeave) {
         handleSaveResponse()
@@ -172,29 +174,40 @@ export function PracticeCard({
   }
 
   return (
-    <div className="space-y-5">
-      <section className="rounded-2xl border p-5">
+    <div className="space-y-6">
+
+      {/* Scenario Card */}
+      <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
         <div className="flex justify-between gap-4 flex-wrap">
           <div>
-            <div className="text-sm text-slate-500">{progressLabel}</div>
-            <h2 className="text-xl font-semibold">{card.stem}</h2>
-            <p className="text-sm mt-2 text-slate-600">{card.scenario}</p>
+            <div className="text-sm font-medium text-blue-600 mb-3">
+              {progressLabel}
+            </div>
+
+            <h2 className="text-3xl font-bold text-slate-900 leading-tight">
+              {card.stem}
+            </h2>
+
+            <p className="text-base mt-4 text-slate-600 leading-relaxed">
+              {card.scenario}
+            </p>
           </div>
 
           <button
             onClick={toggleFavorite}
-            className="border px-3 py-2 rounded"
+            className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium hover:bg-slate-50"
             type="button"
           >
-            {isFavorite ? 'Favorited' : 'Favorite'}
+            {isFavorite ? '★ Saved' : '☆ Save'}
           </button>
         </div>
       </section>
 
+      {/* Start Scenario */}
       {!showPrompt && (
-        <section className="border p-5 rounded-2xl space-y-3">
-          <p className="text-sm text-slate-600">
-            Click below to begin the scenario and write your response.
+        <section className="rounded-3xl border border-blue-100 bg-blue-50 p-6">
+          <p className="text-slate-700 mb-4">
+            Review the scenario carefully, then begin crafting your leadership response.
           </p>
 
           <button
@@ -209,18 +222,30 @@ export function PracticeCard({
 
       {showPrompt && (
         <>
-          <section className="border p-5 rounded-2xl">
-            <h3 className="font-semibold">Prompt</h3>
-            <p className="mt-2">{card.prompt}</p>
+          {/* Prompt */}
+          <section className="rounded-3xl border border-blue-100 bg-blue-50 p-6">
+            <h3 className="text-lg font-semibold text-slate-900">
+              Leadership Prompt
+            </h3>
+
+            <p className="mt-3 text-slate-700 leading-relaxed">
+              {card.prompt}
+            </p>
           </section>
 
-          <section className="border p-5 rounded-2xl">
-            <h4 className="font-semibold">{revisionLabel}</h4>
+          {/* Response Writing */}
+          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h4 className="text-lg font-semibold text-slate-900">
+              {revisionLabel}
+            </h4>
 
             {hasSavedResponse && (
-              <div className="mt-3 text-sm text-slate-500">
-                Previous saved version:
-                <div className="mt-1 whitespace-pre-wrap text-slate-800">
+              <div className="mt-4 rounded-2xl bg-slate-50 p-4 text-sm">
+                <div className="font-medium text-slate-600 mb-2">
+                  Previous Saved Response
+                </div>
+
+                <div className="whitespace-pre-wrap text-slate-800">
                   {savedResponse}
                 </div>
               </div>
@@ -232,11 +257,11 @@ export function PracticeCard({
                 setWrittenResponse(e.target.value)
                 setSaveStatus('idle')
               }}
-              className="w-full mt-3 border rounded p-3 min-h-[200px]"
-              placeholder="Name the issue, why it matters, and the next move..."
+              className="w-full mt-4 rounded-2xl border border-slate-300 p-4 min-h-[220px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Name the issue, explain why it matters, identify the leadership move, and connect to student impact..."
             />
 
-            <div className="mt-3 flex gap-3 flex-wrap items-center">
+            <div className="mt-4 flex gap-3 flex-wrap items-center">
               <button
                 onClick={handleSaveResponse}
                 disabled={!hasWrittenResponse}
@@ -251,109 +276,110 @@ export function PracticeCard({
               </button>
 
               {saveStatus === 'saved' && (
-                <span className="text-green-600 text-sm">Saved</span>
+                <span className="text-green-600 text-sm font-medium">
+                  ✓ Saved successfully
+                </span>
               )}
 
               {saveStatus === 'error' && (
-                <span className="text-red-600 text-sm">Save failed. Try again.</span>
+                <span className="text-red-600 text-sm font-medium">
+                  Save failed. Try again.
+                </span>
               )}
             </div>
           </section>
 
+          {/* Exemplar */}
           {!showExemplar && (
-            <button onClick={onRevealExemplar} className="btn-primary" type="button">
+            <button
+              onClick={onRevealExemplar}
+              className="btn-primary w-full"
+              type="button"
+            >
               Compare with Exemplar
             </button>
           )}
 
           {showExemplar && (
             <>
-              <section className="border p-5 rounded-2xl">
-                <h4 className="font-semibold">Exemplar</h4>
-                <p className="mt-2 whitespace-pre-wrap">{card.exemplar}</p>
+              <section className="rounded-3xl border border-emerald-100 bg-emerald-50 p-6">
+                <h4 className="text-lg font-semibold text-slate-900">
+                  Exemplar Response
+                </h4>
+
+                <p className="mt-3 whitespace-pre-wrap text-slate-700 leading-relaxed">
+                  {card.exemplar}
+                </p>
               </section>
 
               {autoScore && (
-                <section className="border p-5 rounded-2xl bg-slate-50">
-                  <div className="flex items-center justify-between gap-3 flex-wrap">
-                    <h4 className="font-semibold">Auto-score against exemplar</h4>
-                    <span className="rounded-full bg-slate-900 px-3 py-1 text-sm font-semibold text-white">
-                      {autoScore.total} / {autoScore.max}
+                <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <div className="flex justify-between flex-wrap gap-3">
+                    <h4 className="text-lg font-semibold">
+                      AI Response Analysis
+                    </h4>
+
+                    <span className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                      {autoScore.total}/{autoScore.max}
                     </span>
                   </div>
 
-                  <div className="mt-4 grid gap-2">
-                    <div className="text-sm">
-                      {autoScore.breakdown.namesIssue ? '✅' : '❌'} Names the issue
-                    </div>
-                    <div className="text-sm">
-                      {autoScore.breakdown.explainsWhyItMatters ? '✅' : '❌'} Explains why it matters
-                    </div>
-                    <div className="text-sm">
-                      {autoScore.breakdown.statesLeadershipMove ? '✅' : '❌'} States a leadership move
-                    </div>
-                    <div className="text-sm">
-                      {autoScore.breakdown.usesEvidenceOrPrecision ? '✅' : '❌'} Uses evidence or precision
-                    </div>
-                    <div className="text-sm">
-                      {autoScore.breakdown.namesStudentImpact ? '✅' : '❌'} Names student impact
-                    </div>
-                  </div>
-
-                  <div className="mt-4">
-                    <h5 className="text-sm font-semibold">Tighten next</h5>
-                    <ul className="mt-2 space-y-1">
-                      {autoScore.feedback.map((item) => (
-                        <li key={item} className="text-sm text-slate-700">
-                          • {item}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="mt-5 space-y-2">
+                    {autoScore.feedback.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-xl bg-slate-50 p-3 text-sm text-slate-700"
+                      >
+                        {item}
+                      </div>
+                    ))}
                   </div>
                 </section>
               )}
 
-              <section className="border p-5 rounded-2xl">
-                <h4 className="font-semibold">Rate your response</h4>
+              {/* Rating */}
+              <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h4 className="text-lg font-semibold">
+                  Rate Your Performance
+                </h4>
 
-                <div className="grid gap-3 mt-3">
-                  {(['strong', 'partial', 'struggled'] as Rating[]).map((rating) => (
-                    <button
-                      key={rating}
-                      onClick={() => handleRating(rating)}
-                      className={`border p-3 rounded ${getRatingClasses(
-                        rating,
-                        selectedRating
-                      )}`}
-                      type="button"
-                    >
-                      <div className="font-semibold">{rating}</div>
-                      <div className="text-sm">{getRatingDescription(rating)}</div>
-                    </button>
-                  ))}
+                <div className="grid gap-3 mt-4">
+                  {(['strong', 'partial', 'struggled'] as Rating[]).map(
+                    (rating) => (
+                      <button
+                        key={rating}
+                        onClick={() => handleRating(rating)}
+                        className={`rounded-2xl border p-4 text-left ${getRatingClasses(
+                          rating,
+                          selectedRating
+                        )}`}
+                        type="button"
+                      >
+                        <div className="font-semibold capitalize">
+                          {rating}
+                        </div>
+
+                        <div className="text-sm mt-1">
+                          {getRatingDescription(rating)}
+                        </div>
+                      </button>
+                    )
+                  )}
                 </div>
 
                 {hasSubmittedRating && (
-                  <button onClick={handleNextWithGuard} className="btn-primary mt-4" type="button">
-                    Next Question
+                  <button
+                    onClick={handleNextWithGuard}
+                    className="btn-primary w-full mt-5"
+                    type="button"
+                  >
+                    Next Scenario
                   </button>
                 )}
               </section>
             </>
           )}
         </>
-      )}
-
-      {!showPrompt && !showExemplar && (
-        <div className="mt-4">
-          <button
-            onClick={onRevealPrompt}
-            className="btn-primary w-full"
-            type="button"
-          >
-            Start Scenario
-          </button>
-        </div>
       )}
     </div>
   )
