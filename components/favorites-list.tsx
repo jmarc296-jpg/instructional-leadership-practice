@@ -2,45 +2,42 @@
 
 import { useEffect, useState } from 'react'
 import { getFavoriteCards } from '@/lib/local-store'
+import { QUESTION_BANK } from '@/data/questions'
 import type { Card } from '@/types'
 
 export function FavoritesList() {
   const [favorites, setFavorites] = useState<Card[]>([])
 
   useEffect(() => {
-    setFavorites(getFavoriteCards())
+    const favoriteIds = getFavoriteCards()
+    const favoriteCards = QUESTION_BANK.filter((card) =>
+      favoriteIds.includes(card.id)
+    )
+    setFavorites(favoriteCards)
   }, [])
 
   if (!favorites.length) {
     return (
-      <div className="card" style={{ padding: 24 }}>
-        <h1>Favorites</h1>
-        <p className="small">No saved favorites yet.</p>
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 text-slate-500 shadow-sm">
+        No favorites yet.
       </div>
     )
   }
 
   return (
-    <div className="stack">
-      <div className="card" style={{ padding: 24 }}>
-        <h1>Favorites</h1>
-        <p className="small">Saved questions you want to revisit.</p>
-      </div>
-
+    <div className="space-y-4">
       {favorites.map((card) => (
-        <div key={card.id} className="card" style={{ padding: 24 }}>
-          <div className="eyebrow">{card.category} · {card.difficulty}</div>
-          <h2>{card.question}</h2>
-          <div className="stack">
-            <div>
-              <div style={{ fontWeight: 700, marginBottom: 6 }}>Prompt</div>
-              <div className="small" style={{ color: 'var(--text)', lineHeight: 1.7 }}>{card.prompt}</div>
-            </div>
-            <div>
-              <div style={{ fontWeight: 700, marginBottom: 6 }}>Exemplar response</div>
-              <div className="small" style={{ color: 'var(--text)', lineHeight: 1.7 }}>{card.exemplar}</div>
-            </div>
+        <div
+          key={card.id}
+          className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+        >
+          <div className="text-lg font-semibold text-slate-950">{card.stem}</div>
+          <div className="mt-2 text-sm capitalize text-slate-500">
+            {card.domain} • Difficulty {card.difficulty}
           </div>
+          <p className="mt-4 text-base leading-7 text-slate-700">
+            {card.scenario}
+          </p>
         </div>
       ))}
     </div>
