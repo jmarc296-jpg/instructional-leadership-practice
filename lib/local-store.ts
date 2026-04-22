@@ -417,4 +417,17 @@ export function restoreResponseVersion(cardId: string, versionId: string) {
 
 export function clearAllWrittenResponses() {
   safeRemoveItem(RESPONSES_KEY)
+}const ADMIN_MODE_KEY = 'ilp-admin-mode'
+
+export function getAdminMode(): boolean {
+  const value = safeGetItem(ADMIN_MODE_KEY)
+  return value === 'true'
+}
+
+export function setAdminMode(value: boolean) {
+  safeSetItem(ADMIN_MODE_KEY, String(value))
+}
+
+export function getFavoriteCards(): string[] {
+  return getFavorites()
 }
