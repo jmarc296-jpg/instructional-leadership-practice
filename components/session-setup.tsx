@@ -1,33 +1,60 @@
 'use client'
 
-import type { Category, Difficulty, SessionSettings } from '@/types'
+import type { Domain, SessionSettings } from '@/types'
 
 type Props = {
   settings: SessionSettings
   setSettings: React.Dispatch<React.SetStateAction<SessionSettings>>
-  onBegin: () => void
-  onReset: () => void
 }
 
-export function SessionSetup({ settings, setSettings, onBegin, onReset }: Props) {
-  return (
-    <aside className="card" style={{ padding: 24 }}>
-      <h2 style={{ marginTop: 0 }}>Session setup</h2>
-      <p className="small">Set your practice preferences, then begin a new session.</p>
+const DOMAINS: Array<{ value: 'all' | Domain; label: string }> = [
+  { value: 'all', label: 'All Domains' },
+  { value: 'rigor', label: 'Rigor' },
+  { value: 'ddi', label: 'DDI' },
+  { value: 'coaching', label: 'Coaching' },
+  { value: 'assessment', label: 'Assessment' },
+  { value: 'culture', label: 'Culture' },
+  { value: 'leadership', label: 'Leadership' }
+]
 
-      <div className="stack" style={{ marginTop: 24 }}>
+export function SessionSetup({ settings, setSettings }: Props) {
+  return (
+    <aside className="space-y-6">
+      <div>
+        <div className="text-xs font-bold uppercase tracking-[0.24em] text-blue-600">
+          Session Setup
+        </div>
+        <h2 className="mt-2 text-2xl font-bold text-slate-950">
+          Configure your practice
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
+          Set the experience you want, then work through realistic instructional leadership scenarios.
+        </p>
+      </div>
+
+      <div className="space-y-5">
+        {/* Mode */}
         <div>
-          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Mode</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+          <div className="mb-2 text-sm font-semibold text-slate-800">Mode</div>
+          <div className="grid grid-cols-2 gap-2">
             {([
-              ['quiz', 'Quiz mode'],
-              ['review', 'Review mode']
+              ['quiz', 'Quiz Mode'],
+              ['review', 'Review Mode']
             ] as const).map(([value, label]) => (
               <button
                 key={value}
                 type="button"
-                onClick={() => setSettings((prev) => ({ ...prev, mode: value }))}
-                className={`btn ${settings.mode === value ? 'btn-dark' : ''}`}
+                onClick={() =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    mode: value
+                  }))
+                }
+                className={`rounded-2xl border px-4 py-3 text-sm font-semibold transition ${
+                  settings.mode === value
+                    ? 'border-blue-600 bg-blue-600 text-white'
+                    : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                }`}
               >
                 {label}
               </button>
@@ -35,91 +62,154 @@ export function SessionSetup({ settings, setSettings, onBegin, onReset }: Props)
           </div>
         </div>
 
-        <label className="card" style={{ padding: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <div style={{ fontWeight: 700, fontSize: 14 }}>Include prompt</div>
-            <div className="small">Show scenario context</div>
+        {/* Coach Mode */}
+        <label className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+          <div className="pr-4">
+            <div className="text-sm font-semibold text-slate-900">Coach insights</div>
+            <div className="text-sm text-slate-600">
+              Show coaching guidance and reflection support.
+            </div>
           </div>
           <input
             type="checkbox"
-            checked={settings.includePrompt}
-            onChange={(e) =>
-              setSettings((prev) => ({ ...prev, includePrompt: e.target.checked }))
-            }
-          />
-        </label>
-
-        <label className="card" style={{ padding: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <div style={{ fontWeight: 700, fontSize: 14 }}>Include exemplar response</div>
-            <div className="small">Show model thinking</div>
-          </div>
-          <input
-            type="checkbox"
-            checked={settings.includeExemplar}
-            onChange={(e) =>
-              setSettings((prev) => ({ ...prev, includeExemplar: e.target.checked }))
-            }
-          />
-        </label>
-
-        <div>
-          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Category</div>
-          <select
-            className="select"
-            value={settings.category}
-            onChange={(e) =>
-              setSettings((prev) => ({ ...prev, category: e.target.value as Category }))
-            }
-          >
-            <option value="all">All categories</option>
-            <option value="rigor">Rigor</option>
-            <option value="ddi">DDI</option>
-            <option value="observation-feedback">Observation and feedback</option>
-            <option value="curriculum-alignment">Curriculum alignment</option>
-            <option value="ilt-leadership">ILT leadership</option>
-            <option value="principal-decision-making">Principal decision-making</option>
-          </select>
-        </div>
-
-        <div>
-          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Difficulty</div>
-          <select
-            className="select"
-            value={settings.difficulty}
+            checked={settings.coachMode}
             onChange={(e) =>
               setSettings((prev) => ({
                 ...prev,
-                difficulty: e.target.value as Difficulty | 'all'
+                coachMode: e.target.checked
               }))
             }
+            className="h-4 w-4"
+          />
+        </label>
+
+        {/* Adaptive Mode */}
+        <label className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+          <div className="pr-4">
+            <div className="text-sm font-semibold text-slate-900">Adaptive practice</div>
+            <div className="text-sm text-slate-600">
+              Prioritize weaker areas and revision opportunities.
+            </div>
+          </div>
+          <input
+            type="checkbox"
+            checked={settings.adaptiveMode}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                adaptiveMode: e.target.checked
+              }))
+            }
+            className="h-4 w-4"
+          />
+        </label>
+
+        {/* Prompt toggle */}
+        <label className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+          <div className="pr-4">
+            <div className="text-sm font-semibold text-slate-900">Show prompt immediately</div>
+            <div className="text-sm text-slate-600">
+              Helpful for review mode and faster reps.
+            </div>
+          </div>
+          <input
+            type="checkbox"
+            checked={settings.includePrompt ?? false}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                includePrompt: e.target.checked
+              }))
+            }
+            className="h-4 w-4"
+          />
+        </label>
+
+        {/* Exemplar toggle */}
+        <label className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+          <div className="pr-4">
+            <div className="text-sm font-semibold text-slate-900">Show exemplar support</div>
+            <div className="text-sm text-slate-600">
+              Keep exemplar comparison available after your response.
+            </div>
+          </div>
+          <input
+            type="checkbox"
+            checked={settings.includeExemplar ?? true}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                includeExemplar: e.target.checked
+              }))
+            }
+            className="h-4 w-4"
+          />
+        </label>
+
+        {/* Domain */}
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-800">
+            Focus Domain
+          </label>
+          <select
+            value={settings.category ?? 'all'}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                category: e.target.value as 'all' | Domain
+              }))
+            }
+            className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-blue-500"
+          >
+            {DOMAINS.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Difficulty */}
+        <div>
+          <label className="mb-2 block text-sm font-semibold text-slate-800">
+            Difficulty
+          </label>
+          <select
+            value={settings.difficulty ?? 'all'}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                difficulty: e.target.value as 'all' | 'easy' | 'medium' | 'hard'
+              }))
+            }
+            className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-blue-500"
           >
             <option value="all">All levels</option>
-            <option value="foundational">Foundational</option>
-            <option value="strong">Strong</option>
-            <option value="advanced">Advanced</option>
+            <option value="easy">Foundational</option>
+            <option value="medium">Strong</option>
+            <option value="hard">Advanced</option>
           </select>
         </div>
 
+        {/* Session length */}
         <div>
-          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Session length</div>
+          <label className="mb-2 block text-sm font-semibold text-slate-800">
+            Session length
+          </label>
           <select
-            className="select"
-            value={settings.sessionLength}
+            value={settings.sessionLength ?? 5}
             onChange={(e) =>
-              setSettings((prev) => ({ ...prev, sessionLength: Number(e.target.value) }))
+              setSettings((prev) => ({
+                ...prev,
+                sessionLength: Number(e.target.value)
+              }))
             }
+            className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-blue-500"
           >
-            <option value={5}>5 cards</option>
-            <option value={10}>10 cards</option>
-            <option value={15}>15 cards</option>
-            <option value={0}>All matching cards</option>
+            <option value={5}>5 scenarios</option>
+            <option value={10}>10 scenarios</option>
+            <option value={15}>15 scenarios</option>
           </select>
-        </div>
-
-        <div className="stack">
-          <button className="btn btn-dark" onClick={onBegin}>Begin session</button>
-          <button className="btn" onClick={onReset}>Reset view</button>
         </div>
       </div>
     </aside>
