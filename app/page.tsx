@@ -206,7 +206,7 @@ export default function HomePage() {
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
                 <div className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-blue-600">
-                  Instructional Leadership Practice
+                  LeadSharper
                 </div>
 
                 <h1 className="mb-6 text-5xl font-bold leading-tight text-slate-900">
@@ -235,56 +235,74 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* PREMIUM HERO PANEL */}
-              <div className="relative min-h-[420px] overflow-hidden rounded-3xl shadow-lg">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-                  alt="school leadership meeting"
-                  className="h-full w-full object-cover"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-900/35 to-transparent" />
-
-                <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-6">
-                  <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
-                    Leadership Simulation
-                  </div>
-
-                  <div className="rounded-full bg-emerald-400 px-4 py-2 text-xs font-semibold text-slate-950">
-                    Live Product
-                  </div>
+              {/* NEW BRANDED PANEL */}
+              <div className="hero-gradient relative min-h-[420px] overflow-hidden p-8">
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white blur-3xl" />
+                  <div className="absolute bottom-10 left-8 h-28 w-28 rounded-full bg-cyan-300 blur-2xl" />
+                  <div className="absolute right-12 bottom-16 h-20 w-20 rounded-full bg-indigo-200 blur-2xl" />
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <div className="mb-3 text-xs uppercase tracking-[0.25em] opacity-80">
-                    Real-world decision reps
+                <div className="relative z-10 flex h-full flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
+                      LeadSharper
+                    </div>
+
+                    <div className="rounded-full bg-emerald-400 px-4 py-2 text-xs font-semibold text-slate-950">
+                      Live Product
+                    </div>
                   </div>
 
-                  <h3 className="mb-3 text-3xl font-bold leading-tight">
-                    Practice the moments that define strong leadership
-                  </h3>
+                  <div className="mt-10">
+                    <div className="mb-3 text-xs uppercase tracking-[0.25em] text-white/75">
+                      Leadership Simulation
+                    </div>
 
-                  <p className="text-sm leading-6 text-white/90">
-                    Coaching conversations, DDI meetings, instructional alignment,
-                    and principal decision-making.
-                  </p>
+                    <h3 className="max-w-md text-3xl font-bold leading-tight text-white">
+                      Practice the moments that define strong school leadership
+                    </h3>
 
-                  <div className="mt-6 grid grid-cols-2 gap-3">
+                    <p className="mt-4 max-w-md text-sm leading-6 text-white/85">
+                      Coaching conversations, DDI meetings, instructional alignment,
+                      and principal decision-making.
+                    </p>
+                  </div>
+
+                  <div className="mt-8 grid grid-cols-2 gap-3">
                     <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
                       <div className="text-xs uppercase tracking-[0.16em] text-white/70">
-                        Scenarios
+                        Scenario Reps
                       </div>
-                      <div className="mt-1 text-2xl font-bold">
+                      <div className="mt-1 text-2xl font-bold text-white">
                         {analytics?.totalCompleted ?? 0}
                       </div>
                     </div>
 
                     <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
                       <div className="text-xs uppercase tracking-[0.16em] text-white/70">
-                        Strongest
+                        Strongest Domain
                       </div>
-                      <div className="mt-1 text-xl font-bold capitalize">
+                      <div className="mt-1 text-xl font-bold capitalize text-white">
                         {strongestDomain === '-' ? 'Pending' : strongestDomain}
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+                      <div className="text-xs uppercase tracking-[0.16em] text-white/70">
+                        Adaptive Mode
+                      </div>
+                      <div className="mt-1 text-xl font-bold text-white">
+                        {settings.adaptiveMode ? 'On' : 'Off'}
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+                      <div className="text-xs uppercase tracking-[0.16em] text-white/70">
+                        Coach Insights
+                      </div>
+                      <div className="mt-1 text-xl font-bold text-white">
+                        {settings.coachMode ? 'On' : 'Off'}
                       </div>
                     </div>
                   </div>
