@@ -1,257 +1,151 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
-import { QUESTION_BANK } from '@/data/questions'
-import { buildSessionPerformance, selectNextQuestion } from '@/lib/adaptive'
-import { getAnalyticsSnapshot, getFavorites, getProgress } from '@/lib/local-store'
-import type { AnalyticsSnapshot, Card, Domain, SessionSettings } from '@/types'
+import { useState } from 'react'
+import { Brain, BarChart3, Heart, History } from 'lucide-react'
 
-import { PracticeView } from '@/components/practice-view'
-import { AnalyticsView } from '@/components/analytics-view'
-import { FavoritesView } from '@/components/favorites-view'
-import { ResponseHistoryView } from '@/components/response-history-view'
-import { SessionSetup } from '@/components/session-setup'
+export default function HomePage() {
+  const [activeTab, setActiveTab] = useState('practice')
+  const [activeFilter, setActiveFilter] = useState('all')
 
-type View = 'practice' | 'analytics' | 'favorites' | 'history'
-type PracticeFilter = 'all' | Domain
+  const tabs = [
+    { id: 'practice', label: 'Practice', icon: Brain },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'favorites', label: 'Favorites', icon: Heart },
+    { id: 'history', label: 'History', icon: History }
+  ]
 
-export default function Page() {
-  const [view, setView] = useState<View>('practice')
-  const [practiceFilter, setPracticeFilter] = useState<PracticeFilter>('all')
-  const [currentCard, setCurrentCard] = useState<Card | null>(null)
-  const [showPrompt, setShowPrompt] = useState(false)
-  const [showExemplar, setShowExemplar] = useState(false)
-  const [questionNumber, setQuestionNumber] = useState(1)
-  const [analytics, setAnalytics] = useState<AnalyticsSnapshot | null>(null)
-  const [favorites, setFavorites] = useState<string[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-
-  const [settings, setSettings] = useState<SessionSettings>({
-    coachMode: true,
-    adaptiveMode: true,
-    mode: 'quiz',
-    sessionLength: 5
-  })
-
-  function refreshData() {
-    setAnalytics(getAnalyticsSnapshot())
-    setFavorites(getFavorites())
-  }
-
-  function getFilteredBank() {
-    if (practiceFilter === 'all') return QUESTION_BANK
-    return QUESTION_BANK.filter(card => card.domain === practiceFilter)
-  }
-
-  function getNextCard() {
-    const bank = getFilteredBank()
-    const progress = getProgress()
-    const performance = buildSessionPerformance(progress)
-    return selectNextQuestion(bank, performance)
-  }
-
-  function loadNextCard(reset = false) {
-    const nextCard = getNextCard()
-
-    setCurrentCard(nextCard || null)
-    setShowPrompt(false)
-    setShowExemplar(false)
-
-    if (reset) {
-      setQuestionNumber(1)
-    }
-  }
-
-  useEffect(() => {
-    loadNextCard(true)
-    refreshData()
-    setIsLoading(false)
-  }, [])
-
-  useEffect(() => {
-    loadNextCard(true)
-  }, [practiceFilter])
-
-  function handleNext() {
-    loadNextCard()
-    setQuestionNumber(prev => prev + 1)
-    refreshData()
-  }
-
-  const favoriteCards = QUESTION_BANK.filter(card =>
-    favorites.includes(card.id)
-  )
-
-  const strongestDomain = useMemo(() => {
-    if (!analytics) return '-'
-    const entries = Object.entries(analytics.averageRatingByDomain)
-    if (!entries.length) return '-'
-    return entries.sort((a, b) => b[1] - a[1])[0][0]
-  }, [analytics])
-
-  const weakestDomain = useMemo(() => {
-    if (!analytics) return '-'
-    const entries = Object.entries(analytics.averageRatingByDomain)
-    if (!entries.length) return '-'
-    return entries.sort((a, b) => a[1] - b[1])[0][0]
-  }, [analytics])
+  const filters = [
+    'All Domains',
+    'Rigor',
+    'DDI',
+    'Coaching',
+    'Assessment',
+    'Culture',
+    'Leadership'
+  ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      <div className="mx-auto max-w-7xl px-6 py-8">
+    <main className="min-h-screen bg-slate-50 px-6 py-8">
+      <div className="max-w-7xl mx-auto space-y-8">
 
-        {/* NAV */}
-        <div className="mb-8 rounded-3xl bg-white p-4 shadow-sm border border-slate-200">
+        {/* NAVIGATION */}
+        <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-4">
           <div className="flex flex-wrap gap-3">
-            {(['practice', 'analytics', 'favorites', 'history'] as View[]).map(v => (
+            {tabs.map((tab) => {
+              const Icon = tab.icon
+
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-medium transition-all ${
+                    activeTab === tab.id
+                      ? 'bg-slate-900 text-white shadow-md'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  <Icon size={16} />
+                  {tab.label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* HERO */}
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 bg-white rounded-3xl p-10 shadow-sm border border-slate-200">
+            <div className="text-xs font-bold tracking-[0.25em] uppercase text-blue-600 mb-4">
+              Instructional Leadership Practice
+            </div>
+
+            <h1 className="text-5xl font-bold leading-tight text-slate-900 mb-6">
+              Build elite instructional leadership judgment through realistic scenario practice.
+            </h1>
+
+            <p className="text-lg text-slate-600 leading-relaxed max-w-2xl">
+              Practice high-stakes leadership decisions, sharpen your coaching instincts,
+              and strengthen response quality through repeated scenario-based reps.
+            </p>
+          </div>
+
+          {/* RIGHT VISUAL PANEL */}
+          <div className="rounded-3xl p-8 bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-lg">
+            <div className="text-xs uppercase tracking-[0.25em] opacity-80 mb-6">
+              Leadership Growth Snapshot
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-2xl bg-white/10 p-4">
+                <div className="text-xs opacity-75 mb-1">Judgment Score</div>
+                <div className="text-2xl font-bold">8.4 / 10</div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4">
+                <div className="text-xs opacity-75 mb-1">Coaching Precision</div>
+                <div className="text-2xl font-bold">81%</div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4">
+                <div className="text-xs opacity-75 mb-1">Response Quality</div>
+                <div className="text-2xl font-bold">Strong Trend</div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4">
+                <div className="text-xs opacity-75 mb-1">Revision Growth</div>
+                <div className="text-2xl font-bold">+2.1 pts</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* PRACTICE FILTERS */}
+        <div className="bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+          <div className="text-xs font-bold tracking-[0.25em] uppercase text-slate-500 mb-4">
+            Practice Focus
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            {filters.map((filter) => (
               <button
-                key={v}
-                onClick={() => setView(v)}
-                className={`rounded-2xl px-5 py-3 text-sm font-semibold ${
-                  view === v
-                    ? 'bg-slate-950 text-white'
-                    : 'bg-slate-100 text-slate-700'
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                  activeFilter === filter
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
-                {v.charAt(0).toUpperCase() + v.slice(1)}
+                {filter}
               </button>
             ))}
           </div>
         </div>
 
-        {/* HERO */}
-        {view === 'practice' && (
-          <div className="mb-8 grid gap-6 lg:grid-cols-3">
-            <div className="lg:col-span-2 rounded-3xl bg-white p-10 shadow-sm border border-slate-200">
-              <div className="mb-4 text-xs font-bold tracking-[0.25em] text-blue-600 uppercase">
-                Instructional Leadership Practice
-              </div>
+        {/* QUESTION CARD */}
+        <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+          <div className="text-sm text-slate-500 mb-3">Question 1</div>
 
-              <h1 className="text-5xl font-bold leading-tight text-slate-950 mb-5">
-                Sharpen your leadership judgment through realistic practice.
-              </h1>
+          <h2 className="text-3xl font-bold text-slate-900 mb-4">
+            The reteach plan does not match the misconception.
+          </h2>
 
-              <p className="text-lg text-slate-600 max-w-2xl">
-                Practice high-stakes leadership decisions, strengthen your
-                coaching instincts, and build stronger responses through
-                scenario-based repetition.
-              </p>
-            </div>
+          <p className="text-slate-600 mb-6 leading-relaxed">
+            Students struggled on a multi-step equation. The team plans to reteach the
+            full lesson, but most errors were only in isolating the variable.
+          </p>
 
-            {/* Visual card */}
-            <div className="rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white shadow-lg">
-              <div className="text-sm uppercase tracking-widest opacity-80 mb-6">
-                Practice Engine
-              </div>
+          <div className="flex gap-4">
+            <button className="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
+              Start Scenario
+            </button>
 
-              <div className="space-y-4">
-                <div className="rounded-2xl bg-white/10 p-4">
-                  Question Bank: {QUESTION_BANK.length}
-                </div>
-
-                <div className="rounded-2xl bg-white/10 p-4">
-                  Adaptive Practice
-                </div>
-
-                <div className="rounded-2xl bg-white/10 p-4">
-                  Response Scoring
-                </div>
-
-                <div className="rounded-2xl bg-white/10 p-4">
-                  Revision History
-                </div>
-              </div>
-            </div>
+            <button className="border border-slate-300 px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 transition">
+              Save Favorite
+            </button>
           </div>
-        )}
+        </div>
 
-        {/* MAIN CONTENT */}
-        {view === 'practice' && (
-          <div className="grid gap-6 lg:grid-cols-3">
-
-            {/* LEFT SIDE */}
-            <div className="space-y-6">
-
-              <div className="rounded-3xl bg-white p-6 shadow-sm border border-slate-200">
-                <SessionSetup
-                  settings={settings}
-                  setSettings={setSettings}
-                />
-              </div>
-
-              <div className="rounded-3xl bg-white p-6 shadow-sm border border-slate-200">
-                <div className="text-sm font-bold uppercase tracking-[0.2em] text-slate-500 mb-4">
-                  Practice Focus
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {(['all','rigor','ddi','coaching','assessment','culture','leadership'] as PracticeFilter[]).map(filter => (
-                    <button
-                      key={filter}
-                      onClick={() => setPracticeFilter(filter)}
-                      className={`rounded-xl px-4 py-2 text-sm font-medium ${
-                        practiceFilter === filter
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-slate-100 text-slate-700'
-                      }`}
-                    >
-                      {filter === 'all' ? 'All Domains' : filter}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT SIDE */}
-            <div className="lg:col-span-2">
-              {currentCard && (
-                <PracticeView
-                  card={currentCard}
-                  settings={settings}
-                  progressLabel={`Question ${questionNumber}`}
-                  showPrompt={showPrompt}
-                  showExemplar={showExemplar}
-                  onRevealPrompt={() => setShowPrompt(true)}
-                  onRevealExemplar={() => setShowExemplar(true)}
-                  onNext={handleNext}
-                />
-              )}
-            </div>
-          </div>
-        )}
-
-        {view === 'analytics' && (
-          <AnalyticsView
-            analytics={analytics}
-            strongestDomain={strongestDomain}
-            weakestDomain={weakestDomain}
-            recentTrend="Trending stronger"
-            coachingInsight="Continue tightening precision."
-            onRetryWeakestArea={() => setView('practice')}
-          />
-        )}
-
-        {view === 'favorites' && (
-          <FavoritesView
-            favoriteCards={favoriteCards}
-            onOpenFavorite={(card) => {
-              setCurrentCard(card)
-              setView('practice')
-            }}
-          />
-        )}
-
-        {view === 'history' && (
-          <ResponseHistoryView
-            onOpenCard={(id) => {
-              const card = QUESTION_BANK.find(c => c.id === id)
-              if (card) {
-                setCurrentCard(card)
-                setView('practice')
-              }
-            }}
-          />
-        )}
       </div>
     </main>
   )
