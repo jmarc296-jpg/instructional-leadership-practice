@@ -27,11 +27,20 @@ export type Card = {
   exemplar: string
   coachInsight?: CoachInsight
   tags?: string[]
+  isActive?: boolean
 }
 
 export type SessionSettings = {
   coachMode: boolean
   adaptiveMode: boolean
+
+  // legacy fields still referenced by older UI components
+  mode?: 'quiz' | 'review'
+  category?: Category | 'all'
+  difficulty?: Difficulty | 'all'
+  questionCount?: number
+  includePrompt?: boolean
+  includeExemplar?: boolean
 }
 
 export type SessionPerformance = {
