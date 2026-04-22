@@ -1,7 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Brain, BarChart3, Heart, History as HistoryIcon } from 'lucide-react'
+import {
+  Brain,
+  BarChart3,
+  Heart,
+  History as HistoryIcon
+} from 'lucide-react'
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('practice')
@@ -27,6 +32,8 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl space-y-8">
+
+        {/* NAV */}
         <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
           <div className="flex flex-wrap gap-3">
             {tabs.map((tab) => {
@@ -50,28 +57,28 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* HERO SECTION */}
         <div className="grid gap-6 lg:grid-cols-3">
+
           <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
             <div className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-blue-600">
               Instructional Leadership Practice
             </div>
 
             <h1 className="mb-6 text-5xl font-bold leading-tight text-slate-900">
-              Build elite instructional leadership judgment through realistic
-              scenario practice.
+              Build elite instructional leadership judgment through realistic scenario practice.
             </h1>
 
             <p className="max-w-2xl text-lg leading-relaxed text-slate-600">
-              Practice high-stakes leadership decisions, sharpen your coaching
-              instincts, and strengthen response quality through repeated
-              scenario-based reps.
+              Practice high-stakes leadership decisions, sharpen your coaching instincts,
+              and strengthen response quality through repeated scenario-based reps.
             </p>
           </div>
 
           <div className="relative min-h-[420px] overflow-hidden rounded-3xl shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-              alt="school leadership meeting"
+              alt="leadership meeting"
               className="h-full w-full object-cover"
             />
 
@@ -94,6 +101,7 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* FILTERS */}
         <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-slate-500">
             Practice Focus
@@ -116,32 +124,69 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-slate-200 bg-white p-10 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
-          <div className="mb-6 flex items-center justify-between">
-            <span className="text-sm font-medium text-blue-600">Scenario 01</span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-sm">
-              DDI
-            </span>
+        {/* REAL PRODUCT SECTION */}
+        <div className="grid gap-6 lg:grid-cols-2">
+
+          {/* PRACTICE CTA */}
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-blue-600">
+              Live Practice Engine
+            </div>
+
+            <h2 className="mb-4 text-3xl font-bold text-slate-900">
+              Start real scenario reps
+            </h2>
+
+            <p className="mb-6 leading-relaxed text-slate-600">
+              Move beyond reading scenarios. Practice writing real responses,
+              receive feedback, and build stronger instructional leadership instincts.
+            </p>
+
+            <div className="space-y-3">
+              <button className="w-full rounded-xl bg-blue-600 px-6 py-4 font-semibold text-white hover:bg-blue-700 transition">
+                Launch Practice Session
+              </button>
+
+              <button className="w-full rounded-xl border border-slate-300 px-6 py-4 font-semibold hover:bg-slate-50 transition">
+                Continue Previous Session
+              </button>
+            </div>
           </div>
 
-          <h2 className="mb-5 text-3xl font-bold text-slate-900">
-            Your math team wants to reteach everything.
-          </h2>
+          {/* ANALYTICS PREVIEW */}
+          <div className="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-white shadow-lg">
+            <div className="mb-5 text-xs uppercase tracking-[0.25em] opacity-70">
+              Performance Snapshot
+            </div>
 
-          <p className="mb-8 max-w-3xl leading-relaxed text-slate-600">
-            After reviewing interim assessment data, teachers want to reteach the
-            entire unit. However, student errors are concentrated around just two
-            misconceptions. As the instructional leader, what do you do next?
-          </p>
+            <div className="space-y-4">
+              <div className="rounded-2xl bg-white/10 p-4">
+                <div className="text-sm opacity-70">
+                  Scenarios Completed
+                </div>
+                <div className="text-3xl font-bold">
+                  42
+                </div>
+              </div>
 
-          <div className="flex gap-4">
-            <button className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
-              Start Scenario
-            </button>
+              <div className="rounded-2xl bg-white/10 p-4">
+                <div className="text-sm opacity-70">
+                  Response Quality
+                </div>
+                <div className="text-3xl font-bold">
+                  87%
+                </div>
+              </div>
 
-            <button className="rounded-xl border border-slate-300 px-6 py-3 font-semibold transition hover:bg-slate-50">
-              Save for Later
-            </button>
+              <div className="rounded-2xl bg-white/10 p-4">
+                <div className="text-sm opacity-70">
+                  Strongest Domain
+                </div>
+                <div className="text-3xl font-bold">
+                  Coaching
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
