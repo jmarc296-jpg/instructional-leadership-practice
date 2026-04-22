@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
+import { BarChart3, RefreshCcw, Sparkles, TrendingUp } from 'lucide-react'
 import { getAllWrittenResponses, getResponseVersions } from '@/lib/local-store'
 import type { AnalyticsSnapshot, Domain } from '@/types'
 
@@ -109,143 +110,232 @@ export function AnalyticsView({
     return 'Most of your work is still first-pass thinking. The next growth move is to revisit earlier responses and sharpen the problem, evidence, and next action more explicitly.'
   }, [hasResponses, responseMetrics.revisionRate])
 
-  const strongestAreaLabel = strongestDomain && strongestDomain !== '-' ? strongestDomain : 'Not enough data yet'
-  const weakestAreaLabel = weakestDomain && weakestDomain !== '-' ? weakestDomain : 'Not enough data yet'
+  const strongestAreaLabel =
+    strongestDomain && strongestDomain !== '-'
+      ? strongestDomain
+      : 'Not enough data yet'
+
+  const weakestAreaLabel =
+    weakestDomain && weakestDomain !== '-'
+      ? weakestDomain
+      : 'Not enough data yet'
 
   return (
-    <div className="space-y-4 sm:space-y-6">
-      <section className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:rounded-[32px] sm:p-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="min-w-0">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:text-xs sm:tracking-[0.22em]">
-              Analytics
-            </div>
-            <h2 className="mt-2 text-xl font-semibold text-slate-950 sm:text-2xl">
-              Your instructional leadership practice patterns
+    <div className="space-y-6 fade-in">
+      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div className="grid gap-0 lg:grid-cols-[1.4fr_0.9fr]">
+          <div className="p-6 sm:p-8">
+            <div className="section-label">Analytics</div>
+
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">
+              See the patterns behind your leadership decisions
             </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
-              Review both performance trends and revision habits. Strong practice is not just how often you respond. It is how often you return to sharpen your thinking.
+
+            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+              Strong practice is not only how often you respond. It is how often
+              you return, revise, and sharpen the quality of your judgment.
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={onRetryWeakestArea}
+                className="btn-primary inline-flex items-center gap-2"
+              >
+                <RefreshCcw size={16} />
+                Retry Weakest Area
+              </button>
+            </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onRetryWeakestArea}
-            className="w-full rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 sm:w-auto"
-          >
-            Retry Weakest Area
-          </button>
+          <div className="hero-gradient p-6 sm:p-8">
+            <div className="text-xs font-bold uppercase tracking-[0.22em] text-white/75">
+              Growth Snapshot
+            </div>
+
+            <div className="mt-6 grid gap-4">
+              <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+                <div className="text-xs uppercase tracking-[0.16em] text-white/70">
+                  Completed
+                </div>
+                <div className="mt-1 text-3xl font-bold text-white">
+                  {completedCount}
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+                <div className="text-xs uppercase tracking-[0.16em] text-white/70">
+                  Strongest
+                </div>
+                <div className="mt-1 text-2xl font-bold capitalize text-white">
+                  {strongestAreaLabel}
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+                <div className="text-xs uppercase tracking-[0.16em] text-white/70">
+                  Trend
+                </div>
+                <div className="mt-1 text-2xl font-bold text-white">
+                  {recentTrend}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Questions Completed</div>
-          <div className="mt-2 text-2xl font-semibold text-slate-950 sm:text-3xl">
+          <div className="mt-2 text-3xl font-bold text-slate-950">
             {completedCount}
           </div>
         </div>
 
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Strongest Area</div>
-          <div className="mt-2 text-xl font-semibold text-slate-950 sm:text-2xl">
-            <span className="capitalize">{strongestAreaLabel}</span>
+          <div className="mt-2 text-2xl font-bold capitalize text-slate-950">
+            {strongestAreaLabel}
           </div>
         </div>
 
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Needs Practice</div>
-          <div className="mt-2 text-xl font-semibold text-slate-950 sm:text-2xl">
-            <span className="capitalize">{weakestAreaLabel}</span>
+          <div className="mt-2 text-2xl font-bold capitalize text-slate-950">
+            {weakestAreaLabel}
           </div>
         </div>
 
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Recent Trend</div>
-          <div className="mt-2 text-xl font-semibold text-slate-950 sm:text-2xl">
+          <div className="mt-2 text-2xl font-bold text-slate-950">
             {recentTrend}
           </div>
         </div>
       </section>
 
-      <section className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Saved Responses</div>
-          <div className="mt-2 text-2xl font-semibold text-slate-950 sm:text-3xl">
+          <div className="mt-2 text-3xl font-bold text-slate-950">
             {responseMetrics.totalSavedResponses}
           </div>
         </div>
 
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Revised Cards</div>
-          <div className="mt-2 text-2xl font-semibold text-slate-950 sm:text-3xl">
+          <div className="mt-2 text-3xl font-bold text-slate-950">
             {responseMetrics.revisedCards}
           </div>
         </div>
 
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Avg Versions per Card</div>
-          <div className="mt-2 text-2xl font-semibold text-slate-950 sm:text-3xl">
+          <div className="mt-2 text-3xl font-bold text-slate-950">
             {responseMetrics.averageVersionsPerCard}
           </div>
         </div>
 
-        <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+        <div className="app-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
           <div className="text-sm text-slate-500">Revision Rate</div>
-          <div className="mt-2 text-2xl font-semibold text-slate-950 sm:text-3xl">
+          <div className="mt-2 text-3xl font-bold text-slate-950">
             {responseMetrics.revisionRate}%
           </div>
         </div>
       </section>
 
-      <section className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:rounded-[28px] sm:p-6">
-        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:text-xs sm:tracking-[0.22em]">
-          Coaching Insight
-        </div>
-        <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-800 sm:text-base sm:leading-7">
-          {coachingInsight}
-        </p>
-
-        <div className="mt-5 rounded-[20px] border border-violet-200 bg-violet-50 p-4 sm:rounded-2xl">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-violet-700 sm:text-xs sm:tracking-[0.18em]">
-            Revision Growth Read
+      <section className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
+        <div className="app-card p-6 sm:p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+          <div className="flex items-center gap-2">
+            <Sparkles size={18} className="text-violet-600" />
+            <div className="section-label">Coaching Insight</div>
           </div>
-          <p className="mt-2 text-sm leading-6 text-violet-950">
-            {revisionGrowthRead}
+
+          <p className="mt-4 text-base leading-7 text-slate-800">
+            {coachingInsight}
           </p>
+
+          <div className="mt-6 rounded-2xl border border-violet-200 bg-violet-50 p-5">
+            <div className="text-xs font-bold uppercase tracking-[0.18em] text-violet-700">
+              Revision Growth Read
+            </div>
+            <p className="mt-3 text-sm leading-6 text-violet-950">
+              {revisionGrowthRead}
+            </p>
+          </div>
+        </div>
+
+        <div className="hero-gradient p-6 sm:p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+          <div className="flex items-center gap-2 text-white">
+            <TrendingUp size={18} />
+            <div className="text-xs font-bold uppercase tracking-[0.22em] text-white/75">
+              Growth Read
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-4">
+            <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+              <div className="text-sm text-white/70">Average Response Quality</div>
+              <div className="mt-1 text-3xl font-bold text-white">
+                {hasRatings
+                  ? `${Math.round(
+                      (orderedDomainEntries.reduce((sum, item) => sum + item.value, 0) /
+                        orderedDomainEntries.length) *
+                        100
+                    )}%`
+                  : '—'}
+              </div>
+            </div>
+
+            <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+              <div className="text-sm text-white/70">Revision Strength</div>
+              <div className="mt-1 text-3xl font-bold text-white">
+                {responseMetrics.revisionRate}%
+              </div>
+            </div>
+
+            <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
+              <div className="text-sm text-white/70">Most Urgent Focus</div>
+              <div className="mt-1 text-2xl font-bold capitalize text-white">
+                {weakestAreaLabel}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm sm:rounded-[28px] sm:p-6">
-        <div>
-          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:text-xs sm:tracking-[0.22em]">
-            Domain Performance
+      <section className="app-card p-6 sm:p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+        <div className="flex items-center gap-2">
+          <BarChart3 size={18} className="text-blue-600" />
+          <div>
+            <div className="section-label">Domain Performance</div>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Average self-ratings across each instructional leadership domain.
+            </p>
           </div>
-          <p className="mt-2 text-sm leading-6 text-slate-600">
-            Average self-ratings across each instructional leadership domain.
-          </p>
         </div>
 
         {!hasRatings ? (
-          <div className="mt-6 rounded-[20px] border border-dashed border-slate-300 p-5 text-sm leading-6 text-slate-500 sm:rounded-2xl sm:p-6">
+          <div className="mt-6 rounded-2xl border border-dashed border-slate-300 p-6 text-sm leading-6 text-slate-500">
             Complete a few rated scenarios to populate domain performance.
           </div>
         ) : (
-          <div className="mt-6 space-y-4">
+          <div className="mt-8 space-y-5">
             {orderedDomainEntries.map(({ domain, value }) => (
               <div key={domain} className="space-y-2">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-sm font-medium text-slate-700">
+                  <span className="text-sm font-semibold text-slate-700">
                     {getDomainLabel(domain)}
                   </span>
-                  <span className="text-sm font-semibold text-slate-900">
+                  <span className="text-sm font-bold text-slate-900">
                     {toPercent(value)}
                   </span>
                 </div>
 
                 <div className="h-3 rounded-full bg-slate-100">
                   <div
-                    className="h-3 rounded-full bg-slate-900 transition-all"
+                    className="h-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 transition-all"
                     style={{ width: getBarWidth(value) }}
                   />
                 </div>
@@ -255,11 +345,12 @@ export function AnalyticsView({
         )}
       </section>
 
-      <section className="grid gap-3 sm:gap-4 lg:grid-cols-2">
-        <div className="rounded-[24px] border border-emerald-200 bg-emerald-50 p-4 shadow-sm sm:p-6">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 sm:text-xs sm:tracking-[0.22em]">
+      <section className="grid gap-4 lg:grid-cols-2">
+        <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+          <div className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-700">
             What is going well
           </div>
+
           <ul className="mt-4 space-y-3 text-sm leading-6 text-emerald-950">
             <li>
               •{' '}
@@ -282,10 +373,11 @@ export function AnalyticsView({
           </ul>
         </div>
 
-        <div className="rounded-[24px] border border-amber-200 bg-amber-50 p-4 shadow-sm sm:p-6">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700 sm:text-xs sm:tracking-[0.22em]">
+        <div className="rounded-3xl border border-amber-200 bg-amber-50 p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+          <div className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
             Tighten next
           </div>
+
           <ul className="mt-4 space-y-3 text-sm leading-6 text-amber-950">
             <li>
               •{' '}
