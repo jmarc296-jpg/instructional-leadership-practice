@@ -39,6 +39,7 @@ export type SessionSettings = {
   category?: Category | 'all'
   difficulty?: Difficulty | 'all'
   questionCount?: number
+  sessionLength?: number
   includePrompt?: boolean
   includeExemplar?: boolean
 }
