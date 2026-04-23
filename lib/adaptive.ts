@@ -1,80 +1,30 @@
-import type { Card, Difficulty, Domain, Rating, SessionPerformance } from '@/types'
-import { getAllWrittenResponses, getResponseVersions } from '@/lib/local-store'
-
-type DomainStats = Record<
+import type {
+  Card,
+  Difficulty,
   Domain,
-  {
-    attempts: number
-    scoreTotal: number
-    averageScore: number
-  }
->
+  ProgressEntry,
+  Rating,
+  SessionPerformance
+} from '@/types'
 
-type CardStats = Record<
-  string,
-  {
-    attempts: number
-    scoreTotal: number
-    averageScore: number
-    lastRating: Rating | null
-  }
->
-
-export type BuiltSessionPerformance = {
-  totalAttempts: number
-  domainStats: DomainStats
-  cardStats: CardStats
-  weakestDomain: Domain | null
-  strongestDomain: Domain | null
+type DomainStat = {
+  attempts: number
+  scoreTotal: number
+  averageScore: number
 }
 
-const DOMAIN_ORDER: Domain[] = [
-  'rigor',
-  'ddi',
-  'coaching',
-  'assessment',
-  'culture',
-  'leadership'
-]
+type DomainStats = Record<Domain, DomainStat>
 
-// NEW: track recency in memory (per session)
-const RECENT_CARD_LIMIT = 4
-let recentCardQueue: string[] = []
-
-function trackRecentCard(cardId: string) {
-  recentCardQueue.unshift(cardId)
-  if (recentCardQueue.length > RECENT_CARD_LIMIT) {
-    recentCardQueue.pop()
-  }
-}
-
-function wasRecentlySeen(cardId: string) {
-  return recentCardQueue.includes(cardId)
-}
-
-function getRatingScore(rating: Rating): number {
+function ratingToScore(rating: Rating): number {
   switch (rating) {
     case 'strong':
-      return 1
+      return 3
     case 'partial':
-      return 0.6
+      return 2
     case 'struggled':
-      return 0.25
+      return 1
     default:
       return 0
-  }
-}
-
-function getDifficultyWeight(difficulty: Difficulty): number {
-  switch (difficulty) {
-    case 'hard':
-      return 1
-    case 'medium':
-      return 0.8
-    case 'easy':
-      return 0.5
-    default:
-      return 0.7
   }
 }
 
@@ -85,178 +35,165 @@ function createEmptyDomainStats(): DomainStats {
     coaching: { attempts: 0, scoreTotal: 0, averageScore: 0 },
     assessment: { attempts: 0, scoreTotal: 0, averageScore: 0 },
     culture: { attempts: 0, scoreTotal: 0, averageScore: 0 },
-    leadership: { attempts: 0, scoreTotal: 0, averageScore: 0 }
+    leadership: { attempts: 0, scoreTotal: 0, averageScore: 0 },
+    data: { attempts: 0, scoreTotal: 0, averageScore: 0 },
+    instruction: { attempts: 0, scoreTotal: 0, averageScore: 0 },
+    equity: { attempts: 0, scoreTotal: 0, averageScore: 0 }
   }
 }
 
-export function buildSessionPerformance(progress: SessionPerformance[]): BuiltSessionPerformance {
+function createEmptyDomainRatings(): Record<Domain, Rating[]> {
+  return {
+    rigor: [],
+    ddi: [],
+    coaching: [],
+    assessment: [],
+    culture: [],
+    leadership: [],
+    data: [],
+    instruction: [],
+    equity: []
+  }
+}
+
+function getAverageScoreForDomain(
+  stats: DomainStat
+): number {
+  if (stats.attempts === 0) return 0
+  return stats.scoreTotal / stats.attempts
+}
+
+function getStrongestDomain(
+  stats: DomainStats
+): Domain | undefined {
+  const attempted = Object.entries(stats).filter(
+    ([, value]) => value.attempts > 0
+  ) as [Domain, DomainStat][]
+
+  if (!attempted.length) return undefined
+
+  attempted.sort(
+    (a, b) => b[1].averageScore - a[1].averageScore
+  )
+
+  return attempted[0][0]
+}
+
+function getWeakestDomain(
+  stats: DomainStats
+): Domain | undefined {
+  const attempted = Object.entries(stats).filter(
+    ([, value]) => value.attempts > 0
+  ) as [Domain, DomainStat][]
+
+  if (!attempted.length) return undefined
+
+  attempted.sort(
+    (a, b) => a[1].averageScore - b[1].averageScore
+  )
+
+  return attempted[0][0]
+}
+
+export function buildSessionPerformance(
+  progress: ProgressEntry[]
+): SessionPerformance {
   const domainStats = createEmptyDomainStats()
-  const cardStats: CardStats = {}
+  const domainRatings = createEmptyDomainRatings()
+  const difficultyCounts: Record<string, number> = {}
+  const recentRatings: Rating[] = progress
+    .slice(-10)
+    .map((entry) => entry.rating)
 
   for (const entry of progress) {
-    const score = getRatingScore(entry.rating)
+    const score = ratingToScore(entry.rating)
 
     domainStats[entry.domain].attempts += 1
     domainStats[entry.domain].scoreTotal += score
+    domainRatings[entry.domain].push(entry.rating)
 
-    if (!cardStats[entry.cardId]) {
-      cardStats[entry.cardId] = {
-        attempts: 0,
-        scoreTotal: 0,
-        averageScore: 0,
-        lastRating: null
-      }
-    }
-
-    cardStats[entry.cardId].attempts += 1
-    cardStats[entry.cardId].scoreTotal += score
-    cardStats[entry.cardId].lastRating = entry.rating
+    difficultyCounts[entry.difficulty] =
+      (difficultyCounts[entry.difficulty] ?? 0) + 1
   }
 
-  for (const domain of DOMAIN_ORDER) {
-    const stat = domainStats[domain]
-    stat.averageScore =
-      stat.attempts > 0 ? stat.scoreTotal / stat.attempts : 0
+  for (const domain of Object.keys(domainStats) as Domain[]) {
+    domainStats[domain].averageScore = getAverageScoreForDomain(
+      domainStats[domain]
+    )
   }
 
-  for (const cardId of Object.keys(cardStats)) {
-    const stat = cardStats[cardId]
-    stat.averageScore =
-      stat.attempts > 0 ? stat.scoreTotal / stat.attempts : 0
-  }
+  const totalResponses = progress.length
+  const averageVersionCount = 0
 
-  const attemptedDomains = DOMAIN_ORDER.filter(
-    (domain) => domainStats[domain].attempts > 0
-  )
-
-  const weakestDomain =
-    attemptedDomains.length > 0
-      ? [...attemptedDomains].sort(
-          (a, b) => domainStats[a].averageScore - domainStats[b].averageScore
-        )[0]
-      : null
-
-  const strongestDomain =
-    attemptedDomains.length > 0
-      ? [...attemptedDomains].sort(
-          (a, b) => domainStats[b].averageScore - domainStats[a].averageScore
-        )[0]
-      : null
+  const domainAverages = (
+    Object.keys(domainStats) as Domain[]
+  ).reduce<Record<Domain, number>>((acc, domain) => {
+    acc[domain] = domainStats[domain].averageScore
+    return acc
+  }, {} as Record<Domain, number>)
 
   return {
-    totalAttempts: progress.length,
-    domainStats,
-    cardStats,
-    weakestDomain,
-    strongestDomain
+    totalResponses,
+    averageVersionCount,
+    strongestDomain: getStrongestDomain(domainStats),
+    weakestDomain: getWeakestDomain(domainStats),
+    recentRatings,
+    domainRatings,
+    domainAverages,
+    difficultyCounts
   }
 }
 
-function getResponseVersionCount(cardId: string) {
-  try {
-    return getResponseVersions(cardId).length
-  } catch {
-    return 0
+function getDomainPriorityScore(
+  card: Card,
+  performance: SessionPerformance
+): number {
+  const attemptedRatings =
+    performance.domainRatings[card.domain] ?? []
+  const average = performance.domainAverages[card.domain] ?? 0
+
+  if (attemptedRatings.length === 0) {
+    return 100
   }
+
+  if (
+    performance.weakestDomain &&
+    card.domain === performance.weakestDomain
+  ) {
+    return 80 - average * 10
+  }
+
+  return 50 - average * 10
 }
 
-function hasSavedResponse(cardId: string) {
-  try {
-    return getAllWrittenResponses().some(r => r.cardId === cardId)
-  } catch {
-    return false
-  }
-}
-
-function scoreCard(card: Card, performance: BuiltSessionPerformance): number {
-  const cardStat = performance.cardStats[card.id]
-  const domainStat = performance.domainStats[card.domain]
-
-  let score = 0
-
-  // 1. Domain priority
-  if (performance.weakestDomain === card.domain) score += 35
-  if (performance.strongestDomain === card.domain) score -= 10
-
-  // 2. Domain exposure balancing
-  if (domainStat.attempts === 0) score += 20
-  else if (domainStat.attempts < 3) score += 10
-
-  // 3. Domain weakness amplification
-  score += (1 - domainStat.averageScore) * 25
-
-  // 4. New cards boost
-  if (!cardStat) {
-    score += 25
-  } else {
-    score += (1 - cardStat.averageScore) * 30
-
-    if (cardStat.lastRating === 'struggled') score += 20
-    if (cardStat.lastRating === 'partial') score += 10
-    if (cardStat.lastRating === 'strong') score -= 10
-
-    // reduce repetition pressure
-    score -= Math.min(cardStat.attempts * 5, 20)
-  }
-
-  // 5. Revision loop (this is critical)
-  const versionCount = getResponseVersionCount(card.id)
-  const saved = hasSavedResponse(card.id)
-
-  if (saved && versionCount === 1) {
-    score += 18 // VERY important: push revision
-  }
-
-  if (versionCount >= 2) {
-    score -= 8
-  }
-
-  // 6. Difficulty shaping
-  score += getDifficultyWeight(card.difficulty) * 8
-
-  // 7. Recency protection (prevents repetition)
-  if (wasRecentlySeen(card.id)) {
-    score -= 30
-  }
-
-  return score
-}
-
-function breakTie(a: Card, b: Card): number {
-  const difficultyRank: Record<Difficulty, number> = {
-    easy: 1,
-    medium: 2,
-    hard: 3
-  }
-
-  if (difficultyRank[b.difficulty] !== difficultyRank[a.difficulty]) {
-    return difficultyRank[b.difficulty] - difficultyRank[a.difficulty]
-  }
-
-  return a.id.localeCompare(b.id)
+function getDifficultyPriorityScore(
+  difficulty: Difficulty,
+  performance: SessionPerformance
+): number {
+  const count = performance.difficultyCounts[difficulty] ?? 0
+  return Math.max(0, 20 - count)
 }
 
 export function selectNextQuestion(
   bank: Card[],
-  performance: BuiltSessionPerformance
+  performance: SessionPerformance
 ): Card | null {
   if (!bank.length) return null
 
-  const scored = bank.map((card) => ({
-    card,
-    score: scoreCard(card, performance)
-  }))
+  const scored = bank.map((card) => {
+    const domainScore = getDomainPriorityScore(card, performance)
+    const difficultyScore = getDifficultyPriorityScore(
+      card.difficulty,
+      performance
+    )
 
-  scored.sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score
-    return breakTie(a.card, b.card)
+    return {
+      card,
+      score: domainScore + difficultyScore + Math.random()
+    }
   })
 
-  const selected = scored[0]?.card ?? null
+  scored.sort((a, b) => b.score - a.score)
 
-  if (selected) {
-    trackRecentCard(selected.id)
-  }
-
-  return selected
+  return scored[0]?.card ?? null
 }
