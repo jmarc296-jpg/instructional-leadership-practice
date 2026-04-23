@@ -26,13 +26,17 @@ PROGRESS
 -----------------------------------
 */
 
-export function saveProgress(progress: ProgressEntry) {
-  if (typeof window === 'undefined') return
+export function saveProgress(progress: ProgressEntry): boolean {
+  if (typeof window === 'undefined') return false
 
-  const existing = getProgress()
-  const updated = [...existing, progress]
-
-  localStorage.setItem(PROGRESS_KEY, JSON.stringify(updated))
+  try {
+    const existing = getProgress()
+    const updated = [...existing, progress]
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(updated))
+    return true
+  } catch {
+    return false
+  }
 }
 
 export function getProgress(): ProgressEntry[] {
@@ -59,24 +63,34 @@ export function getFavorites(): string[] {
   )
 }
 
-export function addFavorite(cardId: string) {
-  if (typeof window === 'undefined') return
+export function addFavorite(cardId: string): boolean {
+  if (typeof window === 'undefined') return false
 
-  const favorites = getFavorites()
+  try {
+    const favorites = getFavorites()
 
-  if (!favorites.includes(cardId)) {
-    const updated = [...favorites, cardId]
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated))
+    if (!favorites.includes(cardId)) {
+      const updated = [...favorites, cardId]
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated))
+    }
+
+    return true
+  } catch {
+    return false
   }
 }
 
-export function removeFavorite(cardId: string) {
-  if (typeof window === 'undefined') return
+export function removeFavorite(cardId: string): boolean {
+  if (typeof window === 'undefined') return false
 
-  const favorites = getFavorites()
-  const updated = favorites.filter((id) => id !== cardId)
-
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated))
+  try {
+    const favorites = getFavorites()
+    const updated = favorites.filter((id) => id !== cardId)
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated))
+    return true
+  } catch {
+    return false
+  }
 }
 
 /*
@@ -90,17 +104,22 @@ type WrittenResponsesMap = Record<string, string>
 export function saveWrittenResponse(
   cardId: string,
   response: string
-) {
-  if (typeof window === 'undefined') return
+): boolean {
+  if (typeof window === 'undefined') return false
 
-  const responses = getAllWrittenResponsesMap()
+  try {
+    const responses = getAllWrittenResponsesMap()
+    responses[cardId] = response
 
-  responses[cardId] = response
+    localStorage.setItem(
+      RESPONSES_KEY,
+      JSON.stringify(responses)
+    )
 
-  localStorage.setItem(
-    RESPONSES_KEY,
-    JSON.stringify(responses)
-  )
+    return true
+  } catch {
+    return false
+  }
 }
 
 export function getWrittenResponse(cardId: string): string {
@@ -143,25 +162,33 @@ type VersionMap = Record<string, ResponseVersion[]>
 export function saveResponseVersion(
   cardId: string,
   response: string
-) {
-  if (typeof window === 'undefined') return
+): boolean {
+  if (typeof window === 'undefined') return false
 
-  const versions = getAllVersions()
+  try {
+    const versions = getAllVersions()
+    const currentVersions = versions[cardId] ?? []
 
-  const currentVersions = versions[cardId] ?? []
+    const newVersion: ResponseVersion = {
+      versionId:
+        typeof crypto !== 'undefined' && 'randomUUID' in crypto
+          ? crypto.randomUUID()
+          : `${cardId}-${Date.now()}`,
+      response,
+      savedAt: new Date().toISOString()
+    }
 
-  const newVersion: ResponseVersion = {
-    versionId: crypto.randomUUID(),
-    response,
-    savedAt: new Date().toISOString()
+    versions[cardId] = [...currentVersions, newVersion]
+
+    localStorage.setItem(
+      RESPONSE_VERSIONS_KEY,
+      JSON.stringify(versions)
+    )
+
+    return true
+  } catch {
+    return false
   }
-
-  versions[cardId] = [...currentVersions, newVersion]
-
-  localStorage.setItem(
-    RESPONSE_VERSIONS_KEY,
-    JSON.stringify(versions)
-  )
 }
 
 export function getResponseVersions(
@@ -191,7 +218,6 @@ ANALYTICS
 
 export function getAnalyticsSnapshot(): AnalyticsSnapshot {
   const progress = getProgress()
-
   const totalCompleted = progress.length
 
   const grouped: Record<string, number[]> = {}
@@ -208,16 +234,12 @@ export function getAnalyticsSnapshot(): AnalyticsSnapshot {
 
   const averageRatingByDomain: Record<string, number> = {}
 
-  Object.entries(grouped).forEach(
-    ([domain, values]) => {
-      const avg =
-        values.reduce((sum, val) => sum + val, 0) /
-        values.length
+  Object.entries(grouped).forEach(([domain, values]) => {
+    const avg =
+      values.reduce((sum, val) => sum + val, 0) / values.length
 
-      averageRatingByDomain[domain] =
-        Math.round(avg * 10) / 10
-    }
-  )
+    averageRatingByDomain[domain] = Math.round(avg * 10) / 10
+  })
 
   const recentRatings: Rating[] = progress
     .slice(-10)
@@ -230,9 +252,7 @@ export function getAnalyticsSnapshot(): AnalyticsSnapshot {
   }
 }
 
-function convertRatingToNumber(
-  rating: Rating
-): number {
+function convertRatingToNumber(rating: Rating): number {
   switch (rating) {
     case 'strong':
       return 3
