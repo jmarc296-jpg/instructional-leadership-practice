@@ -74,9 +74,7 @@ export default function HomePage() {
     }
 
     if (settings.difficulty !== 'all') {
-      bank = bank.filter(
-        (card) => card.difficulty === settings.difficulty
-      )
+      bank = bank.filter((card) => card.difficulty === settings.difficulty)
     }
 
     return bank
@@ -151,9 +149,7 @@ export default function HomePage() {
   const strongestDomain = useMemo(() => {
     if (!analytics) return '-'
 
-    const entries = Object.entries(
-      analytics.averageRatingByDomain
-    )
+    const entries = Object.entries(analytics.averageRatingByDomain)
 
     if (!entries.length) return '-'
 
@@ -163,9 +159,7 @@ export default function HomePage() {
   const weakestDomain = useMemo(() => {
     if (!analytics) return '-'
 
-    const entries = Object.entries(
-      analytics.averageRatingByDomain
-    )
+    const entries = Object.entries(analytics.averageRatingByDomain)
 
     if (!entries.length) return '-'
 
@@ -175,8 +169,6 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl space-y-8">
-
-        {/* NAV */}
         <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
           <div className="flex flex-wrap gap-3">
             {tabs.map((tab) => {
@@ -202,11 +194,17 @@ export default function HomePage() {
 
         {activeTab === 'practice' && (
           <>
-            {/* HERO */}
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
-                <div className="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-blue-600">
-                  LeadSharper
+                <div className="mb-6 flex items-center gap-4">
+                  <img
+                    src="/logo.png"
+                    alt="LeadSharper logo"
+                    className="h-14 w-auto"
+                  />
+                  <div className="text-sm font-bold uppercase tracking-[0.25em] text-blue-600">
+                    LeadSharper
+                  </div>
                 </div>
 
                 <h1 className="mb-6 text-5xl font-bold leading-tight text-slate-900">
@@ -235,7 +233,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* NEW BRANDED PANEL */}
               <div className="hero-gradient relative min-h-[420px] overflow-hidden p-8">
                 <div className="absolute inset-0 opacity-20">
                   <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white blur-3xl" />
@@ -310,11 +307,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* WORKSPACE */}
-            <div
-              id="practice-workspace"
-              className="grid gap-6 lg:grid-cols-3"
-            >
+            <div id="practice-workspace" className="grid gap-6 lg:grid-cols-3">
               <div className="space-y-6">
                 <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
                   <SessionSetup
@@ -349,9 +342,7 @@ export default function HomePage() {
             weakestDomain={weakestDomain}
             recentTrend="Trending stronger"
             coachingInsight="Continue tightening precision."
-            onRetryWeakestArea={() =>
-              setActiveTab('practice')
-            }
+            onRetryWeakestArea={() => setActiveTab('practice')}
           />
         )}
 
@@ -370,9 +361,7 @@ export default function HomePage() {
         {activeTab === 'history' && (
           <ResponseHistoryView
             onOpenCard={(id) => {
-              const card = QUESTION_BANK.find(
-                (c) => c.id === id
-              )
+              const card = QUESTION_BANK.find((c) => c.id === id)
 
               if (card) {
                 setCurrentCard(card)
