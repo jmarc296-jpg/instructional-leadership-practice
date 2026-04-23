@@ -10,6 +10,9 @@ export type Domain =
   | 'equity'
 
 export type Difficulty =
+  | 'easy'
+  | 'medium'
+  | 'hard'
   | 'foundational'
   | 'advanced'
   | 'expert'
