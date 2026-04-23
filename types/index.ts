@@ -14,6 +14,11 @@ export type Difficulty =
   | 'advanced'
   | 'expert'
 
+export type Rating =
+  | 'strong'
+  | 'partial'
+  | 'struggled'
+
 export type Card = {
   id: string
   domain: Domain
@@ -28,7 +33,7 @@ export type Card = {
 export type AnalyticsSnapshot = {
   totalCompleted: number
   averageRatingByDomain: Record<string, number>
-  recentRatings: Array<'strong' | 'partial' | 'struggled'>
+  recentRatings: Rating[]
 }
 
 export type SessionSettings = {
