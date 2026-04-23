@@ -59,7 +59,7 @@ export type SessionSettings = {
   coachMode: boolean
   adaptiveMode: boolean
   mode: 'quiz' | 'review'
-  category: 'all'
+  category: Domain | 'all'
   difficulty: Difficulty | 'all'
   sessionLength: number
   includePrompt: boolean
