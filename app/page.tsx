@@ -5,7 +5,8 @@ import {
   Brain,
   BarChart3,
   Heart,
-  History as HistoryIcon
+  History as HistoryIcon,
+  Check
 } from 'lucide-react'
 
 import { QUESTION_BANK } from '@/data/questions'
@@ -243,36 +244,31 @@ export default function HomePage() {
           <>
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
-                <div className="mb-8 flex items-center gap-4">
-                  <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                    <img
-                      src="/logo.png"
-                      alt="LeadSharper"
-                      className="h-full w-full object-cover"
-                    />
+                <div className="mb-10 flex items-center gap-5">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-lg shadow-blue-500/25">
+                    <Check size={30} className="text-white" strokeWidth={3} />
                   </div>
 
                   <div>
-                    <div className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+                    <div className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-600">
                       LeadSharper
                     </div>
-
-                    <div className="text-sm text-slate-500">
+                    <div className="mt-1 text-sm text-slate-500">
                       Sharpen leads. Accelerate growth.
                     </div>
                   </div>
                 </div>
 
-                <h1 className="mb-6 text-5xl font-bold leading-tight text-slate-900">
+                <h1 className="mb-6 max-w-4xl text-5xl font-bold leading-[1.05] text-slate-900">
                   Build elite instructional leadership judgment through realistic scenario practice.
                 </h1>
 
-                <p className="max-w-2xl text-lg leading-relaxed text-slate-600">
+                <p className="max-w-2xl text-lg leading-9 text-slate-600">
                   Practice high-stakes leadership decisions, sharpen your coaching instincts,
                   and strengthen response quality through repeated scenario-based reps.
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-10 flex flex-wrap gap-4">
                   <button
                     onClick={handleLaunchPractice}
                     className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
@@ -289,7 +285,12 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="hero-gradient relative min-h-[420px] overflow-hidden p-8">
+              <div className="hero-gradient relative min-h-[420px] overflow-hidden rounded-3xl p-8 shadow-xl shadow-blue-500/25">
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white blur-3xl" />
+                  <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-cyan-300 blur-3xl" />
+                </div>
+
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div className="flex items-center justify-between">
                     <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
@@ -310,7 +311,7 @@ export default function HomePage() {
                       Practice the moments that define strong school leadership
                     </h3>
 
-                    <p className="mt-4 max-w-md text-sm leading-6 text-white/85">
+                    <p className="mt-4 max-w-md text-sm leading-7 text-white/85">
                       Coaching conversations, DDI meetings, instructional alignment,
                       and principal decision-making.
                     </p>
