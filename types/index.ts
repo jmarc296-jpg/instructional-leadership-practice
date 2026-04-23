@@ -49,6 +49,7 @@ export type Card = {
   exemplar: string
   tags?: string[]
   coachInsight?: CoachInsight
+  isActive?: boolean
 }
 
 export type ProgressEntry = {
