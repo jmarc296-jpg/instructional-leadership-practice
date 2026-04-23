@@ -34,6 +34,8 @@ export type ResponseSignal =
   | 'relationship-aware'
   | 'action-oriented'
   | 'missing-action'
+  | 'evidence-based'
+  | 'missing-evidence'
 
 export type ResponseInsight = {
   signals: ResponseSignal[]
