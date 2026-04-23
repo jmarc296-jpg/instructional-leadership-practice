@@ -37,6 +37,7 @@ export type ResponseSignal =
   | 'evidence-based'
   | 'missing-evidence'
   | 'student-impact'
+  | 'vague-language'
 
 export type ResponseInsight = {
   signals: ResponseSignal[]
