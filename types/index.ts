@@ -53,6 +53,10 @@ export type ResponseHistoryEntry = {
 }
 
 export type SessionPerformance = {
+  cardId?: string
+  domain?: Domain
+  difficulty?: Difficulty
+  rating?: Rating
   totalResponses: number
   averageVersionCount: number
   strongestDomain?: Domain
