@@ -58,11 +58,7 @@ export function ResponseHistoryView({ onOpenCard }: Props) {
         if (!card) return null
 
         const versions: ResponseVersion[] = getResponseVersions(item.cardId)
-        const insight = analyzeResponse(
-          item.response,
-          card.prompt,
-          card.exemplar
-        )
+        const insight = analyzeResponse(item.response, card.exemplar)
 
         return {
           cardId: item.cardId,
