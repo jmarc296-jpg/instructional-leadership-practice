@@ -166,7 +166,9 @@ export default function HomePage() {
   }, [analytics])
 
   const recentTrend = useMemo(() => {
-    if (!analytics || analytics.recentRatings.length === 0) return 'No ratings yet'
+    if (!analytics || analytics.recentRatings.length === 0) {
+      return 'No ratings yet'
+    }
 
     const strong = analytics.recentRatings.filter((r) => r === 'strong').length
     const partial = analytics.recentRatings.filter((r) => r === 'partial').length
@@ -174,49 +176,28 @@ export default function HomePage() {
 
     if (strong >= partial && strong >= struggled) return 'Trending strong'
     if (partial >= strong && partial >= struggled) return 'Mostly partial'
-    return 'Needs tighter calibration'
+    return 'Needs calibration'
   }, [analytics])
 
   const coachingInsight = useMemo(() => {
     if (!analytics || analytics.totalCompleted === 0) {
-      return 'Complete a few scenarios to unlock coaching insight.'
+      return 'Complete scenarios to unlock coaching insights.'
     }
 
-    if (weakestDomain === strongestDomain) {
-      return 'Your responses are clustering. Push for sharper distinction in your reasoning.'
-    }
-
-    return `Strongest: ${strongestDomain}. Tighten: ${weakestDomain}. Focus on naming the issue faster and making the highest-leverage move explicit.`
+    return `Strongest: ${strongestDomain}. Tighten: ${weakestDomain}.`
   }, [analytics, strongestDomain, weakestDomain])
 
   function handleRetryWeakestArea() {
     setActiveTab('practice')
-
-    if (weakestDomain && weakestDomain !== '-') {
-      setPracticeFilter(weakestDomain as PracticeFilter)
-      setCurrentCard(null)
-      setShowPrompt(false)
-      setShowExemplar(false)
-      setTimeout(() => {
-        loadNextCard(true)
-        scrollToWorkspace()
-      }, 0)
-      return
-    }
-
-    setPracticeFilter('all')
-    setCurrentCard(null)
-    setShowPrompt(false)
-    setShowExemplar(false)
-    setTimeout(() => {
-      loadNextCard(true)
-      scrollToWorkspace()
-    }, 0)
+    loadNextCard(true)
+    scrollToWorkspace()
   }
 
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl space-y-8">
+
+        {/* NAV */}
         <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
           <div className="flex flex-wrap gap-3">
             {tabs.map((tab) => {
@@ -226,7 +207,7 @@ export default function HomePage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 rounded-2xl px-4 py-2.5 font-medium transition-all ${
+                  className={`flex items-center gap-2 rounded-2xl px-5 py-3 font-medium transition ${
                     activeTab === tab.id
                       ? 'bg-slate-900 text-white shadow-md'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -242,58 +223,66 @@ export default function HomePage() {
 
         {activeTab === 'practice' && (
           <>
-            <div className="grid gap-6 lg:grid-cols-3">
-              <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
-                <div className="mb-10 flex items-center gap-5">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-lg shadow-blue-500/25">
-                    <Check size={30} className="text-white" strokeWidth={3} />
+            {/* HERO */}
+            <div className="grid gap-5 lg:grid-cols-[1.9fr_1fr]">
+
+              {/* LEFT PANEL */}
+              <div className="rounded-3xl border border-slate-200 bg-white px-12 py-10 shadow-sm">
+
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-lg shadow-blue-500/20">
+                    <Check size={26} className="text-white" strokeWidth={3} />
                   </div>
 
                   <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.35em] text-blue-600">
+                    <div className="text-xs font-semibold uppercase tracking-[0.32em] text-blue-600">
                       LeadSharper
                     </div>
+
                     <div className="mt-1 text-sm text-slate-500">
                       Sharpen leads. Accelerate growth.
                     </div>
                   </div>
                 </div>
 
-                <h1 className="mb-6 max-w-4xl text-5xl font-bold leading-[1.05] text-slate-900">
+                <h1 className="max-w-3xl text-6xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900">
                   Build elite instructional leadership judgment through realistic scenario practice.
                 </h1>
 
-                <p className="max-w-2xl text-lg leading-9 text-slate-600">
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
                   Practice high-stakes leadership decisions, sharpen your coaching instincts,
                   and strengthen response quality through repeated scenario-based reps.
                 </p>
 
-                <div className="mt-10 flex flex-wrap gap-4">
+                <div className="mt-8 flex flex-wrap gap-4">
                   <button
                     onClick={handleLaunchPractice}
-                    className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+                    className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
                   >
                     Launch Practice Session
                   </button>
 
                   <button
                     onClick={scrollToWorkspace}
-                    className="rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:bg-slate-50"
+                    className="rounded-xl border border-slate-300 px-6 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
                   >
                     Continue Previous Session
                   </button>
                 </div>
               </div>
 
-              <div className="hero-gradient relative min-h-[420px] overflow-hidden rounded-3xl p-8 shadow-xl shadow-blue-500/25">
+              {/* RIGHT PANEL */}
+              <div className="hero-gradient relative min-h-[360px] overflow-hidden rounded-3xl p-7 shadow-xl shadow-blue-500/20">
+
                 <div className="absolute inset-0 opacity-20">
-                  <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white blur-3xl" />
-                  <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-cyan-300 blur-3xl" />
+                  <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white blur-3xl" />
+                  <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-cyan-300 blur-3xl" />
                 </div>
 
                 <div className="relative z-10 flex h-full flex-col justify-between">
+
                   <div className="flex items-center justify-between">
-                    <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
+                    <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">
                       Leadership OS
                     </div>
 
@@ -302,22 +291,22 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="mt-10">
-                    <div className="mb-3 text-xs uppercase tracking-[0.25em] text-white/75">
+                  <div className="mt-8">
+                    <div className="mb-3 text-xs uppercase tracking-[0.22em] text-white/75">
                       Leadership Simulation
                     </div>
 
-                    <h3 className="max-w-md text-3xl font-bold leading-tight text-white">
+                    <h3 className="max-w-sm text-3xl font-bold leading-tight text-white">
                       Practice the moments that define strong school leadership
                     </h3>
 
-                    <p className="mt-4 max-w-md text-sm leading-7 text-white/85">
+                    <p className="mt-4 text-sm leading-7 text-white/85">
                       Coaching conversations, DDI meetings, instructional alignment,
                       and principal decision-making.
                     </p>
                   </div>
 
-                  <div className="mt-8 grid grid-cols-2 gap-3">
+                  <div className="mt-6 grid grid-cols-2 gap-3">
                     <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
                       <div className="text-xs uppercase tracking-[0.16em] text-white/70">
                         Scenario Reps
@@ -358,22 +347,17 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* WORKSPACE */}
             <div id="practice-workspace" className="grid gap-6 lg:grid-cols-3">
-              <div className="space-y-6">
-                <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <SessionSetup
-                    settings={settings}
-                    setSettings={setSettings}
-                  />
-                </div>
+              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <SessionSetup
+                  settings={settings}
+                  setSettings={setSettings}
+                />
               </div>
 
               <div className="lg:col-span-2">
-                {isLoading ? (
-                  <div className="rounded-3xl border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
-                    Loading practice workspace...
-                  </div>
-                ) : currentCard ? (
+                {currentCard && (
                   <PracticeView
                     card={currentCard}
                     settings={settings}
@@ -384,10 +368,6 @@ export default function HomePage() {
                     onRevealExemplar={() => setShowExemplar(true)}
                     onNext={handleNext}
                   />
-                ) : (
-                  <div className="rounded-3xl border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
-                    No questions available for this configuration.
-                  </div>
                 )}
               </div>
             </div>
