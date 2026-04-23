@@ -21,6 +21,8 @@ import { TopNav } from '@/components/home/top-nav'
 import { HeroSection } from '@/components/home/hero-section'
 import { SimulatorPanel } from '@/components/home/simulator-panel'
 import { TabContent } from '@/components/home/tab-content'
+import { FeatureHighlights } from '@/components/home/feature-highlights'
+import { WhySection } from '@/components/home/why-section'
 import { PracticeWorkspace } from '@/components/practice-workspace'
 
 type View = 'practice' | 'analytics' | 'favorites' | 'history'
@@ -207,6 +209,10 @@ export default function HomePage() {
                 strongestDomain={strongestDomain}
               />
             </section>
+
+            <FeatureHighlights />
+
+            <WhySection />
 
             <PracticeWorkspace
               settings={settings}
