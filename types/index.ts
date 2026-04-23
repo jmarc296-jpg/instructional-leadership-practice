@@ -19,6 +19,11 @@ export type Rating =
   | 'partial'
   | 'struggled'
 
+export type CoachInsight = {
+  title: string
+  text: string
+}
+
 export type Card = {
   id: string
   domain: Domain
@@ -28,6 +33,7 @@ export type Card = {
   prompt: string
   exemplar: string
   tags?: string[]
+  coachInsight?: CoachInsight
 }
 
 export type ResponseVersion = {
