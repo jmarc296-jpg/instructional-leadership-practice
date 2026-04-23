@@ -39,6 +39,13 @@ export type Card = {
   coachInsight?: CoachInsight
 }
 
+export type ProgressEntry = {
+  cardId: string
+  domain: Domain
+  difficulty: Difficulty
+  rating: Rating
+}
+
 export type ResponseVersion = {
   versionId: string
   response: string
@@ -53,10 +60,6 @@ export type ResponseHistoryEntry = {
 }
 
 export type SessionPerformance = {
-  cardId?: string
-  domain?: Domain
-  difficulty?: Difficulty
-  rating?: Rating
   totalResponses: number
   averageVersionCount: number
   strongestDomain?: Domain
