@@ -17,14 +17,13 @@ import type {
   SessionSettings
 } from '@/types'
 
-import { PracticeView } from '@/components/practice-view'
 import { AnalyticsView } from '@/components/analytics-view'
 import { FavoritesView } from '@/components/favorites-view'
 import { ResponseHistoryView } from '@/components/response-history-view'
-import { SessionSetup } from '@/components/session-setup'
 import { TopNav } from '@/components/home/top-nav'
 import { HeroSection } from '@/components/home/hero-section'
 import { SimulatorPanel } from '@/components/home/simulator-panel'
+import { PracticeWorkspace } from '@/components/practice-workspace'
 
 type View = 'practice' | 'analytics' | 'favorites' | 'history'
 type PracticeFilter = 'all' | Domain
@@ -204,40 +203,18 @@ export default function HomePage() {
               />
             </section>
 
-            <section
-              id="practice-workspace"
-              className="grid gap-6 lg:grid-cols-3"
-            >
-              <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-                <SessionSetup
-                  settings={settings}
-                  setSettings={setSettings}
-                />
-              </div>
-
-              <div className="lg:col-span-2">
-                {isLoading ? (
-                  <div className="rounded-[28px] border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
-                    Loading practice workspace...
-                  </div>
-                ) : currentCard ? (
-                  <PracticeView
-                    card={currentCard}
-                    settings={settings}
-                    progressLabel={`Question ${questionNumber}`}
-                    showPrompt={showPrompt}
-                    showExemplar={showExemplar}
-                    onRevealPrompt={() => setShowPrompt(true)}
-                    onRevealExemplar={() => setShowExemplar(true)}
-                    onNext={handleNext}
-                  />
-                ) : (
-                  <div className="rounded-[28px] border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
-                    No questions available.
-                  </div>
-                )}
-              </div>
-            </section>
+            <PracticeWorkspace
+              settings={settings}
+              setSettings={setSettings}
+              isLoading={isLoading}
+              currentCard={currentCard}
+              questionNumber={questionNumber}
+              showPrompt={showPrompt}
+              showExemplar={showExemplar}
+              onRevealPrompt={() => setShowPrompt(true)}
+              onRevealExemplar={() => setShowExemplar(true)}
+              onNext={handleNext}
+            />
           </>
         )}
 
