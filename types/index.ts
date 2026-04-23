@@ -1,8 +1,12 @@
 export type Domain =
+  | 'rigor'
+  | 'ddi'
   | 'coaching'
+  | 'assessment'
+  | 'culture'
+  | 'leadership'
   | 'data'
   | 'instruction'
-  | 'leadership'
   | 'equity'
 
 export type Difficulty =
