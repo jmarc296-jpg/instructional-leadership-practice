@@ -11,7 +11,7 @@ import {
 
 import { QUESTION_BANK } from '@/data/questions'
 import {
-  getResponseHistory,
+  getAllWrittenResponses,
   getResponseVersions
 } from '@/lib/local-store'
 import {
@@ -21,7 +21,6 @@ import {
 
 import type {
   Domain,
-  ResponseHistoryEntry,
   ResponseVersion
 } from '@/types'
 
@@ -50,10 +49,10 @@ function formatDomain(domain: Domain) {
 
 export function ResponseHistoryView({ onOpenCard }: Props) {
   const historyItems = useMemo(() => {
-    const history = getResponseHistory()
+    const history = getAllWrittenResponses()
 
     return history
-      .map((item: ResponseHistoryEntry) => {
+      .map((item: { cardId: string; response: string; updatedAt?: string }) => {
         const card = QUESTION_BANK.find((q) => q.id === item.cardId)
 
         if (!card) return null
@@ -66,7 +65,10 @@ export function ResponseHistoryView({ onOpenCard }: Props) {
         )
 
         return {
-          ...item,
+          cardId: item.cardId,
+          response: item.response,
+          updatedAt: item.updatedAt ?? new Date().toISOString(),
+          versionCount: versions.length,
           card,
           versions,
           insight
@@ -105,7 +107,7 @@ export function ResponseHistoryView({ onOpenCard }: Props) {
           className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm"
         >
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div className="space-y-4 min-w-0">
+            <div className="min-w-0 space-y-4">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
                   {formatDomain(item.card.domain)}
@@ -116,7 +118,7 @@ export function ResponseHistoryView({ onOpenCard }: Props) {
                 </span>
 
                 <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-700">
-                  {item.versionCount} versions
+                  {item.versionCount} version{item.versionCount === 1 ? '' : 's'}
                 </span>
               </div>
 
@@ -141,18 +143,16 @@ export function ResponseHistoryView({ onOpenCard }: Props) {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
-                {item.insight.signals.map(
-                  (signal: ResponseSignal) => (
-                    <span
-                      key={signal}
-                      className={`rounded-full px-3 py-1 text-xs font-semibold ${getSignalClasses(
-                        signal
-                      )}`}
-                    >
-                      {signal}
-                    </span>
-                  )
-                )}
+                {item.insight.signals.map((signal: ResponseSignal) => (
+                  <span
+                    key={signal}
+                    className={`rounded-full px-3 py-1 text-xs font-semibold ${getSignalClasses(
+                      signal
+                    )}`}
+                  >
+                    {signal}
+                  </span>
+                ))}
               </div>
 
               <div className="grid gap-4 lg:grid-cols-2">
