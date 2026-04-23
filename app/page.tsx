@@ -150,7 +150,6 @@ export default function HomePage() {
     if (!analytics) return '-'
 
     const entries = Object.entries(analytics.averageRatingByDomain)
-
     if (!entries.length) return '-'
 
     return entries.sort((a, b) => b[1] - a[1])[0][0]
@@ -160,17 +159,63 @@ export default function HomePage() {
     if (!analytics) return '-'
 
     const entries = Object.entries(analytics.averageRatingByDomain)
-
     if (!entries.length) return '-'
 
     return entries.sort((a, b) => a[1] - b[1])[0][0]
   }, [analytics])
 
+  const recentTrend = useMemo(() => {
+    if (!analytics || analytics.recentRatings.length === 0) return 'No ratings yet'
+
+    const strong = analytics.recentRatings.filter((r) => r === 'strong').length
+    const partial = analytics.recentRatings.filter((r) => r === 'partial').length
+    const struggled = analytics.recentRatings.filter((r) => r === 'struggled').length
+
+    if (strong >= partial && strong >= struggled) return 'Trending strong'
+    if (partial >= strong && partial >= struggled) return 'Mostly partial'
+    return 'Needs tighter calibration'
+  }, [analytics])
+
+  const coachingInsight = useMemo(() => {
+    if (!analytics || analytics.totalCompleted === 0) {
+      return 'Complete a few scenarios to unlock coaching insight.'
+    }
+
+    if (weakestDomain === strongestDomain) {
+      return 'Your responses are clustering. Push for sharper distinction in your reasoning.'
+    }
+
+    return `Strongest: ${strongestDomain}. Tighten: ${weakestDomain}. Focus on naming the issue faster and making the highest-leverage move explicit.`
+  }, [analytics, strongestDomain, weakestDomain])
+
+  function handleRetryWeakestArea() {
+    setActiveTab('practice')
+
+    if (weakestDomain && weakestDomain !== '-') {
+      setPracticeFilter(weakestDomain as PracticeFilter)
+      setCurrentCard(null)
+      setShowPrompt(false)
+      setShowExemplar(false)
+      setTimeout(() => {
+        loadNextCard(true)
+        scrollToWorkspace()
+      }, 0)
+      return
+    }
+
+    setPracticeFilter('all')
+    setCurrentCard(null)
+    setShowPrompt(false)
+    setShowExemplar(false)
+    setTimeout(() => {
+      loadNextCard(true)
+      scrollToWorkspace()
+    }, 0)
+  }
+
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl space-y-8">
-
-        {/* NAV */}
         <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
           <div className="flex flex-wrap gap-3">
             {tabs.map((tab) => {
@@ -196,11 +241,8 @@ export default function HomePage() {
 
         {activeTab === 'practice' && (
           <>
-            {/* HERO */}
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
-
-                {/* NEW BRAND SECTION */}
                 <div className="mb-8 flex items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-lg">
                     <img
@@ -246,7 +288,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* RIGHT PANEL */}
               <div className="hero-gradient relative min-h-[420px] overflow-hidden p-8">
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div className="flex items-center justify-between">
@@ -315,7 +356,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* PRACTICE AREA */}
             <div id="practice-workspace" className="grid gap-6 lg:grid-cols-3">
               <div className="space-y-6">
                 <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -327,7 +367,11 @@ export default function HomePage() {
               </div>
 
               <div className="lg:col-span-2">
-                {currentCard && (
+                {isLoading ? (
+                  <div className="rounded-3xl border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
+                    Loading practice workspace...
+                  </div>
+                ) : currentCard ? (
                   <PracticeView
                     card={currentCard}
                     settings={settings}
@@ -338,6 +382,10 @@ export default function HomePage() {
                     onRevealExemplar={() => setShowExemplar(true)}
                     onNext={handleNext}
                   />
+                ) : (
+                  <div className="rounded-3xl border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
+                    No questions available for this configuration.
+                  </div>
                 )}
               </div>
             </div>
@@ -345,7 +393,14 @@ export default function HomePage() {
         )}
 
         {activeTab === 'analytics' && (
-          <AnalyticsView analytics={analytics} />
+          <AnalyticsView
+            analytics={analytics}
+            strongestDomain={strongestDomain}
+            weakestDomain={weakestDomain}
+            recentTrend={recentTrend}
+            coachingInsight={coachingInsight}
+            onRetryWeakestArea={handleRetryWeakestArea}
+          />
         )}
 
         {activeTab === 'favorites' && (
@@ -361,7 +416,18 @@ export default function HomePage() {
         )}
 
         {activeTab === 'history' && (
-          <ResponseHistoryView />
+          <ResponseHistoryView
+            onOpenCard={(id) => {
+              const card = QUESTION_BANK.find((c) => c.id === id)
+
+              if (card) {
+                setCurrentCard(card)
+                setActiveTab('practice')
+                setShowPrompt(true)
+                scrollToWorkspace()
+              }
+            }}
+          />
         )}
       </div>
     </main>
