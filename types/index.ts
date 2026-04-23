@@ -30,6 +30,19 @@ export type Card = {
   tags?: string[]
 }
 
+export type ResponseVersion = {
+  versionId: string
+  response: string
+  savedAt: string
+}
+
+export type ResponseHistoryEntry = {
+  cardId: string
+  response: string
+  updatedAt: string
+  versionCount: number
+}
+
 export type AnalyticsSnapshot = {
   totalCompleted: number
   averageRatingByDomain: Record<string, number>
