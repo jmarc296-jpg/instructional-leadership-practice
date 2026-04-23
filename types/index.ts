@@ -32,6 +32,8 @@ export type ResponseSignal =
   | 'strong-next-step'
   | 'strategic-sequencing'
   | 'relationship-aware'
+  | 'action-oriented'
+  | 'missing-action'
 
 export type ResponseInsight = {
   signals: ResponseSignal[]
