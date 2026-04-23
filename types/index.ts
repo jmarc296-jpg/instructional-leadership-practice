@@ -45,6 +45,7 @@ export type ResponseInsight = {
   signals: ResponseSignal[]
   strengths: string[]
   growthAreas: string[]
+  summary: string
 }
 
 export type CoachInsight = {
