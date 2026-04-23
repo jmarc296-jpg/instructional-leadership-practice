@@ -8,7 +8,9 @@ import {
   History as HistoryIcon,
   MessageSquareMore,
   LineChart,
-  ShieldCheck
+  ShieldCheck,
+  ArrowRight,
+  Sparkles
 } from 'lucide-react'
 
 import { QUESTION_BANK } from '@/data/questions'
@@ -243,7 +245,8 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="mb-4 inline-flex rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-700">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-700">
+                  <Sparkles size={14} />
                   Flight simulator for instructional leaders
                 </div>
 
@@ -260,9 +263,10 @@ export default function HomePage() {
                 <div className="mt-8 flex flex-wrap gap-4">
                   <button
                     onClick={handleLaunchPractice}
-                    className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+                    className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
                   >
                     Start Practicing Now
+                    <ArrowRight size={16} />
                   </button>
 
                   <button
@@ -290,7 +294,7 @@ export default function HomePage() {
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div className="flex items-center justify-between">
                     <div className="rounded-full bg-white/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">
-                      Leadership OS
+                      Leadership Simulator
                     </div>
 
                     <div className="rounded-full bg-emerald-400 px-4 py-2 text-[11px] font-semibold text-slate-950">
