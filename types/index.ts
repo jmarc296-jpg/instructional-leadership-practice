@@ -41,9 +41,10 @@ export type ResponseSignal =
   | 'symptom-not-root-cause'
 
 export type ResponseInsight = {
+  score: number
   signals: ResponseSignal[]
   strengths: string[]
-  grows: string[]
+  growthAreas: string[]
 }
 
 export type CoachInsight = {
