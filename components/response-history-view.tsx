@@ -526,7 +526,7 @@ export function ResponseHistoryView({ onOpenCard }: Props) {
                         </p>
 
                         <div className="mt-4 flex flex-wrap gap-2">
-                          {item.insight.signals.map((signal) => (
+                          {item.insight.signals.map((signal: ResponseSignal) => (
                             <span
                               key={signal}
                               className={`rounded-full px-3 py-1 text-[11px] font-semibold sm:text-xs ${getSignalClasses(signal)}`}
