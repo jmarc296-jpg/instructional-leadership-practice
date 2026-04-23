@@ -5,8 +5,7 @@ import {
   Brain,
   BarChart3,
   Heart,
-  History as HistoryIcon,
-  Check
+  History as HistoryIcon
 } from 'lucide-react'
 
 import { QUESTION_BANK } from '@/data/questions'
@@ -229,10 +228,13 @@ export default function HomePage() {
               {/* LEFT PANEL */}
               <div className="rounded-3xl border border-slate-200 bg-white px-12 py-10 shadow-sm">
 
-                <div className="mb-6 flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-lg shadow-blue-500/20">
-                    <Check size={26} className="text-white" strokeWidth={3} />
-                  </div>
+                {/* REAL LOGO */}
+                <div className="mb-8 flex items-center gap-5">
+                  <img
+                    src="/logo.png"
+                    alt="LeadSharper Logo"
+                    className="h-20 w-auto object-contain"
+                  />
 
                   <div>
                     <div className="text-xs font-semibold uppercase tracking-[0.32em] text-blue-600">
@@ -245,15 +247,18 @@ export default function HomePage() {
                   </div>
                 </div>
 
+                {/* HEADLINE */}
                 <h1 className="max-w-3xl text-6xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900">
                   Build elite instructional leadership judgment through realistic scenario practice.
                 </h1>
 
+                {/* SUBTEXT */}
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
                   Practice high-stakes leadership decisions, sharpen your coaching instincts,
                   and strengthen response quality through repeated scenario-based reps.
                 </p>
 
+                {/* BUTTONS */}
                 <div className="mt-8 flex flex-wrap gap-4">
                   <button
                     onClick={handleLaunchPractice}
