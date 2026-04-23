@@ -200,7 +200,7 @@ export default function HomePage() {
                   <img
                     src="/logo.png"
                     alt="LeadSharper logo"
-                    className="h-24 w-auto object-contain"
+                    className="h-16 w-auto object-contain"
                   />
                 </div>
 
@@ -240,7 +240,7 @@ export default function HomePage() {
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div className="flex items-center justify-between">
                     <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
-                      LeadSharper
+                      Leadership OS
                     </div>
 
                     <div className="rounded-full bg-emerald-400 px-4 py-2 text-xs font-semibold text-slate-950">
