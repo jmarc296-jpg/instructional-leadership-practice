@@ -27,6 +27,11 @@ export type ResponseSignal =
   | 'prioritization'
   | 'clarity'
   | 'leadership-action'
+  | 'clear-problem'
+  | 'uses-evidence'
+  | 'strong-next-step'
+  | 'strategic-sequencing'
+  | 'relationship-aware'
 
 export type ResponseInsight = {
   signals: ResponseSignal[]
