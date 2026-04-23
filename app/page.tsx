@@ -17,12 +17,10 @@ import type {
   SessionSettings
 } from '@/types'
 
-import { AnalyticsView } from '@/components/analytics-view'
-import { FavoritesView } from '@/components/favorites-view'
-import { ResponseHistoryView } from '@/components/response-history-view'
 import { TopNav } from '@/components/home/top-nav'
 import { HeroSection } from '@/components/home/hero-section'
 import { SimulatorPanel } from '@/components/home/simulator-panel'
+import { TabContent } from '@/components/home/tab-content'
 import { PracticeWorkspace } from '@/components/practice-workspace'
 
 type View = 'practice' | 'analytics' | 'favorites' | 'history'
@@ -181,6 +179,13 @@ export default function HomePage() {
     scrollToWorkspace()
   }
 
+  function handleOpenPracticeCard(card: Card) {
+    setCurrentCard(card)
+    setActiveTab('practice')
+    setShowPrompt(true)
+    scrollToWorkspace()
+  }
+
   return (
     <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-8">
@@ -189,7 +194,7 @@ export default function HomePage() {
           setActiveTab={setActiveTab}
         />
 
-        {activeTab === 'practice' && (
+        {activeTab === 'practice' ? (
           <>
             <section className="grid gap-5 lg:grid-cols-[1.95fr_1fr]">
               <HeroSection
@@ -216,43 +221,18 @@ export default function HomePage() {
               onNext={handleNext}
             />
           </>
-        )}
-
-        {activeTab === 'analytics' && (
-          <AnalyticsView
+        ) : (
+          <TabContent
+            activeTab={activeTab}
             analytics={analytics}
             strongestDomain={strongestDomain}
             weakestDomain={weakestDomain}
             recentTrend={recentTrend}
             coachingInsight={coachingInsight}
-            onRetryWeakestArea={handleRetryWeakestArea}
-          />
-        )}
-
-        {activeTab === 'favorites' && (
-          <FavoritesView
             favoriteCards={favoriteCards}
-            onOpenFavorite={(card) => {
-              setCurrentCard(card)
-              setActiveTab('practice')
-              setShowPrompt(true)
-              scrollToWorkspace()
-            }}
-          />
-        )}
-
-        {activeTab === 'history' && (
-          <ResponseHistoryView
-            onOpenCard={(id) => {
-              const card = QUESTION_BANK.find((c) => c.id === id)
-
-              if (card) {
-                setCurrentCard(card)
-                setActiveTab('practice')
-                setShowPrompt(true)
-                scrollToWorkspace()
-              }
-            }}
+            onRetryWeakestArea={handleRetryWeakestArea}
+            onOpenFavorite={handleOpenPracticeCard}
+            onOpenHistoryCard={handleOpenPracticeCard}
           />
         )}
       </div>
