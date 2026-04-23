@@ -196,15 +196,12 @@ export default function HomePage() {
           <>
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
-                <div className="mb-6 flex items-center gap-4">
+                <div className="mb-8">
                   <img
                     src="/logo.png"
                     alt="LeadSharper logo"
-                    className="h-14 w-auto"
+                    className="h-24 w-auto object-contain"
                   />
-                  <div className="text-sm font-bold uppercase tracking-[0.25em] text-blue-600">
-                    LeadSharper
-                  </div>
                 </div>
 
                 <h1 className="mb-6 text-5xl font-bold leading-tight text-slate-900">
