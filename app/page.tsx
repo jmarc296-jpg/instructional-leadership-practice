@@ -5,7 +5,11 @@ import {
   Brain,
   BarChart3,
   Heart,
-  History as HistoryIcon
+  History as HistoryIcon,
+  Check,
+  MessageSquareMore,
+  LineChart,
+  ShieldCheck
 } from 'lucide-react'
 
 import { QUESTION_BANK } from '@/data/questions'
@@ -195,8 +199,6 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl space-y-8">
-
-        {/* NAV */}
         <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
           <div className="flex flex-wrap gap-3">
             {tabs.map((tab) => {
@@ -222,13 +224,8 @@ export default function HomePage() {
 
         {activeTab === 'practice' && (
           <>
-            {/* HERO */}
             <div className="grid gap-5 lg:grid-cols-[1.9fr_1fr]">
-
-              {/* LEFT PANEL */}
               <div className="rounded-3xl border border-slate-200 bg-white px-12 py-10 shadow-sm">
-
-                {/* REAL LOGO */}
                 <div className="mb-8 flex items-center gap-5">
                   <img
                     src="/logo.png"
@@ -247,45 +244,51 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* HEADLINE */}
-                <h1 className="max-w-3xl text-6xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900">
-                  Build elite instructional leadership judgment through realistic scenario practice.
+                <div className="mb-4 inline-flex rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">
+                  Flight simulator for instructional leaders
+                </div>
+
+                <h1 className="max-w-4xl text-6xl font-bold leading-[1.02] tracking-[-0.03em] text-slate-900">
+                  Train for the moments school leaders are rarely prepared for.
                 </h1>
 
-                {/* SUBTEXT */}
-                <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                  Practice high-stakes leadership decisions, sharpen your coaching instincts,
-                  and strengthen response quality through repeated scenario-based reps.
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+                  Tough coaching conversations. DDI meetings that go off track.
+                  Teacher pushback. Misaligned instruction. Practice the exact
+                  moments leaders face every week before they happen in real life.
                 </p>
 
-                {/* BUTTONS */}
                 <div className="mt-8 flex flex-wrap gap-4">
                   <button
                     onClick={handleLaunchPractice}
                     className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
                   >
-                    Launch Practice Session
+                    Start Practicing Now
                   </button>
 
                   <button
                     onClick={scrollToWorkspace}
                     className="rounded-xl border border-slate-300 px-6 py-3 font-semibold text-slate-700 transition hover:bg-slate-50"
                   >
-                    Continue Previous Session
+                    See How It Works
                   </button>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 border-t border-slate-100 pt-6 text-sm text-slate-500">
+                  <span>Built for Principals</span>
+                  <span>Assistant Principals</span>
+                  <span>Instructional Coaches</span>
+                  <span>District Leaders</span>
                 </div>
               </div>
 
-              {/* RIGHT PANEL */}
               <div className="hero-gradient relative min-h-[360px] overflow-hidden rounded-3xl p-7 shadow-xl shadow-blue-500/20">
-
                 <div className="absolute inset-0 opacity-20">
                   <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white blur-3xl" />
                   <div className="absolute bottom-0 left-0 h-24 w-24 rounded-full bg-cyan-300 blur-3xl" />
                 </div>
 
                 <div className="relative z-10 flex h-full flex-col justify-between">
-
                   <div className="flex items-center justify-between">
                     <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">
                       Leadership OS
@@ -302,12 +305,13 @@ export default function HomePage() {
                     </div>
 
                     <h3 className="max-w-sm text-3xl font-bold leading-tight text-white">
-                      Practice the moments that define strong school leadership
+                      Rehearse high-stakes leadership moments before they happen in real life.
                     </h3>
 
                     <p className="mt-4 text-sm leading-7 text-white/85">
-                      Coaching conversations, DDI meetings, instructional alignment,
-                      and principal decision-making.
+                      Practice coaching conversations, data meetings, instructional
+                      judgment calls, and accountability moves with higher stakes
+                      and clearer feedback.
                     </p>
                   </div>
 
@@ -352,7 +356,72 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* WORKSPACE */}
+            <section className="grid gap-5 lg:grid-cols-3">
+              <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                  <MessageSquareMore size={22} />
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900">
+                  Coaching conversations
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Navigate resistance, accountability moments, and teacher
+                  development conversations with more clarity and control.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                  <LineChart size={22} />
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900">
+                  Difficult DDI meetings
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Lead data conversations that produce action, not excuses, when
+                  urgency is high and execution is uneven.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                  <ShieldCheck size={22} />
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900">
+                  Instructional judgment
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Make stronger calls when walkthrough evidence, politics, pacing,
+                  and student outcomes collide at the same time.
+                </p>
+              </div>
+            </section>
+
+            <section className="rounded-3xl border border-slate-200 bg-white px-8 py-7 shadow-sm">
+              <div className="max-w-4xl">
+                <div className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-600">
+                  Why this exists
+                </div>
+
+                <h2 className="mt-3 text-3xl font-bold leading-tight text-slate-900">
+                  Pilots train in simulators before flying real planes. School leaders rarely get that luxury.
+                </h2>
+
+                <p className="mt-4 text-base leading-8 text-slate-600">
+                  LeadSharper gives leaders a place to practice the judgment,
+                  language, and decision-making real schools demand before the
+                  pressure is live. Built from real principal coaching, school
+                  turnaround work, and instructional leadership support.
+                </p>
+              </div>
+            </section>
+
             <div id="practice-workspace" className="grid gap-6 lg:grid-cols-3">
               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
                 <SessionSetup
@@ -362,7 +431,11 @@ export default function HomePage() {
               </div>
 
               <div className="lg:col-span-2">
-                {currentCard && (
+                {isLoading ? (
+                  <div className="rounded-3xl border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
+                    Loading practice workspace...
+                  </div>
+                ) : currentCard ? (
                   <PracticeView
                     card={currentCard}
                     settings={settings}
@@ -373,6 +446,10 @@ export default function HomePage() {
                     onRevealExemplar={() => setShowExemplar(true)}
                     onNext={handleNext}
                   />
+                ) : (
+                  <div className="rounded-3xl border border-slate-200 bg-white p-8 text-slate-500 shadow-sm">
+                    No questions available for this configuration.
+                  </div>
                 )}
               </div>
             </div>
