@@ -52,6 +52,17 @@ export type ResponseHistoryEntry = {
   versionCount: number
 }
 
+export type SessionPerformance = {
+  totalResponses: number
+  averageVersionCount: number
+  strongestDomain?: Domain
+  weakestDomain?: Domain
+  recentRatings: Rating[]
+  domainRatings: Record<Domain, Rating[]>
+  domainAverages: Record<Domain, number>
+  difficultyCounts: Record<string, number>
+}
+
 export type AnalyticsSnapshot = {
   totalCompleted: number
   averageRatingByDomain: Record<string, number>
