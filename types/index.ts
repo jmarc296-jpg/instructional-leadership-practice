@@ -22,6 +22,18 @@ export type Rating =
   | 'partial'
   | 'struggled'
 
+export type ResponseSignal =
+  | 'evidence'
+  | 'prioritization'
+  | 'clarity'
+  | 'leadership-action'
+
+export type ResponseInsight = {
+  signals: ResponseSignal[]
+  strengths: string[]
+  grows: string[]
+}
+
 export type CoachInsight = {
   title: string
   text: string
@@ -37,7 +49,6 @@ export type Card = {
   exemplar: string
   tags?: string[]
   coachInsight?: CoachInsight
-  isActive?: boolean
 }
 
 export type ProgressEntry = {
