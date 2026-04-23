@@ -22,6 +22,7 @@ export type Card = {
   scenario: string
   prompt: string
   exemplar: string
+  tags?: string[]
 }
 
 export type AnalyticsSnapshot = {
