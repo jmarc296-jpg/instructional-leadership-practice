@@ -38,6 +38,7 @@ export type ResponseSignal =
   | 'missing-evidence'
   | 'student-impact'
   | 'vague-language'
+  | 'symptom-not-root-cause'
 
 export type ResponseInsight = {
   signals: ResponseSignal[]
