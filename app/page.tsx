@@ -244,11 +244,11 @@ export default function HomePage() {
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
                 <div className="mb-8 flex items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-lg">
+                  <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
                     <img
                       src="/logo.png"
                       alt="LeadSharper"
-                      className="h-10 w-10 object-contain"
+                      className="h-full w-full object-cover"
                     />
                   </div>
 
@@ -256,6 +256,7 @@ export default function HomePage() {
                     <div className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
                       LeadSharper
                     </div>
+
                     <div className="text-sm text-slate-500">
                       Sharpen leads. Accelerate growth.
                     </div>
