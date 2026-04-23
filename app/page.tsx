@@ -169,6 +169,8 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl space-y-8">
+
+        {/* NAV */}
         <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
           <div className="flex flex-wrap gap-3">
             {tabs.map((tab) => {
@@ -194,14 +196,28 @@ export default function HomePage() {
 
         {activeTab === 'practice' && (
           <>
+            {/* HERO */}
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
-                <div className="mb-8">
-                  <img
-                    src="/logo.png"
-                    alt="LeadSharper logo"
-                    className="h-16 w-auto object-contain"
-                  />
+
+                {/* NEW BRAND SECTION */}
+                <div className="mb-8 flex items-center gap-4">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 shadow-lg">
+                    <img
+                      src="/logo.png"
+                      alt="LeadSharper"
+                      className="h-10 w-10 object-contain"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+                      LeadSharper
+                    </div>
+                    <div className="text-sm text-slate-500">
+                      Sharpen leads. Accelerate growth.
+                    </div>
+                  </div>
                 </div>
 
                 <h1 className="mb-6 text-5xl font-bold leading-tight text-slate-900">
@@ -230,13 +246,8 @@ export default function HomePage() {
                 </div>
               </div>
 
+              {/* RIGHT PANEL */}
               <div className="hero-gradient relative min-h-[420px] overflow-hidden p-8">
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white blur-3xl" />
-                  <div className="absolute bottom-10 left-8 h-28 w-28 rounded-full bg-cyan-300 blur-2xl" />
-                  <div className="absolute right-12 bottom-16 h-20 w-20 rounded-full bg-indigo-200 blur-2xl" />
-                </div>
-
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div className="flex items-center justify-between">
                     <div className="rounded-full bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur">
@@ -277,7 +288,7 @@ export default function HomePage() {
                       <div className="text-xs uppercase tracking-[0.16em] text-white/70">
                         Strongest Domain
                       </div>
-                      <div className="mt-1 text-xl font-bold capitalize text-white">
+                      <div className="mt-1 text-xl font-bold text-white">
                         {strongestDomain === '-' ? 'Pending' : strongestDomain}
                       </div>
                     </div>
@@ -304,6 +315,7 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* PRACTICE AREA */}
             <div id="practice-workspace" className="grid gap-6 lg:grid-cols-3">
               <div className="space-y-6">
                 <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -333,14 +345,7 @@ export default function HomePage() {
         )}
 
         {activeTab === 'analytics' && (
-          <AnalyticsView
-            analytics={analytics}
-            strongestDomain={strongestDomain}
-            weakestDomain={weakestDomain}
-            recentTrend="Trending stronger"
-            coachingInsight="Continue tightening precision."
-            onRetryWeakestArea={() => setActiveTab('practice')}
-          />
+          <AnalyticsView analytics={analytics} />
         )}
 
         {activeTab === 'favorites' && (
@@ -356,18 +361,7 @@ export default function HomePage() {
         )}
 
         {activeTab === 'history' && (
-          <ResponseHistoryView
-            onOpenCard={(id) => {
-              const card = QUESTION_BANK.find((c) => c.id === id)
-
-              if (card) {
-                setCurrentCard(card)
-                setActiveTab('practice')
-                setShowPrompt(true)
-                scrollToWorkspace()
-              }
-            }}
-          />
+          <ResponseHistoryView />
         )}
       </div>
     </main>
