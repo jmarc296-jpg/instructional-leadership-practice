@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from 'lucide-react'
+﻿import { ArrowRight, Sparkles } from 'lucide-react'
 
 type Props = {
   onLaunchPractice: () => void
@@ -50,17 +50,18 @@ export function HeroSection({
           onClick={onLaunchPractice}
           className="premium-button inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
         >
-          Start Practicing Now
+          Start Simulation
           <ArrowRight size={16} />
         </button>
 
         <button
           onClick={onScrollToWorkspace}
-          className="rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700"
+          className="premium-button rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 hover:bg-slate-50"
         >
-          See How It Works
+          View Practice Workspace
         </button>
       </div>
     </div>
   )
 }
+
