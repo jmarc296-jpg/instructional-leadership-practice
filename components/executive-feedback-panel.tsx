@@ -1,4 +1,6 @@
-﻿type Props = {
+﻿import { ScenarioDebrief } from '@/components/scenario-debrief'
+
+type Props = {
   insight: {
     score: number
     summary?: string
@@ -95,5 +97,10 @@ export function ExecutiveFeedbackPanel({ insight }: Props) {
         </div>
       ) : null}
     </div>
+      <div className="mt-6">
+        <ScenarioDebrief score={insight.score} />
+      </div>
+    </div>
   )
 }
+
