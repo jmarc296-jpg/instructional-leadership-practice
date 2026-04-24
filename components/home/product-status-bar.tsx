@@ -1,4 +1,4 @@
-type Props = {
+ï»¿type Props = {
   activeTab: string
 }
 
@@ -14,7 +14,7 @@ export function ProductStatusBar({ activeTab }: Props) {
         </div>
 
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">
-          Simulation • Coaching • Growth
+          Simulation | Coaching | Growth
         </div>
       </div>
     </section>
