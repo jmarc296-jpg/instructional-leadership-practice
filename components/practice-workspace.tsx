@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react'
 import { PracticeView } from '@/components/practice-view'
 import { SessionSetup } from '@/components/session-setup'
-import { ScenarioBrief } from '@/components/scenario-brief'
-import { DemoBadge } from '@/components/demo-badge'
+import { ScenarioBrief } from '@/components/scenario-brief'import { DemoBadge } from '@/components/demo-badge'
 import type { Card, SessionSettings } from '@/types'
 
 type Props = {
@@ -54,7 +53,7 @@ export function PracticeWorkspace({
   if (isLoading) {
     return (
       <div id="practice-workspace" className="space-y-6">
-        <ScenarioBrief card={currentCard} questionNumber={questionNumber} />`r`n      <DemoBadge />
+        <ScenarioBrief card={currentCard} questionNumber={questionNumber} />      <DemoBadge />
 
         <section className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
@@ -67,7 +66,7 @@ export function PracticeWorkspace({
 
   return (
     <div id="practice-workspace" className="space-y-6">
-      <ScenarioBrief card={currentCard} questionNumber={questionNumber} />`r`n      <DemoBadge />
+      <ScenarioBrief card={currentCard} questionNumber={questionNumber} />      <DemoBadge />
 
       <section className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
         <div className="space-y-6">
@@ -171,4 +170,3 @@ export function PracticeWorkspace({
     </div>
   )
 }
-
