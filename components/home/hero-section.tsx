@@ -26,23 +26,22 @@ export function HeroSection({
           </div>
 
           <div className="mt-2 text-lg sm:text-xl font-medium text-slate-700 leading-relaxed">
-            Sharpen your Leadership. Accelerate your Growth.
+            Measure readiness. Build stronger leaders.
           </div>
         </div>
       </div>
 
       <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-700">
         <Sparkles size={14} />
-        Flight Simulator for Instructional Leaders
+        Leadership Readiness Infrastructure
       </div>
 
       <h1 className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.05em] leading-[0.95] text-slate-950">
-        Train for the moments school leaders are rarely prepared for.
+        Measure principal readiness before the job is on the line.
       </h1>
 
       <p className="mt-6 max-w-3xl text-xl leading-9 text-slate-600">
-        Tough coaching conversations. DDI meetings that go off track.
-        Teacher pushback. Misaligned instruction.
+        LeadSharper helps districts, universities, and leadership pipelines simulate real school leadership moments, identify blind spots, and build stronger principal pipelines through behavioral intelligence.
       </p>
 
       <div className="mt-8 flex flex-wrap gap-4">
@@ -50,7 +49,7 @@ export function HeroSection({
           onClick={onLaunchPractice}
           className="premium-button inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
         >
-          Start Simulation
+          Start Readiness Simulation
           <ArrowRight size={16} />
         </button>
 
@@ -58,12 +57,13 @@ export function HeroSection({
           onClick={onScrollToWorkspace}
           className="premium-button rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 hover:bg-slate-50"
         >
-          View Practice Workspace
+          View Leadership Workspace
         </button>
       </div>
     </div>
   )
 }
+
 
 
 
