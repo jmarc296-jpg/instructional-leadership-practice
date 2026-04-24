@@ -13,6 +13,7 @@ import { LaunchBanner } from '@/components/home/launch-banner'
 import { PilotCta } from '@/components/home/pilot-cta'
 import { DemoModeBanner } from '@/components/home/demo-mode-banner'
 import { PracticeWorkspace } from '@/components/practice-workspace'
+import { CustomScenarioGenerator } from '@/components/custom-scenario-generator'
 import { useHomeDashboard } from '@/hooks/use-home-dashboard'
 
 export default function HomePage() {
@@ -52,6 +53,15 @@ export default function HomePage() {
         <ProductStatusBar activeTab={activeTab} />        <LaunchBanner />
 
         <DemoModeBanner onLaunchDemo={handleLaunchPractice} />
+
+        <CustomScenarioGenerator onGenerate={(scenario) => {
+          setCurrentCard({
+            id: 'custom-generated',
+            difficulty: 'custom',
+            ...scenario
+          })
+          setActiveTab('practice')
+        }} />
 
         {activeTab === 'practice' ? (
           <>
@@ -108,6 +118,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 
