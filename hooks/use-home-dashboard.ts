@@ -1,13 +1,18 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+﻿import { buildExemplarResponse } from '@/lib/exemplar-builder'
+import { useEffect, useMemo, useState } from 'react'
 
+import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import { QUESTION_BANK } from '@/data/questions'
+import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import { buildSessionPerformance, selectNextQuestion } from '@/lib/adaptive'
+import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import {
   getAnalyticsSnapshot,
   getFavorites,
   getProgress
 } from '@/lib/local-store'
 
+import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import type {
   AnalyticsSnapshot,
   Card,
@@ -179,7 +184,7 @@ export function useHomeDashboard() {
       stem: 'Custom leadership simulation',
       scenario: scenario.scenario,
       prompt: scenario.prompt,
-      exemplar: 'A strong response names the core leadership issue, grounds the response in evidence, preserves trust, and defines the next action clearly.',
+      exemplar: buildExemplarResponse({ domain: scenario.domain, scenario: scenario.scenario, prompt: scenario.prompt }),
       tags: ['custom', 'leadership', 'simulation'],
       isActive: true
     })
@@ -225,5 +230,8 @@ export function useHomeDashboard() {
     setShowExemplar
   }
 }
+
+
+
 
 

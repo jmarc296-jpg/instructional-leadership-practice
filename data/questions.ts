@@ -1,4 +1,4 @@
-import type { Card } from '@/types'
+﻿import type { Card } from '@/types'
 
 export const QUESTION_BANK: Card[] = [
   {
@@ -7,11 +7,11 @@ export const QUESTION_BANK: Card[] = [
     difficulty: 'advanced',
     stem: 'A strong teacher is quietly resisting feedback.',
     scenario:
-      'During a walkthrough, you notice a veteran teacher leading most of the thinking during a rigorous math task. Students appear compliant, but very few are doing the actual cognitive heavy lifting. When you bring this up in feedback, the teacher responds: "My students can’t handle full independence yet. If I step back, the lesson falls apart." This teacher is respected by peers and has strong parent relationships.',
+      'During a walkthrough, you notice a veteran teacher leading most of the thinking during a rigorous math task. Students appear compliant, but very few are doing the actual cognitive heavy lifting. When you bring this up in feedback, the teacher responds: "My students canâ€™t handle full independence yet. If I step back, the lesson falls apart." This teacher is respected by peers and has strong parent relationships.',
     prompt:
       'What do you say and do next to address instructional rigor without damaging trust?',
     exemplar:
-      'A strong leader affirms the teacher’s commitment to students while naming the instructional concern directly. They use specific evidence from the walkthrough, clarify why over-scaffolding limits student independence, and align on one concrete adjustment for the next lesson. They preserve trust while maintaining instructional expectations.'
+      'A strong leader affirms the teacherâ€™s commitment to students while naming the instructional concern directly. They use specific evidence from the walkthrough, clarify why over-scaffolding limits student independence, and align on one concrete adjustment for the next lesson. They preserve trust while maintaining instructional expectations.'
   },
 
   {
@@ -196,3 +196,12 @@ export const QUESTION_BANK: Card[] = [
       'A strong leader maintains fairness, communicates clearly, and avoids setting harmful precedents.'
   }
 ]
+
+export const questionsWithStrongExemplars = questions.map((question) => ({
+  ...question,
+  exemplar: buildExemplarResponse({
+    domain: question.domain,
+    scenario: question.scenario,
+    prompt: question.prompt
+  })
+}))
