@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from 'lucide-react'
+﻿import { ArrowRight, Sparkles } from 'lucide-react'
 
 type Props = {
   onLaunchPractice: () => void
@@ -64,5 +64,6 @@ export function HeroSection({
     </div>
   )
 }
+
 
 

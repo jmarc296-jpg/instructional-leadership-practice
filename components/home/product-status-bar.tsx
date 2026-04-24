@@ -14,9 +14,10 @@ export function ProductStatusBar({ activeTab }: Props) {
         </div>
 
         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">
-          Simulation | Coaching | Growth
+          READINESS | INTELLIGENCE | PIPELINE
         </div>
       </div>
     </section>
   )
 }
+

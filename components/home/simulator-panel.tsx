@@ -1,4 +1,4 @@
-type Props = {
+﻿type Props = {
   totalCompleted: number
   strongestDomain: string
 }
@@ -27,23 +27,22 @@ export function SimulatorPanel({
 
         <div className="mt-10">
           <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-blue-100">
-            Executive Practice Engine
+            Leadership Readiness Engine
           </div>
 
           <h3 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.04em]">
-            Practice the moment. Read the room. Sharpen the move.
+            Measure principal readiness before the job is on the line.
           </h3>
 
           <p className="mt-5 text-base leading-8 text-white/85">
-            Timed leadership simulations with AI coaching, scenario reaction
-            feedback, response history, and adaptive practice.
+            AI-powered leadership simulations that identify blind spots, surface risk patterns, and build stronger principal pipelines.
           </p>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-4">
           <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
             <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
-              Scenario Reps
+              Readiness Reps
             </div>
             <div className="mt-2 text-3xl font-semibold">{totalCompleted}</div>
           </div>
@@ -66,7 +65,7 @@ export function SimulatorPanel({
 
           <div className="rounded-2xl bg-white/10 p-4 backdrop-blur">
             <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
-              AI Feedback
+              Behavioral Intelligence
             </div>
             <div className="mt-2 text-2xl font-semibold">Enabled</div>
           </div>
@@ -88,4 +87,5 @@ export function SimulatorPanel({
     </div>
   )
 }
+
 
