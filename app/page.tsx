@@ -37,6 +37,7 @@ export default function HomePage() {
     handleNext,
     handleRetryWeakestArea,
     handleOpenPracticeCard,
+    handleCustomScenario,
     scrollToWorkspace,
     setShowPrompt,
     setShowExemplar
@@ -54,14 +55,7 @@ export default function HomePage() {
 
         <DemoModeBanner onLaunchDemo={handleLaunchPractice} />
 
-        <CustomScenarioGenerator onGenerate={(scenario) => {
-          setCurrentCard({
-            id: 'custom-generated',
-            difficulty: 'custom',
-            ...scenario
-          })
-          setActiveTab('practice')
-        }} />
+        <CustomScenarioGenerator onGenerate={handleCustomScenario} />
 
         {activeTab === 'practice' ? (
           <>
@@ -118,6 +112,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 

@@ -171,6 +171,26 @@ export function useHomeDashboard() {
     scrollToWorkspace()
   }
 
+  function handleCustomScenario(scenario: { scenario: string; prompt: string; domain: string }) {
+    setCurrentCard({
+      id: 'custom-generated',
+      domain: 'leadership',
+      difficulty: 'medium',
+      stem: 'Custom leadership simulation',
+      scenario: scenario.scenario,
+      prompt: scenario.prompt,
+      exemplar: 'A strong response names the core leadership issue, grounds the response in evidence, preserves trust, and defines the next action clearly.',
+      tags: ['custom', 'leadership', 'simulation'],
+      isActive: true
+    })
+
+    setActiveTab('practice')
+    setShowPrompt(true)
+    setShowExemplar(false)
+    setQuestionNumber(1)
+    scrollToWorkspace()
+  }
+
   function handleOpenPracticeCard(card: Card) {
     setCurrentCard(card)
     setActiveTab('practice')
@@ -199,9 +219,11 @@ export function useHomeDashboard() {
     handleNext,
     handleRetryWeakestArea,
     handleOpenPracticeCard,
+    handleCustomScenario,
     scrollToWorkspace,
     setShowPrompt,
     setShowExemplar
   }
 }
+
 
