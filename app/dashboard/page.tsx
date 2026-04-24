@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useMemo } from 'react'
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
@@ -84,3 +84,4 @@ export default function DashboardPage() {
     </main>
   )
 }
+

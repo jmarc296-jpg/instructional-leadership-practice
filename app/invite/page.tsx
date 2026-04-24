@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
@@ -109,3 +109,4 @@ function MetricCard({
     </div>
   )
 }
+

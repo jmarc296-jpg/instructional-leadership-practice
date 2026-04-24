@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useMemo } from 'react'
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
@@ -200,3 +200,4 @@ function MetricCard({
     </div>
   )
 }
+

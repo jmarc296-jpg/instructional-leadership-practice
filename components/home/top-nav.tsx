@@ -1,4 +1,4 @@
-import { Brain, BarChart3, Heart, History as HistoryIcon } from 'lucide-react'
+﻿import { Brain, BarChart3, Heart, History as HistoryIcon } from 'lucide-react'
 
 type View = 'practice' | 'analytics' | 'favorites' | 'history'
 
@@ -58,3 +58,4 @@ export function TopNav({ activeTab, setActiveTab }: Props) {
     </header>
   )
 }
+

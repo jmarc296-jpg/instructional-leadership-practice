@@ -1,4 +1,4 @@
-export default function PilotPage() {
+﻿export default function PilotPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-6xl space-y-8">
@@ -54,7 +54,7 @@ export default function PilotPage() {
           </h2>
 
           <div className="mt-6 space-y-3 text-slate-700">
-            <p><strong>Pilot:</strong> $15K�$25K</p>
+            <p><strong>Pilot:</strong> $15K–$25K</p>
             <p><strong>District Rollout:</strong> Custom Pricing</p>
             <p><strong>University Partnerships:</strong> Custom Pricing</p>
           </div>
@@ -79,3 +79,5 @@ function Card({
     </div>
   )
 }
+
+
