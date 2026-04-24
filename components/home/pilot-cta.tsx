@@ -18,7 +18,7 @@
         </div>
 
         <a
-          href="mailto:?subject=LeadSharper Pilot Interest&body=I am interested in learning more about a LeadSharper pilot."
+          href="#waitlist"
           className="premium-button inline-flex justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100"
         >
           Request Pilot Conversation
@@ -27,3 +27,4 @@
     </section>
   )
 }
+

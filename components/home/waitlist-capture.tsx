@@ -42,7 +42,7 @@ export function WaitlistCapture() {
   }
 
   return (
-    <section className="premium-panel rounded-[32px] border border-slate-200 bg-white px-8 py-8 shadow-sm">
+    <section id="waitlist" className="premium-panel rounded-[32px] border border-slate-200 bg-white px-8 py-8 shadow-sm">
       <div className="mx-auto max-w-4xl text-center">
         <div className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
           Early Access
@@ -89,3 +89,4 @@ export function WaitlistCapture() {
     </section>
   )
 }
+
