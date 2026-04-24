@@ -1,4 +1,6 @@
-﻿import type { Card } from '@/types'
+﻿import { buildExemplarResponse } from '@/lib/exemplar-builder'
+
+import type { Card } from '@/types'
 
 export const QUESTION_BANK: Card[] = [
   {
@@ -205,5 +207,6 @@ export const questionsWithStrongExemplars = QUESTION_BANK.map((question) => ({
     prompt: question.prompt
   })
 }))
+
 
 
