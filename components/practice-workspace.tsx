@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import { PracticeView } from '@/components/practice-view'
 import { SessionSetup } from '@/components/session-setup'
 import type { Card, SessionSettings } from '@/types'
