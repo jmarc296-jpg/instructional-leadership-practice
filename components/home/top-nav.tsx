@@ -52,8 +52,9 @@ export function TopNav({ activeTab, setActiveTab }: Props) {
               </button>
             )
           })}
-        </nav>
+        <a href="/pilot" className="premium-button inline-flex items-center rounded-2xl bg-blue-600 px-5 py-3 text-[15px] font-semibold text-white hover:bg-blue-700">Pilot</a>`r`n        </nav>
       </div>
     </header>
   )
 }
+
