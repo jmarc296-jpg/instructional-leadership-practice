@@ -24,7 +24,7 @@ export function FeatureHighlights() {
       {cards.map(({ title, text, Icon }) => (
         <div
           key={title}
-          className="rounded-[28px] border border-slate-200/80 bg-white p-7 shadow-[0_12px_35px_rgba(15,23,42,0.05)]"
+          className="premium-panel rounded-[28px] border border-slate-200/80 bg-white p-7 shadow-[0_12px_35px_rgba(15,23,42,0.05)]"
         >
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
             <Icon size={22} />
@@ -38,3 +38,4 @@ export function FeatureHighlights() {
     </section>
   )
 }
+

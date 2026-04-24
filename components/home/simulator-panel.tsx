@@ -10,7 +10,7 @@ export function SimulatorPanel({
   const displayedDomain = strongestDomain === '-' ? 'Pending' : strongestDomain
 
   return (
-    <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 p-7 text-white shadow-xl">
+    <div className="premium-panel fade-in-up relative overflow-hidden rounded-[32px] bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 p-7 text-white shadow-xl">
       <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/20 blur-3xl" />
       <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-cyan-300/20 blur-3xl" />
 
@@ -88,3 +88,4 @@ export function SimulatorPanel({
     </div>
   )
 }
+

@@ -1,6 +1,6 @@
 export function WhySection() {
   return (
-    <section className="rounded-[32px] border border-slate-200/80 bg-white px-8 py-7 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
+    <section className="premium-panel rounded-[32px] border border-slate-200/80 bg-white px-8 py-7 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
       <div className="max-w-4xl">
         <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-600">
           Why this exists
@@ -20,3 +20,4 @@ export function WhySection() {
     </section>
   )
 }
+

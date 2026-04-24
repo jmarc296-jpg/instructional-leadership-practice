@@ -10,7 +10,7 @@ export function HeroSection({
   onScrollToWorkspace
 }: Props) {
   return (
-    <div className="rounded-[32px] border border-slate-200 bg-white px-10 py-10 shadow-sm">
+    <div className="premium-panel fade-in-up rounded-[32px] border border-slate-200 bg-white px-10 py-10 shadow-sm">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-center gap-6">
         <div className="flex-shrink-0">
           <img
@@ -48,7 +48,7 @@ export function HeroSection({
       <div className="mt-8 flex flex-wrap gap-4">
         <button
           onClick={onLaunchPractice}
-          className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+          className="premium-button inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
         >
           Start Practicing Now
           <ArrowRight size={16} />
