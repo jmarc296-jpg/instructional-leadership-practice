@@ -1,0 +1,386 @@
+'use client'
+
+import { useEffect, useMemo, useState } from 'react'
+import {
+  addFavorite,
+  getFavorites,
+  getResponseVersions,
+  getWrittenResponse,
+  removeFavorite,
+  saveProgress,
+  saveWrittenResponse
+} from '@/lib/local-store'
+import { scoreResponseAgainstExemplar } from '@/lib/response-scoring'
+import type { Card, Rating, SessionSettings } from '@/types'
+
+type Props = {
+  card: Card
+  settings: SessionSettings
+  progressLabel: string
+  isLastCard?: boolean
+  showPrompt: boolean
+  showExemplar: boolean
+  onRevealPrompt: () => void
+  onRevealExemplar: () => void
+  onNext: () => void
+}
+
+function getRatingClasses(rating: Rating, selected: Rating | null) {
+  const isSelected = selected === rating
+
+  if (rating === 'strong') {
+    return isSelected
+      ? 'border-emerald-600 bg-emerald-600 text-white'
+      : 'border-emerald-200 bg-white text-emerald-700 hover:bg-emerald-50'
+  }
+
+  if (rating === 'partial') {
+    return isSelected
+      ? 'border-amber-500 bg-amber-500 text-white'
+      : 'border-amber-200 bg-white text-amber-700 hover:bg-amber-50'
+  }
+
+  return isSelected
+    ? 'border-rose-600 bg-rose-600 text-white'
+    : 'border-rose-200 bg-white text-rose-700 hover:bg-rose-50'
+}
+
+function getRatingDescription(rating: Rating) {
+  if (rating === 'strong') {
+    return 'Clear issue, strong reasoning, high-leverage move.'
+  }
+
+  if (rating === 'partial') {
+    return 'Mostly right, but lacked precision or evidence.'
+  }
+
+  return 'Missed the core issue or chose the wrong move.'
+}
+
+export function PracticeCard({
+  card,
+  settings,
+  progressLabel,
+  showPrompt,
+  showExemplar,
+  onRevealPrompt,
+  onRevealExemplar,
+  onNext
+}: Props) {
+  const [favoriteStatus, setFavoriteStatus] = useState('')
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [writtenResponse, setWrittenResponse] = useState('')
+  const [savedResponse, setSavedResponse] = useState('')
+  const [selectedRating, setSelectedRating] = useState<Rating | null>(null)
+  const [hasSubmittedRating, setHasSubmittedRating] = useState(false)
+  const [versionCount, setVersionCount] = useState(0)
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
+
+  useEffect(() => {
+    const favorites = getFavorites()
+    setIsFavorite(favorites.includes(card.id))
+
+    const existingResponse = getWrittenResponse(card.id)
+    setWrittenResponse(existingResponse)
+    setSavedResponse(existingResponse)
+
+    const versions = getResponseVersions(card.id)
+    setVersionCount(versions.length)
+
+    setSelectedRating(null)
+    setHasSubmittedRating(false)
+    setFavoriteStatus('')
+    setSaveStatus('idle')
+  }, [card.id])
+
+  const hasWrittenResponse = writtenResponse.trim().length > 0
+  const hasSavedResponse = savedResponse.trim().length > 0
+  const isEditedFromSaved = writtenResponse.trim() !== savedResponse.trim()
+
+  const revisionLabel = useMemo(() => {
+    if (!hasSavedResponse) return 'Write Your Leadership Response'
+    if (versionCount <= 1) return 'Revise Your Previous Response'
+    return `Revise Previous Response (${versionCount} versions)`
+  }, [hasSavedResponse, versionCount])
+
+  const autoScore = useMemo(() => {
+    if (!showExemplar || !writtenResponse.trim()) return null
+    return scoreResponseAgainstExemplar(writtenResponse, card)
+  }, [showExemplar, writtenResponse, card])
+
+  function toggleFavorite() {
+    if (isFavorite) {
+      removeFavorite(card.id)
+      setIsFavorite(false)
+      setFavoriteStatus('Removed')
+      return
+    }
+
+    addFavorite(card.id)
+    setIsFavorite(true)
+    setFavoriteStatus('Saved')
+  }
+
+  function handleSaveResponse() {
+    if (!hasWrittenResponse) return
+
+    setSaveStatus('saving')
+
+    const success = saveWrittenResponse(card.id, writtenResponse)
+
+    if (!success) {
+      setSaveStatus('error')
+      return
+    }
+
+    setSavedResponse(writtenResponse)
+
+    const versions = getResponseVersions(card.id)
+    setVersionCount(versions.length)
+
+    setSaveStatus('saved')
+  }
+
+  function handleRating(rating: Rating) {
+    if (!hasSavedResponse) {
+      alert('Save your response before rating.')
+      return
+    }
+
+    setSelectedRating(rating)
+
+    saveProgress({
+      cardId: card.id,
+      domain: card.domain,
+      difficulty: card.difficulty,
+      rating
+    })
+
+    setHasSubmittedRating(true)
+  }
+
+  function handleNextWithGuard() {
+    if (isEditedFromSaved) {
+      const confirmLeave = confirm(
+        'You have unsaved changes. Save before moving on?'
+      )
+
+      if (confirmLeave) {
+        handleSaveResponse()
+      }
+    }
+
+    onNext()
+  }
+
+  return (
+    <div className="space-y-6">
+
+      {/* Scenario Card */}
+      <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="flex justify-between gap-4 flex-wrap">
+          <div>
+            <div className="text-sm font-medium text-blue-600 mb-3">
+              {progressLabel}
+            </div>
+
+            <h2 className="text-3xl font-bold text-slate-900 leading-tight">
+              {card.stem}
+            </h2>
+
+            <p className="text-base mt-4 text-slate-600 leading-relaxed">
+              {card.scenario}
+            </p>
+          </div>
+
+          <button
+            onClick={toggleFavorite}
+            className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium hover:bg-slate-50"
+            type="button"
+          >
+            {isFavorite ? '★ Saved' : '☆ Save'}
+          </button>
+        </div>
+      </section>
+
+      {/* Start Scenario */}
+      {!showPrompt && (
+        <section className="rounded-3xl border border-blue-100 bg-blue-50 p-6">
+          <p className="text-slate-700 mb-4">
+            Review the scenario carefully, then begin crafting your leadership response.
+          </p>
+
+          <button
+            onClick={onRevealPrompt}
+            className="btn-primary w-full"
+            type="button"
+          >
+            Start Scenario
+          </button>
+        </section>
+      )}
+
+      {showPrompt && (
+        <>
+          {/* Prompt */}
+          <section className="rounded-3xl border border-blue-100 bg-blue-50 p-6">
+            <h3 className="text-lg font-semibold text-slate-900">
+              Leadership Prompt
+            </h3>
+
+            <p className="mt-3 text-slate-700 leading-relaxed">
+              {card.prompt}
+            </p>
+          </section>
+
+          {/* Response Writing */}
+          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h4 className="text-lg font-semibold text-slate-900">
+              {revisionLabel}
+            </h4>
+
+            {hasSavedResponse && (
+              <div className="mt-4 rounded-2xl bg-slate-50 p-4 text-sm">
+                <div className="font-medium text-slate-600 mb-2">
+                  Previous Saved Response
+                </div>
+
+                <div className="whitespace-pre-wrap text-slate-800">
+                  {savedResponse}
+                </div>
+              </div>
+            )}
+
+            <textarea
+              value={writtenResponse}
+              onChange={(e) => {
+                setWrittenResponse(e.target.value)
+                setSaveStatus('idle')
+              }}
+              className="w-full mt-4 rounded-2xl border border-slate-300 p-4 min-h-[220px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Name the issue, explain why it matters, identify the leadership move, and connect to student impact..."
+            />
+
+            <div className="mt-4 flex gap-3 flex-wrap items-center">
+              <button
+                onClick={handleSaveResponse}
+                disabled={!hasWrittenResponse}
+                className="btn-primary"
+                type="button"
+              >
+                {saveStatus === 'saving'
+                  ? 'Saving...'
+                  : isEditedFromSaved
+                    ? 'Save New Version'
+                    : 'Save Response'}
+              </button>
+
+              {saveStatus === 'saved' && (
+                <span className="text-green-600 text-sm font-medium">
+                  ✓ Saved successfully
+                </span>
+              )}
+
+              {saveStatus === 'error' && (
+                <span className="text-red-600 text-sm font-medium">
+                  Save failed. Try again.
+                </span>
+              )}
+            </div>
+          </section>
+
+          {/* Exemplar */}
+          {!showExemplar && (
+            <button
+              onClick={onRevealExemplar}
+              className="btn-primary w-full"
+              type="button"
+            >
+              Compare with Exemplar
+            </button>
+          )}
+
+          {showExemplar && (
+            <>
+              <section className="rounded-3xl border border-emerald-100 bg-emerald-50 p-6">
+                <h4 className="text-lg font-semibold text-slate-900">
+                  Exemplar Response
+                </h4>
+
+                <p className="mt-3 whitespace-pre-wrap text-slate-700 leading-relaxed">
+                  {card.exemplar}
+                </p>
+              </section>
+
+              {autoScore && (
+                <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                  <div className="flex justify-between flex-wrap gap-3">
+                    <h4 className="text-lg font-semibold">
+                      AI Response Analysis
+                    </h4>
+
+                    <span className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+                      {autoScore.total}/{autoScore.max}
+                    </span>
+                  </div>
+
+                  <div className="mt-5 space-y-2">
+                    {autoScore.feedback.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-xl bg-slate-50 p-3 text-sm text-slate-700"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Rating */}
+              <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h4 className="text-lg font-semibold">
+                  Rate Your Performance
+                </h4>
+
+                <div className="grid gap-3 mt-4">
+                  {(['strong', 'partial', 'struggled'] as Rating[]).map(
+                    (rating) => (
+                      <button
+                        key={rating}
+                        onClick={() => handleRating(rating)}
+                        className={`rounded-2xl border p-4 text-left ${getRatingClasses(
+                          rating,
+                          selectedRating
+                        )}`}
+                        type="button"
+                      >
+                        <div className="font-semibold capitalize">
+                          {rating}
+                        </div>
+
+                        <div className="text-sm mt-1">
+                          {getRatingDescription(rating)}
+                        </div>
+                      </button>
+                    )
+                  )}
+                </div>
+
+                {hasSubmittedRating && (
+                  <button
+                    onClick={handleNextWithGuard}
+                    className="btn-primary w-full mt-5"
+                    type="button"
+                  >
+                    Next Scenario
+                  </button>
+                )}
+              </section>
+            </>
+          )}
+        </>
+      )}
+    </div>
+  )
+}
