@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+﻿import { useEffect, useMemo, useState } from 'react'
 
 import { QUESTION_BANK } from '@/data/questions'
 import { buildSessionPerformance, selectNextQuestion } from '@/lib/adaptive'
@@ -204,3 +204,4 @@ export function useHomeDashboard() {
     setShowExemplar
   }
 }
+
