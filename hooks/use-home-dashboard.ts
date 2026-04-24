@@ -1,7 +1,7 @@
 ﻿import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import { useEffect, useMemo, useState } from 'react'
 
-import { QUESTION_BANK } from '@/data/questions'
+import { questionsWithStrongExemplars } from '@/data/questions'
 import { buildSessionPerformance, selectNextQuestion } from '@/lib/adaptive'
 import {
   getAnalyticsSnapshot,
@@ -47,7 +47,7 @@ export function useHomeDashboard() {
   }
 
   function getFilteredBank() {
-    let bank = QUESTION_BANK
+    let bank = questionsWithStrongExemplars
 
     if (practiceFilter !== 'all') {
       bank = bank.filter((card) => card.domain === practiceFilter)
@@ -122,7 +122,7 @@ export function useHomeDashboard() {
     refreshData()
   }
 
-  const favoriteCards = QUESTION_BANK.filter((card) =>
+  const favoriteCards = questionsWithStrongExemplars.filter((card) =>
     favorites.includes(card.id)
   )
 
@@ -226,6 +226,7 @@ export function useHomeDashboard() {
     setShowExemplar
   }
 }
+
 
 
 
