@@ -1,7 +1,7 @@
 'use client'
 
 import { ExecutiveFeedbackPanel } from '@/components/executive-feedback-panel'
-import { analyzeResponse } from '@/lib/response-insights'
+import { processLeadershipDecision } from '@/lib/intelligence-engine'
 
 import { useEffect, useMemo, useState } from 'react'
 import {
@@ -13,7 +13,7 @@ import {
   saveProgress,
   saveWrittenResponse
 } from '@/lib/local-store'
-import { scoreResponseAgainstExemplar } from '@/lib/response-scoring'
+
 import type { Card, Rating, SessionSettings } from '@/types'
 
 type Props = {
@@ -78,7 +78,7 @@ export function PracticeCard({
   const [hasSubmittedRating, setHasSubmittedRating] = useState(false)
   const [versionCount, setVersionCount] = useState(0)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
-  const responseInsight = hasSubmittedRating && writtenResponse.trim() ? analyzeResponse(writtenResponse, card) : null
+  const intelligenceResult = hasSubmittedRating && writtenResponse.trim() ? processLeadershipDecision(writtenResponse, card) : null
 
   useEffect(() => {
     const favorites = getFavorites()
@@ -107,10 +107,7 @@ export function PracticeCard({
     return `Revise Previous Response (${versionCount} versions)`
   }, [hasSavedResponse, versionCount])
 
-  const autoScore = useMemo(() => {
-    if (!showExemplar || !writtenResponse.trim()) return null
-    return scoreResponseAgainstExemplar(writtenResponse, card)
-  }, [showExemplar, writtenResponse, card])
+  const autoScore = intelligenceResult?.score ?? null
 
   function toggleFavorite() {
     if (isFavorite) {
@@ -388,3 +385,4 @@ export function PracticeCard({
     </div>
   )
 }
+
