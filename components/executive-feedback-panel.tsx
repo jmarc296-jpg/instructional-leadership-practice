@@ -1,4 +1,5 @@
 ﻿import { ScenarioDebrief } from '@/components/scenario-debrief'
+import { StakeholderReaction } from '@/components/stakeholder-reaction'
 
 type Props = {
   insight: {
@@ -100,6 +101,9 @@ export function ExecutiveFeedbackPanel({ insight }: Props) {
       </div>
 
       <ScenarioDebrief score={insight.score} />
+
+      <StakeholderReaction score={insight.score} />
     </div>
   )
 }
+
