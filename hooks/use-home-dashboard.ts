@@ -1,18 +1,14 @@
 ﻿import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import { useEffect, useMemo, useState } from 'react'
 
-import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import { QUESTION_BANK } from '@/data/questions'
-import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import { buildSessionPerformance, selectNextQuestion } from '@/lib/adaptive'
-import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import {
   getAnalyticsSnapshot,
   getFavorites,
   getProgress
 } from '@/lib/local-store'
 
-import { buildExemplarResponse } from '@/lib/exemplar-builder'
 import type {
   AnalyticsSnapshot,
   Card,
