@@ -31,6 +31,24 @@ export function PracticeWorkspace({
   onRevealExemplar,
   onNext
 }: Props) {
+  const [timeLeft, setTimeLeft] = useState(180)
+
+  useEffect(() => {
+    setTimeLeft(180)
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer)
+          return 0
+        }
+
+        return prev - 1
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [currentCard])
   if (isLoading) {
     return (
       <section
@@ -143,7 +161,7 @@ export function PracticeWorkspace({
             Make your leadership move
           </h2>
 
-          <p className="mt-2 text-slate-600 leading-7">
+          <div className="mt-4 flex items-center justify-between rounded-2xl border border-red-100 bg-red-50 px-4 py-3">`r`n            <div>`r`n              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-red-600">`r`n                High Stakes Scenario`r`n              </div>`r`n              <div className="mt-1 text-sm text-slate-700">`r`n                You are being evaluated in real time.`r`n              </div>`r`n            </div>`r`n`r`n            <div className="rounded-full bg-white px-4 py-2 text-sm font-bold text-red-600 shadow-sm">`r`n              {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, "0")}`r`n            </div>`r`n          </div>`r`n`r`n          <p className="mt-4 text-slate-600 leading-7">
             Respond like you&apos;re in the actual moment. Be specific, strategic,
             and action-oriented.
           </p>
@@ -163,3 +181,4 @@ export function PracticeWorkspace({
     </section>
   )
 }
+
