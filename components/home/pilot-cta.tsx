@@ -2,17 +2,20 @@
 
 export function PilotCta() {
   function scrollToWaitlist() {
-    const waitlist = document.querySelector('#waitlist')
+    const waitlist = document.getElementById('waitlist')
 
     if (waitlist) {
       waitlist.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'center'
       })
       return
     }
 
-    window.location.hash = 'waitlist'
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    })
   }
 
   return (
