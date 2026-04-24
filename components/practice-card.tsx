@@ -11,7 +11,7 @@ import {
   getWrittenResponse,
   removeFavorite,
   saveProgress,
-  saveWrittenResponse
+  saveWrittenResponse, saveLeadershipIntelligenceSnapshot
 } from '@/lib/local-store'
 
 import type { Card, Rating, SessionSettings } from '@/types'
@@ -128,7 +128,6 @@ export function PracticeCard({
     setSaveStatus('saving')
 
     const success = saveWrittenResponse(card.id, writtenResponse)
-
     if (!success) {
       setSaveStatus('error')
       return
@@ -156,6 +155,19 @@ export function PracticeCard({
       difficulty: card.difficulty,
       rating
     })
+
+    const result = processLeadershipDecision(writtenResponse, card)
+
+    saveLeadershipIntelligenceSnapshot({
+      cardId: card.id,
+      domain: card.domain,
+      score: result.score,
+      insights: result.insights,
+      profile: result.profile,
+      consequences: result.consequences,
+      recommendation: result.recommendation
+    })
+
 
     setHasSubmittedRating(true)
   }
@@ -385,4 +397,13 @@ export function PracticeCard({
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
 

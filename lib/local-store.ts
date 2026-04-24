@@ -264,3 +264,60 @@ function convertRatingToNumber(rating: Rating): number {
       return 0
   }
 }
+
+/*
+-----------------------------------
+LEADERSHIP INTELLIGENCE MEMORY
+-----------------------------------
+*/
+
+const INTELLIGENCE_SNAPSHOTS_KEY = 'leadsharper-intelligence-snapshots'
+
+export type StoredLeadershipIntelligenceSnapshot = {
+  id: string
+  cardId: string
+  domain: string
+  savedAt: string
+  score: unknown
+  insights: unknown
+  profile: unknown
+  consequences: unknown
+  recommendation: unknown
+}
+
+export function saveLeadershipIntelligenceSnapshot(
+  snapshot: Omit<StoredLeadershipIntelligenceSnapshot, 'id' | 'savedAt'>
+): boolean {
+  if (typeof window === 'undefined') return false
+
+  try {
+    const existing = getLeadershipIntelligenceSnapshots()
+
+    const newSnapshot: StoredLeadershipIntelligenceSnapshot = {
+      ...snapshot,
+      id:
+        typeof crypto !== 'undefined' && 'randomUUID' in crypto
+          ? crypto.randomUUID()
+          : `intelligence-${Date.now()}`,
+      savedAt: new Date().toISOString()
+    }
+
+    localStorage.setItem(
+      INTELLIGENCE_SNAPSHOTS_KEY,
+      JSON.stringify([...existing, newSnapshot])
+    )
+
+    return true
+  } catch {
+    return false
+  }
+}
+
+export function getLeadershipIntelligenceSnapshots(): StoredLeadershipIntelligenceSnapshot[] {
+  if (typeof window === 'undefined') return []
+
+  return safeParse<StoredLeadershipIntelligenceSnapshot[]>(
+    localStorage.getItem(INTELLIGENCE_SNAPSHOTS_KEY),
+    []
+  )
+}
