@@ -1,10 +1,19 @@
 ﻿import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: Request) {
   try {
+    const apiKey = process.env.RESEND_API_KEY
+
+    if (!apiKey) {
+      return NextResponse.json(
+        { success: false, message: 'Email service is not configured.' },
+        { status: 500 }
+      )
+    }
+
+    const resend = new Resend(apiKey)
+
     const body = await request.json()
     const email = String(body.email || '').trim()
     const name = String(body.name || '').trim()
@@ -25,6 +34,9 @@ export async function POST(request: Request) {
       subject: 'New LeadSharper Pilot Request',
       html: `
         <h2>New LeadSharper submission</h2>
+        <p><strong>Name:</strong> ${name || 'Not provided'}</p>
+        <p><strong>Organization:</strong> ${organization || 'Not provided'}</p>
+        <p><strong>Role:</strong> ${role || 'Not provided'}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Context:</strong> ${context}</p>
       `
@@ -54,4 +66,3 @@ export async function POST(request: Request) {
     )
   }
 }
-
