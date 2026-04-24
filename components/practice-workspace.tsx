@@ -65,6 +65,50 @@ export function PracticeWorkspace({
         <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <SessionSetup settings={settings} setSettings={setSettings} />
         </div>
+
+        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-7 shadow-sm">
+          <div className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
+            Leadership Scenario
+          </div>
+
+          {currentCard ? (
+            <>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold capitalize text-blue-700">
+                  {currentCard.domain}
+                </span>
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold capitalize text-slate-700">
+                  {currentCard.difficulty}
+                </span>
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                  Question {questionNumber}
+                </span>
+              </div>
+
+              <div className="mt-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  Situation
+                </div>
+                <p className="mt-2 text-sm leading-7 text-slate-700">
+                  {currentCard.scenario}
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  Leadership Prompt
+                </div>
+                <p className="mt-2 text-sm font-medium leading-7 text-slate-950">
+                  {currentCard.prompt}
+                </p>
+              </div>
+            </>
+          ) : (
+            <p className="mt-4 text-sm leading-7 text-slate-500">
+              No scenario is currently loaded. Adjust your settings and start a new rep.
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
