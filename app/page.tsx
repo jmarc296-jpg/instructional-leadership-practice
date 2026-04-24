@@ -7,6 +7,7 @@ import { TabContent } from '@/components/home/tab-content'
 import { FeatureHighlights } from '@/components/home/feature-highlights'
 import { WhySection } from '@/components/home/why-section'
 import { PracticeWorkspace } from '@/components/practice-workspace'
+import { ProductFooter } from '@/components/home/product-footer'
 import { useHomeDashboard } from '@/hooks/use-home-dashboard'
 
 export default function HomePage() {
@@ -88,7 +89,7 @@ export default function HomePage() {
             onOpenHistoryCard={handleOpenPracticeCard}
           />
         )}
-      </div>
-    </main>
+              <ProductFooter />`r`n      </div>`r`n    </main>
   )
 }
+
