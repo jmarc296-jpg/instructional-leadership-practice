@@ -1,4 +1,6 @@
-import { StatCard } from '@/components/stat-card'
+﻿import { StatCard } from '@/components/stat-card'
+import { AdaptiveRecommendation } from '@/components/adaptive-recommendation'
+
 import type { AnalyticsSnapshot } from '@/types'
 
 type Props = {
@@ -224,4 +226,5 @@ export function AnalyticsView({
     </section>
   )
 }
+
 
