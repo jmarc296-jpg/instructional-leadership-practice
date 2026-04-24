@@ -45,10 +45,7 @@ export function ExecutiveFeedbackPanel({ insight }: Props) {
       </div>
 
       <div className="mt-6">
-        <div className="text-sm font-semibold text-slate-900">
-          Strengths
-        </div>
-
+        <div className="text-sm font-semibold text-slate-900">Strengths</div>
         <ul className="mt-3 space-y-2 text-sm text-slate-600">
           {insight.strengths.map((item, index) => (
             <li key={index}>• {item}</li>
@@ -57,10 +54,7 @@ export function ExecutiveFeedbackPanel({ insight }: Props) {
       </div>
 
       <div className="mt-6">
-        <div className="text-sm font-semibold text-slate-900">
-          Growth Areas
-        </div>
-
+        <div className="text-sm font-semibold text-slate-900">Growth Areas</div>
         <ul className="mt-3 space-y-2 text-sm text-slate-600">
           {insight.growthAreas.map((item, index) => (
             <li key={index}>• {item}</li>
