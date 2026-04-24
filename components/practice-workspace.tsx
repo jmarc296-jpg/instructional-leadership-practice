@@ -55,14 +55,14 @@ export function PracticeWorkspace({
         id="practice-workspace"
         className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]"
       >
-        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
             Session Setup
           </div>
           <div className="mt-4 text-slate-500">Loading practice workspace...</div>
         </div>
 
-        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-600">
             Response Workspace
           </div>
@@ -78,14 +78,14 @@ export function PracticeWorkspace({
         id="practice-workspace"
         className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]"
       >
-        <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <SessionSetup
             settings={settings}
             setSettings={setSettings}
           />
         </div>
 
-        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-600">
             Response Workspace
           </div>
@@ -106,14 +106,14 @@ export function PracticeWorkspace({
       className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]"
     >
       <div className="space-y-6">
-        <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <SessionSetup
             settings={settings}
             setSettings={setSettings}
           />
         </div>
 
-        <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
@@ -151,7 +151,7 @@ export function PracticeWorkspace({
         </div>
       </div>
 
-      <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+      <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
         <div className="mb-6">
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-600">
             Response Workspace
@@ -181,4 +181,5 @@ export function PracticeWorkspace({
     </section>
   )
 }
+
 

@@ -61,7 +61,7 @@ export function AnalyticsView({
 
   return (
     <section className="space-y-6">
-      <div className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
+      <div className="premium-panel fade-in-up rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-600">
@@ -113,7 +113,7 @@ export function AnalyticsView({
       </div>
 
       <div className="grid gap-5 lg:grid-cols-[1.3fr_0.9fr]">
-        <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="premium-panel rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -159,7 +159,7 @@ export function AnalyticsView({
         </div>
 
         <div className="space-y-5">
-          <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="premium-panel rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
               Coaching Insight
             </div>
@@ -177,7 +177,7 @@ export function AnalyticsView({
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="premium-panel rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
               Recent Mix
             </div>
@@ -224,3 +224,4 @@ export function AnalyticsView({
     </section>
   )
 }
+
