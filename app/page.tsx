@@ -8,6 +8,7 @@ import { FeatureHighlights } from '@/components/home/feature-highlights'
 import { WhySection } from '@/components/home/why-section'
 import { PracticeWorkspace } from '@/components/practice-workspace'
 import { ProductFooter } from '@/components/home/product-footer'
+import { TrustStrip } from '@/components/home/trust-strip'
 import { useHomeDashboard } from '@/hooks/use-home-dashboard'
 
 export default function HomePage() {
@@ -58,7 +59,7 @@ export default function HomePage() {
               />
             </section>
 
-            <FeatureHighlights />
+            <TrustStrip />`r`n`r`n            <FeatureHighlights />
 
             <WhySection />
 
@@ -92,4 +93,5 @@ export default function HomePage() {
               <ProductFooter />`r`n      </div>`r`n    </main>
   )
 }
+
 
