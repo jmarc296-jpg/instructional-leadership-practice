@@ -79,7 +79,26 @@ export function ExecutiveFeedbackPanel({ insight }: Props) {
         </div>
       </div>
 
+      
+
+      <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-4">
+        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">
+          Likely Scenario Reaction
+        </div>
+
+        <div className="mt-3 text-sm leading-7 text-slate-700">
+          {
+            insight.score >= 4
+              ? "Your response would likely build credibility with the teacher or leadership team. They would see clarity, decisiveness, and actionable coaching."
+              : insight.score === 3
+              ? "Your response may partially land, but the teacher/team may leave with lingering confusion because the feedback lacks enough precision."
+              : "Your response would likely create pushback, confusion, or weak execution because the issue and next leadership move were not clearly identified."
+          }
+        </div>
+      </div>
+
       {insight.summary && (
+
         <div className="mt-6 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
           {insight.summary}
         </div>
@@ -87,3 +106,4 @@ export function ExecutiveFeedbackPanel({ insight }: Props) {
     </div>
   )
 }
+
