@@ -7,6 +7,9 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     const email = String(body.email || '').trim()
+    const name = String(body.name || '').trim()
+    const organization = String(body.organization || '').trim()
+    const role = String(body.role || '').trim()
     const context = String(body.context || 'LeadSharper inquiry').trim()
 
     if (!email || !email.includes('@')) {
@@ -51,3 +54,4 @@ export async function POST(request: Request) {
     )
   }
 }
+
