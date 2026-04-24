@@ -1,4 +1,16 @@
-﻿export function PilotCta() {
+﻿'use client'
+
+export function PilotCta() {
+  function scrollToWaitlist() {
+    const waitlist = document.getElementById('waitlist')
+    if (waitlist) {
+      waitlist.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
+
   return (
     <section className="premium-panel rounded-[32px] border border-slate-200 bg-slate-950 px-8 py-8 text-white shadow-sm">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -17,14 +29,14 @@
           </p>
         </div>
 
-        <a
-          href="#waitlist"
+        <button
+          type="button"
+          onClick={scrollToWaitlist}
           className="premium-button inline-flex justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100"
         >
           Request Pilot Conversation
-        </a>
+        </button>
       </div>
     </section>
   )
 }
-
