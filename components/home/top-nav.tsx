@@ -1,4 +1,4 @@
-﻿import { Brain, BarChart3, Heart, History as HistoryIcon } from 'lucide-react'
+import { Brain, BarChart3, Heart, History as HistoryIcon } from 'lucide-react'
 
 type View = 'practice' | 'analytics' | 'favorites' | 'history'
 
@@ -52,9 +52,9 @@ export function TopNav({ activeTab, setActiveTab }: Props) {
               </button>
             )
           })}
-        <a href="/pilot" className="premium-button inline-flex items-center rounded-2xl bg-blue-600 px-5 py-3 text-[15px] font-semibold text-white hover:bg-blue-700">Pilot</a>`r`n        </nav>
+        <a href="/pilot" className="premium-button inline-flex items-center rounded-2xl bg-blue-600 px-5 py-3 text-[15px] font-semibold text-white hover:bg-blue-700">Pilot</a>
+        </nav>
       </div>
     </header>
   )
 }
-
