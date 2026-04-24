@@ -1,105 +1,81 @@
-ï»¿const pilotFeatures = [
-  'Custom leadership simulations',
-  'Principal growth analytics',
-  'Scenario performance tracking',
-  'Leadership competency development',
-  'Interview prep simulations',
-  'Implementation coaching use cases'
-]
-
 export default function PilotPage() {
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="premium-panel rounded-[36px] border border-slate-200 bg-white px-8 py-12 shadow-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
-            Leadership Flight Simulator
-          </p>
+    <main className="min-h-screen bg-slate-50 px-6 py-8">
+      <div className="mx-auto max-w-6xl space-y-8">
 
-          <h1 className="mt-6 max-w-5xl text-5xl font-semibold tracking-[-0.05em] text-slate-950 leading-tight">
-            Simulation-based leadership development for principals before the real pressure hits.
+        <section className="rounded-3xl bg-slate-900 p-10 text-white">
+          <div className="text-sm uppercase tracking-[0.2em] text-blue-200">
+            District Pilot Program
+          </div>
+
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+            Build stronger principal pipelines before leadership vacancies happen.
           </h1>
 
-          <p className="mt-6 max-w-4xl text-xl text-slate-600 leading-relaxed">
-            Most school leaders are evaluated on moments they rarely get to practice:
-            difficult feedback conversations, instructional leadership decisions,
-            staff resistance, parent conflict, culture breakdowns, and board-level pressure.
-            LeadSharper gives leaders realistic reps before those moments happen in real schools.
+          <p className="mt-5 max-w-3xl text-lg text-slate-300">
+            LeadSharper helps districts identify future principals, reduce failed placements,
+            and accelerate leadership readiness through simulation-based behavioral intelligence.
           </p>
+        </section>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="/"
-              className="premium-button rounded-2xl bg-slate-950 px-6 py-3 text-white font-semibold"
-            >
-              Try Live Demo
-            </a>
+        <section className="grid gap-5 md:grid-cols-3">
+          <Card
+            title="Reduce Failed Principal Hires"
+            text="Measure leadership decision-making before promotions happen."
+          />
 
-            <a
-              href="/#waitlist"
-              className="premium-button rounded-2xl border border-slate-300 px-6 py-3 font-semibold text-slate-800"
-            >
-              Request Pilot Conversation
-            </a>
-          </div>
-        </div>
-      </section>
+          <Card
+            title="Build Stronger Internal Pipelines"
+            text="Develop assistant principals before vacancies emerge."
+          />
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <div className="grid gap-6 md:grid-cols-3">
-          {[
-            ['Aspiring Principals', 'Practice interviews, leadership judgment, and real-world scenarios before stepping into the role.'],
-            ['District Leadership Pipelines', 'Build stronger principal benches through simulation-based leadership reps.'],
-            ['University Prep Programs', 'Replace theoretical discussion with applied leadership decision-making practice.']
-          ].map(([title, text]) => (
-            <div key={title} className="premium-panel rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
-              <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
-              <p className="mt-4 text-slate-600 leading-7">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+          <Card
+            title="Give Superintendents Visibility"
+            text="Track readiness, risks, and coaching priorities across leadership pipelines."
+          />
+        </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <div className="premium-panel rounded-3xl bg-slate-950 p-10 text-white shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">
-            Pilot Package
-          </p>
-
-          <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">
-            What districts get in a pilot
+        <section className="rounded-3xl bg-white p-8 shadow-sm">
+          <h2 className="text-3xl font-semibold">
+            30-Day Pilot Timeline
           </h2>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {pilotFeatures.map((feature) => (
-              <div key={feature} className="rounded-2xl bg-white/10 px-5 py-4 text-sm font-medium">
-                {feature}
-              </div>
-            ))}
+          <div className="mt-6 space-y-4 text-slate-700">
+            <p><strong>Week 1:</strong> Launch leadership cohort</p>
+            <p><strong>Week 2:</strong> Leaders complete simulations</p>
+            <p><strong>Week 3:</strong> District receives readiness dashboard</p>
+            <p><strong>Week 4:</strong> Superintendent reporting + coaching recommendations</p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-4xl px-6 pb-20 text-center">
-        <div className="premium-panel rounded-[32px] border border-slate-200 bg-white px-8 py-10 shadow-sm">
-          <h2 className="text-4xl font-semibold tracking-[-0.05em] text-slate-950">
-            The cost of unprepared leadership is too high.
+        <section className="rounded-3xl bg-white p-8 shadow-sm">
+          <h2 className="text-3xl font-semibold">
+            Pilot Pricing
           </h2>
 
-          <p className="mt-6 text-xl text-slate-600 leading-8">
-            Leaders should not practice high-stakes decisions for the first time on teachers, students, and families.
-          </p>
-
-          <div className="mt-10">
-            <a
-              href="/#waitlist"
-              className="premium-button rounded-2xl bg-blue-600 px-8 py-4 text-white font-semibold"
-            >
-              Start a Pilot Conversation
-            </a>
+          <div className="mt-6 space-y-3 text-slate-700">
+            <p><strong>Pilot:</strong> $15K–$25K</p>
+            <p><strong>District Rollout:</strong> Custom Pricing</p>
+            <p><strong>University Partnerships:</strong> Custom Pricing</p>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </div>
     </main>
+  )
+}
+
+function Card({
+  title,
+  text
+}: {
+  title: string
+  text: string
+}) {
+  return (
+    <div className="rounded-3xl bg-white p-6 shadow-sm">
+      <h3 className="text-xl font-semibold">{title}</h3>
+      <p className="mt-3 text-slate-600">{text}</p>
+    </div>
   )
 }
