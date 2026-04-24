@@ -197,7 +197,7 @@ export const QUESTION_BANK: Card[] = [
   }
 ]
 
-export const questionsWithStrongExemplars = questions.map((question) => ({
+export const questionsWithStrongExemplars = QUESTION_BANK.map((question) => ({
   ...question,
   exemplar: buildExemplarResponse({
     domain: question.domain,
@@ -205,3 +205,4 @@ export const questionsWithStrongExemplars = questions.map((question) => ({
     prompt: question.prompt
   })
 }))
+
