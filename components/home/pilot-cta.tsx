@@ -1,23 +1,4 @@
-﻿'use client'
-
-export function PilotCta() {
-  function scrollToWaitlist() {
-    const waitlist = document.getElementById('waitlist')
-
-    if (waitlist) {
-      waitlist.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      })
-      return
-    }
-
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth'
-    })
-  }
-
+﻿export function PilotCta() {
   return (
     <section className="premium-panel rounded-[32px] border border-slate-200 bg-slate-950 px-8 py-8 text-white shadow-sm">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -36,13 +17,12 @@ export function PilotCta() {
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={scrollToWaitlist}
+        <a
+          href="/#waitlist"
           className="premium-button inline-flex justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100"
         >
           Request Pilot Conversation
-        </button>
+        </a>
       </div>
     </section>
   )
