@@ -9,6 +9,7 @@ import { WhySection } from '@/components/home/why-section'
 import { PracticeWorkspace } from '@/components/practice-workspace'
 import { ProductFooter } from '@/components/home/product-footer'
 import { TrustStrip } from '@/components/home/trust-strip'
+import { ProductStatusBar } from '@/components/home/product-status-bar'
 import { useHomeDashboard } from '@/hooks/use-home-dashboard'
 
 export default function HomePage() {
@@ -40,10 +41,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        <TopNav
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+        <TopNav`r`n          activeTab={activeTab}`r`n          setActiveTab={setActiveTab}`r`n        />`r`n`r`n        <ProductStatusBar activeTab={activeTab} />
 
         {activeTab === 'practice' ? (
           <>
@@ -93,5 +91,6 @@ export default function HomePage() {
               <ProductFooter />`r`n      </div>`r`n    </main>
   )
 }
+
 
 
