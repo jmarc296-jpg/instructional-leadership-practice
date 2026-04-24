@@ -1,4 +1,7 @@
 ﻿import { NextResponse } from 'next/server'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: Request) {
   try {
@@ -13,17 +16,35 @@ export async function POST(request: Request) {
       )
     }
 
-    console.log('LeadSharper waitlist submission:', {
-      email,
-      context,
-      submittedAt: new Date().toISOString()
+    await resend.emails.send({
+      from: 'LeadSharper <onboarding@resend.dev>',
+      to: 'jmarc296@gmail.com',
+      subject: 'New LeadSharper Pilot Request',
+      html: `
+        <h2>New LeadSharper submission</h2>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Context:</strong> ${context}</p>
+      `
+    })
+
+    await resend.emails.send({
+      from: 'LeadSharper <onboarding@resend.dev>',
+      to: email,
+      subject: 'Your LeadSharper request was received',
+      html: `
+        <h2>Thanks for your interest in LeadSharper</h2>
+        <p>We received your request and will follow up soon.</p>
+        <p>LeadSharper helps school leaders practice high-stakes instructional leadership decisions before they face them in real schools.</p>
+      `
     })
 
     return NextResponse.json({
       success: true,
       message: 'Request received.'
     })
-  } catch {
+  } catch (error) {
+    console.error('LeadSharper waitlist error:', error)
+
     return NextResponse.json(
       { success: false, message: 'Unable to submit right now.' },
       { status: 500 }
