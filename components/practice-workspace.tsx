@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react'
 import { PracticeView } from '@/components/practice-view'
 import { SessionSetup } from '@/components/session-setup'
-import { ScenarioBrief } from '@/components/scenario-brief'import { DemoBadge } from '@/components/demo-badge'
+import { ScenarioBrief } from '@/components/scenario-brief'
+import { DemoBadge } from '@/components/demo-badge'
 import type { Card, SessionSettings } from '@/types'
 
 type Props = {
@@ -170,3 +171,4 @@ export function PracticeWorkspace({
     </div>
   )
 }
+
