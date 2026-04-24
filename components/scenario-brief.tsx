@@ -17,7 +17,7 @@ export function ScenarioBrief({ card, questionNumber }: Props) {
           </div>
 
           <h3 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-            Question {questionNumber}: {card.domain} leadership judgment
+            Question {questionNumber}: {card.domain} judgment
           </h3>
         </div>
 
@@ -38,3 +38,4 @@ export function ScenarioBrief({ card, questionNumber }: Props) {
     </div>
   )
 }
+
