@@ -122,3 +122,23 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: #64748b;
 }
+@media (max-width: 640px) {
+  .premium-panel {
+    transform: none !important;
+  }
+
+  .premium-panel:hover {
+    transform: none !important;
+  }
+
+  input,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+
+  h1 {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+}
