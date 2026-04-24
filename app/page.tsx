@@ -6,10 +6,10 @@ import { SimulatorPanel } from '@/components/home/simulator-panel'
 import { TabContent } from '@/components/home/tab-content'
 import { FeatureHighlights } from '@/components/home/feature-highlights'
 import { WhySection } from '@/components/home/why-section'
-import { PracticeWorkspace } from '@/components/practice-workspace'
 import { ProductFooter } from '@/components/home/product-footer'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { ProductStatusBar } from '@/components/home/product-status-bar'
+import { PracticeWorkspace } from '@/components/practice-workspace'
 import { useHomeDashboard } from '@/hooks/use-home-dashboard'
 
 export default function HomePage() {
@@ -41,7 +41,12 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        <TopNav`r`n          activeTab={activeTab}`r`n          setActiveTab={setActiveTab}`r`n        />`r`n`r`n        <ProductStatusBar activeTab={activeTab} />
+        <TopNav
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+
+        <ProductStatusBar activeTab={activeTab} />
 
         {activeTab === 'practice' ? (
           <>
@@ -57,7 +62,9 @@ export default function HomePage() {
               />
             </section>
 
-            <TrustStrip />`r`n`r`n            <FeatureHighlights />
+            <TrustStrip />
+
+            <FeatureHighlights />
 
             <WhySection />
 
@@ -88,9 +95,9 @@ export default function HomePage() {
             onOpenHistoryCard={handleOpenPracticeCard}
           />
         )}
-              <ProductFooter />`r`n      </div>`r`n    </main>
+
+        <ProductFooter />
+      </div>
+    </main>
   )
 }
-
-
-
