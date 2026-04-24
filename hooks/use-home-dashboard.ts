@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import { questionsWithStrongExemplars } from '@/data/questions'
+import { demoSafeQuestions } from '@/data/demo-safe-questions'
 import { buildSessionPerformance, selectNextQuestion } from '@/lib/adaptive'
 import {
   getAnalyticsSnapshot,
@@ -226,6 +227,7 @@ export function useHomeDashboard() {
     setShowExemplar
   }
 }
+
 
 
 
