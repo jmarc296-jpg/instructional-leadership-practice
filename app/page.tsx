@@ -10,6 +10,7 @@ import { ProductFooter } from '@/components/home/product-footer'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { ProductStatusBar } from '@/components/home/product-status-bar'
 import { LaunchBanner } from '@/components/home/launch-banner'
+import { PilotCta } from '@/components/home/pilot-cta'
 import { DemoModeBanner } from '@/components/home/demo-mode-banner'
 import { PracticeWorkspace } from '@/components/practice-workspace'
 import { useHomeDashboard } from '@/hooks/use-home-dashboard'
@@ -100,11 +101,14 @@ export default function HomePage() {
           />
         )}
 
+        <PilotCta />
+
         <ProductFooter />
       </div>
     </main>
   )
 }
+
 
 
 
