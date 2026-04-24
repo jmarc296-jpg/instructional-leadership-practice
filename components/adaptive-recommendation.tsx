@@ -1,6 +1,7 @@
 ﻿type Props = {
   weakestDomain: string
   totalCompleted: number
+  onPracticeRecommended: () => void
 }
 
 const recommendations: Record<string, string> = {
@@ -16,7 +17,8 @@ const recommendations: Record<string, string> = {
 
 export function AdaptiveRecommendation({
   weakestDomain,
-  totalCompleted
+  totalCompleted,
+  onPracticeRecommended
 }: Props) {
   if (totalCompleted < 3) {
     return null
@@ -40,8 +42,17 @@ export function AdaptiveRecommendation({
         {recommendation}
       </p>
 
-      <div className="mt-5 inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-700 shadow-sm">
-        Based on {totalCompleted} completed simulations
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <button
+          onClick={onPracticeRecommended}
+          className="premium-button rounded-2xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white hover:bg-purple-700"
+        >
+          Practice Recommended Area
+        </button>
+
+        <div className="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-purple-700 shadow-sm">
+          Based on {totalCompleted} completed simulations
+        </div>
       </div>
     </section>
   )
