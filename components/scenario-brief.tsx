@@ -17,7 +17,7 @@ export function ScenarioBrief({ card, questionNumber }: Props) {
           </div>
 
           <h3 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-            Question {questionNumber}: {card.domain} judgment
+            Question {questionNumber}: {card.domain.charAt(0).toUpperCase() + card.domain.slice(1)} Judgment
           </h3>
         </div>
 
@@ -38,4 +38,5 @@ export function ScenarioBrief({ card, questionNumber }: Props) {
     </div>
   )
 }
+
 
