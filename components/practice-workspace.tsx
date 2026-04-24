@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { PracticeView } from '@/components/practice-view'
 import { SessionSetup } from '@/components/session-setup'
+import { ScenarioBrief } from '@/components/scenario-brief'
 import type { Card, SessionSettings } from '@/types'
 
 type Props = {
@@ -51,7 +52,7 @@ export function PracticeWorkspace({
 
   if (isLoading) {
     return (
-      <section id="practice-workspace" className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
+      <div id="practice-workspace" className="space-y-6">`r`n      <ScenarioBrief card={currentCard} questionNumber={questionNumber} />`r`n`r`n      <section className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
         <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
           Loading practice workspace...
         </div>
@@ -60,7 +61,7 @@ export function PracticeWorkspace({
   }
 
   return (
-    <section id="practice-workspace" className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
+    <div id="practice-workspace" className="space-y-6">`r`n      <ScenarioBrief card={currentCard} questionNumber={questionNumber} />`r`n`r`n      <section className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
       <div className="space-y-6">
         <div className="premium-panel rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <SessionSetup settings={settings} setSettings={setSettings} />
@@ -158,6 +159,6 @@ export function PracticeWorkspace({
           </div>
         )}
       </div>
-    </section>
-  )
+    </section>`r`n    </div>`r`n  )
 }
+
