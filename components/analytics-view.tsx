@@ -1,6 +1,7 @@
 ﻿import { StatCard } from '@/components/stat-card'
 import { AdaptiveRecommendation } from '@/components/adaptive-recommendation'
 import { GrowthMemory } from '@/components/growth-memory'
+import { LeadershipDnaProfile } from '@/components/leadership-dna-profile'
 
 import type { AnalyticsSnapshot } from '@/types'
 
@@ -227,6 +228,7 @@ export function AnalyticsView({
     </section>
   )
 }
+
 
 
 
