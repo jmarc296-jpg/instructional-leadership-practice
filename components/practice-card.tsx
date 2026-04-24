@@ -1,5 +1,8 @@
 'use client'
 
+import { ExecutiveFeedbackPanel } from '@/components/executive-feedback-panel'
+import { analyzeResponse } from '@/lib/response-insights'
+
 import { useEffect, useMemo, useState } from 'react'
 import {
   addFavorite,
@@ -75,6 +78,7 @@ export function PracticeCard({
   const [hasSubmittedRating, setHasSubmittedRating] = useState(false)
   const [versionCount, setVersionCount] = useState(0)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
+  const responseInsight = hasSubmittedRating && writtenResponse.trim() ? analyzeResponse(writtenResponse, card) : null
 
   useEffect(() => {
     const favorites = getFavorites()
