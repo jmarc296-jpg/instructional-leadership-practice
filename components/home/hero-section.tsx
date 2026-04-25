@@ -1,5 +1,6 @@
 ﻿import { ArrowRight, Sparkles } from 'lucide-react'
 import Image from 'next/image'
+import Image from 'next/image'
 
 type Props = {
   onLaunchPractice: () => void
@@ -67,6 +68,7 @@ export function HeroSection({
     </div>
   )
 }
+
 
 
 
