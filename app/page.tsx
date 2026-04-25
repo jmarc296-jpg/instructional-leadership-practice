@@ -52,7 +52,7 @@ export default function HomePage() {
           setActiveTab={setActiveTab}
         />
 
-        <ProductStatusBar activeTab={activeTab} />        <LaunchBanner />
+        <ProductStatusBar activeTab={activeTab} />        
 
         <DemoModeBanner onLaunchDemo={handleLaunchPractice} />
 
@@ -66,10 +66,7 @@ export default function HomePage() {
                 onScrollToWorkspace={scrollToWorkspace}
               />
 
-              <SimulatorPanel
-                totalCompleted={analytics?.totalCompleted ?? 0}
-                strongestDomain={strongestDomain}
-              />
+              
             </section>
 
             <TrustStrip />
@@ -115,6 +112,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 
