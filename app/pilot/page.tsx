@@ -1,83 +1,90 @@
-﻿export default function PilotPage() {
-  return (
-    <main className="min-h-screen bg-slate-50 px-6 py-8">
-      <div className="mx-auto max-w-6xl space-y-8">
+﻿'use client'
 
+import { useState } from 'react'
+
+export default function PilotPage() {
+  const [submitted, setSubmitted] = useState(false)
+
+  if (submitted) {
+    return (
+      <main className="min-h-screen bg-slate-50 px-6 py-10">
+        <section className="mx-auto max-w-3xl rounded-3xl bg-white p-10 shadow-sm">
+          <h1 className="text-4xl font-semibold text-slate-900">
+            Pilot interest received.
+          </h1>
+          <p className="mt-4 text-lg text-slate-600">
+            Thanks for reaching out. We’ll follow up to learn more about your leadership pipeline priorities.
+          </p>
+          <a href="/" className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
+            Back to LeadSharper
+          </a>
+        </section>
+      </main>
+    )
+  }
+
+  return (
+    <main className="min-h-screen bg-slate-50 px-6 py-10">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr]">
         <section className="rounded-3xl bg-slate-900 p-10 text-white">
-          <div className="text-sm uppercase tracking-[0.2em] text-blue-200">
-            District Pilot Program
-          </div>
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
+            Pilot Partnership
+          </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight">
-            Build stronger principal pipelines before leadership vacancies happen.
+            Bring leadership readiness intelligence to your pipeline.
           </h1>
 
-          <p className="mt-5 max-w-3xl text-lg text-slate-300">
-            LeadSharper helps districts identify future principals, reduce failed placements,
-            and accelerate leadership readiness through simulation-based behavioral intelligence.
+          <p className="mt-5 text-lg leading-8 text-slate-300">
+            LeadSharper is opening limited pilot partnerships for districts, charter networks, and university leadership programs.
           </p>
-        </section>
 
-        <section className="grid gap-5 md:grid-cols-3">
-          <Card
-            title="Reduce Failed Principal Hires"
-            text="Measure leadership decision-making before promotions happen."
-          />
-
-          <Card
-            title="Build Stronger Internal Pipelines"
-            text="Develop assistant principals before vacancies emerge."
-          />
-
-          <Card
-            title="Give Superintendents Visibility"
-            text="Track readiness, risks, and coaching priorities across leadership pipelines."
-          />
-        </section>
-
-        <section className="rounded-3xl bg-white p-8 shadow-sm">
-          <h2 className="text-3xl font-semibold">
-            30-Day Pilot Timeline
-          </h2>
-
-          <div className="mt-6 space-y-4 text-slate-700">
-            <p><strong>Week 1:</strong> Launch leadership cohort</p>
-            <p><strong>Week 2:</strong> Leaders complete simulations</p>
-            <p><strong>Week 3:</strong> District receives readiness dashboard</p>
-            <p><strong>Week 4:</strong> Superintendent reporting + coaching recommendations</p>
+          <div className="mt-8 space-y-4 text-slate-200">
+            <p>• Launch a leadership cohort</p>
+            <p>• Measure readiness through simulations</p>
+            <p>• Identify coaching risks and talent strengths</p>
+            <p>• Generate district-level reporting</p>
           </div>
         </section>
 
         <section className="rounded-3xl bg-white p-8 shadow-sm">
-          <h2 className="text-3xl font-semibold">
-            Pilot Pricing
+          <h2 className="text-3xl font-semibold text-slate-900">
+            Apply for a pilot
           </h2>
 
-          <div className="mt-6 space-y-3 text-slate-700">
-            <p><strong>Pilot:</strong> $15K–$25K</p>
-            <p><strong>District Rollout:</strong> Custom Pricing</p>
-            <p><strong>University Partnerships:</strong> Custom Pricing</p>
-          </div>
-        </section>
+          <form
+            className="mt-6 space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault()
+              setSubmitted(true)
+            }}
+          >
+            <input className="w-full rounded-2xl border p-4" placeholder="Full name" required />
+            <input className="w-full rounded-2xl border p-4" placeholder="Work email" type="email" required />
+            <input className="w-full rounded-2xl border p-4" placeholder="Organization" required />
+            <input className="w-full rounded-2xl border p-4" placeholder="Role / title" required />
 
+            <select className="w-full rounded-2xl border p-4" required defaultValue="">
+              <option value="" disabled>Organization type</option>
+              <option>District</option>
+              <option>Charter network</option>
+              <option>University prep program</option>
+              <option>Leadership nonprofit</option>
+              <option>Other</option>
+            </select>
+
+            <textarea
+              className="min-h-[140px] w-full rounded-2xl border p-4"
+              placeholder="What leadership pipeline challenge are you trying to solve?"
+              required
+            />
+
+            <button className="w-full rounded-2xl bg-blue-600 px-6 py-4 font-semibold text-white hover:bg-blue-700">
+              Submit pilot interest
+            </button>
+          </form>
+        </section>
       </div>
     </main>
   )
 }
-
-function Card({
-  title,
-  text
-}: {
-  title: string
-  text: string
-}) {
-  return (
-    <div className="rounded-3xl bg-white p-6 shadow-sm">
-      <h3 className="text-xl font-semibold">{title}</h3>
-      <p className="mt-3 text-slate-600">{text}</p>
-    </div>
-  )
-}
-
-
