@@ -8,6 +8,7 @@ import { FeatureHighlights } from '@/components/home/feature-highlights'
 import { WhySection } from '@/components/home/why-section'
 import { ProductFooter } from '@/components/home/product-footer'
 import { TrustStrip } from '@/components/home/trust-strip'
+import { StartHere } from '@/components/home/start-here'
 import { ProductStatusBar } from '@/components/home/product-status-bar'
 import { LaunchBanner } from '@/components/home/launch-banner'
 import { PilotCta } from '@/components/home/pilot-cta'
@@ -69,6 +70,8 @@ export default function HomePage() {
               
             </section>
 
+            <StartHere />
+
             <TrustStrip />
 
             <FeatureHighlights />
@@ -112,6 +115,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 
