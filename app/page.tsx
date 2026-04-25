@@ -11,6 +11,7 @@ import { TrustStrip } from '@/components/home/trust-strip'
 import { ProductStatusBar } from '@/components/home/product-status-bar'
 import { LaunchBanner } from '@/components/home/launch-banner'
 import { PilotCta } from '@/components/home/pilot-cta'
+import { StickyPilotCta } from '@/components/home/sticky-pilot-cta'
 import { DemoModeBanner } from '@/components/home/demo-mode-banner'
 import { PracticeWorkspace } from '@/components/practice-workspace'
 import { CustomScenarioGenerator } from '@/components/custom-scenario-generator'
@@ -107,11 +108,14 @@ export default function HomePage() {
 
         <PilotCta />
 
+        <StickyPilotCta />
+
         <ProductFooter />
       </div>
     </main>
   )
 }
+
 
 
 
