@@ -49,7 +49,7 @@ export function HeroSection({
           onClick={onLaunchPractice}
           className="premium-button inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
         >
-          Start Readiness Simulation
+          Start Simulation
           <ArrowRight size={16} />
         </button>
 
@@ -57,12 +57,13 @@ export function HeroSection({
           onClick={onScrollToWorkspace}
           className="premium-button rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 hover:bg-slate-50"
         >
-          View Leadership Workspace
+          View District Demo
         </button>
       </div>
     </div>
   )
 }
+
 
 
 
