@@ -7,6 +7,7 @@ import { TabContent } from '@/components/home/tab-content'
 import { FeatureHighlights } from '@/components/home/feature-highlights'
 import { WhySection } from '@/components/home/why-section'
 import { ProductFooter } from '@/components/home/product-footer'
+import { LimitedPilotBanner } from '@/components/home/limited-pilot-banner'
 import { FounderCredibility } from '@/components/home/founder-credibility'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { StartHere } from '@/components/home/start-here'
@@ -113,11 +114,14 @@ export default function HomePage() {
 
         <StickyPilotCta />
 
+        <LimitedPilotBanner />
+
         <ProductFooter />
       </div>
     </main>
   )
 }
+
 
 
 
