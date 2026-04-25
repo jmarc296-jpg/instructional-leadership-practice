@@ -54,7 +54,7 @@ export default function PilotPage() {
 
           <form
             className="mt-6 space-y-4"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault()
               const formData = new FormData(e.currentTarget)
 
@@ -105,5 +105,6 @@ setSubmitted(true)
     </main>
   )
 }
+
 
 
