@@ -56,15 +56,32 @@ export default function PilotPage() {
             className="mt-6 space-y-4"
             onSubmit={(e) => {
               e.preventDefault()
-              setSubmitted(true)
+              const formData = new FormData(e.currentTarget)
+
+await fetch('/api/waitlist', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: formData.get('name'),
+    email: formData.get('email'),
+    organization: formData.get('organization'),
+    role: formData.get('role'),
+    organizationType: formData.get('organizationType'),
+    challenge: formData.get('challenge')
+  })
+})
+
+setSubmitted(true)
             }}
           >
-            <input className="w-full rounded-2xl border p-4" placeholder="Full name" required />
-            <input className="w-full rounded-2xl border p-4" placeholder="Work email" type="email" required />
-            <input className="w-full rounded-2xl border p-4" placeholder="Organization" required />
-            <input className="w-full rounded-2xl border p-4" placeholder="Role / title" required />
+            <input name="name" className="w-full rounded-2xl border p-4" placeholder="Full name" required />
+            <input name="email" className="w-full rounded-2xl border p-4" placeholder="Work email" type="email" required />
+            <input name="organization" className="w-full rounded-2xl border p-4" placeholder="Organization" required />
+            <input name="role" className="w-full rounded-2xl border p-4" placeholder="Role / title" required />
 
-            <select className="w-full rounded-2xl border p-4" required defaultValue="">
+            <select name="organizationType" className="w-full rounded-2xl border p-4" required defaultValue="">
               <option value="" disabled>Organization type</option>
               <option>District</option>
               <option>Charter network</option>
@@ -73,7 +90,7 @@ export default function PilotPage() {
               <option>Other</option>
             </select>
 
-            <textarea
+            <textarea name="challenge"
               className="min-h-[140px] w-full rounded-2xl border p-4"
               placeholder="What leadership pipeline challenge are you trying to solve?"
               required
@@ -88,3 +105,5 @@ export default function PilotPage() {
     </main>
   )
 }
+
+
