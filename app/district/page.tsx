@@ -31,10 +31,10 @@
         </section>
 
         <section className="grid gap-4 md:grid-cols-4">
-          <MetricCard label="Principal Ready" value="18" />
-          <MetricCard label="Nearly Ready" value="42" />
-          <MetricCard label="Emerging Leaders" value="76" />
-          <MetricCard label="High Risk" value="9" />
+          <MetricCard label="PRINCIPAL-READY CANDIDATES" value="18" />
+          <MetricCard label="LEADERS NEEDING COACHING" value="42" />
+          <MetricCard label="SUCCESSION PIPELINE" value="76" />
+          <MetricCard label="HIGH-RISK PROMOTIONS" value="9" />
         </section>
 
         <section className="grid gap-6 lg:grid-cols-2">
@@ -125,3 +125,31 @@ function ImpactCard({
     </div>
   )
 }
+
+
+<section className="mt-8 rounded-3xl bg-green-50 p-8">
+  <p className="text-sm tracking-[0.3em] text-green-700 uppercase mb-4">
+    District ROI
+  </p>
+
+  <h2 className="text-3xl font-bold text-slate-900 mb-4">
+    Failed principal placements are expensive.
+  </h2>
+
+  <div className="grid md:grid-cols-3 gap-6">
+    <div className="rounded-2xl bg-white p-6">
+      <p className="text-sm text-slate-500">Avg principal replacement cost</p>
+      <p className="text-3xl font-bold">$75K+</p>
+    </div>
+
+    <div className="rounded-2xl bg-white p-6">
+      <p className="text-sm text-slate-500">Leadership vacancies reduced</p>
+      <p className="text-3xl font-bold">↓ 32%</p>
+    </div>
+
+    <div className="rounded-2xl bg-white p-6">
+      <p className="text-sm text-slate-500">Coaching efficiency</p>
+      <p className="text-3xl font-bold">↑ 41%</p>
+    </div>
+  </div>
+</section>
