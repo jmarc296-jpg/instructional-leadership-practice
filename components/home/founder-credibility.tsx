@@ -1,43 +1,35 @@
 ﻿export function FounderCredibility() {
+  const proof = [
+    "Built by a current school leadership consultant supporting district improvement work",
+    "Designed from real principal coaching, APT, DDI, and leadership pipeline challenges",
+    "Built for districts, charter networks, and university leadership programs",
+    "Created to reduce failed principal placements and improve readiness"
+  ]
+
   return (
-    <section className="premium-panel rounded-[32px] border border-slate-200 bg-white px-8 py-8 shadow-sm">
-      <div className="max-w-5xl">
-        <div className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
-          Built From Real Leadership Work
-        </div>
+    <section className="rounded-[32px] bg-slate-900 p-10 text-white">
+      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
+        Why LeadSharper
+      </p>
 
-        <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
-          Created by someone who has led real school improvement work.
-        </h3>
+      <h2 className="mt-4 text-4xl font-semibold">
+        Built by someone who actually lives these leadership problems.
+      </h2>
 
-        <p className="mt-5 text-slate-600 leading-8">
-          LeadSharper was built from real principal coaching, instructional leadership development,
-          turnaround school support, classroom walkthrough calibration, and district leadership work.
-          These scenarios reflect the actual moments leaders face when stakes are high and decisions matter.
-        </p>
+      <p className="mt-5 max-w-3xl text-lg text-slate-300">
+        Most leadership platforms are built by people far removed from real district decision-making.
+        LeadSharper was built inside real school improvement work where leadership mistakes carry real consequences.
+      </p>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <div className="text-2xl font-semibold text-slate-950">100+</div>
-            <div className="text-sm text-slate-600 mt-1">
-              leadership coaching interactions
-            </div>
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {proof.map((item) => (
+          <div
+            key={item}
+            className="rounded-2xl bg-slate-800 p-5 text-slate-200"
+          >
+            {item}
           </div>
-
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <div className="text-2xl font-semibold text-slate-950">District</div>
-            <div className="text-sm text-slate-600 mt-1">
-              school improvement experience
-            </div>
-          </div>
-
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <div className="text-2xl font-semibold text-slate-950">Real-world</div>
-            <div className="text-sm text-slate-600 mt-1">
-              instructional leadership simulations
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   )

@@ -7,6 +7,7 @@ import { TabContent } from '@/components/home/tab-content'
 import { FeatureHighlights } from '@/components/home/feature-highlights'
 import { WhySection } from '@/components/home/why-section'
 import { ProductFooter } from '@/components/home/product-footer'
+import { FounderCredibility } from '@/components/home/founder-credibility'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { StartHere } from '@/components/home/start-here'
 import { ProductStatusBar } from '@/components/home/product-status-bar'
@@ -106,6 +107,8 @@ export default function HomePage() {
           />
         )}
 
+        <FounderCredibility />
+
         <PilotCta />
 
         <StickyPilotCta />
@@ -115,6 +118,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 
