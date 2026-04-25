@@ -1,4 +1,5 @@
 ﻿import { ArrowRight, Sparkles } from 'lucide-react'
+import Image from 'next/image'
 
 type Props = {
   onLaunchPractice: () => void
@@ -13,10 +14,13 @@ export function HeroSection({
     <div className="premium-panel fade-in-up rounded-[32px] border border-slate-200 bg-white px-10 py-10 shadow-sm">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-center gap-6">
         <div className="flex-shrink-0">
-          <img
+          <Image
             src="/logo.png"
             alt="LeadSharper Logo"
+            width={220}
+            height={220}
             className="h-28 sm:h-32 lg:h-36 w-auto object-contain"
+            priority
           />
         </div>
 
@@ -63,6 +67,7 @@ export function HeroSection({
     </div>
   )
 }
+
 
 
 
