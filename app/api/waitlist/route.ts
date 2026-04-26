@@ -19,7 +19,8 @@ export async function POST(request: Request) {
     const name = String(body.name || '').trim()
     const organization = String(body.organization || '').trim()
     const role = String(body.role || '').trim()
-    const context = String(body.context || 'LeadSharper inquiry').trim()
+    const organizationType = String(body.organizationType || 'Not provided').trim()
+    const challenge = String(body.challenge || body.context || 'LeadSharper inquiry').trim()
 
     if (!email || !email.includes('@')) {
       return NextResponse.json(
@@ -38,7 +39,7 @@ export async function POST(request: Request) {
         <p><strong>Organization:</strong> ${organization || 'Not provided'}</p>
         <p><strong>Role:</strong> ${role || 'Not provided'}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Context:</strong> ${context}</p>
+        <p><strong>Organization Type:</strong> ${organizationType}</p>`n        <p><strong>Challenge:</strong> ${challenge}</p>
       `
     })
 
@@ -66,3 +67,4 @@ export async function POST(request: Request) {
     )
   }
 }
+
