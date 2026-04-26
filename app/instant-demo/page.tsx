@@ -198,7 +198,7 @@ export default function InstantDemoPage() {
                 onClick={() => setShowRewrite(!showRewrite)}
                 className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
               >
-                {showRewrite ? 'Hide stronger response' : 'Show stronger response'}
+                {showRewrite ? 'Hide stronger response' : 'See exemplar response'}
               </button>
 
               <button

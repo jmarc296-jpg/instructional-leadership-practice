@@ -15,7 +15,7 @@ export default function PilotPage() {
             Pilot interest received.
           </h1>
           <p className="mt-4 text-lg text-slate-600">
-            Thanks for reaching out. We’ll follow up to learn more about your leadership pipeline priorities.
+            Thanks for reaching out. We&apos;ll follow up to learn more about your leadership pipeline priorities.
           </p>
           <a href="/" className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
             Explore Platform
@@ -51,10 +51,10 @@ export default function PilotPage() {
           </p>
 
           <div className="mt-8 space-y-4 text-slate-200">
-            <p>• Launch a leadership cohort</p>
-            <p>• Measure readiness through simulations</p>
-            <p>• Identify coaching risks and talent strengths</p>
-            <p>• Generate district-level reporting</p>
+            <p>â€¢ Launch a leadership cohort</p>
+            <p>â€¢ Measure readiness through simulations</p>
+            <p>â€¢ Identify coaching risks and talent strengths</p>
+            <p>â€¢ Generate district-level reporting</p>
           </div>
         </section>
 
