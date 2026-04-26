@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       to: email,
       subject: 'Your LeadSharper request was received',
       html: `
-        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;padding:40px;">
+        <div style="font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;padding:40px;">
   <div style="max-width:640px;margin:0 auto;background:white;border-radius:20px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 10px 30px rgba(15,23,42,.06);">
 
     <div style="background:#020617;padding:28px;text-align:center;">
@@ -63,19 +63,19 @@ export async function POST(request: Request) {
         Pilot Request Received
       </p>
 
-      <h1 style="font-size:42px;font-weight:700;line-height:1.1;color:#0f172a;margin:0 0 24px 0;">
+      <h1 style="font-size:56px;font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:#020617;margin:0 0 24px 0;">
         You're officially on our radar.
       </h1>
 
-      <p style="font-size:18px;line-height:1.7;color:#475569;margin-bottom:20px;">
+      <p style="font-size:20px;line-height:1.8;color:#475569;font-weight:400;margin-bottom:20px;">
         We received your pilot request and our team is reviewing your submission.
       </p>
 
-      <p style="font-size:18px;line-height:1.7;color:#475569;margin-bottom:32px;">
+      <p style="font-size:20px;line-height:1.8;color:#475569;font-weight:400;margin-bottom:36px;">
         LeadSharper helps districts, universities, and leadership pipelines measure principal readiness before leadership decisions become high stakes.
       </p>
 
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px;margin-bottom:35px;">
+      <div style="background:linear-gradient(180deg,#f8fbff 0%,#eff6ff 100%);border:1px solid #dbeafe;border-radius:20px;padding:32px;margin-bottom:40px;">
         <h3 style="font-size:20px;font-weight:600;color:#0f172a;margin-top:0;">
           What happens next
         </h3>
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
 
       <div style="text-align:center;">
         <a href="https://leadwellpractice.vercel.app"
-           style="display:inline-block;background:#2563eb;color:white;
+           style="display:inline-block;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:white;
                   padding:14px 28px;text-decoration:none;border-radius:12px;
                   font-size:16px;font-weight:600;">
           Explore Platform
@@ -121,6 +121,7 @@ export async function POST(request: Request) {
     )
   }
 }
+
 
 
 
