@@ -30,19 +30,55 @@ export async function POST(request: Request) {
     }
 
     await resend.emails.send({
-      from: 'LeadSharper <onboarding@resend.dev>',
-      to: 'jmarc296@gmail.com',
-      subject: 'New LeadSharper Pilot Request',
-      html: `
-        <h2>New LeadSharper submission</h2>
-        <p><strong>Name:</strong> ${name || 'Not provided'}</p>
-        <p><strong>Organization:</strong> ${organization || 'Not provided'}</p>
-        <p><strong>Role:</strong> ${role || 'Not provided'}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Organization Type:</strong> ${organizationType}</p>
-        <p><strong>Challenge:</strong> ${challenge}</p>
-      `
-    })
+  from: 'LeadSharper <onboarding@resend.dev>',
+  to: 'jmarc296@gmail.com',
+  subject: `🔥 New LeadSharper Pilot Lead: ${organization || 'New Inquiry'}`,
+  html: `
+  <div style="background:#f8fafc;padding:30px;font-family:Arial,Helvetica,sans-serif;">
+    <div style="max-width:700px;margin:0 auto;background:white;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;">
+      <div style="background:#020617;padding:30px;text-align:center;">
+        <img src="https://leadwellpractice.vercel.app/logo.png" alt="LeadSharper" style="width:240px;max-width:100%;height:auto;" />
+      </div>
+
+      <div style="padding:40px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2563eb;margin-bottom:16px;">
+          New Pilot Lead
+        </div>
+
+        <h1 style="font-size:32px;font-weight:800;color:#0f172a;margin:0 0 25px 0;">
+          ${organization || 'New Organization Inquiry'}
+        </h1>
+
+        <table width="100%" cellpadding="12" cellspacing="0" style="border-collapse:collapse;">
+          <tr><td style="border-bottom:1px solid #e2e8f0;"><strong>Name</strong></td><td style="border-bottom:1px solid #e2e8f0;">${name || 'Not provided'}</td></tr>
+          <tr><td style="border-bottom:1px solid #e2e8f0;"><strong>Email</strong></td><td style="border-bottom:1px solid #e2e8f0;">${email}</td></tr>
+          <tr><td style="border-bottom:1px solid #e2e8f0;"><strong>Role</strong></td><td style="border-bottom:1px solid #e2e8f0;">${role || 'Not provided'}</td></tr>
+          <tr><td style="border-bottom:1px solid #e2e8f0;"><strong>Organization Type</strong></td><td style="border-bottom:1px solid #e2e8f0;">${organizationType}</td></tr>
+        </table>
+
+        <div style="margin-top:30px;padding:24px;background:#eff6ff;border-radius:16px;">
+          <div style="font-size:14px;font-weight:700;color:#1d4ed8;margin-bottom:12px;">
+            Their biggest challenge
+          </div>
+          <div style="font-size:16px;line-height:1.6;color:#334155;">
+            ${challenge}
+          </div>
+        </div>
+
+        <div style="margin-top:30px;text-align:center;">
+          <a href="mailto:${email}" style="display:inline-block;background:#2563eb;color:white;padding:16px 28px;border-radius:12px;text-decoration:none;font-weight:700;">
+            Reply to Lead
+          </a>
+        </div>
+
+        <div style="margin-top:25px;font-size:14px;color:#64748b;text-align:center;">
+          Recommendation: respond within 24 hours while intent is high.
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+})
 
     await resend.emails.send({
       from: 'LeadSharper <onboarding@resend.dev>',
@@ -137,6 +173,7 @@ export async function POST(request: Request) {
     )
   }
 }
+
 
 
 
