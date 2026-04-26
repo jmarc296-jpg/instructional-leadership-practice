@@ -9,6 +9,7 @@ import { WhySection } from '@/components/home/why-section'
 import { ProductFooter } from '@/components/home/product-footer'
 import { LimitedPilotBanner } from '@/components/home/limited-pilot-banner'
 import { EnterpriseTrustSection } from '@/components/home/enterprise-trust-section'
+import { PilotScarcityBar } from '@/components/home/pilot-scarcity-bar'
 import { FounderCredibility } from '@/components/home/founder-credibility'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { StartHere } from '@/components/home/start-here'
@@ -119,6 +120,8 @@ export default function HomePage() {
 
         <EnterpriseTrustSection />
 
+        <PilotScarcityBar />
+
         <LimitedPilotBanner />
 
         <ProductFooter />
@@ -126,6 +129,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 
