@@ -22,6 +22,18 @@ export async function POST(request: Request) {
     const organizationType = String(body.organizationType || 'Not provided').trim()
     const challenge = String(body.challenge || body.context || 'LeadSharper inquiry').trim()
 
+    const leadScore =
+      organizationType.toLowerCase().includes('district') ||
+      organizationType.toLowerCase().includes('charter') ||
+      organizationType.toLowerCase().includes('university')
+        ? 'Hot'
+        : 'Warm'
+
+    const followUpAngle =
+      leadScore === 'Hot'
+        ? 'Lead with district pipeline ROI, readiness data, and pilot cohort implementation.'
+        : 'Lead with discovery, use case clarity, and a lightweight pilot conversation.'
+
     if (!email || !email.includes('@')) {
       return NextResponse.json(
         { success: false, message: 'Please enter a valid email.' },
@@ -41,9 +53,7 @@ export async function POST(request: Request) {
       </div>
 
       <div style="padding:40px;">
-        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2563eb;margin-bottom:16px;">
-          New Pilot Lead
-        </div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2563eb;margin-bottom:16px;">New Pilot Lead • ${leadScore}</div>
 
         <h1 style="font-size:32px;font-weight:800;color:#0f172a;margin:0 0 25px 0;">
           ${organization || 'New Organization Inquiry'}
@@ -71,9 +81,7 @@ export async function POST(request: Request) {
           </a>
         </div>
 
-        <div style="margin-top:25px;font-size:14px;color:#64748b;text-align:center;">
-          Recommendation: respond within 24 hours while intent is high.
-        </div>
+        <div style="margin-top:25px;padding:18px;background:#f8fafc;border-radius:14px;font-size:14px;color:#475569;text-align:left;"><strong>Recommended follow-up:</strong><br />${followUpAngle}</div>
       </div>
     </div>
   </div>
@@ -173,6 +181,7 @@ export async function POST(request: Request) {
     )
   }
 }
+
 
 
 
