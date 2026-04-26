@@ -14,6 +14,13 @@ type Evaluation = {
   nextMove: string
 }
 
+type UserProfile = {
+  name?: string
+  currentRole?: string
+  aspiringRole?: string
+  district?: string
+}
+
 function evaluateResponse(response: string): Evaluation {
   const text = response.toLowerCase()
 
@@ -24,12 +31,7 @@ function evaluateResponse(response: string): Evaluation {
 
   const readiness = Math.round((directness + evidence + studentImpact + followThrough) / 4)
 
-  const risk =
-    readiness >= 80
-      ? 'Low'
-      : readiness >= 65
-        ? 'Moderate'
-        : 'High'
+  const risk = readiness >= 80 ? 'Low' : readiness >= 65 ? 'Moderate' : 'High'
 
   const summary =
     readiness >= 80
@@ -59,15 +61,58 @@ function evaluateResponse(response: string): Evaluation {
 
 export default function InstantDemoPage() {
   const [response, setResponse] = useState('')
-  const [profile, setProfile] = useState<any>(null)
+  const [evaluation, setEvaluation] = useState<Evaluation | null>(null)
+  const [showRewrite, setShowRewrite] = useState(false)
+  const [profile, setProfile] = useState<UserProfile | null>(null)
 
   useEffect(() => {
     const savedProfile = localStorage.getItem('leadsharper_user_profile')
+
     if (savedProfile) {
       setProfile(JSON.parse(savedProfile))
     }
   }, [])
-  const [evaluation, setEvaluation] = useState<Evaluation | null>(null)
+
+  function generateEvaluation() {
+    const result = evaluateResponse(response)
+
+    saveLeadershipIntelligenceSnapshot({
+      cardId: 'instant-demo-leadership-scenario',
+      domain: 'instructional leadership',
+      score: {
+        readiness: result.readiness,
+        directness: result.directness,
+        evidence: result.evidence,
+        studentImpact: result.studentImpact,
+        followThrough: result.followThrough
+      },
+      insights: {
+        summary: result.summary
+      },
+      profile: {
+        instructionalPrecision: result.evidence,
+        accountabilityStrength: result.directness,
+        communicationClarity: result.followThrough,
+        studentImpactOrientation: result.studentImpact,
+        riskLevel: result.risk.toLowerCase()
+      },
+      consequences: {
+        unresolvedRisk:
+          result.risk === 'High'
+            ? 'Leadership response lacks enough evidence, accountability, or follow-through.'
+            : result.risk === 'Moderate'
+              ? 'Leadership response shows promise but may not create enough implementation clarity.'
+              : 'Leadership response demonstrates strong readiness signals.',
+        likelyConsequence: result.summary
+      },
+      recommendation: {
+        priority: 'Next leadership rep',
+        nextPracticeFocus: result.nextMove
+      }
+    })
+
+    setEvaluation(result)
+  }
 
   if (evaluation) {
     return (
@@ -79,11 +124,13 @@ export default function InstantDemoPage() {
             </p>
 
             <h1 className="mt-4 text-5xl font-semibold tracking-tight">
-              LeadSharper analyzed your leadership move.
+              {profile?.name
+                ? `${profile.name}, LeadSharper analyzed your leadership move.`
+                : 'LeadSharper analyzed your leadership move.'}
             </h1>
 
             <p className="mt-4 max-w-3xl text-lg text-slate-300">
-              This is the core product promise: turn leadership judgment into measurable readiness intelligence.
+              This response now feeds the platform intelligence spine across reports and executive dashboards.
             </p>
           </section>
 
@@ -121,20 +168,44 @@ export default function InstantDemoPage() {
             </div>
           </section>
 
+          {showRewrite && (
+            <section className="rounded-3xl bg-white p-8 shadow-sm">
+              <h2 className="text-3xl font-semibold text-slate-900">
+                Stronger Leadership Response
+              </h2>
+
+              <p className="mt-4 leading-8 text-slate-700">
+                I would meet directly with the teacher, name the instructional concern with evidence, and connect it to student learning. I would acknowledge the teacher’s relationships with students while making clear that strong relationships must be matched by strong instruction. I would review recent student achievement data, identify the specific instructional practice that needs to change, and set a short follow-up cycle with coaching, observation, and a clear timeline for improvement.
+              </p>
+
+              <p className="mt-4 leading-8 text-slate-700">
+                The key leadership move is balancing respect with accountability: preserve trust, name the gap, define the expected change, and monitor whether instruction improves.
+              </p>
+            </section>
+          )}
+
           <section className="rounded-3xl bg-blue-50 p-8">
             <h2 className="text-3xl font-semibold text-slate-900">
               Why this matters
             </h2>
 
             <p className="mt-4 max-w-3xl leading-8 text-slate-700">
-              In a district implementation, this same evaluation pattern can roll up into readiness dashboards, coaching priorities, succession planning, and superintendent reporting.
+              In a district implementation, this same evaluation pattern rolls up into readiness dashboards, coaching priorities, succession planning, and superintendent reporting.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <button
+                onClick={() => setShowRewrite(!showRewrite)}
+                className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+              >
+                {showRewrite ? 'Hide stronger response' : 'Show stronger response'}
+              </button>
+
+              <button
                 onClick={() => {
                   setEvaluation(null)
                   setResponse('')
+                  setShowRewrite(false)
                 }}
                 className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
               >
@@ -142,18 +213,18 @@ export default function InstantDemoPage() {
               </button>
 
               <a
-  href="/pilot"
-  className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
->
-  Explore pilot access
-</a>
+                href="/evaluation-report"
+                className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+              >
+                View full evaluation report
+              </a>
 
-<a
-  href="/evaluation-report"
-  className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
->
-  View full evaluation report
-</a>
+              <a
+                href="/pilot"
+                className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
+              >
+                Explore pilot access
+              </a>
             </div>
           </section>
         </div>
@@ -170,11 +241,15 @@ export default function InstantDemoPage() {
           </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight">
-            {profile?.name ? ${profile.name}, test LeadSharper in 90 seconds. : 'Test LeadSharper in 90 seconds.'}
+            {profile?.name
+              ? `${profile.name}, test LeadSharper in 90 seconds.`
+              : 'Test LeadSharper in 90 seconds.'}
           </h1>
 
           <p className="mt-4 text-lg text-slate-300">
-            {profile?.currentRole ? Respond as a  and see how LeadSharper evaluates your readiness for . : 'Respond to a real leadership scenario and watch the platform evaluate your readiness.'}
+            {profile?.currentRole
+              ? `Respond as a ${profile.currentRole} and see how LeadSharper evaluates your readiness for ${profile.aspiringRole || 'your next leadership move'}.`
+              : 'Respond to a real leadership scenario and watch the platform evaluate your readiness.'}
           </p>
         </section>
 
@@ -184,7 +259,9 @@ export default function InstantDemoPage() {
           </h2>
 
           <p className="mt-4 leading-8 text-slate-700">
-            {profile?.district ? In , a veteran teacher has strong relationships with students but consistently delivers weak instruction. : 'A veteran teacher has strong relationships with students but consistently delivers weak instruction.'} Student achievement is declining, and your instructional coach says this issue has been avoided for months. What do you do?
+            {profile?.district
+              ? `In ${profile.district}, a veteran teacher has strong relationships with students but consistently delivers weak instruction. Student achievement is declining, and your instructional coach says this issue has been avoided for months. What do you do?`
+              : 'A veteran teacher has strong relationships with students but consistently delivers weak instruction. Student achievement is declining, and your instructional coach says this issue has been avoided for months. What do you do?'}
           </p>
 
           <textarea
@@ -196,45 +273,7 @@ export default function InstantDemoPage() {
 
           <button
             disabled={response.trim().length < 20}
-            onClick={() => {
-              const result = evaluateResponse(response)
-
-              saveLeadershipIntelligenceSnapshot({
-                cardId: 'instant-demo-leadership-scenario',
-                domain: 'instructional leadership',
-                score: {
-                  readiness: result.readiness,
-                  directness: result.directness,
-                  evidence: result.evidence,
-                  studentImpact: result.studentImpact,
-                  followThrough: result.followThrough
-                },
-                insights: {
-                  summary: result.summary
-                },
-                profile: {
-                  instructionalPrecision: result.evidence,
-                  accountabilityStrength: result.directness,
-                  communicationClarity: result.followThrough,
-                  studentImpactOrientation: result.studentImpact,
-                  riskLevel: result.risk.toLowerCase()
-                },
-                consequences: {
-                  unresolvedRisk: result.risk === 'High'
-                    ? 'Leadership response lacks enough evidence, accountability, or follow-through.'
-                    : result.risk === 'Moderate'
-                      ? 'Leadership response shows promise but may not create enough implementation clarity.'
-                      : 'Leadership response demonstrates strong readiness signals.',
-                  likelyConsequence: result.summary
-                },
-                recommendation: {
-                  priority: 'Next leadership rep',
-                  nextPracticeFocus: result.nextMove
-                }
-              })
-
-              setEvaluation(result)
-            }}
+            onClick={generateEvaluation}
             className="mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white disabled:bg-slate-300"
           >
             Generate Readiness Evaluation
@@ -245,7 +284,13 @@ export default function InstantDemoPage() {
   )
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
+function Metric({
+  label,
+  value
+}: {
+  label: string
+  value: string
+}) {
   return (
     <div className="rounded-3xl bg-white p-6 shadow-sm">
       <div className="text-sm text-slate-500">{label}</div>
@@ -253,6 +298,3 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
-
-
-
