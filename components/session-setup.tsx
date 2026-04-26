@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import type { Domain, SessionSettings } from '@/types'
 
@@ -47,7 +47,10 @@ export function SessionSetup({ settings, setSettings }: Props) {
                 onClick={() =>
                   setSettings((prev) => ({
                     ...prev,
-                    mode: value
+                    mode: value,
+includePrompt: value === 'review',
+includeExemplar: value === 'review',
+coachMode: value === 'review'
                   }))
                 }
                 className={`rounded-2xl border px-4 py-3 text-sm font-semibold transition ${
@@ -211,6 +214,12 @@ export function SessionSetup({ settings, setSettings }: Props) {
             <option value={15}>15 scenarios</option>
           </select>
         </div>
+              <a
+          href='/practice'
+          className='block w-full rounded-2xl bg-slate-900 px-6 py-4 text-center text-sm font-semibold text-white hover:bg-slate-800'
+        >
+          Start Practice Session →
+        </a>
       </div>
     </aside>
   )
