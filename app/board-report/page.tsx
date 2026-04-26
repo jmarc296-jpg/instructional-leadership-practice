@@ -1,8 +1,10 @@
-﻿export default function BoardReportPage() {
+﻿'use client'
+
+export default function BoardReportPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-10">
       <div className="mx-auto max-w-5xl space-y-8">
-        <section className="rounded-3xl bg-white p-10 shadow-sm">
+        <section className="rounded-3xl bg-white p-10 shadow-sm print:shadow-none">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">
             Board-Ready Report
           </p>
@@ -16,7 +18,7 @@
           </p>
         </section>
 
-        <section className="rounded-3xl bg-white p-10 shadow-sm">
+        <section className="rounded-3xl bg-white p-10 shadow-sm print:shadow-none">
           <h2 className="text-3xl font-semibold text-slate-900">
             Executive Summary
           </h2>
@@ -32,7 +34,7 @@
           <Metric label="High-risk promotions" value="9" />
         </section>
 
-        <section className="rounded-3xl bg-white p-10 shadow-sm">
+        <section className="rounded-3xl bg-white p-10 shadow-sm print:shadow-none">
           <h2 className="text-3xl font-semibold text-slate-900">
             Recommended Board Talking Points
           </h2>
@@ -54,12 +56,21 @@
             Launch a limited leadership readiness pilot with assistant principals, new principals, or aspiring leaders to establish baseline readiness data and inform district coaching priorities.
           </p>
 
-          <a
-            href="/pilot"
-            className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
-          >
-            Apply for pilot access
-          </a>
+          <div className="mt-6 flex flex-wrap gap-3 print:hidden">
+            <a
+              href="/pilot"
+              className="inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
+            >
+              Apply for pilot access
+            </a>
+
+            <button
+              onClick={() => window.print()}
+              className="inline-block rounded-2xl border border-slate-600 px-6 py-4 text-sm font-semibold text-white"
+            >
+              Print / Save as PDF
+            </button>
+          </div>
         </section>
       </div>
     </main>
@@ -80,3 +91,4 @@ function Metric({
     </div>
   )
 }
+
