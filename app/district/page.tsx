@@ -1,4 +1,9 @@
-﻿export default function DistrictPage() {
+﻿'use client'
+
+import { getPlatformIntelligence } from '@/lib/platform-intelligence'
+
+export default function DistrictPage() {
+  const intelligence = getPlatformIntelligence()
   const strengths = [
     { label: "Instructional Leadership", value: "84%" },
     { label: "Data Meeting Facilitation", value: "79%" },
@@ -31,10 +36,10 @@
         </section>
 
         <section className="grid gap-4 md:grid-cols-4">
-          <MetricCard label="PRINCIPAL-READY CANDIDATES" value="18" />
-          <MetricCard label="LEADERS NEEDING COACHING" value="42" />
-          <MetricCard label="SUCCESSION PIPELINE" value="76" />
-          <MetricCard label="HIGH-RISK PROMOTIONS" value="9" />
+          <MetricCard label="Overall Readiness" value={`${intelligence.overallReadiness || 0}%`} />
+          <MetricCard label="Simulation Reps" value={`${intelligence.totalReps}`} />
+          <MetricCard label="Moderate Risk" value={`${intelligence.moderateRisk}`} />
+          <MetricCard label="High Risk" value={`${intelligence.highRisk}`} />
         </section>
 
         <section className="grid gap-6 lg:grid-cols-2">
@@ -153,3 +158,4 @@ function ImpactCard({
     </div>
   </div>
 </section>
+
