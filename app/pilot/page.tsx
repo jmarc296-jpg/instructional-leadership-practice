@@ -4,6 +4,8 @@ import { useState } from 'react'
 
 export default function PilotPage() {
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   if (submitted) {
     return (
@@ -56,24 +58,37 @@ export default function PilotPage() {
             className="mt-6 space-y-4"
             onSubmit={async (e) => {
               e.preventDefault()
+              setIsSubmitting(true)
+              setErrorMessage('')
+
               const formData = new FormData(e.currentTarget)
 
-await fetch('/api/waitlist', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: formData.get('name'),
-    email: formData.get('email'),
-    organization: formData.get('organization'),
-    role: formData.get('role'),
-    organizationType: formData.get('organizationType'),
-    challenge: formData.get('challenge')
-  })
-})
+              try {
+                const response = await fetch('/api/waitlist', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    organization: formData.get('organization'),
+                    role: formData.get('role'),
+                    organizationType: formData.get('organizationType'),
+                    challenge: formData.get('challenge')
+                  })
+                })
 
-setSubmitted(true)
+                if (!response.ok) {
+                  throw new Error('Submission failed')
+                }
+
+                setSubmitted(true)
+              } catch {
+                setErrorMessage('Something went wrong. Please try again or email directly.')
+              } finally {
+                setIsSubmitting(false)
+              }
             }}
           >
             <input name="name" className="w-full rounded-2xl border p-4" placeholder="Full name" required />
@@ -90,14 +105,24 @@ setSubmitted(true)
               <option>Other</option>
             </select>
 
-            <textarea name="challenge"
+            <textarea
+              name="challenge"
               className="min-h-[140px] w-full rounded-2xl border p-4"
               placeholder="What leadership pipeline challenge are you trying to solve?"
               required
             />
 
-            <button className="w-full rounded-2xl bg-blue-600 px-6 py-4 font-semibold text-white hover:bg-blue-700">
-              Submit pilot interest
+            {errorMessage && (
+              <div className="rounded-2xl bg-red-50 p-4 text-sm font-medium text-red-700">
+                {errorMessage}
+              </div>
+            )}
+
+            <button
+              disabled={isSubmitting}
+              className="w-full rounded-2xl bg-blue-600 px-6 py-4 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit pilot interest'}
             </button>
           </form>
         </section>
@@ -105,7 +130,3 @@ setSubmitted(true)
     </main>
   )
 }
-
-
-
-
