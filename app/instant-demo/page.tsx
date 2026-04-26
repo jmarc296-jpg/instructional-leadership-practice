@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useState } from 'react'
+import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
 
 type Evaluation = {
   readiness: number
@@ -187,7 +188,45 @@ export default function InstantDemoPage() {
 
           <button
             disabled={response.trim().length < 20}
-            onClick={() => setEvaluation(evaluateResponse(response))}
+            onClick={() => {
+              const result = evaluateResponse(response)
+
+              saveLeadershipIntelligenceSnapshot({
+                cardId: 'instant-demo-leadership-scenario',
+                domain: 'instructional leadership',
+                score: {
+                  readiness: result.readiness,
+                  directness: result.directness,
+                  evidence: result.evidence,
+                  studentImpact: result.studentImpact,
+                  followThrough: result.followThrough
+                },
+                insights: {
+                  summary: result.summary
+                },
+                profile: {
+                  instructionalPrecision: result.evidence,
+                  accountabilityStrength: result.directness,
+                  communicationClarity: result.followThrough,
+                  studentImpactOrientation: result.studentImpact,
+                  riskLevel: result.risk.toLowerCase()
+                },
+                consequences: {
+                  unresolvedRisk: result.risk === 'High'
+                    ? 'Leadership response lacks enough evidence, accountability, or follow-through.'
+                    : result.risk === 'Moderate'
+                      ? 'Leadership response shows promise but may not create enough implementation clarity.'
+                      : 'Leadership response demonstrates strong readiness signals.',
+                  likelyConsequence: result.summary
+                },
+                recommendation: {
+                  priority: 'Next leadership rep',
+                  nextPracticeFocus: result.nextMove
+                }
+              })
+
+              setEvaluation(result)
+            }}
             className="mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white disabled:bg-slate-300"
           >
             Generate Readiness Evaluation
@@ -206,4 +245,5 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
