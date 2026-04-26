@@ -13,6 +13,7 @@ import { PilotScarcityBar } from '@/components/home/pilot-scarcity-bar'
 import { FounderCredibility } from '@/components/home/founder-credibility'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { StartHere } from '@/components/home/start-here'
+import { RoleRouter } from '@/components/home/role-router'
 import { ProductStatusBar } from '@/components/home/product-status-bar'
 import { LaunchBanner } from '@/components/home/launch-banner'
 import { PilotCta } from '@/components/home/pilot-cta'
@@ -75,6 +76,8 @@ export default function HomePage() {
               
             </section>
 
+            <RoleRouter />
+
             <StartHere />
 
             <TrustStrip />
@@ -129,6 +132,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 
