@@ -94,13 +94,24 @@ export async function POST(request: Request) {
           </div>
         </div>
 
-        <div style="text-align:center;margin-bottom:42px;">
-          <a href="https://leadwellpractice.vercel.app" style="display:inline-block;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#ffffff;text-decoration:none;border-radius:14px;padding:17px 42px;font-size:17px;font-weight:800;box-shadow:0 10px 25px rgba(37,99,235,0.28);">
-            Explore LeadSharper
-          </a>
-        </div>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 42px 0;">
+  <tr>
+    <td align="center">
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td bgcolor="#2563eb" style="background-color:#2563eb;border-radius:14px;text-align:center;">
+            <a href="https://leadwellpractice.vercel.app"
+              style="display:block;padding:18px 44px;color:#ffffff;font-size:17px;font-weight:800;text-decoration:none;font-family:Arial,Helvetica,sans-serif;">
+              Explore LeadSharper
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 
-        <div style="border-top:1px solid #e2e8f0;padding-top:28px;display:flex;align-items:center;gap:16px;">
+<div style="border-top:1px solid #e2e8f0;padding-top:28px;display:flex;align-items:center;gap:16px;">
           <img src="https://leadwellpractice.vercel.app/logo.png" alt="LeadSharper" style="width:110px;height:auto;" />
           <div style="font-size:14px;line-height:1.5;color:#64748b;">
             <strong style="color:#0f172a;">LeadSharper</strong><br />
@@ -126,6 +137,7 @@ export async function POST(request: Request) {
     )
   }
 }
+
 
 
 
