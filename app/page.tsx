@@ -8,6 +8,7 @@ import { FeatureHighlights } from '@/components/home/feature-highlights'
 import { WhySection } from '@/components/home/why-section'
 import { ProductFooter } from '@/components/home/product-footer'
 import { LimitedPilotBanner } from '@/components/home/limited-pilot-banner'
+import { EnterpriseTrustSection } from '@/components/home/enterprise-trust-section'
 import { FounderCredibility } from '@/components/home/founder-credibility'
 import { TrustStrip } from '@/components/home/trust-strip'
 import { StartHere } from '@/components/home/start-here'
@@ -114,6 +115,8 @@ export default function HomePage() {
 
         <StickyPilotCta />
 
+        <EnterpriseTrustSection />
+
         <LimitedPilotBanner />
 
         <ProductFooter />
@@ -121,6 +124,7 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 
 

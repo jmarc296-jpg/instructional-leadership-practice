@@ -18,9 +18,18 @@ export default function PilotPage() {
             Thanks for reaching out. We’ll follow up to learn more about your leadership pipeline priorities.
           </p>
           <a href="/" className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
-            Back to LeadSharper
+            Explore Platform
           </a>
-        </section>
+
+<a 
+  href="https://calendly.com/YOUR_LINK_HERE"
+  target="_blank"
+  className="mt-4 ml-4 inline-block rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+>
+  Book a demo call
+</a>
+
+</section>
       </main>
     )
   }
@@ -130,3 +139,4 @@ export default function PilotPage() {
     </main>
   )
 }
+
