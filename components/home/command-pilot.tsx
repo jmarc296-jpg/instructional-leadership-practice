@@ -9,9 +9,13 @@ const routes = [
   { label: 'Show the buyer data room', href: '/data-room' },
   { label: 'I want a guided demo', href: '/demo' },
   { label: 'Test LeadSharper in 90 seconds', href: '/instant-demo' },
+  { label: 'Build a custom leadership scenario', href: '/scenario-lab' },
   { label: 'Show readiness scoring', href: '/readiness' },
   { label: 'Show pilot proposal', href: '/pilot-proposal' },
-  { label: 'Apply for pilot', href: '/pilot' }
+  { label: 'Apply for pilot', href: '/pilot' },
+  { label: 'Start the buyer journey', href: '/start' },
+  { label: 'Open national command center', href: '/national-command' },
+  { label: 'Build a custom scenario', href: '/scenario-lab' }
 ]
 
 export function CommandPilot() {
@@ -57,4 +61,6 @@ export function CommandPilot() {
     </div>
   )
 }
+
+
 
