@@ -39,7 +39,8 @@ export async function POST(request: Request) {
         <p><strong>Organization:</strong> ${organization || 'Not provided'}</p>
         <p><strong>Role:</strong> ${role || 'Not provided'}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Organization Type:</strong> ${organizationType}</p>`n        <p><strong>Challenge:</strong> ${challenge}</p>
+        <p><strong>Organization Type:</strong> ${organizationType}</p>
+        <p><strong>Challenge:</strong> ${challenge}</p>
       `
     })
 
@@ -67,4 +68,5 @@ export async function POST(request: Request) {
     )
   }
 }
+
 
