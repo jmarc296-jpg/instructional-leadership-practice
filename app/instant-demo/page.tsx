@@ -133,11 +133,18 @@ export default function InstantDemoPage() {
               </button>
 
               <a
-                href="/pilot"
-                className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
-              >
-                Explore pilot access
-              </a>
+  href="/pilot"
+  className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
+>
+  Explore pilot access
+</a>
+
+<a
+  href="/evaluation-report"
+  className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+>
+  View full evaluation report
+</a>
             </div>
           </section>
         </div>
@@ -199,3 +206,4 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+

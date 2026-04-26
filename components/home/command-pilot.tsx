@@ -8,6 +8,7 @@ const routes = [
   { label: 'I need procurement materials', href: '/procurement' },
   { label: 'Show the buyer data room', href: '/data-room' },
   { label: 'I want a guided demo', href: '/demo' },
+  { label: 'Test LeadSharper in 90 seconds', href: '/instant-demo' },
   { label: 'Show readiness scoring', href: '/readiness' },
   { label: 'Show pilot proposal', href: '/pilot-proposal' },
   { label: 'Apply for pilot', href: '/pilot' }
@@ -56,3 +57,4 @@ export function CommandPilot() {
     </div>
   )
 }
+
