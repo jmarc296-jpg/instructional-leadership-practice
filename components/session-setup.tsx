@@ -215,12 +215,13 @@ coachMode: value === 'review'
           </select>
         </div>
               <a
-          href='/practice'
+          href='#practice-workspace'
           className='block w-full rounded-2xl bg-slate-900 px-6 py-4 text-center text-sm font-semibold text-white hover:bg-slate-800'
         >
-          Start Practice Session →
+          Continue to Practice Workspace →
         </a>
       </div>
     </aside>
   )
 }
+
