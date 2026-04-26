@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
 
 type Evaluation = {
@@ -59,6 +59,14 @@ function evaluateResponse(response: string): Evaluation {
 
 export default function InstantDemoPage() {
   const [response, setResponse] = useState('')
+  const [profile, setProfile] = useState<any>(null)
+
+  useEffect(() => {
+    const savedProfile = localStorage.getItem('leadsharper_user_profile')
+    if (savedProfile) {
+      setProfile(JSON.parse(savedProfile))
+    }
+  }, [])
   const [evaluation, setEvaluation] = useState<Evaluation | null>(null)
 
   if (evaluation) {
@@ -162,11 +170,11 @@ export default function InstantDemoPage() {
           </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight">
-            Test LeadSharper in 90 seconds.
+            {profile?.name ? ${profile.name}, test LeadSharper in 90 seconds. : 'Test LeadSharper in 90 seconds.'}
           </h1>
 
           <p className="mt-4 text-lg text-slate-300">
-            Respond to a real leadership scenario and watch the platform evaluate your readiness.
+            {profile?.currentRole ? Respond as a  and see how LeadSharper evaluates your readiness for . : 'Respond to a real leadership scenario and watch the platform evaluate your readiness.'}
           </p>
         </section>
 
@@ -176,7 +184,7 @@ export default function InstantDemoPage() {
           </h2>
 
           <p className="mt-4 leading-8 text-slate-700">
-            A veteran teacher has strong relationships with students but consistently delivers weak instruction. Student achievement is declining, and your instructional coach says this issue has been avoided for months. What do you do?
+            {profile?.district ? In , a veteran teacher has strong relationships with students but consistently delivers weak instruction. : 'A veteran teacher has strong relationships with students but consistently delivers weak instruction.'} Student achievement is declining, and your instructional coach says this issue has been avoided for months. What do you do?
           </p>
 
           <textarea
@@ -245,5 +253,6 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
 
