@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { getPlatformIntelligence } from '@/lib/platform-intelligence'
 
@@ -17,11 +17,11 @@ export default function SuperintendentPage() {
       <div className="mx-auto max-w-7xl space-y-8">
         <section className="rounded-3xl bg-slate-900 p-10 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
-            Superintendent Intelligence Layer
+            Superintendent Leadership View
           </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight">
-            Live leadership pipeline intelligence.
+            See district leadership readiness in real time.
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">

@@ -33,7 +33,7 @@ export default function DashboardPage() {
 
         <section className="rounded-3xl bg-slate-900 p-8 text-white">
           <h1 className="text-4xl font-semibold">
-            Leadership Intelligence Dashboard
+            Leadership Growth Dashboard
           </h1>
           <p className="mt-3 text-slate-300">
             Track leadership growth patterns across every simulation rep.

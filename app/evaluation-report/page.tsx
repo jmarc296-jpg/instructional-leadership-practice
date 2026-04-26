@@ -26,7 +26,7 @@ export default function EvaluationReportPage() {
           </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight">
-            Turn simulation performance into readiness intelligence.
+            Turn leadership reps into measurable growth.
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">

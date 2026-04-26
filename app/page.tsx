@@ -62,10 +62,10 @@ export default function HomePage() {
           />
 
           <Card
-            title="For Growth Planning"
-            text="Turn simulation results into a recurring 30-day leadership development plan."
-            href="/growth-plan"
-            cta="View growth engine"
+            title="For District Partnerships"
+            text="Launch a structured pilot for aspiring principals, new principals, and district leadership teams."
+            href="/pilot"
+            cta="Explore pilot"
           />
         </section>
 
