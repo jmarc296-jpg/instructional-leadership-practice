@@ -113,7 +113,7 @@ function Card({
   cta: string
 }) {
   return (
-    <a href={href} className="rounded-3xl bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <a href={href} className="rounded-3xl bg-white p-7 shadow-sm transition hover:shadow-md">
       <h3 className="text-2xl font-semibold text-slate-950">{title}</h3>
       <p className="mt-3 leading-7 text-slate-600">{text}</p>
       <div className="mt-5 text-sm font-semibold text-blue-700">{cta} ?</div>

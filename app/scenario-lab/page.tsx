@@ -63,7 +63,7 @@ export default function ScenarioLabPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-10">
       <div className="mx-auto max-w-6xl space-y-8">
-        <section className="rounded-3xl bg-slate-900 p-10 text-white">
+        <section className="rounded-3xl bg-gradient-to-r from-slate-900 to-blue-900 p-10 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Scenario Lab
           </p>

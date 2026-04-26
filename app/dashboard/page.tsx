@@ -31,11 +31,11 @@ export default function DashboardPage() {
           ? Back to simulator
         </a>
 
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
           <h1 className="text-4xl font-semibold">
             Leadership Growth Dashboard
           </h1>
-          <p className="mt-3 text-slate-300">
+          <p className="mt-3 text-slate-600">
             Track leadership growth patterns across every simulation rep.
           </p>
         </section>

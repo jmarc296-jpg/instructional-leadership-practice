@@ -35,7 +35,7 @@ export default function EvaluationReportPage() {
         </section>
 
         {!latest ? (
-          <section className="rounded-3xl bg-white p-10 shadow-sm">
+          <section className="rounded-3xl bg-slate-100 p-10 border border-slate-200">
             <h2 className="text-3xl font-semibold text-slate-900">
               No evaluation data yet.
             </h2>
