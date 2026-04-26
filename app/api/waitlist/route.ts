@@ -49,63 +49,68 @@ export async function POST(request: Request) {
       to: email,
       subject: 'Your LeadSharper request was received',
       html: `
-        <div style="font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;padding:40px;">
-  <div style="max-width:640px;margin:0 auto;background:white;border-radius:20px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 10px 30px rgba(15,23,42,.06);">
+  <div style="background:#f8fafc;padding:40px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+    <div style="max-width:720px;margin:0 auto;background:#ffffff;border-radius:24px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 18px 50px rgba(15,23,42,0.10);">
 
-    <div style="background:#020617;padding:28px;text-align:center;">
-      <img src="https://leadwellpractice.vercel.app/logo.png" 
-           alt="LeadSharper Logo" 
-           style="max-width:220px; height:auto;" />
-    </div>
-
-    <div style="padding:48px 52px;">
-      <p style="font-size:12px;font-weight:700;color:#2563eb;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;">
-        Pilot Request Received
-      </p>
-
-      <h1 style="font-size:56px;font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:#020617;margin:0 0 24px 0;">
-        You're officially on our radar.
-      </h1>
-
-      <p style="font-size:20px;line-height:1.8;color:#475569;font-weight:400;margin-bottom:20px;">
-        We received your pilot request and our team is reviewing your submission.
-      </p>
-
-      <p style="font-size:20px;line-height:1.8;color:#475569;font-weight:400;margin-bottom:36px;">
-        LeadSharper helps districts, universities, and leadership pipelines measure principal readiness before leadership decisions become high stakes.
-      </p>
-
-      <div style="background:linear-gradient(180deg,#f8fbff 0%,#eff6ff 100%);border:1px solid #dbeafe;border-radius:20px;padding:32px;margin-bottom:40px;">
-        <h3 style="font-size:20px;font-weight:600;color:#0f172a;margin-top:0;">
-          What happens next
-        </h3>
-
-        <p style="font-size:16px;color:#475569;line-height:1.6;margin:12px 0;">
-          → Submission reviewed within 1–2 business days
-        </p>
-
-        <p style="font-size:16px;color:#475569;line-height:1.6;margin:12px 0;">
-          → We’ll schedule a short discovery conversation
-        </p>
-
-        <p style="font-size:16px;color:#475569;line-height:1.6;margin:12px 0;">
-          → You’ll explore pilot implementation options
-        </p>
+      <div style="background:linear-gradient(135deg,#020617 0%,#0f172a 60%,#1d4ed8 100%);padding:54px 42px;text-align:center;">
+        <img src="https://leadwellpractice.vercel.app/logo.png" alt="LeadSharper" style="width:430px;max-width:100%;height:auto;display:block;margin:0 auto;" />
       </div>
 
-      <div style="text-align:center;">
-        <a href="https://leadwellpractice.vercel.app"
-           style="display:inline-block;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:white;
-                  padding:14px 28px;text-decoration:none;border-radius:12px;
-                  font-size:16px;font-weight:600;">
-          Explore Platform
-        </a>
+      <div style="padding:52px 56px 44px 56px;">
+        <div style="font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#2563eb;margin-bottom:24px;">
+          Pilot Request Received
+        </div>
+
+        <h1 style="font-size:52px;line-height:1.08;letter-spacing:-1.8px;color:#020617;margin:0 0 28px 0;font-weight:850;">
+          Thanks for your interest in LeadSharper.
+        </h1>
+
+        <p style="font-size:20px;line-height:1.75;color:#475569;margin:0 0 22px 0;">
+          We received your pilot request and our team is reviewing your submission.
+        </p>
+
+        <p style="font-size:20px;line-height:1.75;color:#475569;margin:0 0 38px 0;">
+          LeadSharper helps districts, universities, and leadership pipelines measure principal readiness before leadership decisions become high stakes.
+        </p>
+
+        <div style="background:linear-gradient(180deg,#eff6ff 0%,#f8fbff 100%);border:1px solid #bfdbfe;border-radius:22px;padding:34px 36px;margin:0 0 40px 0;">
+          <div style="font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#1d4ed8;margin-bottom:22px;">
+            What happens next
+          </div>
+
+          <div style="font-size:17px;line-height:1.7;color:#334155;margin-bottom:16px;">
+            <span style="display:inline-block;background:#2563eb;color:white;border-radius:999px;width:24px;height:24px;text-align:center;line-height:24px;font-weight:700;margin-right:10px;">✓</span>
+            Submission reviewed within 1–2 business days
+          </div>
+
+          <div style="font-size:17px;line-height:1.7;color:#334155;margin-bottom:16px;">
+            <span style="display:inline-block;background:#2563eb;color:white;border-radius:999px;width:24px;height:24px;text-align:center;line-height:24px;font-weight:700;margin-right:10px;">✓</span>
+            We’ll reach out to schedule a short discovery conversation
+          </div>
+
+          <div style="font-size:17px;line-height:1.7;color:#334155;">
+            <span style="display:inline-block;background:#2563eb;color:white;border-radius:999px;width:24px;height:24px;text-align:center;line-height:24px;font-weight:700;margin-right:10px;">✓</span>
+            You’ll explore pilot fit and implementation options
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-bottom:42px;">
+          <a href="https://leadwellpractice.vercel.app" style="display:inline-block;background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#ffffff;text-decoration:none;border-radius:14px;padding:17px 42px;font-size:17px;font-weight:800;box-shadow:0 10px 25px rgba(37,99,235,0.28);">
+            Explore LeadSharper
+          </a>
+        </div>
+
+        <div style="border-top:1px solid #e2e8f0;padding-top:28px;display:flex;align-items:center;gap:16px;">
+          <img src="https://leadwellpractice.vercel.app/logo.png" alt="LeadSharper" style="width:110px;height:auto;" />
+          <div style="font-size:14px;line-height:1.5;color:#64748b;">
+            <strong style="color:#0f172a;">LeadSharper</strong><br />
+            Sharpen your leadership. Accelerate your growth.
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-        </div>
-      `
+`
     })
 
     return NextResponse.json({
@@ -121,6 +126,7 @@ export async function POST(request: Request) {
     )
   }
 }
+
 
 
 
