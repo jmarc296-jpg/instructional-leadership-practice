@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useMemo } from 'react'
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
@@ -80,6 +80,31 @@ export default function DashboardPage() {
             </div>
           </section>
         )}
+              <section className="rounded-3xl bg-blue-50 p-8">
+          <h2 className="text-3xl font-semibold text-slate-900">
+            Keep strengthening your leadership profile
+          </h2>
+
+          <p className="mt-4 max-w-3xl leading-7 text-slate-700">
+            The dashboard becomes more useful as additional simulation reps are completed. Continue practicing, then convert patterns into a focused growth plan.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href="/scenario-lab"
+              className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
+            >
+              Practice another scenario
+            </a>
+
+            <a
+              href="/growth-plan"
+              className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+            >
+              Build growth plan
+            </a>
+          </div>
+        </section>
       </div>
     </main>
   )

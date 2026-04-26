@@ -1,6 +1,7 @@
-﻿'use client'
+'use client'
 
 import { useMemo, useState } from 'react'
+import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
 
 export default function ScenarioLabPage() {
   const [role, setRole] = useState('Assistant Principal')
@@ -29,6 +30,36 @@ export default function ScenarioLabPage() {
     }
   }, [response])
 
+  function handleSubmit() {
+    saveLeadershipIntelligenceSnapshot({
+      cardId: `scenario-${Date.now()}`,
+      domain: role,
+      score: {
+        readiness: score.readiness
+      },
+      insights: {
+        summary: challenge
+      },
+      profile: {
+        instructionalPrecision: score.evidence ? 85 : 45,
+        accountabilityStrength: score.action ? 85 : 45,
+        communicationClarity: score.followUp ? 85 : 45,
+        studentImpactOrientation: score.students ? 85 : 45,
+        riskLevel: score.readiness >= 80 ? 'low' : score.readiness >= 60 ? 'moderate' : 'high'
+      },
+      consequences: {
+        unresolvedRisk: 'Repeated weak leadership decisions create downstream instructional instability.',
+        likelyConsequence: challenge
+      },
+      recommendation: {
+        priority: 'Next leadership rep',
+        nextPracticeFocus: 'Continue practicing complex leadership scenarios.'
+      }
+    })
+
+    setSubmitted(true)
+  }
+
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-10">
       <div className="mx-auto max-w-6xl space-y-8">
@@ -38,11 +69,11 @@ export default function ScenarioLabPage() {
           </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight">
-            Build and test any leadership scenario in real time.
+            Build your next leadership rep.
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-            Generate a high-stakes school leadership moment, respond, and receive readiness feedback instantly.
+            Practice a higher-complexity leadership moment and add the result to your readiness profile.
           </p>
         </section>
 
@@ -85,7 +116,7 @@ export default function ScenarioLabPage() {
 
             <button
               disabled={response.trim().length < 20}
-              onClick={() => setSubmitted(true)}
+              onClick={handleSubmit}
               className="mt-5 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white disabled:bg-slate-300"
             >
               Evaluate response
@@ -110,12 +141,21 @@ export default function ScenarioLabPage() {
               Strong responses name the issue, ground the concern in evidence, connect the move to student impact, and define how the leader will follow through.
             </p>
 
-            <a
-              href="/pilot"
-              className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
-            >
-              Explore pilot access
-            </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="/dashboard"
+                className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
+              >
+                View leadership dashboard
+              </a>
+
+              <a
+                href="/growth-plan"
+                className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+              >
+                Build growth plan
+              </a>
+            </div>
           </section>
         )}
       </div>

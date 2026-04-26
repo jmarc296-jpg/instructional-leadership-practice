@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useState } from 'react'
 import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
@@ -220,10 +220,10 @@ export default function InstantDemoPage() {
               </a>
 
               <a
-                href="/pilot"
+                href="/scenario-lab"
                 className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
               >
-                Explore pilot access
+                Practice harder scenario
               </a>
             </div>
           </section>

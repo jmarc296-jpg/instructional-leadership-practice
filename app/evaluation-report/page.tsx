@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
 
@@ -100,9 +100,36 @@ export default function EvaluationReportPage() {
                 Current risk level: <strong>{profile?.riskLevel ?? 'unknown'}</strong>. This leader should continue targeted practice until readiness patterns are consistently strong across multiple simulations.
               </p>
             </section>
+
+            <section className="rounded-3xl bg-white p-8 shadow-sm">
+              <h2 className="text-3xl font-semibold text-slate-900">
+                Keep building your leadership profile
+              </h2>
+
+              <p className="mt-4 max-w-3xl leading-7 text-slate-700">
+                Strong district decisions should never rely on a single simulation. Complete additional leadership reps to strengthen your readiness profile.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="/scenario-lab"
+                  className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
+                >
+                  Practice another scenario
+                </a>
+
+                <a
+                  href="/growth-plan"
+                  className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+                >
+                  Build growth plan
+                </a>
+              </div>
+            </section>
           </>
         )}
       </div>
     </main>
   )
 }
+

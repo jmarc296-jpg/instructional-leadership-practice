@@ -1,4 +1,4 @@
-﻿import Image from 'next/image'
+import Image from 'next/image'
 import { TopNav } from '@/components/home/top-nav'
 
 export default function HomePage() {
@@ -27,8 +27,8 @@ export default function HomePage() {
                   Test LeadSharper in 90 seconds
                 </a>
 
-                <a href="/district-os" className="rounded-2xl border border-slate-300 px-7 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-50">
-                  View District OS
+                <a href="/district" className="rounded-2xl border border-slate-300 px-7 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+                  View district view
                 </a>
               </div>
             </div>
@@ -57,8 +57,8 @@ export default function HomePage() {
           <Card
             title="For District Teams"
             text="See readiness, risk, coaching needs, and succession signals across the leadership pipeline."
-            href="/district-os"
-            cta="View district system"
+            href="/district"
+            cta="View district view"
           />
 
           <Card
@@ -116,7 +116,7 @@ function Card({
     <a href={href} className="rounded-3xl bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
       <h3 className="text-2xl font-semibold text-slate-950">{title}</h3>
       <p className="mt-3 leading-7 text-slate-600">{text}</p>
-      <div className="mt-5 text-sm font-semibold text-blue-700">{cta} →</div>
+      <div className="mt-5 text-sm font-semibold text-blue-700">{cta} ?</div>
     </a>
   )
 }
