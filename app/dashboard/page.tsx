@@ -110,3 +110,26 @@ export default function DashboardPage() {
   )
 }
 
+
+{/* Assignment Analytics */}
+<div className="grid lg:grid-cols-4 gap-6 mt-10">
+  <div className="bg-white p-6 rounded-2xl shadow-sm">
+    <p>Active Assignments</p>
+    <h2 className="text-3xl font-bold">142</h2>
+  </div>
+
+  <div className="bg-white p-6 rounded-2xl shadow-sm">
+    <p>Completion Rate</p>
+    <h2 className="text-3xl font-bold">81%</h2>
+  </div>
+
+  <div className="bg-white p-6 rounded-2xl shadow-sm">
+    <p>Top Development Gap</p>
+    <h2 className="text-xl font-bold">Instructional Feedback</h2>
+  </div>
+
+  <div className="bg-white p-6 rounded-2xl shadow-sm">
+    <p>Readiness Growth</p>
+    <h2 className="text-3xl font-bold text-green-600">+11%</h2>
+  </div>
+</div>

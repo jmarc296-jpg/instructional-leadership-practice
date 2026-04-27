@@ -1,381 +1,86 @@
-'use client'
-
-import { useMemo } from 'react'
-import { TopNav } from '@/components/home/top-nav'
-import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
-
 export default function DistrictPage() {
-  const snapshots = getLeadershipIntelligenceSnapshots()
-
-  const summary = useMemo(() => {
-    const total = snapshots.length
-
-    const readinessScores = snapshots
-      .map((item: any) => item?.score?.readiness)
-      .filter((score: any) => typeof score === 'number')
-
-    const averageReadiness =
-      readinessScores.length > 0
-        ? Math.round(readinessScores.reduce((sum: number, score: number) => sum + score, 0) / readinessScores.length)
-        : 0
-
-    const riskCounts = snapshots.reduce(
-      (acc: Record<string, number>, item: any) => {
-        const risk = item?.profile?.riskLevel ?? 'unknown'
-        acc[risk] = (acc[risk] ?? 0) + 1
-        return acc
-      },
-      {}
-    )
-
-    return {
-      total,
-      averageReadiness,
-      moderateRisk: riskCounts.moderate ?? 0,
-      highRisk: riskCounts.high ?? 0
+  const metrics = [
+    {
+      label: "Active Assignments",
+      value: "142"
+    },
+    {
+      label: "Completion Rate",
+      value: "81%"
+    },
+    {
+      label: "Top Development Gap",
+      value: "Instructional Feedback"
+    },
+    {
+      label: "Readiness Growth",
+      value: "+11%"
     }
-  }, [snapshots])
+  ]
 
-  const hasData = summary.total > 0
+  const leaders = [
+    {
+      name: "Melissa Swedlow",
+      gap: "Coaching"
+    },
+    {
+      name: "Brian Evans",
+      gap: "Instructional Feedback"
+    },
+    {
+      name: "Jessica Thomas",
+      gap: "Operations"
+    }
+  ]
 
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl space-y-8">
-        <TopNav />
+    <main className="min-h-screen bg-slate-50 p-8">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold mb-2">
+          District Leadership Dashboard
+        </h1>
 
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
-            District Leadership Intelligence
-          </p>
+        <p className="text-slate-600 mb-8">
+          Track leadership development progress across your district.
+        </p>
 
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight">
-            See readiness, risk, and coaching priorities across your leadership bench.
-          </h1>
-
-          <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-300">
-            LeadSharper turns completed leadership simulations into district-level insight for coaching, placement, and succession planning.
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href="/"
-              className="rounded-2xl border border-white/20 px-5 py-3 text-sm font-semibold text-white"
+        <section className="grid md:grid-cols-4 gap-6 mb-10">
+          {metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="bg-white p-6 rounded-2xl border border-slate-200"
             >
-              Back to Home
-            </a>
+              <p className="text-sm text-slate-500">
+                {metric.label}
+              </p>
 
-            <a
-              href="/instant-demo"
-              className="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white"
-            >
-              Run Simulation
-            </a>
-
-            <a
-              href="/evaluation-report"
-              className="rounded-2xl border border-white/20 px-5 py-3 text-sm font-semibold text-white"
-            >
-              View Board Report
-            </a>
-          </div>
+              <h2 className="text-2xl font-bold mt-2">
+                {metric.value}
+              </h2>
+            </div>
+          ))}
         </section>
 
-        {!hasData && (
-          <section className="rounded-3xl bg-white p-8 border border-slate-200">
-            <h2 className="text-3xl font-semibold text-slate-900">
-              No leadership cohort data yet.
-            </h2>
+        <section className="bg-white rounded-2xl border border-slate-200 p-6">
+          <h2 className="text-xl font-semibold mb-4">
+            Leaders Needing Support
+          </h2>
 
-            <p className="mt-4 max-w-3xl leading-7 text-slate-600">
-              Complete one or more leadership simulations to populate this dashboard with readiness scores, risk levels, and coaching priorities.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="/instant-demo"
-                className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
+          <div className="space-y-4">
+            {leaders.map((leader) => (
+              <div
+                key={leader.name}
+                className="flex justify-between border-b pb-3"
               >
-                Run First Simulation
-              </a>
-
-              <a
-                href="/pilot"
-                className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
-              >
-                Explore Pilot
-              </a>
-            </div>
-          </section>
-        )}
-
-        <section className="grid gap-4 md:grid-cols-4">
-          <Metric label="Overall Readiness" value={hasData ? `${summary.averageReadiness}%` : "--"} />
-          <Metric label="Simulation Reps" value={hasData ? `${summary.total}` : "--"} />
-          <Metric label="Moderate Risk" value={hasData ? `${summary.moderateRisk}` : "--"} />
-          <Metric label="High Risk" value={hasData ? `${summary.highRisk}` : "--"} />
-        </section>
-
-        <section className="rounded-3xl bg-white p-8 border border-slate-200">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-semibold text-slate-900">
-                Leadership Bench Snapshot
-              </h2>
-              <p className="mt-3 max-w-3xl leading-7 text-slate-600">
-                Preview district-scale readiness across principal candidates, assistant principals, instructional coaches, and emerging leaders.
-              </p>
-            </div>
-
-            {!hasData && (
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
-                Demo Scale
-              </span>
-            )}
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-4">
-            <Metric label="Leaders Assessed" value="25" />
-            <Metric label="Ready Now" value="8" />
-            <Metric label="Ready in 12 Months" value="11" />
-            <Metric label="Needs Intervention" value="6" />
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-
-            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
-              <p className="text-sm font-semibold text-slate-500">Principal Candidates</p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">6 Leaders</p>
-              <span className="mt-3 inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">High Readiness</span>
-              <p className="mt-3 text-sm text-slate-600">Prioritize for upcoming vacancies.</p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
-              <p className="text-sm font-semibold text-slate-500">Assistant Principals</p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">8 Leaders</p>
-              <span className="mt-3 inline-block rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-700">Mixed Readiness</span>
-              <p className="mt-3 text-sm text-slate-600">Target coaching cycles before placement.</p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
-              <p className="text-sm font-semibold text-slate-500">Instructional Coaches</p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">5 Leaders</p>
-              <span className="mt-3 inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">Strong Signal</span>
-              <p className="mt-3 text-sm text-slate-600">Build future leadership pathways.</p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
-              <p className="text-sm font-semibold text-slate-500">Dean / Ops Leaders</p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">6 Leaders</p>
-              <span className="mt-3 inline-block rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">Higher Risk</span>
-              <p className="mt-3 text-sm text-slate-600">Do not promote without intervention.</p>
-            </div>
-
-          </div>
-
-        </section>
-
-        <section className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-3xl bg-white p-8 border border-slate-200">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="text-2xl font-semibold text-slate-900">
-                Top Leadership Strengths
-              </h2>
-
-              {!hasData && (
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
-                  Preview
+                <span>{leader.name}</span>
+                <span className="text-slate-500">
+                  {leader.gap}
                 </span>
-              )}
-            </div>
-
-            <div className="mt-6 space-y-4">
-              <Signal label="Instructional Leadership" value={hasData ? 'Active signal' : '84%'} tone="strength" />
-              <Signal label="Data Meeting Facilitation" value={hasData ? 'Active signal' : '79%'} tone="strength" />
-              <Signal label="Teacher Coaching" value={hasData ? 'Active signal' : '76%'} tone="strength" />
-              <Signal label="School Culture Leadership" value={hasData ? 'Active signal' : '73%'} tone="strength" />
-            </div>
-          </div>
-
-          <div className="rounded-3xl bg-white p-8 border border-slate-200">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="text-2xl font-semibold text-slate-900">
-                Recurring Leadership Risks
-              </h2>
-
-              {!hasData && (
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
-                  Preview
-                </span>
-              )}
-            </div>
-
-            <div className="mt-6 space-y-4">
-              <Signal label="Avoiding difficult conversations" value={hasData ? 'Monitor' : '31'} tone="risk" />
-              <Signal label="Weak instructional feedback" value={hasData ? 'Monitor' : '24'} tone="risk" />
-              <Signal label="Poor delegation systems" value={hasData ? 'Monitor' : '18'} tone="risk" />
-              <Signal label="Reactive decision-making" value={hasData ? 'Monitor' : '15'} tone="risk" />
-            </div>
+              </div>
+            ))}
           </div>
         </section>
-
-
-        <section className="rounded-3xl bg-white p-8 border border-slate-200">
-          <div className="flex items-center justify-between gap-4">
-            <h2 className="text-2xl font-semibold text-slate-900">
-              Pipeline Recommendations
-            </h2>
-
-            {!hasData && (
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
-                Preview
-              </span>
-            )}
-          </div>
-
-          <p className="mt-3 max-w-3xl leading-7 text-slate-600">
-            Translate simulation data into staffing and succession planning decisions.
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl bg-green-50 p-5 border border-green-100">
-              <p className="text-sm font-semibold text-green-700">
-                Immediate Placement Pool
-              </p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">
-                {hasData ? "8 Leaders" : "8 Leaders"}
-              </p>
-              <p className="mt-2 text-sm text-slate-600">
-                Ready for principal vacancies today.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-blue-50 p-5 border border-blue-100">
-              <p className="text-sm font-semibold text-blue-700">
-                Leadership Fellowship Cohort
-              </p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">
-                {hasData ? "12 Leaders" : "12 Leaders"}
-              </p>
-              <p className="mt-2 text-sm text-slate-600">
-                Strong candidates needing targeted coaching.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-red-50 p-5 border border-red-100">
-              <p className="text-sm font-semibold text-red-700">
-                Do Not Place Yet
-              </p>
-              <p className="mt-2 text-3xl font-semibold text-slate-900">
-                {hasData ? "4 Leaders" : "4 Leaders"}
-              </p>
-              <p className="mt-2 text-sm text-slate-600">
-                Requires intervention before promotion.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="rounded-3xl bg-white p-8 border border-slate-200">
-          <div className="flex items-center justify-between gap-4">
-            <h2 className="text-2xl font-semibold text-slate-900">
-              Estimated Financial Impact
-            </h2>
-
-            {!hasData && (
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
-                Preview
-              </span>
-            )}
-          </div>
-
-          <p className="mt-3 max-w-3xl leading-7 text-slate-600">
-            District leaders can use readiness data to reduce failed placements, prevent turnover risk, and make stronger succession decisions.
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <Impact label="Failed principal placement cost" value="$145K" />
-            <Impact label="Prevented turnover risk" value="$420K" />
-            <Impact label="Leadership vacancy savings" value="$310K" />
-          </div>
-        </section>
-
-        {hasData && (
-          <section className="rounded-3xl bg-slate-900 p-8 text-white">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
-              Ready to move from demo to district pilot
-            </p>
-
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight">
-              Bring LeadSharper to your leadership pipeline.
-            </h2>
-
-            <p className="mt-4 max-w-3xl leading-7 text-slate-300">
-              Use this intelligence to identify readiness patterns, target coaching, and strengthen principal placement decisions before high-stakes leadership moves are made.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href="/pilot" className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
-                Book a District Pilot
-              </a>
-
-              <a href="/procurement" className="rounded-2xl border border-white/20 px-6 py-4 text-sm font-semibold text-white">
-                View Procurement Fit
-              </a>
-            </div>
-          </section>
-        )}
       </div>
     </main>
   )
 }
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl bg-white p-5 border border-slate-200">
-      <div className="text-xs uppercase tracking-wide text-slate-500">
-        {label}
-      </div>
-      <div className="mt-2 text-3xl font-semibold text-slate-950">
-        {value}
-      </div>
-    </div>
-  )
-}
-
-function Signal({
-  label,
-  value,
-  tone
-}: {
-  label: string
-  value: string
-  tone: 'strength' | 'risk'
-}) {
-  const toneClass =
-    tone === 'strength'
-      ? 'bg-slate-50 text-emerald-700'
-      : 'bg-red-50 text-red-700'
-
-  return (
-    <div className={`flex items-center justify-between rounded-2xl p-5 font-semibold ${toneClass}`}>
-      <span>{label}</span>
-      <span>{value}</span>
-    </div>
-  )
-}
-
-function Impact({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl bg-slate-50 p-5">
-      <div className="text-sm text-slate-500">{label}</div>
-      <div className="mt-2 text-3xl font-semibold text-blue-700">{value}</div>
-    </div>
-  )
-}
-
-
-
-
-
-
-

@@ -1,20 +1,14 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
 
-const geistSans = Geist({
-  subsets: ['latin'],
-  variable: '--font-geist-sans',
-})
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
+const inter = Inter({
+  subsets: ["latin"],
 })
 
 export const metadata: Metadata = {
-  title: 'LeadSharper',
-  description: 'Sharpen your Leadership, Accelerate your Growth',
+  title: "LeadSharper",
+  description: "Sharpen your leadership. Accelerate your growth.",
 }
 
 export default function RootLayout({
@@ -24,9 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.className} antialiased`}>
         {children}
       </body>
     </html>
