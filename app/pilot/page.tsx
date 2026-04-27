@@ -51,10 +51,10 @@ export default function PilotPage() {
           </p>
 
           <div className="mt-8 space-y-4 text-slate-200">
-            <p>• Launch a leadership cohort</p>
-            <p>• Measure readiness through simulations</p>
-            <p>• Identify coaching risks and talent strengths</p>
-            <p>• Generate district-level reporting</p>
+            <p>â€¢ Launch a leadership cohort</p>
+            <p>â€¢ Measure readiness through simulations</p>
+            <p>â€¢ Identify coaching risks and talent strengths</p>
+            <p>â€¢ Generate district-level reporting</p>
           </div>
         </section>
 
@@ -143,6 +143,7 @@ export default function PilotPage() {
     </main>
   )
 }
+
 
 
 
