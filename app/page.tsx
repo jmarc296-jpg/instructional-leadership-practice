@@ -9,7 +9,7 @@ export default function HomePage() {
 
         <section className="rounded-[36px] bg-white p-8 border border-slate-200">
           <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
-            <div className="max-w-3xl">
+            <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
                 LeadSharper
               </p>
@@ -37,8 +37,8 @@ export default function HomePage() {
               <Image
                 src="/logo.png"
                 alt="LeadSharper"
-                width={650}
-                height={650}
+                width={550}
+                height={550}
                 priority
                 className="h-auto w-full max-w-[600px] object-contain scale-125"
               />
@@ -78,7 +78,7 @@ export default function HomePage() {
             Districts do not just need more leadership training. They need better evidence of readiness.
           </h2>
 
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
             Interviews, resumes, and reputation are not enough. LeadSharper creates observable leadership performance data before promotion, placement, or coaching decisions become high stakes.
           </p>
         </section>
@@ -88,7 +88,7 @@ export default function HomePage() {
             Ready to evaluate a pilot?
           </h2>
 
-          <p className="mt-4 max-w-3xl leading-8 text-slate-700">
+          <p className="mt-4 max-w-2xl leading-8 text-slate-700">
             Start with a small leadership cohort, generate readiness signals, and determine whether LeadSharper can strengthen your district or program pipeline.
           </p>
 
