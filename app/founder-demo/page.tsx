@@ -9,7 +9,7 @@ export default function FounderDemoPage() {
   const [activated, setActivated] = useState(false)
 
   function activateFounderDemo() {
-    localStorage.removeItem('leadership_intelligence_snapshots')
+    localStorage.removeItem('leadsharper-intelligence-snapshots')
 
     const demoData = [
       {

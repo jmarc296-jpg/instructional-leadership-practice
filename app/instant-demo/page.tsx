@@ -35,7 +35,7 @@ function evaluateResponse(response: string): Evaluation {
 
   const summary =
     readiness >= 80
-      ? 'Your response shows strong leadership judgment. You named the issue, connected it to student impact, and included follow-through.'
+      ? 'Your response reflects strong principal judgment. It names the issue, connects the concern to student impact, and includes a clear follow-through move.'
       : readiness >= 65
         ? 'Your response shows promise, but the leadership move needs more precision, evidence, or follow-through.'
         : 'Your response is too general for a high-stakes leadership moment. The risk is that the issue continues without clear accountability.'
