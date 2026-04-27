@@ -50,11 +50,37 @@ export default function PilotPage() {
             LeadSharper is opening limited pilot partnerships for districts, charter networks, and university leadership programs.
           </p>
 
-          <div className="mt-8 space-y-4 text-slate-200">
-            <p>â€¢ Launch a leadership cohort</p>
-            <p>â€¢ Measure readiness through simulations</p>
-            <p>â€¢ Identify coaching risks and talent strengths</p>
-            <p>â€¢ Generate district-level reporting</p>
+          <div className="mt-10 space-y-8">
+            <div>
+              <h3 className="text-lg font-semibold text-white">
+                Accelerate principal pipeline decisions
+              </h3>
+              <p className="mt-2 max-w-md text-slate-300 leading-7">
+                Identify who is ready now and who needs development before high-stakes placements.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-white">
+                Reduce failed leadership placements
+              </h3>
+              <p className="mt-2 max-w-md text-slate-300 leading-7">
+                Surface coaching gaps before they become turnover risks.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-white">
+                Create board-ready reporting
+              </h3>
+              <p className="mt-2 max-w-md text-slate-300 leading-7">
+                Give superintendents and cabinet teams district-wide leadership intelligence.
+              </p>
+            </div>
+
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+              Limited 2026 pilot cohort: 5 district partners
+            </p>
           </div>
         </section>
 
