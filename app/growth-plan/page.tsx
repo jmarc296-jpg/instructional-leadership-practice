@@ -13,10 +13,10 @@ export default function GrowthPlanPage() {
         : 'Advanced leadership readiness'
 
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-10">
+    <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-6xl space-y-8">
 
-        <section className="rounded-3xl bg-emerald-900 p-10 text-white">
+        <section className="rounded-3xl bg-emerald-900 p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Leadership Growth Engine
           </p>
@@ -55,7 +55,7 @@ export default function GrowthPlanPage() {
           </h2>
 
           <p className="mt-4 max-w-3xl leading-8 text-slate-700">
-            LeadSharper becomes sticky when it powers continuous leadership growth—not one-time evaluations.
+            LeadSharper becomes sticky when it powers continuous leadership growthâ€”not one-time evaluations.
           </p>
         </section>
       </div>

@@ -1,10 +1,10 @@
-﻿'use client'
+'use client'
 
 export default function ProcurementPage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-10 print:bg-white">
+    <main className="min-h-screen bg-slate-50 px-6 py-6 print:bg-white">
       <div className="mx-auto max-w-6xl space-y-8">
-        <section className="rounded-3xl bg-slate-900 p-10 text-white print:bg-white print:text-slate-900 print:border">
+        <section className="rounded-3xl bg-slate-900 p-8 text-white print:bg-white print:text-slate-900 print:border">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300 print:text-blue-700">
             Procurement Readiness Packet
           </p>

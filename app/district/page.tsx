@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { getPlatformIntelligence } from '@/lib/platform-intelligence'
 

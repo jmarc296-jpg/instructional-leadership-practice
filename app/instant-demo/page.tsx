@@ -116,9 +116,9 @@ export default function InstantDemoPage() {
 
   if (evaluation) {
     return (
-      <main className="min-h-screen bg-slate-50 px-6 py-10">
+      <main className="min-h-screen bg-slate-50 px-6 py-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          <section className="rounded-3xl bg-slate-900 p-10 text-white">
+          <section className="rounded-3xl bg-slate-900 p-8 text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
               Live Evaluation
             </p>
@@ -175,7 +175,7 @@ export default function InstantDemoPage() {
               </h2>
 
               <p className="mt-4 leading-8 text-slate-700">
-                I would meet directly with the teacher, name the instructional concern with evidence, and connect it to student learning. I would acknowledge the teacher’s relationships with students while making clear that strong relationships must be matched by strong instruction. I would review recent student achievement data, identify the specific instructional practice that needs to change, and set a short follow-up cycle with coaching, observation, and a clear timeline for improvement.
+                I would meet directly with the teacher, name the instructional concern with evidence, and connect it to student learning. I would acknowledge the teacherâ€™s relationships with students while making clear that strong relationships must be matched by strong instruction. I would review recent student achievement data, identify the specific instructional practice that needs to change, and set a short follow-up cycle with coaching, observation, and a clear timeline for improvement.
               </p>
 
               <p className="mt-4 leading-8 text-slate-700">
@@ -233,9 +233,9 @@ export default function InstantDemoPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-10">
+    <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-4xl space-y-6">
-        <section className="rounded-3xl bg-slate-900 p-10 text-white">
+        <section className="rounded-3xl bg-slate-900 p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Instant Demo
           </p>

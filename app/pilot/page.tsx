@@ -9,8 +9,8 @@ export default function PilotPage() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen bg-slate-50 px-6 py-10">
-        <section className="mx-auto max-w-3xl rounded-3xl bg-white p-10 shadow-sm">
+      <main className="min-h-screen bg-slate-50 px-6 py-6">
+        <section className="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-sm">
           <h1 className="text-4xl font-semibold text-slate-900">
             Pilot interest received.
           </h1>
@@ -35,9 +35,9 @@ export default function PilotPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-10">
+    <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr]">
-        <section className="rounded-3xl bg-slate-900 p-10 text-white">
+        <section className="rounded-3xl bg-slate-900 p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Pilot Partnership
           </p>
@@ -51,10 +51,10 @@ export default function PilotPage() {
           </p>
 
           <div className="mt-8 space-y-4 text-slate-200">
-            <p>â€¢ Launch a leadership cohort</p>
-            <p>â€¢ Measure readiness through simulations</p>
-            <p>â€¢ Identify coaching risks and talent strengths</p>
-            <p>â€¢ Generate district-level reporting</p>
+            <p>Ã¢â‚¬Â¢ Launch a leadership cohort</p>
+            <p>Ã¢â‚¬Â¢ Measure readiness through simulations</p>
+            <p>Ã¢â‚¬Â¢ Identify coaching risks and talent strengths</p>
+            <p>Ã¢â‚¬Â¢ Generate district-level reporting</p>
           </div>
         </section>
 

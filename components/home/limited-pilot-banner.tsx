@@ -1,4 +1,4 @@
-﻿export function LimitedPilotBanner() {
+export function LimitedPilotBanner() {
   return (
     <section className="rounded-[32px] border border-blue-200 bg-blue-50 p-8">
       <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">
@@ -23,7 +23,7 @@
         </a>
 
         <a
-          href="/enterprise"
+          href="/pilot"
           className="rounded-2xl bg-white px-6 py-4 text-sm font-semibold text-slate-900 border"
         >
           Explore enterprise platform

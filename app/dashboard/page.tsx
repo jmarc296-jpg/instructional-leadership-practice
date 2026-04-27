@@ -28,7 +28,7 @@ export default function DashboardPage() {
     <main className="min-h-screen bg-slate-50 px-5 py-8">
       <div className="mx-auto max-w-6xl space-y-6">
         <a href="/" className="text-sm font-semibold text-blue-700">
-          ? Back to simulator
+          ? Return to platform
         </a>
 
         <section className="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">

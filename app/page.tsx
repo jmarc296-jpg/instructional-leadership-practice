@@ -7,14 +7,14 @@ export default function HomePage() {
       <div className="mx-auto max-w-7xl space-y-8">
         <TopNav />
 
-        <section className="rounded-[36px] bg-white p-10 shadow-sm">
+        <section className="rounded-[36px] bg-white p-8 shadow-sm">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
                 LeadSharper
               </p>
 
-              <h1 className="mt-5 text-5xl font-semibold tracking-[-0.05em] text-slate-950 sm:text-6xl lg:text-7xl">
+              <h1 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
                 Measure principal readiness before the job is on the line.
               </h1>
 
@@ -69,7 +69,7 @@ export default function HomePage() {
           />
         </section>
 
-        <section className="rounded-[32px] bg-slate-900 p-10 text-white">
+        <section className="rounded-[32px] bg-slate-900 p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Why this matters
           </p>
