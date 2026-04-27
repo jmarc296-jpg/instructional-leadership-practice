@@ -321,3 +321,81 @@ export function getLeadershipIntelligenceSnapshots(): StoredLeadershipIntelligen
     []
   )
 }
+
+/*
+-----------------------------------
+ASSIGNMENTS
+-----------------------------------
+*/
+
+const ASSIGNMENTS_KEY = "leadsharper-assignments"
+
+export type Assignment = {
+  id: string
+  leaderName: string
+  role: string
+  module: string
+  dueDate: string
+  status: "Assigned" | "Completed"
+  assignedAt: string
+}
+
+export function saveAssignment(
+  assignment: Omit<Assignment, "id" | "assignedAt">
+): boolean {
+  if (typeof window === "undefined") return false
+
+  try {
+    const existing = getAssignments()
+
+    const newAssignment: Assignment = {
+      ...assignment,
+      id:
+        typeof crypto !== "undefined" && "randomUUID" in crypto
+          ? crypto.randomUUID()
+          : `assignment-${Date.now()}`,
+      assignedAt: new Date().toISOString()
+    }
+
+    localStorage.setItem(
+      ASSIGNMENTS_KEY,
+      JSON.stringify([...existing, newAssignment])
+    )
+
+    return true
+  } catch {
+    return false
+  }
+}
+
+export function getAssignments(): Assignment[] {
+  if (typeof window === "undefined") return []
+
+  return safeParse<Assignment[]>(
+    localStorage.getItem(ASSIGNMENTS_KEY),
+    []
+  )
+}
+
+export function completeAssignment(id: string): boolean {
+  if (typeof window === "undefined") return false
+
+  try {
+    const assignments = getAssignments()
+
+    const updated = assignments.map((assignment) =>
+      assignment.id === id
+        ? { ...assignment, status: "Completed" as const }
+        : assignment
+    )
+
+    localStorage.setItem(
+      ASSIGNMENTS_KEY,
+      JSON.stringify(updated)
+    )
+
+    return true
+  } catch {
+    return false
+  }
+}
