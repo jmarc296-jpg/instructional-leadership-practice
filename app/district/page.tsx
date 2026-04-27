@@ -152,6 +152,63 @@ export default function DistrictPage() {
           </div>
         </section>
 
+
+        <section className="rounded-3xl bg-white p-8 border border-slate-200">
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="text-2xl font-semibold text-slate-900">
+              Pipeline Recommendations
+            </h2>
+
+            {!hasData && (
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
+                Preview
+              </span>
+            )}
+          </div>
+
+          <p className="mt-3 max-w-3xl leading-7 text-slate-600">
+            Translate simulation data into staffing and succession planning decisions.
+          </p>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <div className="rounded-2xl bg-green-50 p-5 border border-green-100">
+              <p className="text-sm font-semibold text-green-700">
+                Immediate Placement Pool
+              </p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900">
+                {hasData ? "8 Leaders" : "8 Leaders"}
+              </p>
+              <p className="mt-2 text-sm text-slate-600">
+                Ready for principal vacancies today.
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-blue-50 p-5 border border-blue-100">
+              <p className="text-sm font-semibold text-blue-700">
+                Leadership Fellowship Cohort
+              </p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900">
+                {hasData ? "12 Leaders" : "12 Leaders"}
+              </p>
+              <p className="mt-2 text-sm text-slate-600">
+                Strong candidates needing targeted coaching.
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-red-50 p-5 border border-red-100">
+              <p className="text-sm font-semibold text-red-700">
+                Do Not Place Yet
+              </p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900">
+                {hasData ? "4 Leaders" : "4 Leaders"}
+              </p>
+              <p className="mt-2 text-sm text-slate-600">
+                Requires intervention before promotion.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section className="rounded-3xl bg-white p-8 border border-slate-200">
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-2xl font-semibold text-slate-900">
@@ -249,6 +306,7 @@ function Impact({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
 
 
