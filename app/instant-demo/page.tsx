@@ -143,7 +143,7 @@ export default function InstantDemoPage() {
           </section>
 
           <section className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
+            <div className="rounded-3xl bg-white p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Risk Signal
               </h2>
@@ -157,7 +157,7 @@ export default function InstantDemoPage() {
               </p>
             </div>
 
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
+            <div className="rounded-3xl bg-white p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Recommended Next Move
               </h2>
@@ -169,13 +169,13 @@ export default function InstantDemoPage() {
           </section>
 
           {showRewrite && (
-            <section className="rounded-3xl bg-white p-8 shadow-sm">
+            <section className="rounded-3xl bg-white p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Stronger Leadership Response
               </h2>
 
               <p className="mt-4 leading-8 text-slate-700">
-                I would meet directly with the teacher, name the instructional concern with evidence, and connect it to student learning. I would acknowledge the teacherâ€™s relationships with students while making clear that strong relationships must be matched by strong instruction. I would review recent student achievement data, identify the specific instructional practice that needs to change, and set a short follow-up cycle with coaching, observation, and a clear timeline for improvement.
+                I would meet directly with the teacher, name the instructional concern with evidence, and connect it to student learning. I would acknowledge the teacherÃ¢â‚¬â„¢s relationships with students while making clear that strong relationships must be matched by strong instruction. I would review recent student achievement data, identify the specific instructional practice that needs to change, and set a short follow-up cycle with coaching, observation, and a clear timeline for improvement.
               </p>
 
               <p className="mt-4 leading-8 text-slate-700">
@@ -253,7 +253,7 @@ export default function InstantDemoPage() {
           </p>
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm">
+        <section className="rounded-3xl bg-white p-8 border border-slate-200">
           <h2 className="text-2xl font-semibold text-slate-900">
             Scenario
           </h2>

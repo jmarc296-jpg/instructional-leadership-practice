@@ -7,7 +7,7 @@ export default function HomePage() {
       <div className="mx-auto max-w-7xl space-y-8">
         <TopNav />
 
-        <section className="rounded-[36px] bg-white p-8 shadow-sm">
+        <section className="rounded-[36px] bg-white p-8 border border-slate-200">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
@@ -113,7 +113,7 @@ function Card({
   cta: string
 }) {
   return (
-    <a href={href} className="rounded-3xl bg-white p-7 shadow-sm transition hover:shadow-md">
+    <a href={href} className="rounded-3xl bg-white p-7 border border-slate-200 transition hover:border-slate-300">
       <h3 className="text-2xl font-semibold text-slate-950">{title}</h3>
       <p className="mt-3 leading-7 text-slate-600">{text}</p>
       <div className="mt-5 text-sm font-semibold text-blue-700">{cta} ?</div>

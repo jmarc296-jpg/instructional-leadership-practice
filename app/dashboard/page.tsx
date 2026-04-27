@@ -41,7 +41,7 @@ export default function DashboardPage() {
         </section>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-2xl bg-white p-5 shadow-sm">
+          <div className="rounded-2xl bg-slate-100 p-5 border border-slate-200">
             <div className="text-xs uppercase text-slate-500">
               Total Reps
             </div>
@@ -50,7 +50,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-5 shadow-sm">
+          <div className="rounded-2xl bg-slate-100 p-5 border border-slate-200">
             <div className="text-xs uppercase text-slate-500">
               High Risk Reps
             </div>
@@ -59,7 +59,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-5 shadow-sm">
+          <div className="rounded-2xl bg-slate-100 p-5 border border-slate-200">
             <div className="text-xs uppercase text-slate-500">
               Moderate Risk Reps
             </div>

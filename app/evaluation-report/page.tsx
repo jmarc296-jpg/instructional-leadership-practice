@@ -52,7 +52,7 @@ export default function EvaluationReportPage() {
           <>
             <section className="grid gap-5 md:grid-cols-4">
               {scores.map((item) => (
-                <div key={item.label} className="rounded-3xl bg-white p-7 shadow-sm">
+                <div key={item.label} className="rounded-3xl bg-white p-7 border border-slate-200">
                   <div className="text-sm text-slate-500">{item.label}</div>
                   <div className="mt-3 text-4xl font-bold text-blue-700">
                     {item.score}/100
@@ -62,7 +62,7 @@ export default function EvaluationReportPage() {
             </section>
 
             <section className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-3xl bg-white p-8 shadow-sm">
+              <div className="rounded-3xl bg-white p-8 border border-slate-200">
                 <h2 className="text-3xl font-semibold text-slate-900">
                   Leadership Risk
                 </h2>
@@ -76,7 +76,7 @@ export default function EvaluationReportPage() {
                 </p>
               </div>
 
-              <div className="rounded-3xl bg-white p-8 shadow-sm">
+              <div className="rounded-3xl bg-white p-8 border border-slate-200">
                 <h2 className="text-3xl font-semibold text-slate-900">
                   Recommended Next Rep
                 </h2>
@@ -101,7 +101,7 @@ export default function EvaluationReportPage() {
               </p>
             </section>
 
-            <section className="rounded-3xl bg-white p-8 shadow-sm">
+            <section className="rounded-3xl bg-white p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Keep building your leadership profile
               </h2>
