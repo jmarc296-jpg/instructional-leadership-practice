@@ -140,42 +140,38 @@ export default function DistrictPage() {
             <Metric label="Needs Intervention" value="6" />
           </div>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
-            <div className="grid grid-cols-4 bg-slate-50 px-5 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
-              <div>Leader Group</div>
-              <div>Count</div>
-              <div>Readiness Signal</div>
-              <div>Placement Guidance</div>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+
+            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
+              <p className="text-sm font-semibold text-slate-500">Principal Candidates</p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900">6 Leaders</p>
+              <span className="mt-3 inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">High Readiness</span>
+              <p className="mt-3 text-sm text-slate-600">Prioritize for upcoming vacancies.</p>
             </div>
 
-            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
-              <div className="font-semibold text-slate-900">Principal Candidates</div>
-              <div>6</div>
-              <div>High readiness</div>
-              <div>Prioritize for vacancies</div>
+            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
+              <p className="text-sm font-semibold text-slate-500">Assistant Principals</p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900">8 Leaders</p>
+              <span className="mt-3 inline-block rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-700">Mixed Readiness</span>
+              <p className="mt-3 text-sm text-slate-600">Target coaching cycles before placement.</p>
             </div>
 
-            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
-              <div className="font-semibold text-slate-900">Assistant Principals</div>
-              <div>8</div>
-              <div>Mixed readiness</div>
-              <div>Target coaching cycles</div>
+            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
+              <p className="text-sm font-semibold text-slate-500">Instructional Coaches</p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900">5 Leaders</p>
+              <span className="mt-3 inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">Strong Signal</span>
+              <p className="mt-3 text-sm text-slate-600">Build future leadership pathways.</p>
             </div>
 
-            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
-              <div className="font-semibold text-slate-900">Instructional Coaches</div>
-              <div>5</div>
-              <div>Strong instructional signal</div>
-              <div>Build leadership pathway</div>
+            <div className="rounded-2xl border border-slate-200 p-5 bg-slate-50">
+              <p className="text-sm font-semibold text-slate-500">Dean / Ops Leaders</p>
+              <p className="mt-2 text-3xl font-semibold text-slate-900">6 Leaders</p>
+              <span className="mt-3 inline-block rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">Higher Risk</span>
+              <p className="mt-3 text-sm text-slate-600">Do not promote without intervention.</p>
             </div>
 
-            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
-              <div className="font-semibold text-slate-900">Dean / Operations Leaders</div>
-              <div>6</div>
-              <div>Higher placement risk</div>
-              <div>Do not promote without support</div>
-            </div>
           </div>
+
         </section>
 
         <section className="grid gap-6 lg:grid-cols-2">
