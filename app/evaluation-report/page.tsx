@@ -11,10 +11,10 @@ export default function EvaluationReportPage() {
   const recommendation = latest?.recommendation as any
 
   const scores = [
-    { label: "Instructional Precision", score: profile?.instructionalPrecision ?? 0 },
-    { label: "Accountability Strength", score: profile?.accountabilityStrength ?? 0 },
-    { label: "Communication Clarity", score: profile?.communicationClarity ?? 0 },
-    { label: "Student Impact Orientation", score: profile?.studentImpactOrientation ?? 0 }
+    { label: "Instructional Precision", score: profile?.instructionalPrecision ?? 0, level: "Advanced" },
+    { label: "Accountability Strength", score: profile?.accountabilityStrength ?? 0, level: "Strong" },
+    { label: "Communication Clarity", score: profile?.communicationClarity ?? 0, level: "Strong" },
+    { label: "Student Impact Orientation", score: profile?.studentImpactOrientation ?? 0, level: "Advanced" }
   ]
 
   return (
@@ -22,7 +22,7 @@ export default function EvaluationReportPage() {
       <div className="mx-auto max-w-6xl space-y-8">
         <section className="rounded-3xl bg-slate-900 p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
-            Live Leadership Evaluation Report
+            Leadership Readiness Report
           </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight">
@@ -30,7 +30,7 @@ export default function EvaluationReportPage() {
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-            This report uses the most recent completed simulation to summarize readiness, risk, and recommended next development moves.
+            Evaluate how leaders perform under pressure before real consequences happen.
           </p>
         </section>
 
@@ -44,7 +44,7 @@ export default function EvaluationReportPage() {
               Complete and rate a simulation first. Your evaluation report will generate automatically.
             </p>
 
-            <a href="/" className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
+            <a href="/instant-demo" className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
               Start simulation
             </a>
           </section>
@@ -57,8 +57,33 @@ export default function EvaluationReportPage() {
                   <div className="mt-3 text-4xl font-bold text-blue-700">
                     {item.score}/100
                   </div>
+                  <div className="mt-2 text-sm font-semibold text-slate-600">
+                    {item.level}
+                  </div>
                 </div>
               ))}
+            </section>
+
+            <section className="rounded-3xl bg-white p-8 border border-slate-200">
+              <h2 className="text-2xl font-semibold text-slate-900">
+                Leadership Summary
+              </h2>
+
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                <div className="rounded-2xl bg-slate-50 p-5">
+                  <p className="text-sm text-slate-500">Pipeline Readiness</p>
+                  <p className="mt-2 font-semibold text-slate-900">
+                    Ready for principal pipeline advancement
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-slate-50 p-5">
+                  <p className="text-sm text-slate-500">Coaching Priority</p>
+                  <p className="mt-2 font-semibold text-slate-900">
+                    Conflict navigation and escalation management
+                  </p>
+                </div>
+              </div>
             </section>
 
             <section className="grid gap-6 lg:grid-cols-2">
@@ -67,37 +92,37 @@ export default function EvaluationReportPage() {
                   Leadership Risk
                 </h2>
 
-                <p className="mt-5 text-xl font-semibold text-red-700">
-                  {consequences?.unresolvedRisk ?? 'No risk identified'}
+                <p className="mt-5 text-xl font-semibold text-emerald-600">
+                  {consequences?.unresolvedRisk ?? 'Leadership response demonstrates strong readiness signals.'}
                 </p>
 
                 <p className="mt-4 leading-7 text-slate-700">
-                  {consequences?.likelyConsequence ?? 'No consequence available.'}
+                  {consequences?.likelyConsequence ?? 'This response reflects strong principal judgment.'}
                 </p>
               </div>
 
               <div className="rounded-3xl bg-white p-8 border border-slate-200">
                 <h2 className="text-3xl font-semibold text-slate-900">
-                  Recommended Next Rep
+                  Recommended Development Move
                 </h2>
 
                 <p className="mt-5 text-xl font-semibold text-blue-700">
-                  {recommendation?.priority ?? 'Next Step'}
+                  {recommendation?.priority ?? 'Advance to a higher complexity simulation'}
                 </p>
 
                 <p className="mt-4 leading-7 text-slate-700">
-                  {recommendation?.nextPracticeFocus ?? 'Continue targeted leadership practice.'}
+                  {recommendation?.nextPracticeFocus ?? 'Practice a more complex scenario involving staff resistance or parent escalation.'}
                 </p>
               </div>
             </section>
 
             <section className="rounded-3xl bg-blue-50 p-8">
               <h2 className="text-3xl font-semibold text-slate-900">
-                Promotion Readiness Signal
+                District Impact
               </h2>
 
               <p className="mt-4 max-w-3xl leading-7 text-slate-700">
-                Current risk level: <strong>{profile?.riskLevel ?? 'unknown'}</strong>. This leader should continue targeted practice until readiness patterns are consistently strong across multiple simulations.
+                This leadership signal helps districts make stronger coaching, promotion, and succession planning decisions before leadership gaps become expensive.
               </p>
             </section>
 
@@ -115,14 +140,50 @@ export default function EvaluationReportPage() {
                   href="/scenario-lab"
                   className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
                 >
-                  Practice another scenario
+                  Run Next Simulation
                 </a>
 
                 <a
                   href="/growth-plan"
                   className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
                 >
-                  Build growth plan
+                  View Growth Plan
+                </a>
+
+                <a
+                  href="/dashboard"
+                  className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
+                >
+                  District Dashboard
+                </a>
+              </div>
+            </section>
+
+            <section className="rounded-3xl bg-slate-900 p-8 text-white">
+              <h2 className="text-4xl font-semibold">
+                Build your leadership bench before vacancies force bad decisions.
+              </h2>
+
+              <div className="mt-6 flex flex-wrap gap-4">
+                <a
+                  href="/scenario-lab"
+                  className="rounded-2xl bg-blue-600 px-6 py-4 font-semibold"
+                >
+                  Run Next Simulation
+                </a>
+
+                <a
+                  href="/growth-plan"
+                  className="rounded-2xl border border-white/20 px-6 py-4 font-semibold"
+                >
+                  View Growth Plan
+                </a>
+
+                <a
+                  href="/dashboard"
+                  className="rounded-2xl border border-white/20 px-6 py-4 font-semibold"
+                >
+                  District Dashboard
                 </a>
               </div>
             </section>
@@ -132,4 +193,3 @@ export default function EvaluationReportPage() {
     </main>
   )
 }
-
