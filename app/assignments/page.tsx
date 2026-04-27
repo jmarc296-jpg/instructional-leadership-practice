@@ -15,9 +15,11 @@ const modules = [
 
 export default function AssignmentsPage() {
   const [leaderName, setLeaderName] = useState('')
+  const [recipientEmail, setRecipientEmail] = useState('')
   const [role, setRole] = useState('Assistant Principal')
   const [module, setModule] = useState(modules[0])
   const [dueDate, setDueDate] = useState('')
+  const [notification, setNotification] = useState('')
   const [refreshKey, setRefreshKey] = useState(0)
 
   const assignments = getAssignments()
@@ -25,7 +27,7 @@ export default function AssignmentsPage() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (!leaderName.trim() || !dueDate) return
+    if (!leaderName.trim() || !recipientEmail.trim() || !dueDate) return
 
     saveAssignment({
       leaderName,
@@ -35,7 +37,9 @@ export default function AssignmentsPage() {
       status: 'Assigned'
     })
 
+    setNotification(`Notification queued for ${recipientEmail}: ${module} assigned and due on ${dueDate}.`)
     setLeaderName('')
+    setRecipientEmail('')
     setRole('Assistant Principal')
     setModule(modules[0])
     setDueDate('')
@@ -57,9 +61,15 @@ export default function AssignmentsPage() {
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-            Principals, supervisors, and district leaders can assign specific development areas tied to readiness data, coaching cycles, and leadership growth goals.
+            Assign development modules, set due dates, and queue recipient notifications.
           </p>
         </section>
+
+        {notification && (
+          <div className="rounded-2xl border border-green-200 bg-green-50 p-5 text-green-800">
+            {notification}
+          </div>
+        )}
 
         <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <form onSubmit={handleSubmit} className="rounded-3xl bg-white p-8 border border-slate-200">
@@ -72,6 +82,14 @@ export default function AssignmentsPage() {
                 value={leaderName}
                 onChange={(e) => setLeaderName(e.target.value)}
                 placeholder="Leader name"
+                className="w-full rounded-2xl border border-slate-300 px-4 py-3"
+              />
+
+              <input
+                type="email"
+                value={recipientEmail}
+                onChange={(e) => setRecipientEmail(e.target.value)}
+                placeholder="Recipient email"
                 className="w-full rounded-2xl border border-slate-300 px-4 py-3"
               />
 
@@ -105,7 +123,7 @@ export default function AssignmentsPage() {
               />
 
               <button className="w-full rounded-2xl bg-blue-600 px-6 py-3 font-semibold text-white">
-                Assign Module
+                Assign + Notify
               </button>
             </div>
           </form>
@@ -130,7 +148,7 @@ export default function AssignmentsPage() {
                       </div>
 
                       <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                        {assignment.status}
+                        Email Queued
                       </span>
                     </div>
 
@@ -150,5 +168,3 @@ export default function AssignmentsPage() {
     </main>
   )
 }
-
-
