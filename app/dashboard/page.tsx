@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useMemo } from 'react'
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
@@ -31,8 +31,8 @@ export default function DashboardPage() {
           ? Return to platform
         </a>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm border border-slate-200">
-          <h1 className="text-4xl font-semibold">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-200">
+          <h1 className="text-3xl sm:text-4xl font-semibold">
             Leadership Growth Dashboard
           </h1>
           <p className="mt-3 text-slate-600">
@@ -80,7 +80,7 @@ export default function DashboardPage() {
             </div>
           </section>
         )}
-              <section className="rounded-3xl bg-blue-50 p-8">
+              <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8">
           <h2 className="text-3xl font-semibold text-slate-900">
             Keep strengthening your leadership profile
           </h2>
@@ -133,3 +133,4 @@ export default function DashboardPage() {
     <h2 className="text-3xl font-bold text-green-600">+11%</h2>
   </div>
 </div>
+

@@ -1,4 +1,4 @@
-import Image from "next/image"
+﻿import Image from "next/image"
 
 const metrics = [
   {
@@ -49,7 +49,7 @@ const leaders = [
 
 export default function DistrictPage() {
   return (
-    <main className="min-h-screen bg-slate-100 flex">
+    <main className="min-h-screen bg-slate-100 lg:flex">
 
       {/* Sidebar */}
       <aside className="w-72 bg-slate-950 text-white p-6">
@@ -74,7 +74,7 @@ export default function DistrictPage() {
 
         <div className="mt-16 bg-slate-900 rounded-2xl p-5">
           <p className="text-sm text-slate-400">District Impact</p>
-          <h2 className="text-4xl font-bold text-blue-400 mt-3">
+          <h2 className="text-3xl sm:text-4xl font-bold text-blue-400 mt-3">
             +11%
           </h2>
           <p className="text-sm text-slate-400 mt-2">
@@ -84,9 +84,9 @@ export default function DistrictPage() {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <section className="bg-gradient-to-r from-slate-950 to-blue-900 text-white px-10 py-6">
-          <h1 className="text-4xl font-bold mb-2">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2">
             District Leadership Dashboard
           </h1>
 
@@ -95,9 +95,9 @@ export default function DistrictPage() {
           </p>
         </section>
 
-        <div className="p-8">
+        <div className="px-4 py-6 sm:p-8">
 
-          <section className="grid md:grid-cols-4 gap-6 mb-10">
+          <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {metrics.map((metric) => (
               <div
                 key={metric.label}
@@ -118,7 +118,7 @@ export default function DistrictPage() {
             ))}
           </section>
 
-          <section className="bg-white rounded-2xl shadow-sm p-8">
+          <section className="bg-white rounded-2xl shadow-sm px-4 py-6 sm:p-8">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-3xl font-bold">
                 Leaders Requiring Attention
@@ -182,6 +182,8 @@ export default function DistrictPage() {
 </main>
   )
 }
+
+
 
 
 

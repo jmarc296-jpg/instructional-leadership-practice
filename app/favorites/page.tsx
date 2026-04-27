@@ -1,4 +1,4 @@
-import { FavoritesList } from '@/components/favorites-list'
+﻿import { FavoritesList } from '@/components/favorites-list'
 
 export default function FavoritesPage() {
   return (
@@ -7,3 +7,4 @@ export default function FavoritesPage() {
     </main>
   )
 }
+

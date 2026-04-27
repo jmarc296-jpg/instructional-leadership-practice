@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { getAssignments, saveAssignment } from '@/lib/local-store'
@@ -51,12 +51,12 @@ export default function AssignmentsPage() {
       <div className="mx-auto max-w-6xl space-y-8">
         <TopNav />
 
-        <section className="rounded-3xl bg-slate-950 p-8 text-white">
+        <section className="rounded-3xl bg-slate-950 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
             Assignment Engine
           </p>
 
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight">
+          <h1 className="mt-4 max-w-3xl text-3xl sm:text-4xl font-semibold tracking-tight">
             Assign targeted leadership development modules.
           </h1>
 
@@ -72,7 +72,7 @@ export default function AssignmentsPage() {
         )}
 
         <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <form onSubmit={handleSubmit} className="rounded-3xl bg-white p-8 border border-slate-200">
+          <form onSubmit={handleSubmit} className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
             <h2 className="text-2xl font-semibold text-slate-900">
               Create Assignment
             </h2>
@@ -128,7 +128,7 @@ export default function AssignmentsPage() {
             </div>
           </form>
 
-          <section className="rounded-3xl bg-white p-8 border border-slate-200">
+          <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
             <h2 className="text-2xl font-semibold text-slate-900">
               Active Development Assignments
             </h2>
@@ -168,3 +168,4 @@ export default function AssignmentsPage() {
     </main>
   )
 }
+

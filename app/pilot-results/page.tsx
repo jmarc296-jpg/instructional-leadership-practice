@@ -1,4 +1,4 @@
-const pilotMetrics = [
+﻿const pilotMetrics = [
   {
     label: "Average Readiness Growth",
     value: "+18%"
@@ -25,9 +25,9 @@ const roiMetrics = [
 
 export default function PilotResultsPage() {
   return (
-    <main className="min-h-screen bg-slate-50 p-8">
+    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold mb-2">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2">
           90-Day Pilot Results
         </h1>
 
@@ -35,7 +35,7 @@ export default function PilotResultsPage() {
           What districts can expect after implementing LeadSharper.
         </p>
 
-        <section className="grid md:grid-cols-4 gap-6 mb-10">
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {pilotMetrics.map((metric) => (
             <div
               key={metric.label}
@@ -72,3 +72,4 @@ export default function PilotResultsPage() {
     </main>
   )
 }
+

@@ -1,4 +1,4 @@
-const metrics = [
+﻿const metrics = [
   {
     label: "Readiness Growth",
     value: "+18%",
@@ -37,14 +37,14 @@ const outcomes = [
 
 export default function ImpactDashboardPage() {
   return (
-    <main className="min-h-screen bg-slate-100 p-8">
+    <main className="min-h-screen bg-slate-100 px-4 py-6 sm:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 p-8 text-white">
+        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
             Impact Dashboard
           </p>
 
-          <h1 className="mt-4 text-4xl font-bold">
+          <h1 className="mt-4 text-3xl sm:text-4xl font-bold">
             Prove leadership growth after targeted development.
           </h1>
 
@@ -64,7 +64,7 @@ export default function ImpactDashboardPage() {
         </section>
 
         <section className="grid gap-6 lg:grid-cols-[1fr_0.8fr]">
-          <div className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
             <h2 className="text-2xl font-bold text-slate-950">
               Competency Growth
             </h2>
@@ -90,7 +90,7 @@ export default function ImpactDashboardPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
             <h2 className="text-2xl font-bold text-slate-950">
               District Outcomes
             </h2>
@@ -108,3 +108,4 @@ export default function ImpactDashboardPage() {
     </main>
   )
 }
+

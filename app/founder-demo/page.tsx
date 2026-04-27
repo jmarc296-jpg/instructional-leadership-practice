@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import {
@@ -83,12 +83,12 @@ export default function FounderDemoPage() {
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-5xl space-y-8">
 
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Executive Demo Mode Mode
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             Make LeadSharper instantly feel enterprise-ready.
           </h1>
 
@@ -98,7 +98,7 @@ export default function FounderDemoPage() {
         </section>
 
         {!activated ? (
-          <section className="rounded-3xl bg-white p-8 shadow-sm">
+          <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
             <button
               onClick={activateFounderDemo}
               className="rounded-2xl bg-blue-600 px-8 py-5 text-white font-semibold"
@@ -107,7 +107,7 @@ export default function FounderDemoPage() {
             </button>
           </section>
         ) : (
-          <section className="rounded-3xl bg-white p-8 shadow-sm">
+          <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
             <h2 className="text-3xl font-semibold text-slate-900">
               Demo environment activated
             </h2>
@@ -136,3 +136,4 @@ export default function FounderDemoPage() {
     </main>
   )
 }
+

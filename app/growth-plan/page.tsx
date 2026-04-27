@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { getPlatformIntelligence } from '@/lib/platform-intelligence'
 
@@ -16,12 +16,12 @@ export default function GrowthPlanPage() {
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-6xl space-y-8">
 
-        <section className="rounded-3xl bg-emerald-900 p-8 text-white">
+        <section className="rounded-3xl bg-emerald-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Leadership Growth Engine
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             Your personalized development plan.
           </h1>
 
@@ -36,7 +36,7 @@ export default function GrowthPlanPage() {
           <Metric label="Development Focus" value={focus} />
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
           <h2 className="text-3xl font-semibold text-slate-900">
             Your next 30 days
           </h2>
@@ -49,7 +49,7 @@ export default function GrowthPlanPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl bg-blue-50 p-8">
+        <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8">
           <h2 className="text-3xl font-semibold text-slate-900">
             Why districts retain this
           </h2>
@@ -79,3 +79,4 @@ function Task({ text }: { text: string }) {
     </div>
   )
 }
+

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useMemo, useState } from 'react'
 import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
@@ -63,12 +63,12 @@ export default function ScenarioLabPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-6xl space-y-8">
-        <section className="rounded-3xl bg-gradient-to-r from-slate-900 to-blue-900 p-8 text-white">
+        <section className="rounded-3xl bg-gradient-to-r from-slate-900 to-blue-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Scenario Lab
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             Build your next leadership rep.
           </h1>
 
@@ -78,7 +78,7 @@ export default function ScenarioLabPage() {
         </section>
 
         <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-3xl bg-white p-8 shadow-sm">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
             <h2 className="text-3xl font-semibold text-slate-900">
               Build scenario
             </h2>
@@ -98,7 +98,7 @@ export default function ScenarioLabPage() {
             />
           </div>
 
-          <div className="rounded-3xl bg-white p-8 shadow-sm">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
             <h2 className="text-3xl font-semibold text-slate-900">
               Scenario
             </h2>
@@ -125,7 +125,7 @@ export default function ScenarioLabPage() {
         </section>
 
         {submitted && (
-          <section className="rounded-3xl bg-blue-50 p-8">
+          <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8">
             <h2 className="text-3xl font-semibold text-slate-900">
               Readiness Evaluation
             </h2>
@@ -171,3 +171,4 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+

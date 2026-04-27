@@ -1,4 +1,4 @@
-const metrics = [
+﻿const metrics = [
   {
     label: "Ready Now Leaders",
     value: "12",
@@ -68,15 +68,15 @@ const succession = [
 
 export default function TalentReviewPage() {
   return (
-    <main className="min-h-screen bg-slate-100 p-8">
+    <main className="min-h-screen bg-slate-100 px-4 py-6 sm:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
 
-        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 p-8 text-white">
+        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
             Talent Review
           </p>
 
-          <h1 className="mt-4 text-4xl font-bold">
+          <h1 className="mt-4 text-3xl sm:text-4xl font-bold">
             Build stronger leadership pipelines.
           </h1>
 
@@ -108,7 +108,7 @@ export default function TalentReviewPage() {
 
         <section className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
 
-          <div className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
             <h2 className="text-2xl font-bold text-slate-950">
               Leadership Placement Matrix
             </h2>
@@ -139,7 +139,7 @@ export default function TalentReviewPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
             <h2 className="text-2xl font-bold text-slate-950">
               Succession Planning
             </h2>
@@ -167,7 +167,7 @@ export default function TalentReviewPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl bg-blue-50 p-8 border border-blue-100">
+        <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8 border border-blue-100">
           <h2 className="text-2xl font-bold text-slate-950">
             Executive Insight
           </h2>
@@ -181,3 +181,4 @@ export default function TalentReviewPage() {
     </main>
   )
 }
+

@@ -1,15 +1,15 @@
-'use client'
+﻿'use client'
 
 export default function ProcurementPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6 print:bg-white">
       <div className="mx-auto max-w-6xl space-y-8">
-        <section className="rounded-3xl bg-slate-900 p-8 text-white print:bg-white print:text-slate-900 print:border">
+        <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white print:bg-white print:text-slate-900 print:border">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300 print:text-blue-700">
             Procurement Readiness Packet
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             Everything a district needs to evaluate LeadSharper.
           </h1>
 
@@ -21,11 +21,11 @@ export default function ProcurementPage() {
         <section className="grid gap-5 md:grid-cols-2">
           <Card title="Primary Use Case" text="Leadership readiness measurement for aspiring principals, assistant principals, new principals, and district leadership pipelines." />
           <Card title="Buyer" text="Superintendents, chief talent officers, chief academic officers, principal supervisors, universities, and leadership preparation programs." />
-          <Card title="Pilot Scope" text="Recommended 30-day pilot with 20–50 leaders completing simulation reps, readiness checks, and district-level reporting." />
+          <Card title="Pilot Scope" text="Recommended 30-day pilot with 20â€“50 leaders completing simulation reps, readiness checks, and district-level reporting." />
           <Card title="Expected Outcomes" text="Stronger pipeline visibility, clearer coaching priorities, reduced hiring risk, and better succession planning." />
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm print:shadow-none print:border">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm print:shadow-none print:border">
           <h2 className="text-3xl font-semibold text-slate-900">
             Implementation Plan
           </h2>
@@ -38,7 +38,7 @@ export default function ProcurementPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm print:shadow-none print:border">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm print:shadow-none print:border">
           <h2 className="text-3xl font-semibold text-slate-900">
             District Risk Reduction
           </h2>
@@ -51,14 +51,14 @@ export default function ProcurementPage() {
           </ul>
         </section>
 
-        <section className="rounded-3xl bg-blue-50 p-8 print:border">
+        <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8 print:border">
           <h2 className="text-3xl font-semibold text-slate-900">
             Procurement Notes
           </h2>
 
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             <Metric label="Pilot length" value="30 days" />
-            <Metric label="Recommended cohort" value="20–50 leaders" />
+            <Metric label="Recommended cohort" value="20â€“50 leaders" />
             <Metric label="Data requirement" value="No student PII required" />
           </div>
         </section>
@@ -106,3 +106,4 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+

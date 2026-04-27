@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useMemo } from 'react'
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
@@ -37,12 +37,12 @@ export default function AdminPage() {
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl space-y-6">
 
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
           <div className="text-sm uppercase tracking-[0.2em] text-blue-200">
             District Leadership Command Center
           </div>
 
-          <h1 className="mt-3 text-4xl font-semibold">
+          <h1 className="mt-3 text-3xl sm:text-4xl font-semibold">
             Leadership Pipeline Intelligence
           </h1>
 
@@ -97,3 +97,4 @@ function MetricCard({
     </div>
   )
 }
+

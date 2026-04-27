@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
 
@@ -20,12 +20,12 @@ export default function EvaluationReportPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-6xl space-y-8">
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Leadership Readiness Report
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             Turn leadership reps into measurable growth.
           </h1>
 
@@ -35,7 +35,7 @@ export default function EvaluationReportPage() {
         </section>
 
         {!latest ? (
-          <section className="rounded-3xl bg-slate-100 p-8 border border-slate-200">
+          <section className="rounded-3xl bg-slate-100 px-4 py-6 sm:p-8 border border-slate-200">
             <h2 className="text-3xl font-semibold text-slate-900">
               No evaluation data yet.
             </h2>
@@ -54,7 +54,7 @@ export default function EvaluationReportPage() {
               {scores.map((item) => (
                 <div key={item.label} className="rounded-3xl bg-white p-7 border border-slate-200">
                   <div className="text-sm text-slate-500">{item.label}</div>
-                  <div className="mt-3 text-4xl font-bold text-blue-700">
+                  <div className="mt-3 text-3xl sm:text-4xl font-bold text-blue-700">
                     {item.score}/100
                   </div>
                   <div className="mt-2 text-sm font-semibold text-slate-600">
@@ -64,7 +64,7 @@ export default function EvaluationReportPage() {
               ))}
             </section>
 
-            <section className="rounded-3xl bg-white p-8 border border-slate-200">
+            <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
               <h2 className="text-2xl font-semibold text-slate-900">
                 Leadership Summary
               </h2>
@@ -87,7 +87,7 @@ export default function EvaluationReportPage() {
             </section>
 
             <section className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-3xl bg-white p-8 border border-slate-200">
+              <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
                 <h2 className="text-3xl font-semibold text-slate-900">
                   Leadership Risk
                 </h2>
@@ -101,7 +101,7 @@ export default function EvaluationReportPage() {
                 </p>
               </div>
 
-              <div className="rounded-3xl bg-white p-8 border border-slate-200">
+              <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
                 <h2 className="text-3xl font-semibold text-slate-900">
                   Recommended Development Move
                 </h2>
@@ -116,7 +116,7 @@ export default function EvaluationReportPage() {
               </div>
             </section>
 
-            <section className="rounded-3xl bg-blue-50 p-8">
+            <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8">
               <h2 className="text-3xl font-semibold text-slate-900">
                 District Impact
               </h2>
@@ -126,7 +126,7 @@ export default function EvaluationReportPage() {
               </p>
             </section>
 
-            <section className="rounded-3xl bg-white p-8 border border-slate-200">
+            <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Keep building your leadership profile
               </h2>
@@ -159,8 +159,8 @@ export default function EvaluationReportPage() {
               </div>
             </section>
 
-            <section className="rounded-3xl bg-slate-900 p-8 text-white">
-              <h2 className="text-4xl font-semibold">
+            <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
+              <h2 className="text-3xl sm:text-4xl font-semibold">
                 Build your leadership bench before vacancies force bad decisions.
               </h2>
 
@@ -193,3 +193,4 @@ export default function EvaluationReportPage() {
     </main>
   )
 }
+

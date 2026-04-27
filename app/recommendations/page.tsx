@@ -1,4 +1,4 @@
-const simulationResults = {
+﻿const simulationResults = {
   overallScore: 72,
   weakAreas: [
     "Coaching Conversations",
@@ -27,7 +27,7 @@ const recommendedModules = [
 
 export default function RecommendationsPage() {
   return (
-    <main className="min-h-screen bg-slate-50 p-8">
+    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-2">
           Development Recommendations
@@ -67,7 +67,7 @@ export default function RecommendationsPage() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid gap-4 lg:grid-cols-2 gap-6">
           {recommendedModules.map((item) => (
             <div
               key={item.module}
@@ -95,3 +95,4 @@ export default function RecommendationsPage() {
     </main>
   )
 }
+

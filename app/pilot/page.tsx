@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
@@ -10,8 +10,8 @@ export default function PilotPage() {
   if (submitted) {
     return (
       <main className="min-h-screen bg-slate-50 px-6 py-6">
-        <section className="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-sm">
-          <h1 className="text-4xl font-semibold text-slate-900">
+        <section className="mx-auto max-w-3xl rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
+          <h1 className="text-3xl sm:text-4xl font-semibold text-slate-900">
             Pilot interest received.
           </h1>
           <p className="mt-4 text-lg text-slate-600">
@@ -36,13 +36,13 @@ export default function PilotPage() {
 
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr]">
+      <div className="mx-auto grid max-w-6xl gapx-4 py-6 sm:p-8 lg:grid-cols-[1fr_0.9fr]">
         <section className="rounded-3xl bg-slate-950 p-9 text-white shadow-xl">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
             Pilot Partnership
           </p>
 
-          <h1 className="mt-5 max-w-2xl text-5xl font-semibold tracking-tight leading-[1.05]">
+          <h1 className="mt-5 max-w-2xl text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
             Bring clarity to principal hiring and leadership pipeline decisions.
           </h1>
 
@@ -97,7 +97,7 @@ export default function PilotPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
           <h2 className="text-3xl font-semibold text-slate-900">
             Request a district pilot
           </h2>
@@ -186,6 +186,7 @@ export default function PilotPage() {
     </main>
   )
 }
+
 
 
 

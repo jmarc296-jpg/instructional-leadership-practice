@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
@@ -30,14 +30,14 @@ export default function SimulationRoomPage() {
   const [submitted, setSubmitted] = useState(false)
 
   return (
-    <main className="min-h-screen bg-slate-100 p-8">
+    <main className="min-h-screen bg-slate-100 px-4 py-6 sm:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 p-8 text-white">
+        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
             Simulation Room
           </p>
 
-          <h1 className="mt-4 text-4xl font-bold">
+          <h1 className="mt-4 text-3xl sm:text-4xl font-bold">
             Practice real leadership decisions under pressure.
           </h1>
 
@@ -47,7 +47,7 @@ export default function SimulationRoomPage() {
         </section>
 
         <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
               Scenario
             </p>
@@ -92,7 +92,7 @@ export default function SimulationRoomPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
             <h2 className="text-2xl font-bold text-slate-950">
               Your Response
             </h2>
@@ -114,7 +114,7 @@ export default function SimulationRoomPage() {
         </section>
 
         {submitted && (
-          <section className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+          <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
             <div className="flex items-start justify-between gap-6">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
@@ -155,3 +155,4 @@ export default function SimulationRoomPage() {
     </main>
   )
 }
+

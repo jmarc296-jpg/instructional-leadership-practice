@@ -95,7 +95,7 @@ export default function PlatformDemoPage() {
             Guided Platform Demo
           </p>
 
-          <h1 className="mt-4 max-w-4xl text-5xl font-bold tracking-tight">
+          <h1 className="mt-4 max-w-4xl text-3xl sm:text-4xl sm:text-5xl font-bold tracking-tight">
             See how LeadSharper helps districts assess, develop, and retain stronger school leaders.
           </h1>
 
@@ -106,7 +106,7 @@ export default function PlatformDemoPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-8 py-10">
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {demoFlow.map((item) => (
             <div
               key={item.step}
@@ -136,7 +136,7 @@ export default function PlatformDemoPage() {
           ))}
         </div>
 
-        <section className="mt-10 rounded-3xl border border-blue-100 bg-blue-50 p-8">
+        <section className="mt-10 rounded-3xl border border-blue-100 bg-blue-50 px-4 py-6 sm:p-8">
           <h2 className="text-2xl font-bold text-slate-950">
             Demo Narrative
           </h2>
@@ -149,3 +149,4 @@ export default function PlatformDemoPage() {
     </main>
   )
 }
+

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+﻿import Image from 'next/image'
 import { TopNav } from '@/components/home/top-nav'
 
 export default function HomePage() {
@@ -7,14 +7,14 @@ export default function HomePage() {
       <div className="mx-auto max-w-7xl space-y-8">
         <TopNav />
 
-        <section className="rounded-[36px] bg-white p-8 border border-slate-200">
-          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
+        <section className="rounded-[36px] bg-white px-4 py-6 sm:p-8 border border-slate-200">
+          <div className="flex flex-col gapx-4 py-6 sm:p-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
             <div className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
                 LeadSharper
               </p>
 
-              <h1 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 text-3xl sm:text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-3xl sm:text-4xl sm:text-5xl lg:text-6xl">
                 Measure principal readiness before the job is on the line.
               </h1>
 
@@ -69,12 +69,12 @@ export default function HomePage() {
           />
         </section>
 
-        <section className="rounded-[32px] bg-slate-900 p-8 text-white">
+        <section className="rounded-[32px] bg-slate-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Why this matters
           </p>
 
-          <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight">
+          <h2 className="mt-4 max-w-4xl text-3xl sm:text-4xl font-semibold tracking-tight">
             Districts do not just need more leadership training. They need better evidence of readiness.
           </h2>
 
@@ -83,7 +83,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section className="rounded-[32px] bg-blue-50 p-8">
+        <section className="rounded-[32px] bg-blue-50 px-4 py-6 sm:p-8">
           <h2 className="text-3xl font-semibold text-slate-900">
             Ready to evaluate a pilot?
           </h2>
@@ -120,3 +120,4 @@ function Card({
     </a>
   )
 }
+

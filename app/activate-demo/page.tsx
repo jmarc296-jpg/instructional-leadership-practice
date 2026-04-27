@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -95,12 +95,12 @@ export default function ActivateDemoPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-4xl space-y-8">
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Demo Data Engine
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             Activate a live district intelligence demo.
           </h1>
 
@@ -109,7 +109,7 @@ export default function ActivateDemoPage() {
           </p>
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
           {!activated ? (
             <>
               <h2 className="text-3xl font-semibold text-slate-900">
@@ -157,4 +157,5 @@ export default function ActivateDemoPage() {
     </main>
   )
 }
+
 

@@ -1,4 +1,4 @@
-const assignments = [
+﻿const assignments = [
   {
     leader: "Principal #1",
     module: "Instructional Coaching Foundations",
@@ -40,14 +40,14 @@ function statusClass(status: string) {
 
 export default function AssignmentDashboardPage() {
   return (
-    <main className="min-h-screen bg-slate-100 p-8">
+    <main className="min-h-screen bg-slate-100 px-4 py-6 sm:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        <section className="rounded-3xl bg-slate-950 p-8 text-white">
+        <section className="rounded-3xl bg-slate-950 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
             Assignment Manager
           </p>
 
-          <h1 className="mt-4 text-4xl font-bold">
+          <h1 className="mt-4 text-3xl sm:text-4xl font-bold">
             Track assigned leadership development.
           </h1>
 
@@ -65,7 +65,7 @@ export default function AssignmentDashboardPage() {
           ))}
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-slate-950">
               Assignment Tracker
@@ -130,3 +130,4 @@ export default function AssignmentDashboardPage() {
     </main>
   )
 }
+

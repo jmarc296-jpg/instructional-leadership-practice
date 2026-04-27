@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { getPlatformIntelligence } from '@/lib/platform-intelligence'
 
@@ -15,12 +15,12 @@ export default function SuperintendentPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-7xl space-y-8">
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Superintendent Leadership View
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             See district leadership readiness in real time.
           </h1>
 
@@ -35,7 +35,7 @@ export default function SuperintendentPage() {
           ))}
         </section>
 
-        <section className="rounded-3xl bg-white p-8 shadow-sm">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm">
           <h2 className="text-3xl font-semibold text-slate-900">
             Current Leadership Risk
           </h2>
@@ -59,7 +59,8 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-3xl bg-white p-7 shadow-sm">
       <div className="text-sm text-slate-500">{label}</div>
-      <div className="mt-3 text-4xl font-bold text-blue-700">{value}</div>
+      <div className="mt-3 text-3xl sm:text-4xl font-bold text-blue-700">{value}</div>
     </div>
   )
 }
+

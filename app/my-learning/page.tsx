@@ -1,4 +1,4 @@
-const assignedModules = [
+﻿const assignedModules = [
   {
     title: "Leading Effective DDI Cycles",
     progress: 75,
@@ -13,7 +13,7 @@ const assignedModules = [
 
 export default function MyLearningPage() {
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
+    <div className="min-h-screen bg-slate-50 px-4 py-6 sm:p-8">
       <h1 className="text-3xl font-bold mb-8">My Learning Dashboard</h1>
 
       <div className="grid lg:grid-cols-4 gap-6 mb-8">
@@ -52,3 +52,4 @@ export default function MyLearningPage() {
     </div>
   )
 }
+

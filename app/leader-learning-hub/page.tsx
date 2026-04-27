@@ -1,4 +1,4 @@
-export default function LeaderLearningHub() {
+﻿export default function LeaderLearningHub() {
   const assignments = [
     {
       module: "Observation & Feedback Excellence",
@@ -34,16 +34,16 @@ export default function LeaderLearningHub() {
   ]
 
   return (
-    <main className="min-h-screen bg-slate-100 p-8">
+    <main className="min-h-screen bg-slate-100 px-4 py-6 sm:p-8">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <section className="bg-gradient-to-r from-black to-blue-900 text-white p-10 rounded-3xl mb-8">
+        <section className="bg-gradient-to-r from-black to-blue-900 text-white px-5 py-8 sm:p-10 rounded-3xl mb-8">
           <p className="text-sm tracking-[0.3em] text-blue-300 mb-3">
             LEADER LEARNING HUB
           </p>
 
-          <h1 className="text-5xl font-bold mb-4">
+          <h1 className="text-3xl sm:text-4xl sm:text-5xl font-bold mb-4">
             Your personalized leadership development journey.
           </h1>
 
@@ -54,34 +54,34 @@ export default function LeaderLearningHub() {
         </section>
 
         {/* Metrics */}
-        <section className="grid md:grid-cols-4 gap-6 mb-8">
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white p-6 rounded-2xl shadow-sm">
             <p className="text-slate-500">Active Modules</p>
-            <h2 className="text-4xl font-bold mt-2">2</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mt-2">2</h2>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm">
             <p className="text-slate-500">Simulations Completed</p>
-            <h2 className="text-4xl font-bold mt-2">4</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mt-2">4</h2>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm">
             <p className="text-slate-500">Completion Rate</p>
-            <h2 className="text-4xl font-bold mt-2 text-green-600">82%</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mt-2 text-green-600">82%</h2>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm">
             <p className="text-slate-500">Promotion Readiness</p>
-            <h2 className="text-4xl font-bold mt-2 text-blue-600">
+            <h2 className="text-3xl sm:text-4xl font-bold mt-2 text-blue-600">
               +14%
             </h2>
           </div>
         </section>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div className="grid gap-4 lg:grid-cols-2 gapx-4 py-6 sm:p-8 mb-8">
 
           {/* Assigned Modules */}
-          <section className="bg-white p-8 rounded-3xl shadow-sm">
+          <section className="bg-white px-4 py-6 sm:p-8 rounded-3xl shadow-sm">
             <h2 className="text-3xl font-bold mb-6">
               Assigned Modules
             </h2>
@@ -107,14 +107,14 @@ export default function LeaderLearningHub() {
                 </div>
 
                 <p className="mt-2 text-sm text-slate-500">
-                  {item.progress} complete • {item.status}
+                  {item.progress} complete â€¢ {item.status}
                 </p>
               </div>
             ))}
           </section>
 
           {/* Upcoming Tasks */}
-          <section className="bg-white p-8 rounded-3xl shadow-sm">
+          <section className="bg-white px-4 py-6 sm:p-8 rounded-3xl shadow-sm">
             <h2 className="text-3xl font-bold mb-6">
               Upcoming Tasks
             </h2>
@@ -132,13 +132,13 @@ export default function LeaderLearningHub() {
               <h3 className="font-semibold mb-2">
                 Next Coaching Meeting
               </h3>
-              <p>May 14 • 3:00 PM</p>
+              <p>May 14 â€¢ 3:00 PM</p>
             </div>
           </section>
         </div>
 
         {/* Growth */}
-        <section className="bg-white p-8 rounded-3xl shadow-sm mb-8">
+        <section className="bg-white px-4 py-6 sm:p-8 rounded-3xl shadow-sm mb-8">
           <h2 className="text-3xl font-bold mb-6">
             Competency Growth
           </h2>
@@ -150,7 +150,7 @@ export default function LeaderLearningHub() {
                   {area.competency}
                 </span>
                 <span className="text-slate-500">
-                  {area.before} → {area.after}
+                  {area.before} â†’ {area.after}
                 </span>
               </div>
 
@@ -165,7 +165,7 @@ export default function LeaderLearningHub() {
         </section>
 
         {/* Certification */}
-        <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-3xl">
+        <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-6 sm:p-8 rounded-3xl">
           <h2 className="text-3xl font-bold mb-3">
             Certification Progress
           </h2>

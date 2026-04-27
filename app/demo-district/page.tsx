@@ -1,4 +1,4 @@
-const districtMetrics = [
+﻿const districtMetrics = [
   {
     label: "Leaders Assessed",
     value: "84"
@@ -32,9 +32,9 @@ const actions = [
 
 export default function DemoDistrictPage() {
   return (
-    <main className="min-h-screen bg-slate-50 p-8">
+    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold mb-2">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2">
           District Leadership Command Center
         </h1>
 
@@ -42,7 +42,7 @@ export default function DemoDistrictPage() {
           Identify leadership gaps, assign development, and reduce costly turnover.
         </p>
 
-        <section className="grid md:grid-cols-4 gap-6 mb-10">
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {districtMetrics.map((metric) => (
             <div
               key={metric.label}
@@ -59,7 +59,7 @@ export default function DemoDistrictPage() {
           ))}
         </section>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-4 lg:grid-cols-2 gapx-4 py-6 sm:p-8">
           <section className="bg-white p-6 rounded-2xl border">
             <h2 className="text-xl font-semibold mb-4">
               Top Leadership Gaps
@@ -98,4 +98,5 @@ export default function DemoDistrictPage() {
     </main>
   )
 }
+
 

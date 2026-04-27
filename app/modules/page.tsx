@@ -1,4 +1,4 @@
-const modules = [
+﻿const modules = [
   {
     title: "Leading Effective DDI Cycles",
     competency: "DDI",
@@ -45,10 +45,10 @@ const modules = [
 
 export default function ModulesPage() {
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
+    <div className="min-h-screen bg-slate-50 px-4 py-6 sm:p-8">
       <h1 className="text-3xl font-bold mb-8">Leadership Development Library</h1>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid gap-4 lg:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {modules.map((module) => (
           <div key={module.title} className="bg-white p-6 rounded-2xl shadow-sm border">
             <h2 className="text-xl font-semibold mb-3">{module.title}</h2>
@@ -66,3 +66,4 @@ export default function ModulesPage() {
     </div>
   )
 }
+

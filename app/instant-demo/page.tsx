@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react'
 import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
@@ -118,12 +118,12 @@ export default function InstantDemoPage() {
     return (
       <main className="min-h-screen bg-slate-50 px-6 py-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          <section className="rounded-3xl bg-slate-900 p-8 text-white">
+          <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
               Live Evaluation
             </p>
 
-            <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+            <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
               {profile?.name
                 ? `${profile.name}, LeadSharper analyzed your leadership move.`
                 : 'LeadSharper analyzed your leadership move.'}
@@ -143,7 +143,7 @@ export default function InstantDemoPage() {
           </section>
 
           <section className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl bg-white p-8 border border-slate-200">
+            <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Risk Signal
               </h2>
@@ -157,7 +157,7 @@ export default function InstantDemoPage() {
               </p>
             </div>
 
-            <div className="rounded-3xl bg-white p-8 border border-slate-200">
+            <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Recommended Next Move
               </h2>
@@ -169,7 +169,7 @@ export default function InstantDemoPage() {
           </section>
 
           {showRewrite && (
-            <section className="rounded-3xl bg-white p-8 border border-slate-200">
+            <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
               <h2 className="text-3xl font-semibold text-slate-900">
                 Stronger Leadership Response
               </h2>
@@ -184,7 +184,7 @@ export default function InstantDemoPage() {
             </section>
           )}
 
-          <section className="rounded-3xl bg-blue-50 p-8">
+          <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8">
             <h2 className="text-3xl font-semibold text-slate-900">
               Why this matters
             </h2>
@@ -235,12 +235,12 @@ export default function InstantDemoPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto max-w-4xl space-y-6">
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-slate-900 px-4 py-6 sm:p-8 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Instant Demo
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-3xl sm:text-4xl sm:text-5xl font-semibold tracking-tight">
             {profile?.name
               ? `${profile.name}, test LeadSharper in 90 seconds.`
               : 'Test LeadSharper in 90 seconds.'}
@@ -253,7 +253,7 @@ export default function InstantDemoPage() {
           </p>
         </section>
 
-        <section className="rounded-3xl bg-white p-8 border border-slate-200">
+        <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
           <h2 className="text-2xl font-semibold text-slate-900">
             Scenario
           </h2>
@@ -311,3 +311,4 @@ function Metric({
     </div>
   )
 }
+
