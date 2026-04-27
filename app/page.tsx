@@ -33,7 +33,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-slate-950 p-8">
+            <div className="rounded-3xl bg-white p-4 border border-slate-200">
               <Image
                 src="/logo.png"
                 alt="LeadSharper"

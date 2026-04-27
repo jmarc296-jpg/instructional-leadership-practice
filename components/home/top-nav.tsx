@@ -24,21 +24,21 @@ export function TopNav() {
             href="/instant-demo"
             className="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
           >
-            Try Simulation
+            Run Simulation
           </a>
 
           <a
             href="/district"
             className="rounded-2xl bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-200"
           >
-            District View
+            District Intelligence
           </a>
 
           <a
             href="/pilot"
             className="rounded-2xl bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-200"
           >
-            Launch Pilot
+            Apply for Pilot
           </a>
         </nav>
       </div>
