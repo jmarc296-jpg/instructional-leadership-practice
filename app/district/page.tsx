@@ -115,6 +115,69 @@ export default function DistrictPage() {
           <Metric label="High Risk" value={hasData ? `${summary.highRisk}` : "--"} />
         </section>
 
+        <section className="rounded-3xl bg-white p-8 border border-slate-200">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-semibold text-slate-900">
+                Leadership Bench Snapshot
+              </h2>
+              <p className="mt-3 max-w-3xl leading-7 text-slate-600">
+                Preview district-scale readiness across principal candidates, assistant principals, instructional coaches, and emerging leaders.
+              </p>
+            </div>
+
+            {!hasData && (
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
+                Demo Scale
+              </span>
+            )}
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-4">
+            <Metric label="Leaders Assessed" value="25" />
+            <Metric label="Ready Now" value="8" />
+            <Metric label="Ready in 12 Months" value="11" />
+            <Metric label="Needs Intervention" value="6" />
+          </div>
+
+          <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+            <div className="grid grid-cols-4 bg-slate-50 px-5 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <div>Leader Group</div>
+              <div>Count</div>
+              <div>Readiness Signal</div>
+              <div>Placement Guidance</div>
+            </div>
+
+            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
+              <div className="font-semibold text-slate-900">Principal Candidates</div>
+              <div>6</div>
+              <div>High readiness</div>
+              <div>Prioritize for vacancies</div>
+            </div>
+
+            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
+              <div className="font-semibold text-slate-900">Assistant Principals</div>
+              <div>8</div>
+              <div>Mixed readiness</div>
+              <div>Target coaching cycles</div>
+            </div>
+
+            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
+              <div className="font-semibold text-slate-900">Instructional Coaches</div>
+              <div>5</div>
+              <div>Strong instructional signal</div>
+              <div>Build leadership pathway</div>
+            </div>
+
+            <div className="grid grid-cols-4 px-5 py-4 text-sm text-slate-700 border-t border-slate-200">
+              <div className="font-semibold text-slate-900">Dean / Operations Leaders</div>
+              <div>6</div>
+              <div>Higher placement risk</div>
+              <div>Do not promote without support</div>
+            </div>
+          </div>
+        </section>
+
         <section className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl bg-white p-8 border border-slate-200">
             <div className="flex items-center justify-between gap-4">
