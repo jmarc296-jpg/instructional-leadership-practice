@@ -55,7 +55,7 @@ export default function GrowthPlanPage() {
           </h2>
 
           <p className="mt-4 max-w-3xl leading-8 text-slate-700">
-            LeadSharper becomes sticky when it powers continuous leadership growthâ€”not one-time evaluations.
+            LeadSharper becomes sticky when it powers continuous leadership growth, not one-time evaluations.
           </p>
         </section>
       </div>
