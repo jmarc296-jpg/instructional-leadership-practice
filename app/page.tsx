@@ -1,4 +1,4 @@
-﻿import Image from 'next/image'
+import Image from 'next/image'
 import { TopNav } from '@/components/home/top-nav'
 
 export default function HomePage() {
