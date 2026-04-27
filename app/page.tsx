@@ -28,7 +28,7 @@ export default function HomePage() {
                 </a>
 
                 <a href="/district" className="rounded-2xl border border-slate-300 px-7 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-50">
-                  View district view
+                  View district intelligence
                 </a>
               </div>
             </div>
@@ -37,8 +37,8 @@ export default function HomePage() {
               <Image
                 src="/logo.png"
                 alt="LeadSharper"
-                width={320}
-                height={320}
+                width={380}
+                height={380}
                 priority
                 className="h-auto w-full max-w-[320px]"
               />
@@ -58,7 +58,7 @@ export default function HomePage() {
             title="For District Teams"
             text="See readiness, risk, coaching needs, and succession signals across the leadership pipeline."
             href="/district"
-            cta="View district view"
+            cta="View district intelligence"
           />
 
           <Card
