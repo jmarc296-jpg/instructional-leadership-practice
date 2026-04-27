@@ -175,6 +175,32 @@ export default function DistrictPage() {
             <Impact label="Leadership vacancy savings" value="$310K" />
           </div>
         </section>
+
+        {hasData && (
+          <section className="rounded-3xl bg-slate-900 p-8 text-white">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
+              Ready to move from demo to district pilot
+            </p>
+
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight">
+              Bring LeadSharper to your leadership pipeline.
+            </h2>
+
+            <p className="mt-4 max-w-3xl leading-7 text-slate-300">
+              Use this intelligence to identify readiness patterns, target coaching, and strengthen principal placement decisions before high-stakes leadership moves are made.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="/pilot" className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
+                Book a District Pilot
+              </a>
+
+              <a href="/procurement" className="rounded-2xl border border-white/20 px-6 py-4 text-sm font-semibold text-white">
+                View Procurement Fit
+              </a>
+            </div>
+          </section>
+        )}
       </div>
     </main>
   )
@@ -223,6 +249,7 @@ function Impact({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
 
 

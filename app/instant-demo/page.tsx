@@ -268,7 +268,7 @@ export default function InstantDemoPage() {
             value={response}
             onChange={(e) => setResponse(e.target.value)}
             className="mt-6 min-h-[240px] w-full rounded-2xl border border-slate-300 p-4"
-            placeholder="Write your leadership response..."
+            placeholder="Describe exactly how you would address this situation as a school leader..."
           />
 
           <button
@@ -298,3 +298,4 @@ function Metric({
     </div>
   )
 }
+
