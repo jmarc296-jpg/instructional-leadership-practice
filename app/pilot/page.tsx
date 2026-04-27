@@ -50,7 +50,7 @@ export default function PilotPage() {
             LeadSharper is opening limited pilot partnerships for districts, charter networks, and university leadership programs.
           </p>
 
-          <div className="mt-10 space-y-8">
+          <div className="mt-10 grid gap-4">
             <div>
               <h3 className="text-lg font-semibold text-white">
                 Accelerate principal pipeline decisions
@@ -173,6 +173,7 @@ export default function PilotPage() {
     </main>
   )
 }
+
 
 
 
