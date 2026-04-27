@@ -20,15 +20,15 @@ export default function DistrictPage() {
 
   const leaders = [
     {
-      name: "Melissa Swedlow",
+      name: "Principal #1",
       gap: "Coaching"
     },
     {
-      name: "Brian Evans",
+      name: "Principal #2",
       gap: "Instructional Feedback"
     },
     {
-      name: "Jessica Thomas",
+      name: "Principal #3",
       gap: "Operations"
     }
   ]
@@ -84,3 +84,4 @@ export default function DistrictPage() {
     </main>
   )
 }
+

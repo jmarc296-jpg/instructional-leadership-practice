@@ -1,7 +1,7 @@
 ﻿const leader = {
-  name: "Melissa Swedlow",
+  name: "Principal #1",
   role: "Principal",
-  school: "Facing History New Tech",
+  school: "High School A",
   readinessScore: "82%",
   promotionReadiness: "Ready Now",
   retentionRisk: "Low"
@@ -92,3 +92,4 @@ export default function LeaderProfilePage() {
     </main>
   )
 }
+
