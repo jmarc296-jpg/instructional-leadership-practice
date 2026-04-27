@@ -43,11 +43,11 @@ export default function PilotPage() {
           </p>
 
           <h1 className="mt-5 max-w-2xl text-5xl font-semibold tracking-tight leading-[1.05]">
-            Bring leadership readiness intelligence to your pipeline.
+            Bring clarity to principal hiring and leadership pipeline decisions.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            LeadSharper is opening limited pilot partnerships for districts, charter networks, and university leadership programs.
+            Assess leadership readiness through real-world simulations, identify coaching gaps early, and make stronger placement decisions before costly turnover happens.
           </p>
 
           <div className="mt-10 border-t border-white/10 pt-8">
@@ -57,10 +57,10 @@ export default function PilotPage() {
                   01
                 </div>
                 <h3 className="mt-5 text-lg font-semibold leading-6 text-white">
-                  Accelerate pipeline decisions
+                  Identify who is ready
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-slate-300">
-                  Identify who is ready now and who needs development before high-stakes placements.
+                  Know which candidates are prepared now and who needs targeted development before high-stakes placements.
                 </p>
               </div>
 
@@ -69,10 +69,10 @@ export default function PilotPage() {
                   02
                 </div>
                 <h3 className="mt-5 text-lg font-semibold leading-6 text-white">
-                  Reduce failed placements
+                  Reduce turnover risk
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-slate-300">
-                  Surface coaching gaps before they become costly turnover risks.
+                  Surface coaching gaps early before they become expensive leadership misfires.
                 </p>
               </div>
 
@@ -186,6 +186,8 @@ export default function PilotPage() {
     </main>
   )
 }
+
+
 
 
 
