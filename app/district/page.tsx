@@ -103,9 +103,9 @@ export default function DistrictPage() {
 
         <section className="grid gap-4 md:grid-cols-4">
           <Metric label="Overall Readiness" value={hasData ? `${summary.averageReadiness}%` : "--"} />
-          <Metric label="Simulation Reps" value={`${summary.total}`} />
-          <Metric label="Moderate Risk" value={`${summary.moderateRisk}`} />
-          <Metric label="High Risk" value={`${summary.highRisk}`} />
+          <Metric label="Simulation Reps" value={hasData ? `${summary.total}` : "--"} />
+          <Metric label="Moderate Risk" value={hasData ? `${summary.moderateRisk}` : "--"} />
+          <Metric label="High Risk" value={hasData ? `${summary.highRisk}` : "--"} />
         </section>
 
         <section className="grid gap-6 lg:grid-cols-2">
@@ -223,4 +223,6 @@ function Impact({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
+
 
