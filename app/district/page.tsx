@@ -70,6 +70,13 @@ export default function DistrictPage() {
             >
               Run Simulation
             </a>
+
+            <a
+              href="/evaluation-report"
+              className="rounded-2xl border border-white/20 px-5 py-3 text-sm font-semibold text-white"
+            >
+              View Board Report
+            </a>
           </div>
         </section>
 
@@ -306,6 +313,7 @@ function Impact({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
 
 
