@@ -271,10 +271,23 @@ export default function InstantDemoPage() {
             placeholder="Describe exactly how you would address this situation as a school leader..."
           />
 
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-500">
+            <span>Recommended: 150-300 words | Be specific about actions, stakeholders, and timeline.</span>
+            <span>{response.trim() ? `${response.trim().split(/\s+/).length} words entered` : "0 words entered"}</span>
+          </div>
+
+          <p className="mt-3 text-sm text-slate-500">
+            Evaluated on: Clarity | Accountability | Coaching | Decision-Making
+          </p>
+
+          <p className="mt-6 text-sm font-medium text-slate-500">
+            Built for principal supervisors, cabinet leaders, and district leadership pipelines.
+          </p>
+
           <button
             disabled={response.trim().length < 20}
             onClick={generateEvaluation}
-            className="mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white disabled:bg-slate-300"
+            className="mt-4 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white disabled:bg-slate-300"
           >
             Generate Readiness Evaluation
           </button>
@@ -298,6 +311,3 @@ function Metric({
     </div>
   )
 }
-
-
-
