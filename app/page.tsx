@@ -37,10 +37,10 @@ export default function HomePage() {
               <Image
                 src="/logo.png"
                 alt="LeadSharper"
-                width={550}
-                height={550}
+                width={560}
+                height={360}
                 priority
-                className="h-auto w-full max-w-[600px] object-contain scale-125"
+                className="h-auto w-full max-w-[560px] object-contain"
               />
             </div>
           </div>
