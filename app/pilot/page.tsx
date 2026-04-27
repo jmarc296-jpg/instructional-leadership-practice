@@ -37,48 +37,61 @@ export default function PilotPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr]">
-        <section className="rounded-3xl bg-slate-900 p-7 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
+        <section className="rounded-3xl bg-slate-950 p-9 text-white shadow-xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
             Pilot Partnership
           </p>
 
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight">
+          <h1 className="mt-5 max-w-2xl text-5xl font-semibold tracking-tight leading-[1.05]">
             Bring leadership readiness intelligence to your pipeline.
           </h1>
 
-          <p className="mt-5 text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             LeadSharper is opening limited pilot partnerships for districts, charter networks, and university leadership programs.
           </p>
 
-          <div className="mt-10 grid gap-4">
-            <div>
-              <h3 className="text-lg font-semibold text-white">
-                Accelerate principal pipeline decisions
-              </h3>
-              <p className="mt-2 max-w-md text-slate-300 leading-7">
-                Identify who is ready now and who needs development before high-stakes placements.
-              </p>
-            </div>
+          <div className="mt-10 border-t border-white/10 pt-8">
+            <div className="grid gap-6 md:grid-cols-3">
+              <div className="border-r border-white/10 pr-6 last:border-r-0">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-400/30 bg-blue-500/10 text-sm font-semibold text-blue-300">
+                  01
+                </div>
+                <h3 className="mt-5 text-lg font-semibold leading-6 text-white">
+                  Accelerate pipeline decisions
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">
+                  Identify who is ready now and who needs development before high-stakes placements.
+                </p>
+              </div>
 
-            <div>
-              <h3 className="text-lg font-semibold text-white">
-                Reduce failed leadership placements
-              </h3>
-              <p className="mt-2 max-w-md text-slate-300 leading-7">
-                Surface coaching gaps before they become turnover risks.
-              </p>
-            </div>
+              <div className="border-r border-white/10 pr-6 last:border-r-0">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-400/30 bg-blue-500/10 text-sm font-semibold text-blue-300">
+                  02
+                </div>
+                <h3 className="mt-5 text-lg font-semibold leading-6 text-white">
+                  Reduce failed placements
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">
+                  Surface coaching gaps before they become costly turnover risks.
+                </p>
+              </div>
 
-            <div>
-              <h3 className="text-lg font-semibold text-white">
-                Create board-ready reporting
-              </h3>
-              <p className="mt-2 max-w-md text-slate-300 leading-7">
-                Give superintendents and cabinet teams district-wide leadership intelligence.
-              </p>
+              <div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-400/30 bg-blue-500/10 text-sm font-semibold text-blue-300">
+                  03
+                </div>
+                <h3 className="mt-5 text-lg font-semibold leading-6 text-white">
+                  Create board-ready reporting
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">
+                  Give cabinet teams clear visibility into district-wide leadership readiness.
+                </p>
+              </div>
             </div>
+          </div>
 
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+          <div className="mt-10 border-t border-white/10 pt-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
               Limited 2026 pilot cohort: 5 district partners
             </p>
           </div>
