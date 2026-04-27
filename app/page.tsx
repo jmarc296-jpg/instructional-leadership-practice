@@ -33,14 +33,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="rounded-3xl bg-white p-4 border border-slate-200">
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
               <Image
                 src="/logo.png"
                 alt="LeadSharper"
-                width={380}
-                height={380}
+                width={460}
+                height={460}
                 priority
-                className="h-auto w-full max-w-[320px]"
+                className="h-auto w-full max-w-[460px] object-contain"
               />
             </div>
           </div>

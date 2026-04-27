@@ -4,7 +4,7 @@ export function TopNav() {
   return (
     <header className="rounded-[28px] border border-slate-200/80 bg-white/90 p-4 shadow-sm backdrop-blur">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <a href="/" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-2">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white">
             <Brain size={20} />
           </div>
