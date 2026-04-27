@@ -102,7 +102,7 @@ export default function DistrictPage() {
         )}
 
         <section className="grid gap-4 md:grid-cols-4">
-          <Metric label="Overall Readiness" value={`${summary.averageReadiness}%`} />
+          <Metric label="Overall Readiness" value={hasData ? `${summary.averageReadiness}%` : "--"} />
           <Metric label="Simulation Reps" value={`${summary.total}`} />
           <Metric label="Moderate Risk" value={`${summary.moderateRisk}`} />
           <Metric label="High Risk" value={`${summary.highRisk}`} />
@@ -223,3 +223,4 @@ function Impact({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
