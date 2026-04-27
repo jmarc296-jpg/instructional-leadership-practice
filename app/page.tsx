@@ -8,7 +8,7 @@ export default function HomePage() {
         <TopNav />
 
         <section className="rounded-[36px] bg-white p-8 border border-slate-200">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
                 LeadSharper
@@ -40,7 +40,7 @@ export default function HomePage() {
                 width={460}
                 height={460}
                 priority
-                className="h-auto w-full max-w-[460px] object-contain"
+                className="h-auto w-full max-w-[600px] object-contain scale-125"
               />
             </div>
           </div>
