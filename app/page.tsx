@@ -33,12 +33,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div className="flex items-center justify-center">
               <Image
                 src="/logo.png"
                 alt="LeadSharper"
-                width={460}
-                height={460}
+                width={650}
+                height={650}
                 priority
                 className="h-auto w-full max-w-[600px] object-contain scale-125"
               />
