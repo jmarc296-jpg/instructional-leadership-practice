@@ -37,12 +37,12 @@ export default function PilotPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-6">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.9fr]">
-        <section className="rounded-3xl bg-slate-900 p-8 text-white">
+        <section className="rounded-3xl bg-slate-900 p-7 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
             Pilot Partnership
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight">
+          <h1 className="mt-4 text-4xl font-semibold tracking-tight">
             Bring leadership readiness intelligence to your pipeline.
           </h1>
 
@@ -163,12 +163,17 @@ export default function PilotPage() {
             >
               {isSubmitting ? 'Submitting...' : 'Request Pilot Access'}
             </button>
+
+            <p className="text-center text-sm text-slate-500">
+              No long-term contract required for pilot partnerships.
+            </p>
           </form>
         </section>
       </div>
     </main>
   )
 }
+
 
 
 
