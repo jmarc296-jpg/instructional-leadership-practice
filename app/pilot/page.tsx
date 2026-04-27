@@ -60,8 +60,12 @@ export default function PilotPage() {
 
         <section className="rounded-3xl bg-white p-8 shadow-sm">
           <h2 className="text-3xl font-semibold text-slate-900">
-            Apply for a pilot
+            Request a district pilot
           </h2>
+
+          <p className="mt-3 text-slate-600 leading-7">
+            We will follow up within 48 hours to discuss fit, timeline, and implementation goals.
+          </p>
 
           <form
             className="mt-6 space-y-4"
@@ -129,9 +133,9 @@ export default function PilotPage() {
 
             <button
               disabled={isSubmitting}
-              className="w-full rounded-2xl bg-blue-600 px-6 py-4 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+              className="w-full rounded-2xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
             >
-              {isSubmitting ? 'Submitting...' : 'Submit pilot interest'}
+              {isSubmitting ? 'Submitting...' : 'Request Pilot Access'}
             </button>
           </form>
         </section>
@@ -139,4 +143,6 @@ export default function PilotPage() {
     </main>
   )
 }
+
+
 
