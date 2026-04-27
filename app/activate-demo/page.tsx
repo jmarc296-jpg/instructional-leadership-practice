@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
 
 export default function ActivateDemoPage() {
   const [activated, setActivated] = useState(false)
+  const router = useRouter()
 
   function activateDemo() {
     const demoSnapshots = [
@@ -84,6 +86,10 @@ export default function ActivateDemoPage() {
     })
 
     setActivated(true)
+
+    setTimeout(() => {
+      router.push("/district")
+    }, 1200)
   }
 
   return (
@@ -118,13 +124,13 @@ export default function ActivateDemoPage() {
                 onClick={activateDemo}
                 className="mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
               >
-                Activate demo intelligence
+                Launch district demo
               </button>
             </>
           ) : (
             <>
               <h2 className="text-3xl font-semibold text-slate-900">
-                Demo intelligence activated.
+                District demo ready.
               </h2>
 
               <p className="mt-4 text-slate-600">
@@ -151,3 +157,4 @@ export default function ActivateDemoPage() {
     </main>
   )
 }
+
