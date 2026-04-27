@@ -175,7 +175,7 @@ export default function InstantDemoPage() {
               </h2>
 
               <p className="mt-4 leading-8 text-slate-700">
-                I would meet directly with the teacher, name the instructional concern with evidence, and connect it to student learning. I would acknowledge the teacher's relationships with students while making clear that strong relationships must be matched by strong instruction. I would review recent student achievement data, identify the specific instructional practice that needs to change, and set a short follow-up cycle with coaching, observation, and a clear timeline for improvement.
+                I would meet directly with the teacher, name the instructional concern with evidence, and connect it to student learning. I would acknowledge the teacher&apos;s relationships with students while making clear that strong relationships must be matched by strong instruction. I would review recent student achievement data, identify the specific instructional practice that needs to change, and set a short follow-up cycle with coaching, observation, and a clear timeline for improvement.
               </p>
 
               <p className="mt-4 leading-8 text-slate-700">
