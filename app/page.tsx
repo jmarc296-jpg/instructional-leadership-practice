@@ -9,16 +9,16 @@ const proofPoints = [
 
 const workflows = [
   {
-    title: "Assess leadership judgment",
-    text: "Use simulations to capture how leaders think through instruction, culture, talent, and execution."
+    title: "Assess",
+    text: "Simulations reveal how leaders perform under pressure before high-stakes hiring decisions are made."
   },
   {
-    title: "Assign targeted practice",
-    text: "Move from feedback to action with assigned modules, due dates, evidence, and coaching notes."
+    title: "Decide",
+    text: "Identify promotion readiness, succession gaps, and leadership placement risk."
   },
   {
-    title: "Connect growth to readiness",
-    text: "Bring coaching history, performance signals, and promotion readiness into one district record."
+    title: "Develop",
+    text: "Automatically assign development plans, simulations, and reassessment timelines."
   }
 ]
 
@@ -38,15 +38,15 @@ export default function HomePage() {
           </Link>
 
           <div className="hidden items-center gap-7 text-sm font-medium text-black/65 md:flex">
-            <Link href="/simulation-room" className="hover:text-black">Simulation</Link>
-            <Link href="/workspace" className="hover:text-black">Workspace</Link>
-            <Link href="/talent-decisions" className="hover:text-black">Talent Decisions</Link>
-            <Link href="/district" className="hover:text-black">Dashboard</Link>
-            <Link href="/procurement" className="hover:text-black">Procurement</Link>
+            <Link href="/simulation-room" className="hover:text-black">Try Simulation</Link>
+            <Link href="/talent-decisions" className="hover:text-black">Command Center</Link>
+            <Link href="/talent-decisions" className="hover:text-black">Talent Engine</Link>
+            <Link href="/district" className="hover:text-black">District Intelligence</Link>
+            <Link href="/procurement" className="hover:text-black">District Rollout</Link>
           </div>
 
-          <Link href="/workspace" className="rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">
-            Open workspace
+          <Link href="/talent-decisions" className="rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">
+            Open Talent Engine
           </Link>
         </nav>
       </section>
@@ -70,8 +70,8 @@ export default function HomePage() {
               <Link href="/simulation-room" className="rounded-2xl bg-[#2563eb] px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-[#1d4ed8]">
                 Try simulation
               </Link>
-              <Link href="/workspace" className="rounded-2xl border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold text-black shadow-sm transition hover:bg-black/[0.03]">
-                View district workflow
+              <Link href="/talent-decisions" className="rounded-2xl border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold text-black shadow-sm transition hover:bg-black/[0.03]">
+                See talent engine
               </Link>
             </div>
 
@@ -90,7 +90,7 @@ export default function HomePage() {
               <div className="flex items-center justify-between border-b border-white/10 pb-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Readiness command</p>
-                  <p className="mt-2 text-xl font-semibold">District pipeline view</p>
+                  <p className="mt-2 text-xl font-semibold">Talent Decision Engine</p>
                 </div>
                 <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-semibold text-emerald-200">
                   Live
@@ -105,9 +105,9 @@ export default function HomePage() {
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-3">
-              <DarkMetric label="Assignments" value="142" />
-              <DarkMetric label="Evidence" value="87%" />
-              <DarkMetric label="Ready" value="23" />
+              <DarkMetric label="Ready Now" value="12" />
+              <DarkMetric label="High Risk" value="5" />
+              <DarkMetric label="Plans Active" value="31" />
             </div>
           </div>
         </div>
@@ -127,46 +127,7 @@ export default function HomePage() {
         </div>
       </section>
     
-      <section className="mx-auto mt-8 max-w-6xl rounded-[2rem] border border-black/10 bg-[#111827] p-8 text-white shadow-sm">
-        <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
-              Talent Decision Engine
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight">
-              Know who is ready, where the bench is thin, and which promotion decisions carry risk.
-            </h2>
-            <p className="mt-4 max-w-3xl leading-7 text-white/70">
-              LeadSharper connects simulations, readiness evidence, succession depth, and promotion recommendations into one district-facing talent decision system.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
-            <div className="grid gap-3 text-sm">
-              <div className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
-                <span>Ready-now leaders</span>
-                <span className="font-bold">12</span>
-              </div>
-              <div className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
-                <span>High-risk vacancies</span>
-                <span className="font-bold">5</span>
-              </div>
-              <div className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
-                <span>Pipeline health</span>
-                <span className="font-bold">Moderate</span>
-              </div>
-            </div>
-
-            <Link
-              href="/talent-decisions"
-              className="mt-5 block rounded-2xl bg-white px-5 py-3 text-center text-sm font-semibold text-[#111827] transition hover:bg-white/90"
-            >
-              View talent decisions
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
+      </main>
   )
 }
 
@@ -198,6 +159,8 @@ function DarkMetric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
+
 
 
 
