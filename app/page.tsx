@@ -19,7 +19,13 @@ export default function HomePage() {
               </h1>
 
               <p className="mt-6 max-w-2xl text-xl leading-9 text-slate-600">
-                LeadSharper helps districts and leadership programs turn real school leadership decisions into readiness data, coaching priorities, and succession intelligence.
+                LeadSharper helps districts assess leadership readiness through real-world simulations,
+                identify development gaps, and make stronger promotion decisions.
+              </p>
+
+              <p className="mt-4 text-sm font-medium text-slate-500">
+                Built from real district leadership coaching, DDI systems, APT facilitation,
+                and principal pipeline development.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -62,14 +68,14 @@ export default function HomePage() {
 
           <Card
             title="For District Teams"
-            text="See readiness, risk, coaching needs, and succession signals across the leadership pipeline."
+            text="See readiness, risk, coaching needs, and succession signals across your leadership pipeline."
             href="/district"
             cta="View district intelligence"
           />
 
           <Card
-            title="For District Partnerships"
-            text="Launch a structured pilot for aspiring principals, new principals, and district leadership teams."
+            title="For District Pilot Programs"
+            text="Launch readiness pilots for aspiring and new principals."
             href="/pilot"
             cta="Explore pilot"
           />
@@ -81,12 +87,30 @@ export default function HomePage() {
           </p>
 
           <h2 className="mt-4 max-w-4xl text-3xl sm:text-4xl font-semibold tracking-tight">
-            Districts do not just need more leadership training. They need better evidence of readiness.
+            Districts do not just need more leadership training.
+            They need better evidence of readiness.
           </h2>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-            Interviews, resumes, and reputation are not enough. LeadSharper creates observable leadership performance data before promotion, placement, or coaching decisions become high stakes.
+            Interviews, resumes, and reputation are not enough.
+            LeadSharper creates observable leadership performance data before promotion,
+            placement, or coaching decisions become high stakes.
           </p>
+        </section>
+
+        <section className="rounded-[32px] bg-white border border-slate-200 px-4 py-6 sm:p-8">
+          <h2 className="text-3xl font-semibold text-slate-900">
+            Built for district leadership decisions
+          </h2>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div>• Aspiring principal cohorts</div>
+            <div>• New principal onboarding</div>
+            <div>• Leadership academies</div>
+            <div>• Succession planning</div>
+            <div>• Principal supervisor coaching</div>
+            <div>• Leadership retention strategy</div>
+          </div>
         </section>
 
         <section className="rounded-[32px] bg-blue-50 px-4 py-6 sm:p-8">
@@ -95,14 +119,15 @@ export default function HomePage() {
           </h2>
 
           <p className="mt-4 max-w-2xl leading-8 text-slate-700">
-            Start with a small leadership cohort, generate readiness signals, and determine whether LeadSharper can strengthen your district or program pipeline.
+            Start with a small leadership cohort and determine whether LeadSharper
+            can strengthen your district pipeline.
           </p>
 
           <a
             href="/pilot"
             className="mt-6 inline-block rounded-2xl bg-blue-600 px-7 py-4 text-sm font-semibold text-white hover:bg-blue-700"
           >
-            Apply for pilot access
+            Schedule a Pilot Conversation
           </a>
         </section>
       </div>
@@ -135,7 +160,7 @@ function Card({
       </p>
 
       <div className="mt-5 text-sm font-semibold text-blue-700">
-        {cta} &gt;
+        {cta}
       </div>
     </a>
   )
