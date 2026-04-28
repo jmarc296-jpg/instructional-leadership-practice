@@ -1,5 +1,3 @@
-﻿import Image from "next/image"
-
 const metrics = [
   {
     label: "Active Assignments",
@@ -27,165 +25,135 @@ const leaders = [
   {
     name: "Principal #1",
     school: "High School A",
-    gap: "Coaching",
+    focus: "Coaching",
     risk: "Medium Risk",
-    nextStep: "Assign coaching module"
+    action: "Assign coaching module"
   },
   {
     name: "Principal #2",
     school: "Middle School B",
-    gap: "Instructional Feedback",
+    focus: "Instructional Feedback",
     risk: "High Risk",
-    nextStep: "Assign learning path"
+    action: "Assign learning path"
   },
   {
     name: "Principal #3",
     school: "Elementary School C",
-    gap: "Operations",
+    focus: "Operations",
     risk: "Low Risk",
-    nextStep: "Provide resources"
+    action: "Provide resources"
   }
 ]
 
 export default function DistrictPage() {
   return (
-    <main className="min-h-screen bg-slate-100 lg:flex">
-
-      {/* Sidebar */}
-      <aside className="w-72 bg-slate-950 text-white p-6">
-        <div className="mb-10">
-          <Image
+    <main className="min-h-screen bg-slate-100 flex">
+      <aside className="w-72 bg-slate-950 text-white min-h-screen p-6">
+        <a href="/" className="mb-10 block">
+          <img
             src="/logo.png"
             alt="LeadSharper"
-            width={240}
-            height={90}
-            className="w-[180px] h-auto object-contain bg-transparent"
+            className="w-full max-w-[180px] cursor-pointer"
           />
+        </a>
+
+        <div className="space-y-4">
+          <a href="/" className="block px-4 py-2 hover:text-blue-300">
+            Home
+          </a>
+
+          <a href="/district" className="block rounded-xl bg-blue-600 px-4 py-3 font-medium">
+            Dashboard
+          </a>
+
+          <a href="/assignments" className="block px-4 py-2 hover:text-blue-300">
+            Assignments
+          </a>
+
+          <a href="/talent-review" className="block px-4 py-2 hover:text-blue-300">
+            Leaders
+          </a>
+
+          <a href="/leader-learning-hub" className="block px-4 py-2 hover:text-blue-300">
+            Development
+          </a>
+
+          <a href="/impact-dashboard" className="block px-4 py-2 hover:text-blue-300">
+            Reports
+          </a>
+
+          <a href="/recommendations" className="block px-4 py-2 hover:text-blue-300">
+            Recommendations
+          </a>
         </div>
 
-        <div className="space-y-5 text-slate-300">
-          <div className="bg-blue-600 text-white px-4 py-3 rounded-xl font-semibold">Dashboard</div>
-          <div>Assignments</div>
-          <div>Leaders</div>
-          <div>Development</div>
-          <div>Reports</div>
-          <div>Recommendations</div>
-        </div>
-
-        <div className="mt-16 bg-slate-900 rounded-2xl p-5">
+        <div className="mt-12 rounded-2xl bg-slate-900 p-5">
           <p className="text-sm text-slate-400">District Impact</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-blue-400 mt-3">
-            +11%
-          </h2>
-          <p className="text-sm text-slate-400 mt-2">
-            Readiness growth
-          </p>
+          <p className="mt-2 text-4xl font-bold text-blue-400">+11%</p>
+          <p className="text-sm text-slate-400">Readiness growth</p>
         </div>
       </aside>
 
-      {/* Main Content */}
-      <div className="flex-1 min-w-0">
-        <section className="bg-gradient-to-r from-slate-950 to-blue-900 text-white px-10 py-6">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-2">
+      <section className="flex-1 p-8">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-slate-900">
             District Leadership Dashboard
           </h1>
 
-          <p className="text-slate-300 text-lg">
+          <p className="mt-3 text-lg text-slate-600">
             Identify leadership gaps. Assign development. Strengthen your pipeline.
           </p>
-        </section>
+        </div>
 
-        <div className="px-4 py-6 sm:p-8">
+        <div className="grid grid-cols-4 gap-6 mb-8">
+          {metrics.map((metric) => (
+            <div key={metric.label} className="rounded-2xl bg-white p-6 shadow-sm">
+              <p className="text-sm text-slate-500">{metric.label}</p>
+              <h2 className="mt-3 text-4xl font-bold text-slate-900">
+                {metric.value}
+              </h2>
+              <p className="mt-2 text-sm text-slate-400">{metric.subtext}</p>
+            </div>
+          ))}
+        </div>
 
-          <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            {metrics.map((metric) => (
+        <div className="rounded-2xl bg-white p-8 shadow-sm">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-slate-900">
+              Leaders Requiring Attention
+            </h2>
+
+            <a
+              href="/assignments"
+              className="rounded-xl bg-blue-600 px-6 py-3 text-white font-medium"
+            >
+              Assign Development
+            </a>
+          </div>
+
+          <div className="space-y-5">
+            {leaders.map((leader) => (
               <div
-                key={metric.label}
-                className="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6 border border-slate-100"
+                key={leader.name}
+                className="grid grid-cols-4 items-center rounded-xl border border-slate-200 p-5"
               >
-                <p className="text-sm text-slate-500">
-                  {metric.label}
-                </p>
+                <div>
+                  <p className="font-bold text-slate-900">{leader.name}</p>
+                  <p className="text-sm text-slate-500">{leader.school}</p>
+                </div>
 
-                <h2 className="text-3xl font-bold mt-3">
-                  {metric.value}
-                </h2>
+                <div>{leader.focus}</div>
 
-                <p className="text-sm text-slate-400 mt-2">
-                  {metric.subtext}
-                </p>
+                <div>{leader.risk}</div>
+
+                <a href="/assignments" className="text-blue-600 font-medium">
+                  {leader.action}
+                </a>
               </div>
             ))}
-          </section>
-
-          <section className="bg-white rounded-2xl shadow-sm px-4 py-6 sm:p-8">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold">
-                Leaders Requiring Attention
-              </h2>
-
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-xl">
-                Assign Development
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              {leaders.map((leader) => (
-                <div
-                  key={leader.name}
-                  className="border border-slate-100 rounded-xl px-6 py-4 grid grid-cols-4 items-center gap-6 hover:bg-slate-50 transition"
-                >
-                  <div>
-                    <h3 className="font-bold text-lg">
-                      {leader.name}
-                    </h3>
-                    <p className="text-slate-500">
-                      {leader.school}
-                    </p>
-                  </div>
-
-                  <div className="font-medium text-slate-800">
-                    {leader.gap}
-                  </div>
-
-                  <div className={
-                    leader.risk === "High Risk"
-                      ? "bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-medium"
-                      : leader.risk === "Medium Risk"
-                      ? "bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium"
-                      : "bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium"
-                  }>
-                    {leader.risk}
-                  </div>
-
-                  <div className="text-blue-600 font-medium text-right">
-                    {leader.nextStep}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-<section className="mt-8 bg-blue-50 border border-blue-100 rounded-2xl p-6">
-  <h3 className="text-xl font-bold text-slate-900 mb-2">
-    District Insight
-  </h3>
-
-  <p className="text-slate-600">
-    Coaching and instructional feedback represent 68% of current leadership gaps.
-    Addressing these two competencies first will likely produce the fastest district-wide readiness gains.
-  </p>
-</section>
-
-</div>
-</div>
-</main>
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }
-
-
-
-
-
-
-
