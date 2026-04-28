@@ -1,4 +1,4 @@
-﻿import Image from "next/image"
+import Image from "next/image"
 import { TopNav } from "@/components/home/top-nav"
 
 const paths = [
@@ -36,7 +36,7 @@ export default function HomePage() {
               </p>
 
               <h1 className="mt-5 max-w-3xl text-[2.65rem] font-semibold leading-[1.04] tracking-[-0.045em] text-slate-950 sm:text-[4.25rem]">
-                Principal readiness should be measured before the placement is made.
+                Leadership readiness before placement decisions.
               </h1>
 
               <p className="mt-6 max-w-xl text-[1.05rem] leading-8 text-slate-600">
@@ -135,4 +135,6 @@ export default function HomePage() {
     </main>
   )
 }
+
+
 
