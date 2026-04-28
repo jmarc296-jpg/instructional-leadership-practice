@@ -1,0 +1,8 @@
+{
+  "instructionalLeadership": 0.25,
+  "teacherRetention": 0.20,
+  "studentAchievement": 0.20,
+  "executionReliability": 0.15,
+  "cultureHealth": 0.10,
+  "talentManagement": 0.10
+}
