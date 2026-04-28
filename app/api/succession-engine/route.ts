@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { calculateReadiness } from "@/lib/succession/readinessEngine";
+import { calculateReadiness } from "@/lib/succession/calculateReadiness";
 
 export async function POST(req: Request) {
   const body = await req.json();
