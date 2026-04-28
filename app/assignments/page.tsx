@@ -4,117 +4,101 @@
     school: "East High School",
     gap: "Instructional Feedback",
     module: "Coaching Difficult Conversations",
-    status: "In Progress"
+    due: "May 10",
+    status: "In Progress",
+    action: "Continue module"
   },
   {
-    leader: "Principal B",
+    leader: "Dean B",
     school: "Lincoln Middle School",
-    gap: "Operational Leadership",
-    module: "Systems Execution",
-    status: "Assigned"
-  },
-  {
-    leader: "Dean C",
-    school: "Washington Elementary",
     gap: "Culture Leadership",
     module: "School Culture Reset",
-    status: "Completed"
+    due: "May 17",
+    status: "Not Started",
+    action: "Start module"
+  },
+  {
+    leader: "Principal C",
+    school: "Washington Elementary",
+    gap: "Operational Execution",
+    module: "Systems Execution Sprint",
+    due: "May 24",
+    status: "Completed",
+    action: "View evidence"
   }
 ]
 
 export default function AssignmentsPage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-10 lg:px-10">
-      <div className="mx-auto max-w-6xl space-y-10">
-
-        <a
-          href="/district"
-          className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
-        >
-          Back to Dashboard
+    <main className="min-h-screen bg-[#f6f8fb] px-5 py-6 text-slate-950 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-6xl space-y-6">
+        <a href="/district" className="inline-block rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold">
+          Back to dashboard
         </a>
 
-        {/* HERO */}
-        <section className="rounded-[32px] bg-white border border-slate-200 px-8 py-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
+        <section className="rounded-[28px] border border-slate-200 bg-white px-7 py-8 sm:px-9">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-700">
             Development Assignments
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-900">
-            Turn leadership gaps into action.
+          <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+            Assign the next leadership move.
           </h1>
 
-          <p className="mt-5 text-lg text-slate-600 max-w-2xl leading-8">
-            Assign targeted development based on simulation results, readiness reviews, and district talent priorities.
+          <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
+            Demo users can review assigned modules, due dates, status, and the next action tied to each leadership gap.
           </p>
         </section>
 
-        {/* METRICS */}
-        <section className="grid md:grid-cols-3 gap-6">
-          <MetricCard
-            label="Active Assignments"
-            value="142"
-          />
-
-          <MetricCard
-            label="Completion Rate"
-            value="81%"
-          />
-
-          <MetricCard
-            label="Avg Growth"
-            value="+11%"
-          />
+        <section className="grid gap-4 md:grid-cols-3">
+          <Metric label="Active Assignments" value="142" />
+          <Metric label="Overdue" value="9" />
+          <Metric label="Completion Rate" value="81%" />
         </section>
 
-        {/* ASSIGNMENT TABLE */}
-        <section className="rounded-[32px] bg-white border border-slate-200 p-8">
-          <div className="flex justify-between items-center mb-8">
+        <section className="rounded-[28px] border border-slate-200 bg-white p-6 sm:p-8">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="text-3xl font-semibold text-slate-900">
-                Current Development Plans
-              </h2>
-
-              <p className="mt-2 text-slate-600">
-                Track leadership development execution across your district.
+              <h2 className="text-2xl font-semibold tracking-[-0.03em]">Live demo assignments</h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Click any action to move into the learning or evidence workflow.
               </p>
             </div>
 
-            <a
-              href="/leader-learning-hub"
-              className="rounded-2xl bg-blue-600 px-6 py-4 text-white font-semibold"
-            >
-              View Learning Hub
+            <a href="/recommendations" className="w-fit rounded-full bg-blue-700 px-5 py-3 text-sm font-semibold text-white">
+              View recommendations
             </a>
           </div>
 
-          <div className="space-y-4">
+          <div className="overflow-hidden rounded-[22px] border border-slate-200">
             {assignments.map((item) => (
-              <div
-                key={item.leader}
-                className="grid grid-cols-5 items-center rounded-2xl border border-slate-200 p-5"
-              >
+              <div key={item.leader} className="grid gap-4 border-b border-slate-100 bg-white p-5 last:border-b-0 lg:grid-cols-[1.2fr_1fr_1fr_0.7fr_0.8fr_auto] lg:items-center">
                 <div>
-                  <p className="font-semibold text-slate-900">
-                    {item.leader}
-                  </p>
-
-                  <p className="text-sm text-slate-500">
-                    {item.school}
-                  </p>
+                  <p className="font-semibold">{item.leader}</p>
+                  <p className="mt-1 text-sm text-slate-500">{item.school}</p>
                 </div>
 
-                <div>{item.gap}</div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Gap</p>
+                  <p className="mt-1 text-sm font-medium">{item.gap}</p>
+                </div>
 
-                <div>{item.module}</div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Module</p>
+                  <p className="mt-1 text-sm font-medium">{item.module}</p>
+                </div>
 
-                <div>{item.status}</div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Due</p>
+                  <p className="mt-1 text-sm font-medium">{item.due}</p>
+                </div>
 
-                <a
-                  href="/leader-learning-hub"
-                  className="text-blue-600 font-semibold"
-                >
-                  Manage
+                <span className="w-fit rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
+                  {item.status}
+                </span>
+
+                <a href="/leader-learning-hub" className="text-sm font-semibold text-blue-700">
+                  {item.action}
                 </a>
               </div>
             ))}
@@ -125,22 +109,11 @@ export default function AssignmentsPage() {
   )
 }
 
-function MetricCard({
-  label,
-  value
-}: {
-  label: string
-  value: string
-}) {
+function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-3xl bg-white border border-slate-200 p-7">
-      <p className="text-sm text-slate-500">
-        {label}
-      </p>
-
-      <h2 className="mt-3 text-4xl font-bold text-slate-900">
-        {value}
-      </h2>
+    <div className="rounded-[24px] border border-slate-200 bg-white p-5">
+      <p className="text-sm text-slate-500">{label}</p>
+      <p className="mt-3 text-3xl font-semibold tracking-[-0.03em]">{value}</p>
     </div>
   )
 }
