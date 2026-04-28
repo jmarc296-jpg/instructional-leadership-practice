@@ -9,8 +9,23 @@ export default function PromotionReadinessPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">Promotion Readiness</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight">Evidence-based readiness decisions</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-gray-600">
-          Translate simulation evidence, competency strength, and evaluator confidence into defensible promotion recommendations.
+          Translate simulation evidence, competency strength, and evaluator confidence into defensible promotion recommendations. Start here to see who is ready, then generate the development plan or validate scoring confidence before a final decision.
         </p>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/calibration-engine"
+            className="rounded-2xl border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold text-[#111827] shadow-sm transition hover:bg-black/[0.03]"
+          >
+            Validate scoring confidence
+          </Link>
+          <Link
+            href="/talent-decisions/executive-reports"
+            className="rounded-2xl bg-[#111827] px-5 py-3 text-center text-sm font-semibold text-white shadow-sm"
+          >
+            View executive report
+          </Link>
+        </div>
       </div>
 
       <section className="mt-6 grid gap-5">
@@ -42,12 +57,20 @@ export default function PromotionReadinessPage() {
                 ))}
               </div>
 
-              <Link
-                href={`/development-prescriptions/${leader.id}`}
-                className="mt-6 inline-block rounded-2xl bg-[#111827] px-5 py-3 text-sm font-semibold text-white"
-              >
-                Generate development plan
-              </Link>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={`/development-prescriptions/${leader.id}`}
+                  className="rounded-2xl bg-[#111827] px-5 py-3 text-center text-sm font-semibold text-white"
+                >
+                  Generate development plan
+                </Link>
+                <Link
+                  href="/calibration-engine"
+                  className="rounded-2xl border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold text-[#111827] shadow-sm transition hover:bg-black/[0.03]"
+                >
+                  Check evaluator calibration
+                </Link>
+              </div>
 
               <div className="mt-6 rounded-2xl border border-black/10 bg-[#f7f7f4] p-5">
                 <p className="font-semibold">{recommendation.decision}</p>
@@ -61,4 +84,5 @@ export default function PromotionReadinessPage() {
     </main>
   )
 }
+
 
