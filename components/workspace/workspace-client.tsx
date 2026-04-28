@@ -6,6 +6,33 @@ import { WorkspaceAssignment, workspaceModules, workspaceStatuses, WorkspaceStat
 
 const STORAGE_KEY = "leadsharper-workspace-assignments"
 
+const activityFeed = [
+  {
+    leader: "A. Johnson",
+    action: "added coaching evidence to DDI internalization",
+    time: "2 hours ago",
+    signal: "Evidence"
+  },
+  {
+    leader: "M. Rivera",
+    action: "completed a walkthrough calibration cycle",
+    time: "Yesterday",
+    signal: "Simulation"
+  },
+  {
+    leader: "A. Johnson",
+    action: "readiness score increased by 6 points",
+    time: "3 days ago",
+    signal: "Growth"
+  },
+  {
+    leader: "District Admin",
+    action: "assigned a new leadership practice module",
+    time: "Today",
+    signal: "Assignment"
+  }
+]
+
 const starterAssignments: WorkspaceAssignment[] = [
   {
     id: "assignment-1",
@@ -253,6 +280,29 @@ export function WorkspaceClient() {
                 )
               })}
             </div>
+                      <div className="mt-5 rounded-3xl border border-black/10 bg-[#f7f5f0] p-4">
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-black/45">Recent activity</h3>
+                  <p className="mt-1 text-sm text-black/55">Live signals across coaching, evidence, and readiness work.</p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {activityFeed.map((item) => (
+                  <div key={item.leader + item.action} className="flex items-start justify-between gap-4 rounded-2xl border border-black/10 bg-white p-3">
+                    <div>
+                      <p className="text-sm font-semibold">{item.leader}</p>
+                      <p className="mt-1 text-sm leading-5 text-black/60">{item.action}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-semibold text-black/55">{item.signal}</span>
+                      <p className="mt-2 text-xs text-black/40">{item.time}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
 
           <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
@@ -359,3 +409,4 @@ function StatusBadge({ status }: { status: WorkspaceStatus }) {
     </span>
   )
 }
+
