@@ -1,4 +1,5 @@
-﻿const metrics = [
+﻿import Image from "next/image"
+const metrics = [
   { label: "Leaders Assessed", value: "284", subtext: "+18% this quarter" },
   { label: "Development Plans", value: "142", subtext: "Across 28 schools" },
   { label: "Ready Now", value: "61", subtext: "Promotion-ready" },
@@ -32,7 +33,7 @@ export default function DistrictPage() {
       <div className="flex min-h-screen">
         <aside className="hidden w-72 border-r border-slate-200 bg-white px-5 py-6 lg:block">
           <a href="/" className="block rounded-2xl bg-slate-50 p-4">
-            <img src="/logo.png" alt="LeadSharper" className="w-full max-w-[170px]" />
+            <Image src="/logo.png" alt="LeadSharper" width={170} height={50} priority className="w-full max-w-[170px] h-auto" />
           </a>
 
           <nav className="mt-8 space-y-1 text-sm font-medium">
@@ -159,3 +160,4 @@ function NavLink({
     </a>
   )
 }
+

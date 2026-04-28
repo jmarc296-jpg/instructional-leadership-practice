@@ -5,6 +5,7 @@ const navItems = [
   { label: "Onboarding", href: "/onboarding" },
   { label: "Leaders", href: "/talent-review" },
   { label: "Workspace", href: "/workspace" },
+  { label: "Talent Decisions", href: "/talent-decisions" },
   { label: "Simulations", href: "/simulation-room" },
   { label: "Evaluation Engine", href: "/evaluation-engine" },
   { label: "Assignments", href: "/assignments" },
@@ -72,6 +73,7 @@ export function EnterpriseShell({ children }: { children: React.ReactNode }) {
     </div>
   )
 }
+
 
 
 
