@@ -69,7 +69,7 @@ export default function PlatformDemoPage() {
               </p>
 
               <div className="mt-6 text-blue-600 font-semibold">
-                {demo.cta} >
+                {demo.cta} &gt;
               </div>
             </a>
           ))}
@@ -140,3 +140,4 @@ function ValueCard({
     </div>
   )
 }
+
