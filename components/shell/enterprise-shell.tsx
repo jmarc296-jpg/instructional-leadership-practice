@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 const navItems = [
-  { label: "Dashboard", href: "/dashboard" },
+  { label: "Dashboard", href: "/dashboard" },`r`n  { label: "Onboarding", href: "/onboarding" },
   { label: "Leaders", href: "/talent-review" },
   { label: "Workspace", href: "/workspace" },
   { label: "Simulations", href: "/simulation-room" },
@@ -57,9 +57,7 @@ export function EnterpriseShell({ children }: { children: React.ReactNode }) {
               <button className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black/65 shadow-sm transition hover:bg-black/[0.03]">
                 Alerts
               </button>
-              <button className="rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">
-                New assignment
-              </button>
+              <Link href="/workspace" className="rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">New assignment</Link>
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-[#f7f5f0] text-sm font-bold">
                 MJ
               </div>
@@ -72,4 +70,5 @@ export function EnterpriseShell({ children }: { children: React.ReactNode }) {
     </div>
   )
 }
+
 
