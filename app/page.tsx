@@ -30,11 +30,10 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link href="/district-audit" className="inline-flex items-center justify-center rounded-full bg-black px-7 py-4 text-sm font-bold text-white transition hover:bg-neutral-800">
+            <Link href="/data-intake" className="inline-flex items-center justify-center rounded-full bg-black px-7 py-4 text-sm font-bold text-white transition hover:bg-neutral-800">
               Upload District Data
             </Link>
-
-            <Link href="/executive-intelligence" className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white/40 px-7 py-4 text-sm font-bold transition hover:border-black hover:bg-white">
+<Link href="/executive-intelligence" className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white/40 px-7 py-4 text-sm font-bold transition hover:border-black hover:bg-white">
               View Executive Intelligence
             </Link>
           </div>
@@ -71,3 +70,6 @@ export default function HomePage() {
     </main>
   );
 }
+
+
+
