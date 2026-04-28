@@ -1,23 +1,11 @@
-﻿const districtMetrics = [
-  {
-    label: "Leaders Assessed",
-    value: "84"
-  },
-  {
-    label: "Average Readiness Score",
-    value: "78%"
-  },
-  {
-    label: "Module Completion Rate",
-    value: "81%"
-  },
-  {
-    label: "Retention Risk Leaders",
-    value: "9"
-  }
+const metrics = [
+  { label: "Leaders Assessed", value: "84" },
+  { label: "Average Readiness Score", value: "78%" },
+  { label: "Module Completion Rate", value: "81%" },
+  { label: "Retention Risk Leaders", value: "9" }
 ]
 
-const topGaps = [
+const gaps = [
   "Instructional Feedback",
   "Coaching Conversations",
   "School Culture",
@@ -32,72 +20,76 @@ const actions = [
 
 export default function DemoDistrictPage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:p-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-          District Leadership Command Center
-        </h1>
+    <main className="min-h-screen bg-slate-100 px-6 py-8">
+      <div className="mx-auto max-w-7xl">
 
-        <p className="text-slate-600 mb-8">
-          Identify leadership gaps, assign development, and reduce costly turnover.
-        </p>
+        <a
+          href="/"
+          className="inline-flex items-center rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+        >
+          ? Back to Homepage
+        </a>
 
-        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {districtMetrics.map((metric) => (
+        <div className="mt-6">
+          <h1 className="text-5xl font-bold text-slate-900">
+            District Leadership Command Center
+          </h1>
+
+          <p className="mt-4 text-xl text-slate-600">
+            Identify leadership gaps, assign development, and reduce costly turnover.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-4">
+          {metrics.map((metric) => (
             <div
               key={metric.label}
-              className="bg-white p-6 rounded-2xl border"
+              className="rounded-3xl border border-slate-200 bg-white p-8"
             >
-              <p className="text-sm text-slate-500">
-                {metric.label}
-              </p>
-
-              <h2 className="text-3xl font-bold mt-2">
+              <p className="text-sm text-slate-500">{metric.label}</p>
+              <h2 className="mt-4 text-5xl font-bold text-slate-900">
                 {metric.value}
               </h2>
             </div>
           ))}
-        </section>
+        </div>
 
-        <div className="grid gap-4 lg:grid-cols-2 gapx-4 py-6 sm:p-8">
-          <section className="bg-white p-6 rounded-2xl border">
-            <h2 className="text-xl font-semibold mb-4">
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl border border-slate-200 bg-white p-8">
+            <h2 className="text-3xl font-bold text-slate-900">
               Top Leadership Gaps
             </h2>
 
-            <div className="space-y-3">
-              {topGaps.map((gap) => (
+            <div className="mt-6 space-y-4">
+              {gaps.map((gap) => (
                 <div
                   key={gap}
-                  className="bg-slate-100 rounded-xl p-3"
+                  className="rounded-2xl bg-slate-100 p-5"
                 >
                   {gap}
                 </div>
               ))}
             </div>
-          </section>
+          </div>
 
-          <section className="bg-white p-6 rounded-2xl border">
-            <h2 className="text-xl font-semibold mb-4">
+          <div className="rounded-3xl border border-slate-200 bg-white p-8">
+            <h2 className="text-3xl font-bold text-slate-900">
               Recommended District Actions
             </h2>
 
-            <div className="space-y-3">
+            <div className="mt-6 space-y-4">
               {actions.map((action) => (
                 <div
                   key={action}
-                  className="bg-green-50 rounded-xl p-3"
+                  className="rounded-2xl bg-green-50 p-5"
                 >
                   {action}
                 </div>
               ))}
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </main>
   )
 }
-
-
-
