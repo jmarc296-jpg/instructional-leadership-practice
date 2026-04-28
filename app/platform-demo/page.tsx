@@ -1,67 +1,25 @@
-﻿import Image from "next/image"
-import Link from "next/link"
-
-const demoFlow = [
+﻿const demos = [
   {
-    step: "1",
-    title: "Executive District View",
-    description: "See district-wide leadership readiness, risks, gaps, and next actions.",
-    route: "/demo-district",
-    cta: "Open Demo District"
+    title: "Leadership Simulation",
+    description: "See how school leaders respond to high-stakes leadership scenarios.",
+    route: "/instant-demo",
+    cta: "Try Simulation"
   },
   {
-    step: "2",
     title: "District Dashboard",
-    description: "Monitor active assignments, readiness growth, and leaders requiring attention.",
+    description: "Track readiness trends, risks, and leadership pipeline health.",
     route: "/district",
     cta: "View Dashboard"
   },
   {
-    step: "3",
-    title: "Talent Review",
-    description: "Review promotion readiness, succession planning, and external hiring dependency.",
-    route: "/talent-review",
-    cta: "Open Talent Review"
-  },
-  {
-    step: "4",
-    title: "Promotion Readiness Dossier",
-    description: "Drill into one leader readiness trend, competencies, simulation history, and recommendation.",
-    route: "/promotion-readiness/4",
-    cta: "Review Leader"
-  },
-  {
-    step: "5",
-    title: "Simulation Room",
-    description: "Experience the leadership scenario assessment from the principal perspective.",
-    route: "/simulation-room",
-    cta: "Try Simulation"
-  },
-  {
-    step: "6",
-    title: "Recommendations",
-    description: "Connect assessment results to targeted development modules.",
-    route: "/recommendations",
-    cta: "View Recommendations"
-  },
-  {
-    step: "7",
-    title: "Assignments",
-    description: "Assign modules, set due dates, and queue notifications.",
+    title: "Development Engine",
+    description: "Assign targeted development based on leadership gaps.",
     route: "/assignments",
-    cta: "Create Assignment"
+    cta: "View Assignments"
   },
   {
-    step: "8",
-    title: "Assignment Dashboard",
-    description: "Track completion, overdue assignments, and notification status.",
-    route: "/assignment-dashboard",
-    cta: "Track Assignments"
-  },
-  {
-    step: "9",
-    title: "Impact Dashboard",
-    description: "Show readiness growth, competency gains, and district ROI.",
+    title: "Impact Reporting",
+    description: "Measure leadership growth after intervention.",
     route: "/impact-dashboard",
     cta: "View Impact"
   }
@@ -69,85 +27,116 @@ const demoFlow = [
 
 export default function PlatformDemoPage() {
   return (
-    <main className="min-h-screen bg-slate-100">
-      <section className="bg-slate-950 px-8 py-6">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Image
-            src="/logo.png"
-            alt="LeadSharper"
-            width={180}
-            height={70}
-            className="h-auto w-[170px]"
-          />
+    <main className="min-h-screen bg-slate-50 px-6 py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl space-y-10">
 
-          <Link
-            href="/pilot"
-            className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white"
-          >
-            Launch Pilot
-          </Link>
-        </div>
-      </section>
+        <a
+          href="/"
+          className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
+        >
+          Back to Homepage
+        </a>
 
-      <section className="bg-gradient-to-r from-slate-950 to-blue-900 px-8 py-12 text-white">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
-            Guided Platform Demo
+        {/* HERO */}
+        <section className="rounded-[32px] bg-white border border-slate-200 px-8 py-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
+            Platform Walkthrough
           </p>
 
-          <h1 className="mt-4 max-w-4xl text-3xl sm:text-4xl sm:text-5xl font-bold tracking-tight">
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-900 max-w-4xl leading-tight">
             See how LeadSharper helps districts assess, develop, and retain stronger school leaders.
           </h1>
 
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-            Follow the full workflow from district readiness insights to individual leader development, assignment tracking, and measurable impact.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-8 py-10">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {demoFlow.map((item) => (
-            <div
-              key={item.step}
-              className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm"
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 font-bold text-white">
-                  {item.step}
-                </div>
-
-                <h2 className="text-xl font-bold text-slate-950">
-                  {item.title}
-                </h2>
-              </div>
-
-              <p className="mt-4 min-h-[72px] text-slate-600">
-                {item.description}
-              </p>
-
-              <Link
-                href={item.route}
-                className="mt-6 inline-flex w-full justify-center rounded-2xl bg-slate-950 px-5 py-3 font-semibold text-white"
-              >
-                {item.cta}
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        <section className="mt-10 rounded-3xl border border-blue-100 bg-blue-50 px-4 py-6 sm:p-8">
-          <h2 className="text-2xl font-bold text-slate-950">
-            Demo Narrative
-          </h2>
-
-          <p className="mt-4 max-w-4xl leading-8 text-slate-700">
-            LeadSharper gives districts a closed-loop leadership development system: assess leadership judgment, diagnose readiness gaps, assign targeted development, track execution, and prove growth over time.
+          <p className="mt-5 text-lg text-slate-600 max-w-2xl leading-8">
+            Follow the full workflow from leadership assessment to development planning and measurable readiness growth.
           </p>
         </section>
-      </section>
+
+        {/* DEMO FLOW */}
+        <section className="grid md:grid-cols-2 gap-6">
+          {demos.map((demo) => (
+            <a
+              key={demo.title}
+              href={demo.route}
+              className="rounded-3xl bg-white border border-slate-200 p-8 hover:border-slate-300 transition"
+            >
+              <h2 className="text-3xl font-semibold text-slate-900">
+                {demo.title}
+              </h2>
+
+              <p className="mt-4 text-slate-600 leading-8">
+                {demo.description}
+              </p>
+
+              <div className="mt-6 text-blue-600 font-semibold">
+                {demo.cta} >
+              </div>
+            </a>
+          ))}
+        </section>
+
+        {/* PLATFORM VALUE */}
+        <section className="rounded-[32px] bg-slate-900 text-white px-8 py-10">
+          <h2 className="text-4xl font-semibold tracking-tight">
+            Why districts care
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <ValueCard
+              title="Reduce Failed Hires"
+              text="Identify weak leadership judgment before promotions happen."
+            />
+
+            <ValueCard
+              title="Accelerate Development"
+              text="Assign targeted coaching faster."
+            />
+
+            <ValueCard
+              title="Strengthen Succession"
+              text="Build stronger internal leadership pipelines."
+            />
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="rounded-[32px] bg-blue-50 px-8 py-10">
+          <h2 className="text-4xl font-semibold text-slate-900">
+            Ready to explore a pilot?
+          </h2>
+
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl leading-8">
+            Start with a small cohort and evaluate how LeadSharper fits your leadership pipeline.
+          </p>
+
+          <a
+            href="/pilot"
+            className="inline-block mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-white font-semibold hover:bg-blue-700"
+          >
+            Apply for Pilot
+          </a>
+        </section>
+      </div>
     </main>
   )
 }
 
+function ValueCard({
+  title,
+  text
+}: {
+  title: string
+  text: string
+}) {
+  return (
+    <div className="rounded-3xl bg-slate-800 p-6">
+      <h3 className="text-2xl font-semibold text-white">
+        {title}
+      </h3>
 
+      <p className="mt-3 text-slate-300 leading-7">
+        {text}
+      </p>
+    </div>
+  )
+}
