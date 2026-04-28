@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
 import { EnterpriseShell } from "@/components/shell/enterprise-shell"
 import { WorkspaceAssignment, workspaceModules, workspaceStatuses, WorkspaceStatus } from "@/lib/workspace-data"
@@ -261,7 +262,7 @@ export function WorkspaceClient() {
                     </div>
 
                     <div className="mt-4 grid gap-3 text-sm text-black/65 md:grid-cols-4">
-                      <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Owner</span>{assignment.assignee}</p>
+                      <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Owner</span><Link href={`/leader-profile/${assignment.id}`} className="font-semibold underline-offset-4 hover:underline">{assignment.assignee}</Link></p>
                       <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Role</span>{assignment.role}</p>
                       <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Due</span>{assignment.dueDate}</p>
                       <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Signal</span>{days < 0 ? `${Math.abs(days)} days late` : `${days} days left`}</p>
@@ -311,7 +312,7 @@ export function WorkspaceClient() {
                 <div className="mb-5 flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/35">Leader record</p>
-                    <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em]">{selectedAssignment.assignee}</h2>
+                    <Link href={`/leader-profile/${selectedAssignment.id}`} className="mt-2 block text-2xl font-semibold tracking-[-0.03em] underline-offset-4 hover:underline">{selectedAssignment.assignee}</Link>
                     <p className="mt-1 text-sm text-black/55">{selectedAssignment.title}</p>
                   </div>
                   <button onClick={() => deleteAssignment(selectedAssignment.id)} className="rounded-xl border border-black/10 px-3 py-2 text-xs font-semibold text-black/60 hover:bg-red-50 hover:text-red-700">
@@ -409,4 +410,6 @@ function StatusBadge({ status }: { status: WorkspaceStatus }) {
     </span>
   )
 }
+
+
 
