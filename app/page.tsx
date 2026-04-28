@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import Image from "next/image"
 
 const proofPoints = [
@@ -40,6 +40,7 @@ export default function HomePage() {
           <div className="hidden items-center gap-7 text-sm font-medium text-black/65 md:flex">
             <Link href="/simulation-room" className="hover:text-black">Simulation</Link>
             <Link href="/workspace" className="hover:text-black">Workspace</Link>
+            <Link href="/talent-decisions" className="hover:text-black">Talent Decisions</Link>
             <Link href="/district" className="hover:text-black">Dashboard</Link>
             <Link href="/procurement" className="hover:text-black">Procurement</Link>
           </div>
@@ -125,6 +126,46 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+    
+      <section className="mx-auto mt-8 max-w-6xl rounded-[2rem] border border-black/10 bg-[#111827] p-8 text-white shadow-sm">
+        <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
+              Talent Decision Engine
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight">
+              Know who is ready, where the bench is thin, and which promotion decisions carry risk.
+            </h2>
+            <p className="mt-4 max-w-3xl leading-7 text-white/70">
+              LeadSharper connects simulations, readiness evidence, succession depth, and promotion recommendations into one district-facing talent decision system.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+            <div className="grid gap-3 text-sm">
+              <div className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
+                <span>Ready-now leaders</span>
+                <span className="font-bold">12</span>
+              </div>
+              <div className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
+                <span>High-risk vacancies</span>
+                <span className="font-bold">5</span>
+              </div>
+              <div className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
+                <span>Pipeline health</span>
+                <span className="font-bold">Moderate</span>
+              </div>
+            </div>
+
+            <Link
+              href="/talent-decisions"
+              className="mt-5 block rounded-2xl bg-white px-5 py-3 text-center text-sm font-semibold text-[#111827] transition hover:bg-white/90"
+            >
+              View talent decisions
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
@@ -157,5 +198,6 @@ function DarkMetric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
 
