@@ -104,12 +104,12 @@ export default function HomePage() {
           </h2>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div>• Aspiring principal cohorts</div>
-            <div>• New principal onboarding</div>
-            <div>• Leadership academies</div>
-            <div>• Succession planning</div>
-            <div>• Principal supervisor coaching</div>
-            <div>• Leadership retention strategy</div>
+            <div>â€¢ Aspiring principal cohorts</div>
+            <div>â€¢ New principal onboarding</div>
+            <div>â€¢ Leadership academies</div>
+            <div>â€¢ Succession planning</div>
+            <div>â€¢ Principal supervisor coaching</div>
+            <div>â€¢ Leadership retention strategy</div>
           </div>
         </section>
 
