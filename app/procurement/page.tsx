@@ -1,4 +1,4 @@
-export default function ProcurementPage() {
+ï»¿export default function ProcurementPage() {
   return (
     <main className="min-h-screen bg-slate-100 px-8 py-10">
       <div className="mx-auto max-w-6xl space-y-8">
@@ -23,10 +23,10 @@ export default function ProcurementPage() {
           <h2 className="text-3xl font-bold">District Risk Reduction</h2>
 
           <ul className="mt-6 space-y-4 text-lg text-slate-700">
-            <li>• Identify leaders who avoid difficult conversations before promotion.</li>
-            <li>• Surface weak instructional feedback patterns early.</li>
-            <li>• Strengthen succession planning before vacancies create urgency.</li>
-            <li>• Provide board-ready reporting on leadership pipeline health.</li>
+            <li>- Identify leaders who avoid difficult conversations before promotion.</li>
+            <li>- Surface weak instructional feedback patterns early.</li>
+            <li>- Strengthen succession planning before vacancies create urgency.</li>
+            <li>- Provide board-ready reporting on leadership pipeline health.</li>
           </ul>
         </div>
 
