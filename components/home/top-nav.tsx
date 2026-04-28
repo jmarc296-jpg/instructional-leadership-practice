@@ -1,47 +1,43 @@
-import { Brain } from 'lucide-react'
-
 export function TopNav() {
   return (
-    <header className="rounded-[28px] border border-slate-200/80 bg-white/90 p-4 shadow-sm backdrop-blur">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <a href="/" className="flex items-center gap-2">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white">
-            <Brain size={20} />
-          </div>
+    <nav className="flex items-center justify-between rounded-3xl bg-white px-5 py-4 border border-slate-200">
+      <a href="/" className="flex items-center gap-3">
+        <img
+          src="/logo.png"
+          alt="LeadSharper"
+          className="h-10 w-auto"
+        />
 
-          <div>
-            <div className="text-sm font-semibold text-slate-950">
-              LeadSharper
-            </div>
-            <div className="text-xs text-slate-500">
-              Leadership readiness infrastructure
-            </div>
-          </div>
+        <div>
+          <p className="text-sm font-bold text-slate-950">LeadSharper</p>
+          <p className="text-xs text-slate-500">Leadership readiness infrastructure</p>
+        </div>
+      </a>
+
+      <div className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
+        <a href="/instant-demo" className="hover:text-blue-600">
+          Try Simulation
         </a>
 
-        <nav className="flex flex-wrap gap-2">
-          <a
-            href="/instant-demo"
-            className="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
-          >
-            Run Simulation
-          </a>
+        <a href="/district" className="hover:text-blue-600">
+          District Dashboard
+        </a>
 
-          <a
-            href="/district"
-            className="rounded-2xl bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-200"
-          >
-            District Intelligence
-          </a>
+        <a href="/platform-demo" className="hover:text-blue-600">
+          Platform Tour
+        </a>
 
-          <a
-            href="/pilot"
-            className="rounded-2xl bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-200"
-          >
-            Apply for Pilot
-          </a>
-        </nav>
+        <a href="/procurement" className="hover:text-blue-600">
+          Procurement
+        </a>
       </div>
-    </header>
+
+      <a
+        href="/pilot"
+        className="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+      >
+        Schedule Pilot
+      </a>
+    </nav>
   )
 }
