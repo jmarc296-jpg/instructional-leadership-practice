@@ -41,9 +41,35 @@ export function EnterpriseShell({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      <div className="lg:pl-72">
+            <div className="lg:pl-72">
+        <header className="sticky top-0 z-30 border-b border-black/10 bg-white/85 px-6 py-3 backdrop-blur lg:px-8">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+            <div className="flex min-w-0 flex-1 items-center rounded-2xl border border-black/10 bg-[#f7f5f0] px-4 py-3">
+              <span className="mr-3 text-black/35">?</span>
+              <input
+                aria-label="Search"
+                placeholder="Search leaders, assignments, simulations, evidence..."
+                className="w-full bg-transparent text-sm outline-none placeholder:text-black/35"
+              />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black/65 shadow-sm transition hover:bg-black/[0.03]">
+                Alerts
+              </button>
+              <button className="rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">
+                New assignment
+              </button>
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-[#f7f5f0] text-sm font-bold">
+                MJ
+              </div>
+            </div>
+          </div>
+        </header>
+
         {children}
       </div>
     </div>
   )
 }
+
