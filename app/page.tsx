@@ -1,192 +1,114 @@
-import Image from 'next/image'
-import { TopNav } from '@/components/home/top-nav'
-
-const workflow = [
-  {
-    step: '1',
-    title: 'Simulate',
-    text: 'Leaders respond to real school leadership scenarios before the stakes are live.'
-  },
-  {
-    step: '2',
-    title: 'Diagnose',
-    text: 'LeadSharper surfaces readiness gaps, risk signals, and coaching priorities.'
-  },
-  {
-    step: '3',
-    title: 'Assign',
-    text: 'District teams assign targeted development based on the leader response.'
-  },
-  {
-    step: '4',
-    title: 'Track',
-    text: 'Dashboards show completion, growth, and leadership pipeline movement.'
-  },
-  {
-    step: '5',
-    title: 'Decide',
-    text: 'Talent teams use readiness evidence to support promotion and succession decisions.'
-  }
-]
-
-const useCases = [
-  'Aspiring principal cohorts',
-  'New principal onboarding',
-  'Leadership academies',
-  'Succession planning',
-  'Principal supervisor coaching',
-  'Leadership retention strategy'
-]
+﻿import Image from "next/image"
+import { TopNav } from "@/components/home/top-nav"
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl space-y-8">
+    <main className="min-h-screen bg-slate-50 px-6 py-8 lg:px-10">
+      <div className="mx-auto max-w-7xl space-y-12">
+
         <TopNav />
 
-        <section className="rounded-[36px] bg-white px-4 py-6 sm:p-8 border border-slate-200">
-          <div className="flex flex-col gap-4 py-6 sm:p-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
+        {/* HERO */}
+        <section className="rounded-[32px] bg-white border border-slate-200 px-6 py-10 lg:px-10 lg:py-14">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
                 LeadSharper
               </p>
 
-              <h1 className="mt-5 text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.04em] text-slate-950">
-                Measure principal readiness before the job is on the line.
+              <h1 className="mt-5 text-4xl lg:text-6xl font-semibold tracking-tight text-slate-950 leading-tight">
+                Measure principal readiness before bad hires become expensive.
               </h1>
 
-              <p className="mt-6 max-w-2xl text-xl leading-9 text-slate-600">
-                LeadSharper helps districts assess leadership readiness through real-world simulations,
-                identify development gaps, and make stronger promotion decisions.
-              </p>
-
-              <p className="mt-4 text-sm font-medium text-slate-500">
-                Built from real district leadership coaching, DDI systems, APT facilitation,
-                and principal pipeline development.
+              <p className="mt-5 text-lg text-slate-600 leading-8 max-w-xl">
+                LeadSharper helps districts assess leadership judgment through simulations, identify development gaps, and build stronger principal pipelines.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
                   href="/instant-demo"
-                  className="rounded-2xl bg-blue-600 px-7 py-4 text-sm font-semibold text-white hover:bg-blue-700"
+                  className="rounded-2xl bg-blue-600 px-6 py-4 text-white font-semibold hover:bg-blue-700"
                 >
-                  Test LeadSharper in 90 seconds
+                  Try Simulation
                 </a>
 
                 <a
                   href="/district"
-                  className="rounded-2xl border border-slate-300 px-7 py-4 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+                  className="rounded-2xl border border-slate-300 px-6 py-4 font-semibold text-slate-900 hover:bg-slate-50"
                 >
-                  View district intelligence
+                  View District Dashboard
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center justify-center">
+            <div className="flex justify-center">
               <Image
                 src="/logo.png"
                 alt="LeadSharper"
-                width={560}
-                height={360}
+                width={520}
+                height={340}
                 priority
-                className="h-auto w-full max-w-[560px] object-contain"
+                className="w-full max-w-[500px] h-auto object-contain"
               />
             </div>
           </div>
         </section>
 
-        <section className="grid gap-5 md:grid-cols-3">
+        {/* BUYER PATHS */}
+        <section className="grid md:grid-cols-3 gap-6">
           <Card
             title="For School Leaders"
-            text="Practice high-stakes leadership moments and receive immediate readiness feedback."
+            text="Practice real leadership scenarios and receive immediate feedback."
             href="/instant-demo"
-            cta="Start simulation"
+            cta="Start Simulation >"
           />
 
           <Card
             title="For District Teams"
-            text="See readiness, risk, coaching needs, and succession signals across your leadership pipeline."
+            text="Track readiness, identify risks, and strengthen succession planning."
             href="/district"
-            cta="View district intelligence"
+            cta="View Dashboard >"
           />
 
           <Card
-            title="For District Pilot Programs"
-            text="Launch readiness pilots for aspiring and new principals."
+            title="Pilot Programs"
+            text="Launch a pilot cohort and evaluate leadership readiness at scale."
             href="/pilot"
-            cta="Explore pilot"
+            cta="Launch Pilot >"
           />
         </section>
 
-        <section className="rounded-[32px] bg-slate-900 px-4 py-6 sm:p-8 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
-            Why this matters
+        {/* WHY IT MATTERS */}
+        <section className="rounded-[32px] bg-slate-900 text-white px-8 py-10">
+          <p className="text-sm uppercase tracking-[0.25em] text-blue-300 font-semibold">
+            Why districts buy
           </p>
 
-          <h2 className="mt-4 max-w-4xl text-3xl sm:text-4xl font-semibold tracking-tight">
-            Districts do not just need more leadership training. They need better evidence of readiness.
+          <h2 className="mt-4 text-3xl lg:text-5xl font-semibold leading-tight max-w-4xl">
+            Interviews and resumes do not predict leadership performance.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-            Interviews, resumes, and reputation are not enough. LeadSharper creates observable leadership performance data before promotion, placement, or coaching decisions become high stakes.
+          <p className="mt-5 text-lg text-slate-300 leading-8 max-w-2xl">
+            LeadSharper creates real performance signals before promotions, placements, and coaching decisions become costly mistakes.
           </p>
         </section>
 
-        <section className="rounded-[32px] bg-white border border-slate-200 px-4 py-6 sm:p-8">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
-              Closed-loop readiness system
-            </p>
-
-            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
-              From leadership simulation to promotion decision.
-            </h2>
-
-            <p className="mt-4 leading-8 text-slate-600">
-              LeadSharper connects assessment, development, tracking, and talent review into one practical workflow for district leadership teams.
-            </p>
-          </div>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-5">
-            {workflow.map((item) => (
-              <WorkflowStep
-                key={item.step}
-                step={item.step}
-                title={item.title}
-                text={item.text}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="rounded-[32px] bg-white border border-slate-200 px-4 py-6 sm:p-8">
-          <h2 className="text-3xl font-semibold text-slate-900">
-            Built for district leadership decisions
-          </h2>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {useCases.map((item) => (
-              <div key={item} className="rounded-2xl bg-slate-50 border border-slate-200 p-5 text-slate-700">
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="rounded-[32px] bg-blue-50 px-4 py-6 sm:p-8">
-          <h2 className="text-3xl font-semibold text-slate-900">
+        {/* FINAL CTA */}
+        <section className="rounded-[32px] bg-blue-50 px-8 py-10">
+          <h2 className="text-3xl lg:text-4xl font-semibold text-slate-900">
             Ready to evaluate a pilot?
           </h2>
 
-          <p className="mt-4 max-w-2xl leading-8 text-slate-700">
-            Start with a small leadership cohort and determine whether LeadSharper can strengthen your district pipeline.
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl leading-8">
+            Start with a small cohort. Measure readiness. Make stronger leadership decisions.
           </p>
 
           <a
             href="/pilot"
-            className="mt-6 inline-block rounded-2xl bg-blue-600 px-7 py-4 text-sm font-semibold text-white hover:bg-blue-700"
+            className="inline-block mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-white font-semibold hover:bg-blue-700"
           >
-            Schedule a Pilot Conversation
+            Apply for Pilot
           </a>
         </section>
       </div>
@@ -208,45 +130,19 @@ function Card({
   return (
     <a
       href={href}
-      className="rounded-3xl bg-white p-7 border border-slate-200 transition hover:border-slate-300"
+      className="rounded-3xl bg-white border border-slate-200 p-7 hover:border-slate-300 transition"
     >
-      <h3 className="text-2xl font-semibold text-slate-950">
+      <h3 className="text-2xl font-semibold text-slate-900">
         {title}
       </h3>
 
-      <p className="mt-3 leading-7 text-slate-600">
+      <p className="mt-3 text-slate-600 leading-7">
         {text}
       </p>
 
-      <div className="mt-5 text-sm font-semibold text-blue-700">
+      <div className="mt-5 text-blue-600 font-semibold">
         {cta}
       </div>
     </a>
-  )
-}
-
-function WorkflowStep({
-  step,
-  title,
-  text
-}: {
-  step: string
-  title: string
-  text: string
-}) {
-  return (
-    <div className="rounded-2xl bg-slate-50 border border-slate-200 p-5">
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-        {step}
-      </div>
-
-      <h3 className="mt-4 font-semibold text-slate-950">
-        {title}
-      </h3>
-
-      <p className="mt-3 text-sm leading-6 text-slate-600">
-        {text}
-      </p>
-    </div>
   )
 }
