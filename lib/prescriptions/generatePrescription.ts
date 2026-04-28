@@ -1,5 +1,11 @@
-export function generatePrescription(risk: string) {
-  const prescriptions = {
+type RiskLevel =
+  | "Immediate Intervention"
+  | "High Risk"
+  | "Moderate Risk"
+  | "Low Risk";
+
+export function generatePrescription(risk: RiskLevel) {
+  const prescriptions: Record<RiskLevel, string[]> = {
     "Immediate Intervention": [
       "Weekly executive coaching",
       "Instructional walkthrough calibration",
