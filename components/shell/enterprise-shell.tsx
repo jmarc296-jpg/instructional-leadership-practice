@@ -1,7 +1,8 @@
 import Link from "next/link"
 
 const navItems = [
-  { label: "Dashboard", href: "/dashboard" },`r`n  { label: "Onboarding", href: "/onboarding" },
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "Onboarding", href: "/onboarding" },
   { label: "Leaders", href: "/talent-review" },
   { label: "Workspace", href: "/workspace" },
   { label: "Simulations", href: "/simulation-room" },
@@ -70,5 +71,6 @@ export function EnterpriseShell({ children }: { children: React.ReactNode }) {
     </div>
   )
 }
+
 
 
