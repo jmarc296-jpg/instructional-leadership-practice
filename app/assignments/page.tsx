@@ -1,172 +1,146 @@
-﻿'use client'
-
-import { useState } from 'react'
-import { getAssignments, saveAssignment } from '@/lib/local-store'
-import { TopNav } from '@/components/home/top-nav'
-
-const modules = [
-  'DDI Execution',
-  'Crucial Conversations',
-  'Teacher Coaching',
-  'Instructional Walkthroughs',
-  'School Culture Leadership',
-  'Strategic Staffing'
+﻿const assignments = [
+  {
+    leader: "Assistant Principal A",
+    school: "East High School",
+    gap: "Instructional Feedback",
+    module: "Coaching Difficult Conversations",
+    status: "In Progress"
+  },
+  {
+    leader: "Principal B",
+    school: "Lincoln Middle School",
+    gap: "Operational Leadership",
+    module: "Systems Execution",
+    status: "Assigned"
+  },
+  {
+    leader: "Dean C",
+    school: "Washington Elementary",
+    gap: "Culture Leadership",
+    module: "School Culture Reset",
+    status: "Completed"
+  }
 ]
 
 export default function AssignmentsPage() {
-  const [leaderName, setLeaderName] = useState('')
-  const [recipientEmail, setRecipientEmail] = useState('')
-  const [role, setRole] = useState('Assistant Principal')
-  const [module, setModule] = useState(modules[0])
-  const [dueDate, setDueDate] = useState('')
-  const [notification, setNotification] = useState('')
-  const [refreshKey, setRefreshKey] = useState(0)
-
-  const assignments = getAssignments()
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    if (!leaderName.trim() || !recipientEmail.trim() || !dueDate) return
-
-    saveAssignment({
-      leaderName,
-      role,
-      module,
-      dueDate,
-      status: 'Assigned'
-    })
-
-    setNotification(`Notification queued for ${recipientEmail}: ${module} assigned and due on ${dueDate}.`)
-    setLeaderName('')
-    setRecipientEmail('')
-    setRole('Assistant Principal')
-    setModule(modules[0])
-    setDueDate('')
-    setRefreshKey((key) => key + 1)
-  }
-
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-8">
-        <TopNav />
+    <main className="min-h-screen bg-slate-50 px-6 py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl space-y-10">
 
-        <section className="rounded-3xl bg-slate-950 px-4 py-6 sm:p-8 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
-            Assignment Engine
+        <a
+          href="/district"
+          className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
+        >
+          Back to Dashboard
+        </a>
+
+        {/* HERO */}
+        <section className="rounded-[32px] bg-white border border-slate-200 px-8 py-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
+            Development Assignments
           </p>
 
-          <h1 className="mt-4 max-w-3xl text-3xl sm:text-4xl font-semibold tracking-tight">
-            Assign targeted leadership development modules.
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-900">
+            Turn leadership gaps into action.
           </h1>
 
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-            Assign development modules, set due dates, and queue recipient notifications.
+          <p className="mt-5 text-lg text-slate-600 max-w-2xl leading-8">
+            Assign targeted development based on simulation results, readiness reviews, and district talent priorities.
           </p>
         </section>
 
-        {notification && (
-          <div className="rounded-2xl border border-green-200 bg-green-50 p-5 text-green-800">
-            {notification}
+        {/* METRICS */}
+        <section className="grid md:grid-cols-3 gap-6">
+          <MetricCard
+            label="Active Assignments"
+            value="142"
+          />
+
+          <MetricCard
+            label="Completion Rate"
+            value="81%"
+          />
+
+          <MetricCard
+            label="Avg Growth"
+            value="+11%"
+          />
+        </section>
+
+        {/* ASSIGNMENT TABLE */}
+        <section className="rounded-[32px] bg-white border border-slate-200 p-8">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-3xl font-semibold text-slate-900">
+                Current Development Plans
+              </h2>
+
+              <p className="mt-2 text-slate-600">
+                Track leadership development execution across your district.
+              </p>
+            </div>
+
+            <a
+              href="/leader-learning-hub"
+              className="rounded-2xl bg-blue-600 px-6 py-4 text-white font-semibold"
+            >
+              View Learning Hub
+            </a>
           </div>
-        )}
 
-        <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <form onSubmit={handleSubmit} className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
-            <h2 className="text-2xl font-semibold text-slate-900">
-              Create Assignment
-            </h2>
-
-            <div className="mt-6 space-y-4">
-              <input
-                value={leaderName}
-                onChange={(e) => setLeaderName(e.target.value)}
-                placeholder="Leader name"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3"
-              />
-
-              <input
-                type="email"
-                value={recipientEmail}
-                onChange={(e) => setRecipientEmail(e.target.value)}
-                placeholder="Recipient email"
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3"
-              />
-
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3"
+          <div className="space-y-4">
+            {assignments.map((item) => (
+              <div
+                key={item.leader}
+                className="grid grid-cols-5 items-center rounded-2xl border border-slate-200 p-5"
               >
-                <option>Principal</option>
-                <option>Assistant Principal</option>
-                <option>Instructional Coach</option>
-                <option>Dean / Operations Leader</option>
-                <option>Aspiring Leader</option>
-              </select>
+                <div>
+                  <p className="font-semibold text-slate-900">
+                    {item.leader}
+                  </p>
 
-              <select
-                value={module}
-                onChange={(e) => setModule(e.target.value)}
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3"
-              >
-                {modules.map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
-
-              <input
-                type="date"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
-                className="w-full rounded-2xl border border-slate-300 px-4 py-3"
-              />
-
-              <button className="w-full rounded-2xl bg-blue-600 px-6 py-3 font-semibold text-white">
-                Assign + Notify
-              </button>
-            </div>
-          </form>
-
-          <section className="rounded-3xl bg-white px-4 py-6 sm:p-8 border border-slate-200">
-            <h2 className="text-2xl font-semibold text-slate-900">
-              Active Development Assignments
-            </h2>
-
-            <div className="mt-6 space-y-4">
-              {assignments.length === 0 ? (
-                <div className="rounded-2xl bg-slate-50 p-5 text-slate-600">
-                  No assignments yet. Create a targeted module assignment to begin tracking leadership development.
+                  <p className="text-sm text-slate-500">
+                    {item.school}
+                  </p>
                 </div>
-              ) : (
-                assignments.map((assignment) => (
-                  <div key={assignment.id} className="rounded-2xl border border-slate-200 p-5">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="font-semibold text-slate-900">{assignment.leaderName}</p>
-                        <p className="mt-1 text-sm text-slate-500">{assignment.role}</p>
-                      </div>
 
-                      <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                        Email Queued
-                      </span>
-                    </div>
+                <div>{item.gap}</div>
 
-                    <p className="mt-4 text-sm font-semibold text-slate-900">
-                      {assignment.module}
-                    </p>
-                    <p className="mt-1 text-sm text-slate-500">
-                      Due: {assignment.dueDate}
-                    </p>
-                  </div>
-                ))
-              )}
-            </div>
-          </section>
+                <div>{item.module}</div>
+
+                <div>{item.status}</div>
+
+                <a
+                  href="/leader-learning-hub"
+                  className="text-blue-600 font-semibold"
+                >
+                  Manage
+                </a>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </main>
   )
 }
 
+function MetricCard({
+  label,
+  value
+}: {
+  label: string
+  value: string
+}) {
+  return (
+    <div className="rounded-3xl bg-white border border-slate-200 p-7">
+      <p className="text-sm text-slate-500">
+        {label}
+      </p>
 
+      <h2 className="mt-3 text-4xl font-bold text-slate-900">
+        {value}
+      </h2>
+    </div>
+  )
+}
