@@ -52,10 +52,10 @@ export default function HomePage() {
                 </a>
 
                 <a
-                  href="/district"
+                  href="/workflow"
                   className="rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
                 >
-                  View district dashboard
+                  View district workflow
                 </a>
               </div>
             </div>
@@ -135,3 +135,4 @@ export default function HomePage() {
     </main>
   )
 }
+
