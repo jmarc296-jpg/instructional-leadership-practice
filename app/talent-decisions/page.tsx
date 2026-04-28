@@ -1,4 +1,4 @@
-export default function TalentDecisionsPage() {
+﻿export default function TalentDecisionsPage() {
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold">Talent Decisions</h1>
@@ -8,3 +8,4 @@ export default function TalentDecisionsPage() {
     </div>
   )
 }
+
