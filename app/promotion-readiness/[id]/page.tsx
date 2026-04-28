@@ -1,180 +1,96 @@
-﻿const competencyScores = [
+﻿const competencies = [
   { skill: "Instructional Leadership", score: "88%" },
-  { skill: "Coaching", score: "82%" },
-  { skill: "School Culture", score: "91%" },
-  { skill: "Operations", score: "64%" },
-  { skill: "Strategic Thinking", score: "78%" },
-  { skill: "Communication", score: "85%" }
+  { skill: "People Leadership", score: "81%" },
+  { skill: "Operational Leadership", score: "69%" },
+  { skill: "Culture Leadership", score: "84%" }
 ]
 
-const simulationHistory = [
-  {
-    scenario: "Difficult Teacher Conversation",
-    score: "84%",
-    result: "Strong"
-  },
-  {
-    scenario: "Family Conflict Resolution",
-    score: "89%",
-    result: "Strong"
-  },
-  {
-    scenario: "Staffing Decision",
-    score: "71%",
-    result: "Needs Improvement"
-  },
-  {
-    scenario: "School Crisis Response",
-    score: "67%",
-    result: "Needs Improvement"
-  }
+const strengths = [
+  "Strong instructional coaching conversations",
+  "High accountability orientation",
+  "Strong communication under pressure"
 ]
 
-const growthTimeline = [
-  {
-    period: "6 Months Ago",
-    score: "68%"
-  },
-  {
-    period: "3 Months Ago",
-    score: "74%"
-  },
-  {
-    period: "Current",
-    score: "82%"
-  }
+const concerns = [
+  "Operational execution inconsistency",
+  "Delegation gaps",
+  "Needs stronger systems leadership"
 ]
 
 export default function PromotionReadinessPage() {
   return (
-    <main className="min-h-screen bg-slate-100 p-8">
-      <div className="mx-auto max-w-7xl space-y-8">
+    <main className="min-h-screen bg-slate-50 px-6 py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl space-y-10">
 
-        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 p-8 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
+        <a
+          href="/talent-review"
+          className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
+        >
+          Back to Talent Review
+        </a>
+
+        <section className="rounded-[32px] bg-white border border-slate-200 px-8 py-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
             Promotion Readiness
           </p>
 
-          <h1 className="mt-4 text-4xl font-bold">
-            Principal #4 Leadership Review
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-900">
+            Principal Candidate Review
           </h1>
 
-          <p className="mt-4 text-slate-300 max-w-3xl">
-            Review readiness signals before making promotion decisions.
+          <p className="mt-5 text-lg text-slate-600 max-w-2xl leading-8">
+            Evaluate readiness before making high-stakes placement decisions.
           </p>
         </section>
 
-        <section className="grid md:grid-cols-4 gap-5">
-          {growthTimeline.map((item) => (
-            <div
-              key={item.period}
-              className="rounded-2xl bg-white p-6 border border-slate-100"
-            >
-              <p className="text-sm text-slate-500">
-                {item.period}
-              </p>
-
-              <h2 className="mt-2 text-3xl font-bold text-slate-950">
-                {item.score}
-              </h2>
+        <section className="grid md:grid-cols-4 gap-6">
+          {competencies.map((item) => (
+            <div key={item.skill} className="rounded-3xl bg-white border border-slate-200 p-6">
+              <p className="text-sm text-slate-500">{item.skill}</p>
+              <h2 className="mt-3 text-4xl font-bold text-slate-900">{item.score}</h2>
             </div>
           ))}
-
-          <div className="rounded-2xl bg-green-50 p-6 border border-green-100">
-            <p className="text-sm text-green-700">
-              Recommendation
-            </p>
-
-            <h2 className="mt-2 text-2xl font-bold text-green-700">
-              Ready in 6 Months
-            </h2>
-          </div>
         </section>
 
-        <section className="grid lg:grid-cols-2 gap-6">
-
-          <div className="rounded-3xl bg-white p-8 border border-slate-100">
-            <h2 className="text-2xl font-bold mb-6">
-              Competency Breakdown
-            </h2>
-
-            <div className="space-y-5">
-              {competencyScores.map((item) => (
-                <div key={item.skill}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium">
-                      {item.skill}
-                    </span>
-
-                    <span className="text-blue-600 font-semibold">
-                      {item.score}
-                    </span>
-                  </div>
-
-                  <div className="w-full bg-slate-200 rounded-full h-3">
-                    <div
-                      className="bg-blue-600 h-3 rounded-full"
-                      style={{ width: item.score }}
-                    />
-                  </div>
+        <section className="grid md:grid-cols-2 gap-6">
+          <div className="rounded-[32px] bg-white border border-slate-200 p-8">
+            <h2 className="text-3xl font-semibold text-slate-900">Strength Signals</h2>
+            <div className="mt-6 space-y-4">
+              {strengths.map((item) => (
+                <div key={item} className="rounded-2xl bg-slate-50 p-4">
+                  {item}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-3xl bg-white p-8 border border-slate-100">
-            <h2 className="text-2xl font-bold mb-6">
-              Simulation History
-            </h2>
-
-            <div className="space-y-4">
-              {simulationHistory.map((item) => (
-                <div
-                  key={item.scenario}
-                  className="rounded-2xl bg-slate-50 p-5"
-                >
-                  <div className="flex justify-between">
-                    <div>
-                      <p className="font-semibold">
-                        {item.scenario}
-                      </p>
-
-                      <p className="text-sm text-slate-500 mt-1">
-                        Score: {item.score}
-                      </p>
-                    </div>
-
-                    <span className="text-blue-600 font-semibold">
-                      {item.result}
-                    </span>
-                  </div>
+          <div className="rounded-[32px] bg-white border border-slate-200 p-8">
+            <h2 className="text-3xl font-semibold text-slate-900">Development Risks</h2>
+            <div className="mt-6 space-y-4">
+              {concerns.map((item) => (
+                <div key={item} className="rounded-2xl bg-slate-50 p-4">
+                  {item}
                 </div>
               ))}
             </div>
           </div>
-
         </section>
 
-        <section className="rounded-3xl bg-blue-50 p-8 border border-blue-100">
-          <h2 className="text-2xl font-bold">
-            Executive Summary
+        <section className="rounded-[32px] bg-slate-900 text-white px-8 py-10">
+          <h2 className="text-4xl font-semibold tracking-tight">
+            Executive Recommendation
           </h2>
 
-          <p className="mt-4 text-slate-700 leading-8">
-            Principal #4 demonstrates strong instructional leadership, communication,
-            and culture-building capacity. The largest remaining risk area is operational execution.
-            Recommend a targeted operational leadership pathway before final promotion placement.
+          <p className="mt-5 text-lg text-slate-300 max-w-3xl leading-8">
+            Candidate demonstrates strong instructional leadership readiness but should complete operational leadership development before final placement.
           </p>
 
-          <div className="mt-6 flex gap-4">
-            <button className="rounded-2xl bg-blue-600 px-6 py-3 text-white font-semibold">
-              Assign Final Development Plan
-            </button>
-
-            <button className="rounded-2xl bg-white px-6 py-3 font-semibold border border-slate-200">
-              Promote Now
-            </button>
-          </div>
+          <a
+            href="/assignments"
+            className="inline-block mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-white font-semibold"
+          >
+            Assign Development Plan
+          </a>
         </section>
 
       </div>
