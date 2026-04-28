@@ -1,185 +1,132 @@
 ﻿const metrics = [
   {
     label: "Ready Now Leaders",
-    value: "12",
-    subtext: "Prepared for immediate promotion"
+    value: "61",
+    subtext: "Promotion-ready immediately"
   },
   {
-    label: "Ready in 12 Months",
-    value: "18",
-    subtext: "Require targeted development"
+    label: "Ready Soon Leaders",
+    value: "94",
+    subtext: "6-12 months development needed"
   },
   {
     label: "High Risk Leaders",
-    value: "7",
-    subtext: "Retention concerns"
-  },
-  {
-    label: "External Hiring Dependency",
-    value: "3 Roles",
-    subtext: "No internal successor identified"
+    value: "19",
+    subtext: "Not ready for promotion"
   }
 ]
 
-const talentMatrix = [
+const leaders = [
   {
-    leader: "Principal #1",
-    placement: "Promotion Ready",
-    readiness: "High",
-    performance: "High"
+    name: "Assistant Principal A",
+    currentRole: "Assistant Principal",
+    readiness: "Ready Now",
+    risk: "Low Risk"
   },
   {
-    leader: "Principal #2",
-    placement: "Needs Development",
-    readiness: "Medium",
-    performance: "High"
+    name: "Dean B",
+    currentRole: "Dean of Students",
+    readiness: "Ready Soon",
+    risk: "Medium Risk"
   },
   {
-    leader: "Principal #3",
-    placement: "Retention Risk",
-    readiness: "High",
-    performance: "Medium"
-  },
-  {
-    leader: "Principal #4",
-    placement: "Future Principal",
-    readiness: "Medium",
-    performance: "Medium"
-  }
-]
-
-const succession = [
-  {
-    role: "High School Principal",
-    vacancyRisk: "Medium",
-    successor: "Principal #4"
-  },
-  {
-    role: "Director of Academics",
-    vacancyRisk: "High",
-    successor: "AP #2"
-  },
-  {
-    role: "Regional Superintendent",
-    vacancyRisk: "Low",
-    successor: "None Identified"
+    name: "Principal C",
+    currentRole: "Current Principal",
+    readiness: "Needs Development",
+    risk: "High Risk"
   }
 ]
 
 export default function TalentReviewPage() {
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-6 sm:p-8">
-      <div className="mx-auto max-w-7xl space-y-8">
+    <main className="min-h-screen bg-slate-50 px-6 py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl space-y-10">
 
-        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 px-4 py-6 sm:p-8 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
+        <a
+          href="/district"
+          className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
+        >
+          Back to Dashboard
+        </a>
+
+        <section className="rounded-[32px] bg-white border border-slate-200 px-8 py-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
             Talent Review
           </p>
 
-          <h1 className="mt-4 text-3xl sm:text-4xl font-bold">
-            Build stronger leadership pipelines.
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-900">
+            Succession planning with real readiness data.
           </h1>
 
-          <p className="mt-4 max-w-3xl text-slate-300">
-            Identify promotable leaders, reduce failed placements, and strengthen succession planning.
+          <p className="mt-5 text-lg text-slate-600 max-w-2xl leading-8">
+            Identify promotable leaders, reduce failed placements, and build stronger internal pipelines.
           </p>
         </section>
 
-        <section className="grid gap-5 md:grid-cols-4">
+        <section className="grid md:grid-cols-3 gap-6">
           {metrics.map((metric) => (
             <div
               key={metric.label}
-              className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100"
+              className="rounded-3xl bg-white border border-slate-200 p-7"
             >
               <p className="text-sm text-slate-500">
                 {metric.label}
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-slate-950">
+              <h2 className="mt-3 text-4xl font-bold text-slate-900">
                 {metric.value}
               </h2>
 
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-2 text-sm text-slate-400">
                 {metric.subtext}
               </p>
             </div>
           ))}
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-
-          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
-            <h2 className="text-2xl font-bold text-slate-950">
-              Leadership Placement Matrix
+        <section className="rounded-[32px] bg-white border border-slate-200 p-8">
+          <div className="mb-8">
+            <h2 className="text-3xl font-semibold text-slate-900">
+              Promotion Readiness Matrix
             </h2>
 
-            <div className="mt-6 space-y-4">
-              {talentMatrix.map((leader) => (
-                <div
-                  key={leader.leader}
-                  className="rounded-2xl border border-slate-100 p-5"
-                >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-semibold text-slate-950">
-                        {leader.leader}
-                      </p>
-
-                      <p className="text-sm text-slate-500">
-                        Readiness: {leader.readiness} | Performance: {leader.performance}
-                      </p>
-                    </div>
-
-                    <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
-                      {leader.placement}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <p className="mt-3 text-slate-600">
+              Leaders currently under review for future placement decisions.
+            </p>
           </div>
 
-          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
-            <h2 className="text-2xl font-bold text-slate-950">
-              Succession Planning
-            </h2>
-
-            <div className="mt-6 space-y-4">
-              {succession.map((item) => (
-                <div
-                  key={item.role}
-                  className="rounded-2xl bg-slate-50 p-5"
-                >
-                  <p className="font-semibold text-slate-950">
-                    {item.role}
+          <div className="space-y-4">
+            {leaders.map((leader) => (
+              <div
+                key={leader.name}
+                className="grid grid-cols-4 items-center rounded-2xl border border-slate-200 p-5"
+              >
+                <div>
+                  <p className="font-semibold text-slate-900">
+                    {leader.name}
                   </p>
 
-                  <p className="mt-2 text-sm text-slate-600">
-                    Vacancy Risk: {item.vacancyRisk}
-                  </p>
-
-                  <p className="mt-1 text-sm text-slate-600">
-                    Successor: {item.successor}
+                  <p className="text-sm text-slate-500">
+                    {leader.currentRole}
                   </p>
                 </div>
-              ))}
-            </div>
+
+                <div>{leader.readiness}</div>
+
+                <div>{leader.risk}</div>
+
+                <a
+                  href="/promotion-readiness/1"
+                  className="text-blue-600 font-semibold"
+                >
+                  View Profile
+                </a>
+              </div>
+            ))}
           </div>
-        </section>
-
-        <section className="rounded-3xl bg-blue-50 px-4 py-6 sm:p-8 border border-blue-100">
-          <h2 className="text-2xl font-bold text-slate-950">
-            Executive Insight
-          </h2>
-
-          <p className="mt-4 text-slate-700 leading-8">
-            Based on current readiness trends, the district may require 3 external leadership hires in the next 18 months unless internal pipeline development accelerates.
-          </p>
         </section>
 
       </div>
     </main>
   )
 }
-
-
