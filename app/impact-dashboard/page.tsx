@@ -1,112 +1,85 @@
 ﻿const metrics = [
-  {
-    label: "Readiness Growth",
-    value: "+18%",
-    subtext: "After assigned modules"
-  },
-  {
-    label: "Ready Now Leaders",
-    value: "39%",
-    subtext: "Up from 22%"
-  },
-  {
-    label: "High Risk Leaders",
-    value: "12%",
-    subtext: "Down from 17%"
-  },
-  {
-    label: "Module Completion",
-    value: "87%",
-    subtext: "Across active cohort"
-  }
-]
-
-const competencyGains = [
-  { competency: "Instructional Feedback", before: "42%", after: "68%" },
-  { competency: "Coaching Conversations", before: "48%", after: "71%" },
-  { competency: "School Culture", before: "55%", after: "74%" },
-  { competency: "Strategic Staffing", before: "51%", after: "66%" }
+  { label: "Readiness Growth", value: "+11%", subtext: "Across active cohort" },
+  { label: "Plans Completed", value: "87", subtext: "Targeted development plans" },
+  { label: "Risk Reduction", value: "-24%", subtext: "High-risk leader movement" },
+  { label: "Ready Now Movement", value: "+14", subtext: "Leaders moved to ready now" }
 ]
 
 const outcomes = [
   "14 leaders moved from needs-development to ready-now",
   "9 high-risk leaders completed targeted support plans",
-  "Instructional feedback showed the largest readiness gain",
-  "District reduced external hiring dependency for upcoming openings"
+  "81% assignment completion across active cohort",
+  "Instructional feedback gap reduced by 18%"
 ]
 
 export default function ImpactDashboardPage() {
   return (
-    <main className="min-h-screen bg-slate-100 px-4 py-6 sm:p-8">
-      <div className="mx-auto max-w-7xl space-y-8">
-        <section className="rounded-3xl bg-gradient-to-r from-slate-950 to-blue-900 px-4 py-6 sm:p-8 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
+    <main className="min-h-screen bg-slate-50 px-6 py-10 lg:px-10">
+      <div className="mx-auto max-w-6xl space-y-10">
+
+        <a
+          href="/district"
+          className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
+        >
+          Back to Dashboard
+        </a>
+
+        <section className="rounded-[32px] bg-white border border-slate-200 px-8 py-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
             Impact Dashboard
           </p>
 
-          <h1 className="mt-4 text-3xl sm:text-4xl font-bold">
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-900">
             Prove leadership growth after targeted development.
           </h1>
 
-          <p className="mt-4 max-w-3xl text-slate-300">
-            Track readiness movement, competency gains, and district-level return on leadership development.
+          <p className="mt-5 text-lg text-slate-600 max-w-2xl leading-8">
+            Track readiness movement, development completion, and district-level return on leadership investment.
           </p>
         </section>
 
-        <section className="grid gap-5 md:grid-cols-4">
+        <section className="grid md:grid-cols-4 gap-6">
           {metrics.map((metric) => (
-            <div key={metric.label} className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100">
+            <div key={metric.label} className="rounded-3xl bg-white border border-slate-200 p-6">
               <p className="text-sm text-slate-500">{metric.label}</p>
-              <h2 className="mt-2 text-3xl font-bold text-slate-950">{metric.value}</h2>
-              <p className="mt-2 text-sm text-slate-500">{metric.subtext}</p>
+              <h2 className="mt-3 text-4xl font-bold text-slate-900">{metric.value}</h2>
+              <p className="mt-2 text-sm text-slate-400">{metric.subtext}</p>
             </div>
           ))}
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[1fr_0.8fr]">
-          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
-            <h2 className="text-2xl font-bold text-slate-950">
-              Competency Growth
-            </h2>
+        <section className="rounded-[32px] bg-white border border-slate-200 p-8">
+          <h2 className="text-3xl font-semibold text-slate-900">
+            Cohort Outcomes
+          </h2>
 
-            <div className="mt-6 space-y-6">
-              {competencyGains.map((item) => (
-                <div key={item.competency}>
-                  <div className="mb-2 flex justify-between">
-                    <p className="font-semibold text-slate-900">{item.competency}</p>
-                    <p className="text-sm text-slate-500">
-                      {item.before} to {item.after}
-                    </p>
-                  </div>
-
-                  <div className="h-3 rounded-full bg-slate-100">
-                    <div
-                      className="h-3 rounded-full bg-blue-600"
-                      style={{ width: item.after }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-3xl bg-white px-4 py-6 sm:p-8 shadow-sm border border-slate-100">
-            <h2 className="text-2xl font-bold text-slate-950">
-              District Outcomes
-            </h2>
-
-            <div className="mt-6 space-y-4">
-              {outcomes.map((outcome) => (
-                <div key={outcome} className="rounded-2xl bg-blue-50 p-4 text-slate-700">
-                  {outcome}
-                </div>
-              ))}
-            </div>
+          <div className="mt-6 space-y-4">
+            {outcomes.map((item) => (
+              <div key={item} className="rounded-2xl bg-slate-50 p-5 text-slate-700">
+                {item}
+              </div>
+            ))}
           </div>
         </section>
+
+        <section className="rounded-[32px] bg-slate-900 text-white px-8 py-10">
+          <h2 className="text-4xl font-semibold tracking-tight">
+            Executive Signal
+          </h2>
+
+          <p className="mt-5 text-lg text-slate-300 max-w-3xl leading-8">
+            The district is showing measurable readiness growth, but operational leadership remains the highest-leverage development priority for the next cycle.
+          </p>
+
+          <a
+            href="/procurement"
+            className="inline-block mt-6 rounded-2xl bg-blue-600 px-6 py-4 text-white font-semibold"
+          >
+            View Procurement Overview
+          </a>
+        </section>
+
       </div>
     </main>
   )
 }
-
-
