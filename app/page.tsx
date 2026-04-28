@@ -50,9 +50,9 @@ export default function HomePage() {
         </nav>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-8 pt-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 pb-4 pt-4 lg:px-8">
         <div className="grid overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-sm lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="p-8 md:p-12">
+          <div className="p-6 md:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#2563eb]">
               District leadership pipeline
             </p>
@@ -74,7 +74,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {proofPoints.map((point) => (
                 <div key={point.label} className="rounded-2xl border border-black/10 bg-[#f7f5f0] p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-black/35">{point.label}</p>
@@ -112,7 +112,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-14 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 pb-8 lg:px-8">
         <div className="grid gap-4 md:grid-cols-3">
           {workflows.map((item, index) => (
             <div key={item.title} className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
@@ -157,3 +157,4 @@ function DarkMetric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
