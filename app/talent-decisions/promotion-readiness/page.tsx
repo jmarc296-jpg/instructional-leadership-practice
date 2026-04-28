@@ -1,4 +1,5 @@
-﻿import { talentLeaders } from "@/lib/talent/mock-data"
+﻿import Link from "next/link"
+import { talentLeaders } from "@/lib/talent/mock-data"
 import { getPromotionRecommendation, getReadinessBand, formatCompetency } from "@/lib/talent/scoring"
 
 export default function PromotionReadinessPage() {
@@ -41,6 +42,13 @@ export default function PromotionReadinessPage() {
                 ))}
               </div>
 
+              <Link
+                href={`/development-prescriptions/${leader.id}`}
+                className="mt-6 inline-block rounded-2xl bg-[#111827] px-5 py-3 text-sm font-semibold text-white"
+              >
+                Generate development plan
+              </Link>
+
               <div className="mt-6 rounded-2xl border border-black/10 bg-[#f7f7f4] p-5">
                 <p className="font-semibold">{recommendation.decision}</p>
                 <p className="mt-2 leading-7 text-gray-700">{recommendation.rationale}</p>
@@ -53,3 +61,4 @@ export default function PromotionReadinessPage() {
     </main>
   )
 }
+
