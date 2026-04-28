@@ -1,6 +1,43 @@
 import Image from 'next/image'
 import { TopNav } from '@/components/home/top-nav'
 
+const workflow = [
+  {
+    step: '1',
+    title: 'Simulate',
+    text: 'Leaders respond to real school leadership scenarios before the stakes are live.'
+  },
+  {
+    step: '2',
+    title: 'Diagnose',
+    text: 'LeadSharper surfaces readiness gaps, risk signals, and coaching priorities.'
+  },
+  {
+    step: '3',
+    title: 'Assign',
+    text: 'District teams assign targeted development based on the leader response.'
+  },
+  {
+    step: '4',
+    title: 'Track',
+    text: 'Dashboards show completion, growth, and leadership pipeline movement.'
+  },
+  {
+    step: '5',
+    title: 'Decide',
+    text: 'Talent teams use readiness evidence to support promotion and succession decisions.'
+  }
+]
+
+const useCases = [
+  'Aspiring principal cohorts',
+  'New principal onboarding',
+  'Leadership academies',
+  'Succession planning',
+  'Principal supervisor coaching',
+  'Leadership retention strategy'
+]
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-5 py-8 sm:px-6 lg:px-8">
@@ -87,15 +124,39 @@ export default function HomePage() {
           </p>
 
           <h2 className="mt-4 max-w-4xl text-3xl sm:text-4xl font-semibold tracking-tight">
-            Districts do not just need more leadership training.
-            They need better evidence of readiness.
+            Districts do not just need more leadership training. They need better evidence of readiness.
           </h2>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-            Interviews, resumes, and reputation are not enough.
-            LeadSharper creates observable leadership performance data before promotion,
-            placement, or coaching decisions become high stakes.
+            Interviews, resumes, and reputation are not enough. LeadSharper creates observable leadership performance data before promotion, placement, or coaching decisions become high stakes.
           </p>
+        </section>
+
+        <section className="rounded-[32px] bg-white border border-slate-200 px-4 py-6 sm:p-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
+              Closed-loop readiness system
+            </p>
+
+            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold text-slate-900">
+              From leadership simulation to promotion decision.
+            </h2>
+
+            <p className="mt-4 leading-8 text-slate-600">
+              LeadSharper connects assessment, development, tracking, and talent review into one practical workflow for district leadership teams.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-5">
+            {workflow.map((item) => (
+              <WorkflowStep
+                key={item.step}
+                step={item.step}
+                title={item.title}
+                text={item.text}
+              />
+            ))}
+          </div>
         </section>
 
         <section className="rounded-[32px] bg-white border border-slate-200 px-4 py-6 sm:p-8">
@@ -104,12 +165,11 @@ export default function HomePage() {
           </h2>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div>• Aspiring principal cohorts</div>
-            <div>• New principal onboarding</div>
-            <div>• Leadership academies</div>
-            <div>• Succession planning</div>
-            <div>• Principal supervisor coaching</div>
-            <div>• Leadership retention strategy</div>
+            {useCases.map((item) => (
+              <div key={item} className="rounded-2xl bg-slate-50 border border-slate-200 p-5 text-slate-700">
+                {item}
+              </div>
+            ))}
           </div>
         </section>
 
@@ -119,8 +179,7 @@ export default function HomePage() {
           </h2>
 
           <p className="mt-4 max-w-2xl leading-8 text-slate-700">
-            Start with a small leadership cohort and determine whether LeadSharper
-            can strengthen your district pipeline.
+            Start with a small leadership cohort and determine whether LeadSharper can strengthen your district pipeline.
           </p>
 
           <a
@@ -163,5 +222,31 @@ function Card({
         {cta}
       </div>
     </a>
+  )
+}
+
+function WorkflowStep({
+  step,
+  title,
+  text
+}: {
+  step: string
+  title: string
+  text: string
+}) {
+  return (
+    <div className="rounded-2xl bg-slate-50 border border-slate-200 p-5">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+        {step}
+      </div>
+
+      <h3 className="mt-4 font-semibold text-slate-950">
+        {title}
+      </h3>
+
+      <p className="mt-3 text-sm leading-6 text-slate-600">
+        {text}
+      </p>
+    </div>
   )
 }
