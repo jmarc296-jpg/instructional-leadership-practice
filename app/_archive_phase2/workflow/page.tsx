@@ -1,9 +1,9 @@
-﻿const workflow = [
+const workflow = [
   {
     step: "1",
     title: "Assess Readiness",
     description: "Leaders complete simulation reps tied to real school leadership decisions.",
-    href: "/instant-demo"
+    href: "/talent-review"
   },
   {
     step: "2",
@@ -59,7 +59,7 @@ export default function WorkflowPage() {
           </h1>
 
           <p className="mt-4 max-w-2xl text-slate-600 leading-8">
-            This is the full operational workflow districts use year-round—not just during a pilot.
+            This is the full operational workflow districts use year-round�not just during a pilot.
           </p>
         </section>
 
@@ -85,7 +85,7 @@ export default function WorkflowPage() {
                   </p>
 
                   <p className="mt-4 text-sm font-semibold text-blue-700">
-                    Open step →
+                    Open step ?
                   </p>
                 </div>
               </div>

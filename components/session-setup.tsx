@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import type { Domain, SessionSettings } from '@/types'
 
@@ -215,10 +215,10 @@ coachMode: value === 'review'
           </select>
         </div>
               <a
-          href='/instant-demo'
+          href='/talent-review'
           className='block w-full rounded-2xl bg-slate-900 px-6 py-4 text-center text-sm font-semibold text-white hover:bg-slate-800'
         >
-          Begin Live Simulation →
+          Begin Live Simulation ?
         </a>
       </div>
     </aside>

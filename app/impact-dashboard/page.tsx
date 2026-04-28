@@ -1,4 +1,4 @@
-﻿const metrics = [
+const metrics = [
   { label: "Readiness Growth", value: "+11%", subtext: "Across active cohort" },
   { label: "Plans Completed", value: "87", subtext: "Targeted development plans" },
   { label: "Risk Reduction", value: "-24%", subtext: "High-risk leader movement" },
@@ -18,7 +18,7 @@ export default function ImpactDashboardPage() {
       <div className="mx-auto max-w-6xl space-y-10">
 
         <a
-          href="/district"
+          href="/executive-command-center"
           className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
         >
           Back to Dashboard
@@ -83,3 +83,4 @@ export default function ImpactDashboardPage() {
     </main>
   )
 }
+

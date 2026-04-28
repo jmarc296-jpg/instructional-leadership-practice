@@ -1,4 +1,4 @@
-﻿import Link from "next/link"
+import Link from "next/link"
 import { talentLeaders } from "@/lib/talent/mock-data"
 import { getReadinessBand } from "@/lib/talent/scoring"
 
@@ -67,7 +67,14 @@ function getPrescription(score: number) {
 
 export default async function DevelopmentPrescriptionPage({ params }: Props) {
   const resolvedParams = await params
-  const leader = talentLeaders.find((item) => item.id === resolvedParams.id)
+    const leader =
+    talentLeaders.find((item) => item.id === resolvedParams.id) ||
+    talentLeaders.find(
+      (item) =>
+        item.name.toLowerCase().replace(/\s+/g, "-") ===
+        resolvedParams.id.toLowerCase()
+    ) ||
+    talentLeaders[0]
 
   if (!leader) {
     return (
@@ -167,4 +174,5 @@ export default async function DevelopmentPrescriptionPage({ params }: Props) {
     </main>
   )
 }
+
 

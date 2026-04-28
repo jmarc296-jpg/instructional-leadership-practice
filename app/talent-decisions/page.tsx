@@ -1,4 +1,4 @@
-﻿import Link from "next/link"
+import Link from "next/link"
 import { districtBenchStrength, talentLeaders } from "@/lib/talent/mock-data"
 import { getReadinessBand } from "@/lib/talent/scoring"
 
@@ -52,12 +52,18 @@ const journey = [
   },
   {
     step: "4",
+    title: "Review risk alerts",
+    href: "/talent-decisions/risk-alerts",
+    description: "Identify leadership flight risks, vacancy threats, and urgent staffing vulnerabilities."
+  },
+  {
+    step: "5",
     title: "Validate scoring confidence",
     href: "/calibration-engine",
     description: "Detect evaluator variance before finalizing high-stakes promotion recommendations."
   },
   {
-    step: "5",
+    step: "6",
     title: "Generate executive report",
     href: "/talent-decisions/executive-reports",
     description: "Create a superintendent-ready view of readiness, vacancy risk, and pipeline health."
@@ -157,3 +163,4 @@ export default function TalentDecisionsPage() {
     </main>
   )
 }
+

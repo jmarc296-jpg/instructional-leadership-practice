@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { getLeadershipIntelligenceSnapshots } from '@/lib/local-store'
 
@@ -44,7 +44,7 @@ export default function EvaluationReportPage() {
               Complete and rate a simulation first. Your evaluation report will generate automatically.
             </p>
 
-            <a href="/instant-demo" className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
+            <a href="/talent-review" className="mt-6 inline-block rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white">
               Start simulation
             </a>
           </section>
@@ -151,7 +151,7 @@ export default function EvaluationReportPage() {
                 </a>
 
                 <a
-                  href="/dashboard"
+                  href="/executive-command-center"
                   className="rounded-2xl border border-slate-300 px-6 py-4 text-sm font-semibold text-slate-900"
                 >
                   District Dashboard
@@ -180,7 +180,7 @@ export default function EvaluationReportPage() {
                 </a>
 
                 <a
-                  href="/dashboard"
+                  href="/executive-command-center"
                   className="rounded-2xl border border-white/20 px-6 py-4 font-semibold"
                 >
                   District Dashboard
@@ -193,5 +193,6 @@ export default function EvaluationReportPage() {
     </main>
   )
 }
+
 
 

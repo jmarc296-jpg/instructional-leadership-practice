@@ -1,4 +1,4 @@
-﻿import Link from "next/link"
+import Link from "next/link"
 import Image from "next/image"
 
 const proofPoints = [
@@ -39,13 +39,13 @@ export default function HomePage() {
 
           <div className="hidden items-center gap-7 text-sm font-medium text-black/65 md:flex">
             <Link href="/simulation-room" className="hover:text-black">Try Simulation</Link>
-            <Link href="/talent-decisions" className="hover:text-black">Command Center</Link>
-            <Link href="/talent-decisions" className="hover:text-black">Talent Engine</Link>
-            <Link href="/district" className="hover:text-black">District Intelligence</Link>
+            <Link href="/executive-command-center" className="hover:text-black">Command Center</Link>
+            <Link href="/executive-command-center" className="hover:text-black">Talent Engine</Link>
+            <Link href="/executive-command-center" className="hover:text-black">District Intelligence</Link>
             <Link href="/procurement" className="hover:text-black">District Rollout</Link>
           </div>
 
-          <Link href="/talent-decisions" className="rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">
+          <Link href="/executive-command-center" className="rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">
             Open Talent Engine
           </Link>
         </nav>
@@ -70,7 +70,7 @@ export default function HomePage() {
               <Link href="/simulation-room" className="rounded-2xl bg-[#2563eb] px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-[#1d4ed8]">
                 Try simulation
               </Link>
-              <Link href="/talent-decisions" className="rounded-2xl border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold text-black shadow-sm transition hover:bg-black/[0.03]">
+              <Link href="/executive-command-center" className="rounded-2xl border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold text-black shadow-sm transition hover:bg-black/[0.03]">
                 See talent engine
               </Link>
             </div>
@@ -159,6 +159,7 @@ function DarkMetric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
 
 

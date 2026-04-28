@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useMemo, useState } from 'react'
 import { saveLeadershipIntelligenceSnapshot } from '@/lib/local-store'
@@ -143,7 +143,7 @@ export default function ScenarioLabPage() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="/dashboard"
+                href="/executive-command-center"
                 className="rounded-2xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white"
               >
                 View leadership dashboard
@@ -171,5 +171,6 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
 
 

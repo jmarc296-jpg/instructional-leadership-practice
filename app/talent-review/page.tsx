@@ -1,4 +1,4 @@
-﻿const metrics = [
+const metrics = [
   {
     label: "Ready Now Leaders",
     value: "61",
@@ -43,7 +43,7 @@ export default function TalentReviewPage() {
       <div className="mx-auto max-w-6xl space-y-10">
 
         <a
-          href="/district"
+          href="/executive-command-center"
           className="inline-block rounded-2xl border border-slate-300 px-5 py-3 font-medium hover:bg-white"
         >
           Back to Dashboard
@@ -130,3 +130,4 @@ export default function TalentReviewPage() {
     </main>
   )
 }
+
