@@ -10,8 +10,16 @@ const metrics = [
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#f8f7f4] text-[#111111]">
-      <section className="mx-auto grid min-h-screen max-w-7xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-2">
-        
+      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10">
+        <Link href="/" className="text-lg font-semibold tracking-tight">
+          LeadSharper
+        </Link>
+        <Link href="/sign-in" className="text-sm font-semibold text-black/60 hover:text-black">
+          Sign in
+        </Link>
+      </header>
+
+      <section className="mx-auto grid max-w-7xl items-center gap-16 px-6 pb-20 pt-10 sm:px-10 lg:grid-cols-2 lg:pt-20">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-500">
             District Leadership Intelligence
@@ -22,7 +30,7 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-xl leading-8 text-neutral-600">
-            The first leadership intelligence platform built to predict principal risk, prescribe intervention, and protect succession pipelines.
+            A leadership intelligence platform for identifying principal risk, prescribing intervention, and protecting succession pipelines.
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -38,19 +46,15 @@ export default function HomePage() {
 
         <div className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-sm">
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-neutral-500">
-            District Executive Dashboard
+            Executive Dashboard
           </p>
 
           <div className="mt-8 space-y-4">
             {metrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="flex items-center justify-between rounded-2xl bg-[#f8f7f4] px-6 py-5"
-              >
+              <div key={metric.label} className="flex items-center justify-between rounded-2xl bg-[#f8f7f4] px-6 py-5">
                 <p className="text-sm font-medium text-black/60">
                   {metric.label}
                 </p>
-
                 <p className="text-2xl font-semibold tracking-tight">
                   {metric.value}
                 </p>
@@ -58,7 +62,6 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-
       </section>
     </main>
   );
