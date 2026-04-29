@@ -12,7 +12,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-[#f6f9ff] text-[#071a3d]">
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10">
         <Link href="/" className="inline-flex items-center">
-          <img src="/brand/leadsharper-logo.png" alt="LeadSharper" className="h-14 w-auto" />
+          <img src="/logo.png" alt="LeadSharper" className="h-14 w-auto" />
         </Link>
 
         <Link
@@ -93,3 +93,4 @@ export default function HomePage() {
     </main>
   );
 }
+
