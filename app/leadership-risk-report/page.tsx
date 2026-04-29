@@ -1,4 +1,4 @@
-import Link from "next/link";
+ï»¿import Link from "next/link";
 
 const riskFactors = [
   {
@@ -47,11 +47,11 @@ export default function LeadershipRiskReportPage() {
   return (
     <main className="min-h-screen bg-[#f8f7f4] text-black px-6 py-12">
       <div className="max-w-6xl mx-auto">
-
         <div className="mb-10">
           <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
             Leadership Risk Report
           </p>
+
           <h1 className="text-5xl font-bold mt-4">
             Predict leadership instability before schools pay the price.
           </h1>
@@ -69,7 +69,7 @@ export default function LeadershipRiskReportPage() {
 
               <ul className="mt-4 space-y-2 text-gray-600">
                 {risk.drivers.map((driver) => (
-                  <li key={driver}>• {driver}</li>
+                  <li key={driver}>â€¢ {driver}</li>
                 ))}
               </ul>
             </div>
@@ -90,8 +90,8 @@ export default function LeadershipRiskReportPage() {
 
                 <ul className="space-y-2 text-gray-600">
                   {item.actions.map((action) => (
-                    <li key={action}>• {action}</li>
-                  ))}
+                    <li key={action}>â€¢ {action}</li>
+                ))}
                 </ul>
               </div>
             ))}
@@ -103,9 +103,7 @@ export default function LeadershipRiskReportPage() {
             Estimated Financial Exposure
           </h2>
 
-          <p className="text-5xl font-bold mt-4">
-            ,000
-          </p>
+          <p className="text-5xl font-bold mt-4">$305,000</p>
 
           <p className="mt-3 text-gray-300">
             Estimated turnover, vacancy, and school disruption costs if no intervention occurs.
@@ -120,7 +118,6 @@ export default function LeadershipRiskReportPage() {
             Request Pilot Access
           </Link>
         </div>
-
       </div>
     </main>
   );
