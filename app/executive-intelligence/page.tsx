@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 export default function ExecutiveIntelligencePage() {
-  const [riskData, setRiskData] = useState(null);
-  const [prescriptions, setPrescriptions] = useState(null);
-  const [successionData, setSuccessionData] = useState(null);
+  const [riskData, setRiskData] = useState<any>(null);
+  const [prescriptions, setPrescriptions] = useState<any>(null);
+  const [successionData, setSuccessionData] = useState<any>(null);
 
   async function runExecutiveAnalysis() {
     const riskRes = await fetch("/api/risk-engine", {
@@ -49,38 +49,58 @@ export default function ExecutiveIntelligencePage() {
   }
 
   return (
-    <div className="p-8 space-y-6">
-      <h1 className="text-3xl font-bold">
-        Executive Intelligence Dashboard
-      </h1>
+    <main className="min-h-screen bg-[#f8f7f4] px-6 py-10 text-[#111111] sm:px-10">
+      <section className="mx-auto max-w-6xl">
+        <div className="border-b border-black/10 pb-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-black/50">
+            Executive Intelligence
+          </p>
 
-      <button
-        onClick={runExecutiveAnalysis}
-        className="bg-black text-white px-6 py-3 rounded-lg"
-      >
-        Run District Analysis
-      </button>
+          <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+            Leadership intelligence for executive teams.
+          </h1>
 
-      {riskData && (
-        <div className="border p-4 rounded-lg">
-          <h2 className="font-bold">Leadership Risk</h2>
-          <pre>{JSON.stringify(riskData, null, 2)}</pre>
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-black/60">
+            Identify leadership risk, prescribe interventions, and protect succession pipelines.
+          </p>
         </div>
-      )}
 
-      {prescriptions && (
-        <div className="border p-4 rounded-lg">
-          <h2 className="font-bold">Intervention Plan</h2>
-          <pre>{JSON.stringify(prescriptions, null, 2)}</pre>
-        </div>
-      )}
+        <button
+          onClick={runExecutiveAnalysis}
+          className="mt-10 rounded-full bg-black px-7 py-4 text-sm font-bold text-white hover:bg-black/85"
+        >
+          Run District Analysis
+        </button>
 
-      {successionData && (
-        <div className="border p-4 rounded-lg">
-          <h2 className="font-bold">Succession Readiness</h2>
-          <pre>{JSON.stringify(successionData, null, 2)}</pre>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {riskData && (
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
+              <h2 className="text-xl font-semibold">Leadership Risk</h2>
+              <pre className="mt-4 text-sm text-black/60 whitespace-pre-wrap">
+                {JSON.stringify(riskData, null, 2)}
+              </pre>
+            </div>
+          )}
+
+          {prescriptions && (
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
+              <h2 className="text-xl font-semibold">Intervention Plan</h2>
+              <pre className="mt-4 text-sm text-black/60 whitespace-pre-wrap">
+                {JSON.stringify(prescriptions, null, 2)}
+              </pre>
+            </div>
+          )}
+
+          {successionData && (
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
+              <h2 className="text-xl font-semibold">Succession Readiness</h2>
+              <pre className="mt-4 text-sm text-black/60 whitespace-pre-wrap">
+                {JSON.stringify(successionData, null, 2)}
+              </pre>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </section>
+    </main>
   );
 }
