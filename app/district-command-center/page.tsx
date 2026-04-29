@@ -39,15 +39,15 @@ export default function DistrictCommandCenterPage() {
 
           <div className="space-y-3">
             <div className="bg-gray-50 p-4 rounded-xl">
-              East High School
+              Priority Campus 01
             </div>
 
             <div className="bg-gray-50 p-4 rounded-xl">
-              Lincoln K-8
+              Priority Campus 02
             </div>
 
             <div className="bg-gray-50 p-4 rounded-xl">
-              Washington STEM
+              Priority Campus 03
             </div>
           </div>
         </div>

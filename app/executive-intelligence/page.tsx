@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 const leaders = [
   {
     principal: "Jane Carter",
-    school: "Lincoln High School",
+    school: "Priority Campus 01",
     risk: "High",
     score: "84",
     action: "90-day coaching plan"
@@ -159,7 +159,7 @@ export default function ExecutiveIntelligencePage() {
               </h2>
 
               <p className="mt-1 text-sm font-medium text-blue-100">
-                Lincoln High School
+                Priority Campus 01
               </p>
 
               <div className="mt-6 space-y-4 text-sm">

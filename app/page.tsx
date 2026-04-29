@@ -37,7 +37,7 @@ export default function HomePage() {
 
         <div className="flex items-center gap-4">
           <Link
-            href="/leadership-risk-Methodology"
+            href="/risk-methodology"
             className="hidden text-sm font-semibold text-[#31456E] hover:text-[#0057FF] sm:inline-flex"
           >
             Methodology
