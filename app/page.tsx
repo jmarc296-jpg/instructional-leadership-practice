@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 const metrics = [
@@ -50,7 +50,7 @@ export default function HomePage() {
           </Link>
 
           <Link
-            href="/demo"
+            href="/district-command-center"
             className="rounded-full bg-[#0057FF] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0046cc]"
           >
             Request Demo
@@ -76,7 +76,7 @@ export default function HomePage() {
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
-              href="/demo"
+              href="/district-command-center"
               className="inline-flex items-center justify-center rounded-full bg-[#0057FF] px-8 py-4 text-sm font-bold text-white hover:bg-[#0046cc]"
             >
               Request Demo

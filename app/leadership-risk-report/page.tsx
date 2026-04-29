@@ -115,7 +115,7 @@ export default function LeadershipRiskReportPage() {
             href="/demo"
             className="inline-block bg-black text-white px-6 py-3 rounded-full"
           >
-            Request Pilot Access
+            See District Risk
           </Link>
         </div>
       </div>
