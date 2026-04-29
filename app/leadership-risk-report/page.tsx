@@ -7,9 +7,9 @@ const riskFactors = [
     level: "High Risk",
     drivers: [
       "Teacher retention declined 14%",
-      "Attendance dropped for 3 consecutive quarters",
-      "Instructional walkthrough scores declined",
-      "Missed compliance deadlines"
+      "Attendance dropped 3 consecutive quarters",
+      "Walkthrough scores declined",
+      "Compliance deadlines missed"
     ]
   },
   {
@@ -27,19 +27,13 @@ const riskFactors = [
 const interventions = [
   {
     timeline: "30 Days",
-    actions: [
-      "Assign executive coach",
-      "Conduct attendance systems audit",
-      "Increase walkthrough cadence"
-    ]
+    owner: "Chief Academic Officer",
+    outcome: "Stabilize leadership execution"
   },
   {
     timeline: "90 Days",
-    actions: [
-      "Build staffing stabilization plan",
-      "Develop assistant principal pipeline",
-      "Launch retention strategy"
-    ]
+    owner: "Talent Team",
+    outcome: "Build succession bench"
   }
 ];
 
@@ -47,12 +41,17 @@ export default function LeadershipRiskReportPage() {
   return (
     <main className="min-h-screen bg-[#f8f7f4] text-black px-6 py-12">
       <div className="max-w-6xl mx-auto">
+
         <div className="mb-10">
+          <div className="inline-flex rounded-full bg-black text-white px-4 py-2 text-sm mb-6">
+            LeadSharper Risk Engine™
+          </div>
+
           <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
             Leadership Risk Report
           </p>
 
-          <h1 className="text-5xl font-bold mt-4">
+          <h1 className="text-5xl font-bold mt-4 leading-tight">
             Predict leadership instability before schools pay the price.
           </h1>
         </div>
@@ -63,15 +62,36 @@ export default function LeadershipRiskReportPage() {
               key={risk.title}
               className="bg-white rounded-2xl p-6 shadow-sm border"
             >
-              <h2 className="text-xl font-semibold">{risk.title}</h2>
-              <p className="text-4xl font-bold mt-3">{risk.score}</p>
-              <p className="text-red-600 font-medium mt-2">{risk.level}</p>
+              <h2 className="text-xl font-semibold">
+                {risk.title}
+              </h2>
 
-              <ul className="mt-4 space-y-2 text-gray-600">
+              <div className="mt-4 flex items-center gap-4">
+                <p className="text-5xl font-bold">
+                  {risk.score}
+                </p>
+
+                <div className="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-600">
+                  {risk.level}
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-3">
                 {risk.drivers.map((driver) => (
-                  <li key={driver}>• {driver}</li>
+                  <div
+                    key={driver}
+                    className="flex items-center justify-between border-b pb-3"
+                  >
+                    <span className="text-sm text-gray-600">
+                      {driver}
+                    </span>
+
+                    <span className="text-red-500 font-semibold text-sm">
+                      Risk
+                    </span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -83,16 +103,21 @@ export default function LeadershipRiskReportPage() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {interventions.map((item) => (
-              <div key={item.timeline}>
-                <h3 className="font-semibold text-lg mb-3">
+              <div
+                key={item.timeline}
+                className="bg-gray-50 rounded-2xl p-6 border"
+              >
+                <h3 className="text-xl font-bold mb-3">
                   {item.timeline}
                 </h3>
 
-                <ul className="space-y-2 text-gray-600">
-                  {item.actions.map((action) => (
-                    <li key={action}>• {action}</li>
-                ))}
-                </ul>
+                <p className="text-gray-600 mb-2">
+                  Owner: {item.owner}
+                </p>
+
+                <p className="text-gray-600">
+                  Outcome: {item.outcome}
+                </p>
               </div>
             ))}
           </div>
@@ -103,16 +128,18 @@ export default function LeadershipRiskReportPage() {
             Estimated Financial Exposure
           </h2>
 
-          <p className="text-5xl font-bold mt-4">$305,000</p>
+          <p className="text-6xl font-bold mt-4">
+            $305K
+          </p>
 
           <p className="mt-3 text-gray-300">
-            Estimated turnover, vacancy, and school disruption costs if no intervention occurs.
+            Preventable annual leadership instability costs.
           </p>
         </div>
 
         <div className="mt-10">
           <Link
-            href="/demo"
+            href="/district-command-center"
             className="inline-block bg-black text-white px-6 py-3 rounded-full"
           >
             See District Risk
