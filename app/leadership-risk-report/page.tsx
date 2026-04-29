@@ -1,71 +1,127 @@
 import Link from "next/link";
 
-const failurePoints = [
+const riskFactors = [
   {
-    title: "Leadership risk is identified too late",
-    body: "Districts often wait until achievement, staff morale, or retention has already declined before naming principal support needs."
+    title: "Principal Retention Risk",
+    score: "82%",
+    level: "High Risk",
+    drivers: [
+      "Teacher retention declined 14%",
+      "Attendance dropped for 3 consecutive quarters",
+      "Instructional walkthrough scores declined",
+      "Missed compliance deadlines"
+    ]
   },
   {
-    title: "Succession planning lives in disconnected files",
-    body: "Potential successors are tracked through informal conversations, spreadsheets, and memory instead of a clear readiness system."
+    title: "Instructional Leadership Risk",
+    score: "67%",
+    level: "Moderate Risk",
+    drivers: [
+      "Math proficiency stagnant",
+      "Low coaching frequency",
+      "Weak reteach execution"
+    ]
+  }
+];
+
+const interventions = [
+  {
+    timeline: "30 Days",
+    actions: [
+      "Assign executive coach",
+      "Conduct attendance systems audit",
+      "Increase walkthrough cadence"
+    ]
   },
   {
-    title: "Intervention plans lack urgency",
-    body: "Leaders may receive feedback, but the system often lacks a clear timeline, owner, and measurable intervention plan."
+    timeline: "90 Days",
+    actions: [
+      "Build staffing stabilization plan",
+      "Develop assistant principal pipeline",
+      "Launch retention strategy"
+    ]
   }
 ];
 
 export default function LeadershipRiskReportPage() {
   return (
-    <main className="min-h-screen bg-[#f6f9ff] px-6 py-10 text-[#071a3d] sm:px-10">
-      <section className="mx-auto max-w-6xl">
-        <header className="flex items-center justify-between border-b border-[#0b63ff]/10 pb-6">
-          <Link href="/" className="text-sm font-bold text-[#0b63ff]">
-            LeadSharper
-          </Link>
+    <main className="min-h-screen bg-[#f8f7f4] text-black px-6 py-12">
+      <div className="max-w-6xl mx-auto">
 
-          <Link href="/demo" className="rounded-full bg-[#0057FF] px-6 py-3 text-sm font-bold text-white">
-            Request Demo
-          </Link>
-        </header>
-
-        <section className="py-14">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#0b63ff]">
+        <div className="mb-10">
+          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
             Leadership Risk Report
           </p>
-
-          <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-[-0.05em]">
-            Why districts miss principal risk until it becomes a system problem.
+          <h1 className="text-5xl font-bold mt-4">
+            Predict leadership instability before schools pay the price.
           </h1>
+        </div>
 
-          <p className="mt-6 max-w-3xl text-xl leading-8 text-[#34476b]">
-            Principal instability rarely appears all at once. It shows up first in execution gaps, staffing pressure, culture drift, and missed instructional follow-through. LeadSharper gives district teams an earlier signal.
-          </p>
-        </section>
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
+          {riskFactors.map((risk) => (
+            <div
+              key={risk.title}
+              className="bg-white rounded-2xl p-6 shadow-sm border"
+            >
+              <h2 className="text-xl font-semibold">{risk.title}</h2>
+              <p className="text-4xl font-bold mt-3">{risk.score}</p>
+              <p className="text-red-600 font-medium mt-2">{risk.level}</p>
 
-        <section className="grid gap-6 md:grid-cols-3">
-          {failurePoints.map((point) => (
-            <article key={point.title} className="rounded-3xl bg-white p-7 shadow-sm">
-              <h2 className="text-xl font-semibold">{point.title}</h2>
-              <p className="mt-4 leading-7 text-[#34476b]">{point.body}</p>
-            </article>
+              <ul className="mt-4 space-y-2 text-gray-600">
+                {risk.drivers.map((driver) => (
+                  <li key={driver}>• {driver}</li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </section>
+        </div>
 
-        <section className="mt-10 rounded-[2rem] bg-[#071a3d] p-8 text-white shadow-sm">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-blue-300">
-            LeadSharper Point of View
-          </p>
-
-          <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight">
-            Districts need a leadership intelligence layer, not another disconnected evaluation file.
+        <div className="bg-white rounded-2xl p-8 border shadow-sm mb-10">
+          <h2 className="text-2xl font-bold mb-6">
+            Recommended Interventions
           </h2>
 
-          <p className="mt-5 max-w-3xl leading-8 text-blue-100">
-            The next generation of school improvement will require district teams to connect leadership performance, talent risk, school outcomes, and succession readiness in one executive view.
+          <div className="grid md:grid-cols-2 gap-6">
+            {interventions.map((item) => (
+              <div key={item.timeline}>
+                <h3 className="font-semibold text-lg mb-3">
+                  {item.timeline}
+                </h3>
+
+                <ul className="space-y-2 text-gray-600">
+                  {item.actions.map((action) => (
+                    <li key={action}>• {action}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-black text-white rounded-2xl p-8">
+          <h2 className="text-2xl font-bold">
+            Estimated Financial Exposure
+          </h2>
+
+          <p className="text-5xl font-bold mt-4">
+            ,000
           </p>
-        </section>
-      </section>
+
+          <p className="mt-3 text-gray-300">
+            Estimated turnover, vacancy, and school disruption costs if no intervention occurs.
+          </p>
+        </div>
+
+        <div className="mt-10">
+          <Link
+            href="/demo"
+            className="inline-block bg-black text-white px-6 py-3 rounded-full"
+          >
+            Request Pilot Access
+          </Link>
+        </div>
+
+      </div>
     </main>
   );
 }
