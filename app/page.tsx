@@ -37,10 +37,10 @@ export default function HomePage() {
 
         <div className="flex items-center gap-4">
           <Link
-            href="/leadership-risk-report"
+            href="/leadership-risk-Methodology"
             className="hidden text-sm font-semibold text-[#31456E] hover:text-[#0057FF] sm:inline-flex"
           >
-            Report
+            Methodology
           </Link>
           <Link
             href="/sign-in"
@@ -53,7 +53,7 @@ export default function HomePage() {
             href="/district-command-center"
             className="rounded-full bg-[#0057FF] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0046cc]"
           >
-            Request Demo
+            Run District Risk Assessment
           </Link>
         </div>
       </header>
@@ -79,14 +79,14 @@ export default function HomePage() {
               href="/district-command-center"
               className="inline-flex items-center justify-center rounded-full bg-[#0057FF] px-8 py-4 text-sm font-bold text-white hover:bg-[#0046cc]"
             >
-              Request Demo
+              Run District Risk Assessment
             </Link>
 
             <Link
-              href="/executive-intelligence"
+              href="/district-command-center"
               className="inline-flex items-center justify-center rounded-full border border-[#0D6EFD]/20 bg-white px-8 py-4 text-sm font-bold hover:border-[#0D6EFD]"
             >
-              View Platform
+              View Command Center
             </Link>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function HomePage() {
             </p>
 
             <h3 className="mt-4 text-2xl font-semibold">
-              East High School
+              District Portfolio School A
             </h3>
 
             <div className="mt-4 space-y-2 text-sm text-blue-100">
