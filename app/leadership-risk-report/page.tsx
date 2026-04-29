@@ -71,7 +71,13 @@ export default function LeadershipRiskReportPage() {
                   {risk.score}
                 </p>
 
-                <div className="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-600">
+                <div
+                  className={`rounded-full px-3 py-1 text-sm font-medium ${
+                    risk.level === "High Risk"
+                      ? "bg-orange-100 text-orange-600"
+                      : "bg-yellow-100 text-yellow-700"
+                  }`}
+                >
                   {risk.level}
                 </div>
               </div>
@@ -86,8 +92,8 @@ export default function LeadershipRiskReportPage() {
                       {driver}
                     </span>
 
-                    <span className="text-red-500 font-semibold text-sm">
-                      Risk
+                    <span className="text-gray-400 text-sm">
+                      Signal
                     </span>
                   </div>
                 ))}
