@@ -11,9 +11,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#f8f7f4] text-[#111111]">
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10">
-        <Link href="/" className="inline-flex items-center">
-          <img src="/brand/leadsharper-logo.svg" alt="LeadSharper" className="h-10 w-auto" />
-        </Link>
+        <Link href="/" className="text-xl font-black tracking-[-0.04em]">LeadSharper</Link>
 
         <Link
           href="/sign-in"
@@ -95,3 +93,4 @@ export default function HomePage() {
     </main>
   );
 }
+
