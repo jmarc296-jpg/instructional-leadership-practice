@@ -31,7 +31,7 @@
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl border p-8 mb-8">
+        <div className="bg-[#f8f7f4] rounded-2xl border p-8 mb-8">
           <h2 className="text-2xl font-bold mb-6">
             Immediate Recommendations
           </h2>

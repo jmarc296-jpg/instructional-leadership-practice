@@ -22,7 +22,7 @@ const metrics = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#EEF3FB] text-[#071B4D]">
+    <main className="min-h-screen bg-[#f8f7f4] text-[#071B4D]">
       
       {/* HEADER */}
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10">

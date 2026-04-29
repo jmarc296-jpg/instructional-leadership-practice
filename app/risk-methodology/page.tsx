@@ -26,7 +26,7 @@ export default function RiskMethodologyPage() {
           LeadSharper analyzes leadership, staffing, culture, instructional, and succession signals to help districts identify schools where leadership instability may require proactive intervention.
         </p>
 
-        <div className="mt-10 bg-white rounded-2xl border p-8">
+        <div className="mt-10 bg-[#f8f7f4] rounded-2xl border p-8">
           <h2 className="text-2xl font-bold mb-6">
             Core Risk Signals
           </h2>
@@ -45,21 +45,21 @@ export default function RiskMethodologyPage() {
         </div>
 
         <div className="mt-8 grid md:grid-cols-3 gap-6">
-          <div className="bg-white border rounded-2xl p-6">
+          <div className="bg-[#f8f7f4] border rounded-2xl p-6">
             <h3 className="font-bold text-lg">Predict</h3>
             <p className="mt-3 text-gray-600">
               Identify leadership risk before turnover or vacancy occurs.
             </p>
           </div>
 
-          <div className="bg-white border rounded-2xl p-6">
+          <div className="bg-[#f8f7f4] border rounded-2xl p-6">
             <h3 className="font-bold text-lg">Prescribe</h3>
             <p className="mt-3 text-gray-600">
               Convert risk signals into targeted intervention moves.
             </p>
           </div>
 
-          <div className="bg-white border rounded-2xl p-6">
+          <div className="bg-[#f8f7f4] border rounded-2xl p-6">
             <h3 className="font-bold text-lg">Protect</h3>
             <p className="mt-3 text-gray-600">
               Strengthen succession pipelines before schools are exposed.
