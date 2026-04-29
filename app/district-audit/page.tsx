@@ -21,8 +21,8 @@ export default function DistrictAuditPage() {
             District Audit Intake
           </h2>
 
-          <p className="mt-3 text-black/60 leading-7">
-            CSV uploads connect district data directly into LeadSharper’s risk, prescription, and succession engines.
+          <p className="mt-3 leading-7 text-black/60">
+            CSV uploads connect district data directly into LeadSharper&apos;s risk, prescription, and succession engines.
           </p>
 
           <div className="mt-8 rounded-2xl bg-[#f8f7f4] p-6 text-black/65">
