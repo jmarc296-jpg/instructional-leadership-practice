@@ -1,105 +1,140 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 const metrics = [
-  { label: "Leadership Risk Exposure", value: "12" },
-  { label: "Urgent Intervention", value: "4" },
-  { label: "Succession Ready", value: "7" },
-  { label: "Vacancy Risk", value: "3" }
+  {
+    label: "At-Risk Leaders",
+    value: "12 Principals"
+  },
+  {
+    label: "Immediate Action Required",
+    value: "4 This Quarter"
+  },
+  {
+    label: "Vacancy Exposure",
+    value: "3 Schools"
+  },
+  {
+    label: "Succession Bench",
+    value: "7 Ready Now"
+  }
 ];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#f6f9ff] text-[#071a3d]">
+    <main className="min-h-screen bg-[#EEF3FB] text-[#071B4D]">
+      
+      {/* HEADER */}
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10">
-        <Link href="/" className="inline-flex items-center">
-          <Image
-            src="/logo.png"
-            alt="LeadSharper"
-            width={260}
-            height={80}
-            className="h-14 w-auto object-contain"
-            priority
-          />
-        </Link>
+        <Image
+          src="/logo.png"
+          alt="LeadSharper"
+          width={240}
+          height={70}
+          priority
+          className="h-auto w-[280px]"
+        />
 
-        <Link
-          href="/sign-in"
-          className="rounded-full border border-[#0b63ff]/20 bg-white px-5 py-3 text-sm font-bold text-[#071a3d] shadow-sm transition hover:border-[#0b63ff]"
-        >
-          Sign in
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/sign-in"
+            className="rounded-full border border-[#0D6EFD]/20 px-6 py-3 text-sm font-semibold hover:bg-white"
+          >
+            Sign In
+          </Link>
+
+          <Link
+            href="/demo"
+            className="rounded-full bg-[#0057FF] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0046cc]"
+          >
+            Request Demo
+          </Link>
+        </div>
       </header>
 
-      <section className="mx-auto grid max-w-7xl items-center gap-16 px-6 pb-20 pt-10 sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
+      {/* HERO */}
+      <section className="mx-auto grid max-w-7xl items-center gap-16 px-6 py-6 sm:px-10 lg:grid-cols-2">
+        
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.32em] text-[#0b63ff]">
-            District Leadership Intelligence
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#0D6EFD]">
+            Leadership Intelligence for Districts
           </p>
 
-          <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-[#071a3d] sm:text-6xl lg:text-7xl">
-            Know which leaders need support before the district pays the price.
+          <h1 className="mt-6 text-5xl font-semibold tracking-[-0.05em] sm:text-6xl lg:text-7xl">
+            Predict leadership failure before schools pay the price.
           </h1>
 
-          <p className="mt-7 max-w-2xl text-xl leading-8 text-[#34476b]">
-            LeadSharper turns fragmented leadership, talent, and performance data into executive decisions on risk, intervention, and succession.
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-[#31456E]">
+            Identify principal risk, intervene faster, and protect your succession pipeline before turnover, vacancies, and student outcomes decline.
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
-              href="/data-intake"
-              className="inline-flex items-center justify-center rounded-full bg-[#0b63ff] px-7 py-4 text-sm font-bold text-white shadow-sm transition hover:bg-[#084fd0]"
+              href="/demo"
+              className="inline-flex items-center justify-center rounded-full bg-[#0057FF] px-8 py-4 text-sm font-bold text-white hover:bg-[#0046cc]"
             >
-              Upload District Data
+              Request Demo
             </Link>
 
             <Link
               href="/executive-intelligence"
-              className="inline-flex items-center justify-center rounded-full border border-[#0b63ff]/25 bg-white px-7 py-4 text-sm font-bold text-[#071a3d] transition hover:border-[#0b63ff]"
+              className="inline-flex items-center justify-center rounded-full border border-[#0D6EFD]/20 bg-white px-8 py-4 text-sm font-bold hover:border-[#0D6EFD]"
             >
-              View Executive Intelligence
+              View Platform
             </Link>
           </div>
         </div>
 
-        <aside className="rounded-[2rem] border border-[#0b63ff]/10 bg-white p-8 shadow-sm">
-          <div className="border-b border-[#0b63ff]/10 pb-5">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0b63ff]">
-              Executive Snapshot
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[#071a3d]">
-              District leadership exposure
-            </h2>
-          </div>
+        {/* DASHBOARD */}
+        <div className="rounded-[2rem] border border-[#D8E3F7] bg-white p-8 shadow-sm">
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#0D6EFD]">
+            Executive Risk Snapshot
+          </p>
 
-          <div className="mt-6 grid gap-3">
+          <div className="mt-8 space-y-4">
             {metrics.map((metric) => (
               <div
                 key={metric.label}
-                className="flex items-center justify-between rounded-2xl bg-[#f1f6ff] px-5 py-5"
+                className="flex items-center justify-between rounded-2xl bg-[#F7FAFF] px-6 py-5"
               >
-                <p className="text-sm font-semibold text-[#34476b]">
+                <p className="text-sm font-medium text-[#31456E]">
                   {metric.label}
                 </p>
-                <p className="text-3xl font-semibold tracking-[-0.04em] text-[#071a3d]">
+
+                <p className="text-2xl font-bold text-[#071B4D]">
                   {metric.value}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 rounded-2xl bg-[#071a3d] p-5 text-white">
-            <p className="text-xs font-bold uppercase tracking-[0.26em] text-[#58a6ff]">
-              Recommended Action
+          <div className="mt-8 rounded-2xl bg-[#071B4D] p-6 text-white">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-blue-300">
+              Top Risk School
             </p>
-            <p className="mt-3 text-lg font-semibold leading-7">
-              Prioritize intervention for four leaders before the next performance cycle.
-            </p>
+
+            <h3 className="mt-4 text-2xl font-semibold">
+              East High School
+            </h3>
+
+            <div className="mt-4 space-y-2 text-sm text-blue-100">
+              <p>Principal tenure: 1.2 years</p>
+              <p>Teacher retention: 62%</p>
+              <p>Math proficiency: -14%</p>
+            </div>
           </div>
-        </aside>
+        </div>
+      </section>
+
+      {/* TRUST BAR */}
+      <section className="border-t border-[#D8E3F7] bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-10 sm:px-10">
+          <p className="text-center text-sm font-medium text-[#31456E]">
+            Built for superintendents, talent teams, and school boards making high-stakes leadership decisions.
+          </p>
+        </div>
       </section>
     </main>
   );
 }
-
 

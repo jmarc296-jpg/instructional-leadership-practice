@@ -2,200 +2,222 @@
 
 import { useMemo, useState } from "react";
 
-const datasetTypes = [
+const sources = [
   {
-    id: "principal-roster",
-    title: "Principal Roster",
-    description: "Principal names, schools, roles, years in role, and school type.",
-    fields: ["Principal Name", "School", "Role", "Years in Role", "School Type"]
+    id: "evaluations",
+    title: "Principal Evaluations",
+    description: "Observation ratings, rubric scores, leadership goals, and evaluation trends.",
+    status: "CSV / Excel"
   },
   {
-    id: "evaluation-coaching",
-    title: "Evaluation / Coaching Data",
-    description: "Observation ratings, coaching frequency, goals, notes, and walkthrough trends.",
-    fields: ["Principal Name", "School", "Evaluation Score", "Coaching Frequency", "Coaching Notes", "Leadership Goal"]
+    id: "retention",
+    title: "Retention Data",
+    description: "Leader tenure, staff retention, resignation history, and mobility patterns.",
+    status: "CSV / Excel"
   },
   {
-    id: "student-performance",
-    title: "Student Performance Data",
-    description: "Achievement trends, growth, subgroup performance, and assessment completion.",
-    fields: ["School", "Proficiency Rate", "Growth Metric", "Subgroup Gap", "Assessment Completion"]
+    id: "performance",
+    title: "School Performance",
+    description: "Achievement, growth, subgroup gaps, assessment completion, and school trajectory.",
+    status: "CSV / Excel"
   },
   {
-    id: "talent-hr",
-    title: "Talent / HR Data",
-    description: "Vacancies, retention, tenure, resignation history, and internal pipeline data.",
-    fields: ["Principal Name", "School", "Years in Role", "Retention Status", "Vacancy Risk", "Resignation Date"]
+    id: "vacancies",
+    title: "Vacancy Data",
+    description: "Open roles, expected transitions, hard-to-fill schools, and timeline risk.",
+    status: "CSV / Excel"
   },
   {
-    id: "succession-pipeline",
-    title: "Succession Pipeline Data",
-    description: "Assistant principal readiness, internal candidates, and successor pools.",
-    fields: ["Candidate Name", "Current Role", "Target Role", "Readiness Level", "Development Need"]
+    id: "succession",
+    title: "Succession Bench",
+    description: "Assistant principals, aspiring leaders, readiness levels, and development needs.",
+    status: "CSV / Excel"
+  },
+  {
+    id: "integrations",
+    title: "HRIS / Platform Sync",
+    description: "Future connections for Whetstone, TORSH, Google Drive, Frontline, and HR systems.",
+    status: "Coming Next"
   }
 ];
 
-const sampleColumns = [
-  "Building Leader Name",
-  "Site Assignment",
-  "Role Type",
-  "Years Assigned",
-  "Eval Composite",
-  "Coaching Notes",
-  "Student Proficiency",
-  "Vacancy Flag"
+const mappingRows = [
+  ["Building Leader", "Principal Name"],
+  ["Site", "School"],
+  ["Eval Composite", "Leadership Score"],
+  ["Years Assigned", "Tenure"],
+  ["Vacancy Flag", "Vacancy Risk"]
+];
+
+const outputs = [
+  ["Records Processed", "2,341"],
+  ["Principals Flagged", "14"],
+  ["Urgent Interventions", "4"],
+  ["Succession Gaps", "6"]
 ];
 
 export default function DataIntakeCenter() {
-  const [selectedType, setSelectedType] = useState(datasetTypes[0]);
+  const [selectedSource, setSelectedSource] = useState(sources[0]);
   const [fileName, setFileName] = useState("");
-  const [mappings, setMappings] = useState<Record<string, string>>({});
 
-  const requiredFields = useMemo(() => selectedType.fields, [selectedType]);
-
-  function handleMapping(column: string, value: string) {
-    setMappings((current) => ({
-      ...current,
-      [column]: value
-    }));
-  }
-
-  const mappedCount = Object.values(mappings).filter(Boolean).length;
+  const readyToProcess = useMemo(() => Boolean(fileName), [fileName]);
 
   return (
-    <main className="min-h-screen bg-[#f8f7f4] px-6 py-10 text-[#111111] sm:px-10">
+    <main className="min-h-screen bg-[#f6f9ff] px-6 py-8 text-[#071a3d] sm:px-10">
       <section className="mx-auto max-w-7xl">
-        <div className="mb-10 flex flex-col gap-4 border-b border-black/10 pb-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-black/50">
-            LeadSharper
-          </p>
-          <div className="max-w-3xl">
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-              Data Intake Center
-            </h1>
-            <p className="mt-4 text-lg leading-8 text-black/65">
-              Upload district leadership data, map messy fields, check data quality,
-              and push clean records into the risk, prescription, and succession engines.
-            </p>
-          </div>
-        </div>
+        <header className="flex items-center justify-between border-b border-[#0b63ff]/10 pb-6">
+          <a href="/" className="text-sm font-bold text-[#0b63ff]">
+            ? LeadSharper
+          </a>
 
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <section className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold">1. Upload data</h2>
-              <p className="mt-2 text-sm leading-6 text-black/60">
-                Start with CSV or Excel. Direct sync comes later after buyer validation.
+          <a href="/executive-intelligence" className="rounded-full border border-[#0b63ff]/20 bg-white px-5 py-3 text-sm font-bold text-[#071a3d] shadow-sm hover:border-[#0b63ff]">
+            Executive Intelligence
+          </a>
+        </header>
+
+        <div className="grid gap-10 py-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.32em] text-[#0b63ff]">
+              Data Intake Center
+            </p>
+
+            <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
+              Turn messy district files into leadership intelligence.
+            </h1>
+
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#34476b]">
+              Upload evaluation, talent, performance, and succession files. LeadSharper maps district fields, checks data quality, and prepares the records for risk, prescription, and succession analysis.
+            </p>
+
+            <div className="mt-8 rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
+              <h2 className="text-xl font-semibold">Upload source file</h2>
+              <p className="mt-2 text-sm leading-6 text-[#34476b]">
+                Start with CSV or Excel. Direct platform sync comes after pilot validation.
               </p>
+
+              <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-[#0b63ff]/30 bg-[#f6f9ff] px-6 py-10 text-center transition hover:border-[#0b63ff]">
+                <input
+                  type="file"
+                  accept=".csv,.xlsx,.xls"
+                  className="hidden"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    setFileName(file?.name ?? "");
+                  }}
+                />
+                <span className="text-base font-bold text-[#071a3d]">
+                  {fileName || "Choose CSV or Excel file"}
+                </span>
+                <span className="mt-2 text-sm text-[#34476b]">
+                  Principal roster, evaluation export, HR file, assessment file, or succession tracker.
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <aside className="rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
+            <div className="flex items-start justify-between gap-6 border-b border-[#0b63ff]/10 pb-5">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0b63ff]">
+                  Intake Readiness
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight">
+                  District data sources
+                </h2>
+              </div>
+
+              <div className="rounded-full bg-[#eaf2ff] px-4 py-2 text-xs font-bold text-[#0b63ff]">
+                Pilot-ready
+              </div>
             </div>
 
-            <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-black/25 bg-black/[0.02] px-6 py-12 text-center transition hover:bg-black/[0.04]">
-              <input
-                type="file"
-                accept=".csv,.xlsx,.xls"
-                className="hidden"
-                onChange={(event) => {
-                  const file = event.target.files?.[0];
-                  setFileName(file?.name ?? "");
-                }}
-              />
-              <span className="text-base font-semibold">
-                {fileName || "Choose CSV or Excel file"}
-              </span>
-              <span className="mt-2 text-sm text-black/55">
-                Principal roster, evaluation data, HR data, performance data, or succession pipeline.
-              </span>
-            </label>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {sources.map((source) => (
+                <button
+                  key={source.id}
+                  onClick={() => setSelectedSource(source)}
+                  className={`rounded-2xl border p-4 text-left transition ${
+                    selectedSource.id === source.id
+                      ? "border-[#0b63ff] bg-[#eef5ff]"
+                      : "border-[#0b63ff]/10 bg-white hover:border-[#0b63ff]/40"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="font-semibold">{source.title}</h3>
+                    <span className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-[#34476b]">
+                      {source.status}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-[#34476b]">
+                    {source.description}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </aside>
+        </div>
 
-            <div className="mt-8">
-              <h2 className="text-2xl font-semibold">2. Choose dataset type</h2>
-              <div className="mt-4 grid gap-3">
-                {datasetTypes.map((type) => (
-                  <button
-                    key={type.id}
-                    onClick={() => {
-                      setSelectedType(type);
-                      setMappings({});
-                    }}
-                    className={`rounded-2xl border p-4 text-left transition ${
-                      selectedType.id === type.id
-                        ? "border-black bg-black text-white"
-                        : "border-black/10 bg-white hover:border-black/30"
-                    }`}
-                  >
-                    <div className="font-semibold">{type.title}</div>
-                    <div
-                      className={`mt-1 text-sm leading-6 ${
-                        selectedType.id === type.id ? "text-white/70" : "text-black/55"
-                      }`}
-                    >
-                      {type.description}
-                    </div>
-                  </button>
-                ))}
+        <div className="grid gap-6 pb-12 lg:grid-cols-3">
+          <section className="rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0b63ff]">
+              Step 1
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">Map district columns</h2>
+
+            <div className="mt-6 space-y-3">
+              {mappingRows.map(([districtField, leadSharperField]) => (
+                <div key={districtField} className="flex items-center justify-between rounded-2xl bg-[#f6f9ff] px-4 py-4">
+                  <span className="text-sm font-semibold text-[#34476b]">{districtField}</span>
+                  <span className="text-sm font-bold text-[#071a3d]">? {leadSharperField}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0b63ff]">
+              Step 2
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">Check data health</h2>
+
+            <div className="mt-6 space-y-3">
+              <div className="rounded-2xl bg-[#f6f9ff] px-4 py-4">
+                <p className="text-sm font-bold">Missing leadership scores</p>
+                <p className="mt-1 text-sm text-[#34476b]">12 records need review</p>
+              </div>
+
+              <div className="rounded-2xl bg-[#f6f9ff] px-4 py-4">
+                <p className="text-sm font-bold">Duplicate leaders</p>
+                <p className="mt-1 text-sm text-[#34476b]">3 possible duplicates found</p>
+              </div>
+
+              <div className="rounded-2xl bg-[#f6f9ff] px-4 py-4">
+                <p className="text-sm font-bold">Outdated files</p>
+                <p className="mt-1 text-sm text-[#34476b]">2 files older than 90 days</p>
               </div>
             </div>
           </section>
 
-          <section className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold">3. Map columns</h2>
-              <p className="mt-2 text-sm leading-6 text-black/60">
-                Match district file columns to LeadSharper fields. This is what makes messy data usable.
-              </p>
-            </div>
+          <section className="rounded-[2rem] border border-[#0b63ff]/10 bg-[#071a3d] p-6 text-white shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#58a6ff]">
+              Step 3
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold">Generate outputs</h2>
 
-            <div className="overflow-hidden rounded-2xl border border-black/10">
-              <div className="grid grid-cols-2 bg-black px-4 py-3 text-sm font-semibold text-white">
-                <div>District Column</div>
-                <div>LeadSharper Field</div>
-              </div>
-
-              {sampleColumns.map((column) => (
-                <div key={column} className="grid grid-cols-2 items-center border-t border-black/10 px-4 py-3">
-                  <div className="text-sm font-medium">{column}</div>
-                  <select
-                    value={mappings[column] || ""}
-                    onChange={(event) => handleMapping(column, event.target.value)}
-                    className="rounded-xl border border-black/15 bg-white px-3 py-2 text-sm outline-none focus:border-black"
-                  >
-                    <option value="">Select field</option>
-                    {requiredFields.map((field) => (
-                      <option key={field} value={field}>
-                        {field}
-                      </option>
-                    ))}
-                  </select>
+            <div className="mt-6 space-y-3">
+              {outputs.map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-4">
+                  <span className="text-sm font-semibold text-white/70">{label}</span>
+                  <span className="text-2xl font-semibold">{value}</span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 rounded-2xl border border-black/10 bg-[#f8f7f4] p-5">
-              <h2 className="text-2xl font-semibold">4. Data health check</h2>
-              <div className="mt-4 grid gap-3 text-sm">
-                <div className="flex items-center justify-between rounded-xl bg-white px-4 py-3">
-                  <span>Mapped fields</span>
-                  <span className="font-semibold">{mappedCount}/{sampleColumns.length}</span>
-                </div>
-                <div className="flex items-center justify-between rounded-xl bg-white px-4 py-3">
-                  <span>Missing required fields</span>
-                  <span className="font-semibold">{Math.max(requiredFields.length - mappedCount, 0)}</span>
-                </div>
-                <div className="flex items-center justify-between rounded-xl bg-white px-4 py-3">
-                  <span>Duplicate records</span>
-                  <span className="font-semibold">Pending file parse</span>
-                </div>
-                <div className="flex items-center justify-between rounded-xl bg-white px-4 py-3">
-                  <span>Outdated records</span>
-                  <span className="font-semibold">Pending file parse</span>
-                </div>
-              </div>
-            </div>
-
             <button
-              className="mt-6 w-full rounded-2xl bg-black px-5 py-4 text-sm font-semibold text-white transition hover:bg-black/85"
+              disabled={!readyToProcess}
+              className="mt-6 w-full rounded-full bg-[#0b63ff] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#2f7dff] disabled:cursor-not-allowed disabled:opacity-45"
             >
-              Run LeadSharper Engines
+              {readyToProcess ? "Run LeadSharper Analysis" : "Upload file to continue"}
             </button>
           </section>
         </div>
