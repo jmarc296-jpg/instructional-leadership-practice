@@ -19,11 +19,11 @@ export default function DemoPage() {
           </p>
 
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[#071a3d]">
-            We’ll be in touch shortly.
+            Weï¿½ll be in touch shortly.
           </h1>
 
           <p className="mt-4 text-lg text-[#34476b] leading-8">
-            We’re currently onboarding pilot district partners and will reach out to schedule your walkthrough.
+            Weï¿½re currently onboarding pilot district partners and will reach out to schedule your walkthrough.
           </p>
         </div>
       </main>
@@ -39,11 +39,11 @@ export default function DemoPage() {
           </p>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-[-0.05em]">
-            See your district’s leadership risk profile.
+            See your districtï¿½s leadership risk profile.
           </h1>
 
           <p className="mt-4 max-w-2xl text-lg leading-8 text-[#34476b]">
-            Tell us about your district and we’ll schedule a walkthrough.
+            Tell us about your district and weï¿½ll schedule a walkthrough.
           </p>
         </div>
 
