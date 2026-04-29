@@ -2,7 +2,6 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher([
   "/district-audit(.*)",
-  "/upload-district-data(.*)",
   "/executive-intelligence(.*)"
 ]);
 
@@ -14,7 +13,7 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
-    "/((?!_next|.*\\..*).*)",
-    "/(api|trpc)(.*)"
+    "/district-audit(.*)",
+    "/executive-intelligence(.*)"
   ]
 };
