@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 
@@ -36,7 +36,7 @@ const sources = [
   {
     id: "integrations",
     title: "HRIS / Platform Sync",
-    description: "Future connections for Whetstone, TORSH, Google Drive, Frontline, and HR systems.",
+    description: "Compatible with common HR, evaluation, and performance data systems.",
     status: "Coming Next"
   }
 ];
@@ -63,21 +63,21 @@ export default function DataIntakeCenter() {
   const readyToProcess = useMemo(() => Boolean(fileName), [fileName]);
 
   return (
-    <main className="min-h-screen bg-[#f6f9ff] px-6 py-8 text-[#071a3d] sm:px-10">
+    <main className="min-h-screen bg-[#f8f7f4] px-6 py-8 text-[#071a3d] sm:px-10">
       <section className="mx-auto max-w-7xl">
-        <header className="flex items-center justify-between border-b border-[#0b63ff]/10 pb-6">
-          <a href="/" className="text-sm font-bold text-[#0b63ff]">
+        <header className="flex items-center justify-between border-b border-gray-200 pb-6">
+          <a href="/" className="text-sm font-bold text-black">
             LeadSharper
           </a>
 
-          <a href="/executive-intelligence" className="rounded-full border border-[#0b63ff]/20 bg-white px-5 py-3 text-sm font-bold text-[#071a3d] shadow-sm hover:border-[#0b63ff]">
+          <a href="/executive-intelligence" className="rounded-full border border-[#0b63ff]/20 bg-white px-5 py-3 text-sm font-bold text-[#071a3d] shadow-sm hover:border-black">
             Executive Intelligence
           </a>
         </header>
 
         <div className="grid gap-10 py-12 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.32em] text-[#0b63ff]">
+            <p className="text-xs font-bold uppercase tracking-[0.32em] text-black">
               Data Intake Center
             </p>
 
@@ -89,20 +89,20 @@ export default function DataIntakeCenter() {
               Upload evaluation, talent, performance, and succession files. LeadSharper maps district fields, checks data quality, and prepares the records for risk, prescription, and succession analysis.
             </p>
 
-            <div className="mt-8 rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
+            <div className="mt-8 rounded-[2rem] border border-gray-200 bg-white p-6 shadow-sm">
               <h2 className="text-xl font-semibold">Upload source file</h2>
               <p className="mt-2 text-sm leading-6 text-[#34476b]">
                 Start with CSV or Excel. Direct platform sync comes after pilot validation.
               </p>
 
-              <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-[#0b63ff]/30 bg-[#f6f9ff] px-6 py-10 text-center transition hover:border-[#0b63ff]">
+              <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-[#f8f7f4] px-6 py-10 text-center transition hover:border-black">
                 <input
                   type="file"
                   accept=".csv,.xlsx,.xls"
                   className="hidden"
                   onChange={(event) => {
                     const file = event.target.files?.[0];
-                    setFileName(file?.name ?? "");
+                    setFileName(file?.name ?"");
                   }}
                 />
                 <span className="text-base font-bold text-[#071a3d]">
@@ -115,10 +115,10 @@ export default function DataIntakeCenter() {
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
-            <div className="flex items-start justify-between gap-6 border-b border-[#0b63ff]/10 pb-5">
+          <aside className="rounded-[2rem] border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="flex items-start justify-between gap-6 border-b border-gray-200 pb-5">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0b63ff]">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-black">
                   Intake Readiness
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight">
@@ -126,7 +126,7 @@ export default function DataIntakeCenter() {
                 </h2>
               </div>
 
-              <div className="rounded-full bg-[#eaf2ff] px-4 py-2 text-xs font-bold text-[#0b63ff]">
+              <div className="rounded-full bg-gray-100 px-4 py-2 text-xs font-bold text-black">
                 Pilot-ready
               </div>
             </div>
@@ -138,8 +138,8 @@ export default function DataIntakeCenter() {
                   onClick={() => setSelectedSource(source)}
                   className={`rounded-2xl border p-4 text-left transition ${
                     selectedSource.id === source.id
-                      ? "border-[#0b63ff] bg-[#eef5ff]"
-                      : "border-[#0b63ff]/10 bg-white hover:border-[#0b63ff]/40"
+                      "border-[#0b63ff] bg-gray-100"
+                      : "border-gray-200 bg-white hover:border-black/40"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
@@ -158,47 +158,47 @@ export default function DataIntakeCenter() {
         </div>
 
         <div className="grid gap-6 pb-12 lg:grid-cols-3">
-          <section className="rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0b63ff]">
+          <section className="rounded-[2rem] border border-gray-200 bg-white p-6 shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-black">
               Step 1
             </p>
             <h2 className="mt-3 text-2xl font-semibold">Map district columns</h2>
 
             <div className="mt-6 space-y-3">
               {mappingRows.map(([districtField, leadSharperField]) => (
-                <div key={districtField} className="flex items-center justify-between rounded-2xl bg-[#f6f9ff] px-4 py-4">
+                <div key={districtField} className="flex items-center justify-between rounded-2xl bg-[#f8f7f4] px-4 py-4">
                   <span className="text-sm font-semibold text-[#34476b]">{districtField}</span>
-                  <span className="text-sm font-bold text-[#071a3d]">? {leadSharperField}</span>
+                  <span className="text-sm font-bold text-[#071a3d]">{leadSharperField}</span>
                 </div>
               ))}
             </div>
           </section>
 
-          <section className="rounded-[2rem] border border-[#0b63ff]/10 bg-white p-6 shadow-sm">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0b63ff]">
+          <section className="rounded-[2rem] border border-gray-200 bg-white p-6 shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-black">
               Step 2
             </p>
             <h2 className="mt-3 text-2xl font-semibold">Check data health</h2>
 
             <div className="mt-6 space-y-3">
-              <div className="rounded-2xl bg-[#f6f9ff] px-4 py-4">
+              <div className="rounded-2xl bg-[#f8f7f4] px-4 py-4">
                 <p className="text-sm font-bold">Missing leadership scores</p>
                 <p className="mt-1 text-sm text-[#34476b]">12 records need review</p>
               </div>
 
-              <div className="rounded-2xl bg-[#f6f9ff] px-4 py-4">
+              <div className="rounded-2xl bg-[#f8f7f4] px-4 py-4">
                 <p className="text-sm font-bold">Duplicate leaders</p>
                 <p className="mt-1 text-sm text-[#34476b]">3 possible duplicates found</p>
               </div>
 
-              <div className="rounded-2xl bg-[#f6f9ff] px-4 py-4">
+              <div className="rounded-2xl bg-[#f8f7f4] px-4 py-4">
                 <p className="text-sm font-bold">Outdated files</p>
                 <p className="mt-1 text-sm text-[#34476b]">2 files older than 90 days</p>
               </div>
             </div>
           </section>
 
-          <section className="rounded-[2rem] border border-[#0b63ff]/10 bg-[#071a3d] p-6 text-white shadow-sm">
+          <section className="rounded-[2rem] border border-gray-200 bg-black p-6 text-white shadow-sm">
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#58a6ff]">
               Step 3
             </p>
@@ -215,9 +215,9 @@ export default function DataIntakeCenter() {
 
             <button
               disabled={!readyToProcess}
-              className="mt-6 w-full rounded-full bg-[#0b63ff] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#2f7dff] disabled:cursor-not-allowed disabled:opacity-45"
+              className="mt-6 w-full rounded-full bg-black px-6 py-4 text-sm font-bold text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-45"
             >
-              {readyToProcess ? "Run LeadSharper Analysis" : "Upload file to continue"}
+              {readyToProcess "Run LeadSharper Analysis" : "Upload file to continue"}
             </button>
           </section>
         </div>
