@@ -37,6 +37,12 @@ export default function HomePage() {
 
         <div className="flex items-center gap-4">
           <Link
+            href="/leadership-risk-report"
+            className="hidden text-sm font-semibold text-[#31456E] hover:text-[#0057FF] sm:inline-flex"
+          >
+            Report
+          </Link>
+          <Link
             href="/sign-in"
             className="rounded-full border border-[#0D6EFD]/20 px-6 py-3 text-sm font-semibold hover:bg-white"
           >
@@ -137,4 +143,5 @@ export default function HomePage() {
     </main>
   );
 }
+
 
