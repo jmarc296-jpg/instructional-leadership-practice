@@ -67,7 +67,7 @@ export default function DataIntakeCenter() {
       <section className="mx-auto max-w-7xl">
         <header className="flex items-center justify-between border-b border-[#0b63ff]/10 pb-6">
           <a href="/" className="text-sm font-bold text-[#0b63ff]">
-            ? LeadSharper
+            LeadSharper
           </a>
 
           <a href="/executive-intelligence" className="rounded-full border border-[#0b63ff]/20 bg-white px-5 py-3 text-sm font-bold text-[#071a3d] shadow-sm hover:border-[#0b63ff]">
@@ -225,3 +225,4 @@ export default function DataIntakeCenter() {
     </main>
   );
 }
+
