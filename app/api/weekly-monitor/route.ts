@@ -1,6 +1,5 @@
 ﻿import { supabase } from '@/lib/supabase/server'
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase/client";
 
 function determineAction(score: number) {
   if (score >= 80) return "Executive Intervention";
@@ -26,4 +25,5 @@ export async function GET() {
     weeklyAlerts: alerts
   });
 }
+
 

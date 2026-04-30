@@ -1,6 +1,5 @@
 ﻿import { supabase } from '@/lib/supabase/server'
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase/client";
 
 function predictFutureRisk(score: number) {
   if (score >= 80) {
@@ -46,4 +45,5 @@ export async function GET() {
     predictions
   });
 }
+
 
