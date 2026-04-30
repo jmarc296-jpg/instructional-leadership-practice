@@ -26,14 +26,16 @@ export default function DemoRun() {
         <EscalationBanner escalationCount={summary.escalationCount} />
 
         <section className='rounded-2xl bg-white p-6 shadow-sm'>
-          <div className='text-sm font-semibold text-gray-500 uppercase tracking-wide'>
+          <div className='text-sm font-semibold uppercase tracking-wide text-gray-500'>
             LeadSharper Executive Demo
           </div>
+
           <h1 className='mt-2 text-3xl font-bold text-gray-950'>
             Leadership risk is only useful when it turns into action.
           </h1>
+
           <p className='mt-3 max-w-3xl text-gray-700'>
-            This demo shows how LeadSharper moves from risk signal to required action, owner, evidence, escalation, and ownership shift.
+            LeadSharper converts risk signals into assigned actions, evidence, escalation visibility, and ownership shifts before instability reaches students, staff, or the board.
           </p>
 
           <div className='mt-6 grid gap-4 md:grid-cols-3'>
@@ -41,10 +43,12 @@ export default function DemoRun() {
               <div className='text-sm text-gray-500'>At-Risk Leaders</div>
               <div className='text-3xl font-bold'>{summary.atRiskLeaders}</div>
             </div>
+
             <div className='rounded-xl border p-4'>
               <div className='text-sm text-gray-500'>Immediate Actions</div>
               <div className='text-3xl font-bold'>{summary.immediateActions}</div>
             </div>
+
             <div className='rounded-xl border p-4'>
               <div className='text-sm text-gray-500'>Ownership Shifts</div>
               <div className='text-3xl font-bold'>{summary.ownershipShifts}</div>
