@@ -1,6 +1,6 @@
 ﻿import { prescribeFromSignal } from "@/lib/prescription-engine";
 
-import { supabase } from "@/lib/supabase/server"`r`n
+import { supabase } from "@/lib/supabase/server";
 function addDays(days: number) {
   return new Date(Date.now() + days * 24 * 60 * 60 * 1000)
     .toISOString()
@@ -134,6 +134,7 @@ if (overdue) {
 
   return Response.json({ updated });
 }
+
 
 
 
