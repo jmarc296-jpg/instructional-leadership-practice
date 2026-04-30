@@ -50,7 +50,7 @@ export default function Home() {
           </div>
 
           <h1 className='text-4xl font-bold tracking-tight text-white md:text-6xl'>
-            You have leadership risk right now. You just can’t see it clearly.
+            You have leadership risk right now. You just canâ€™t see it clearly.
           </h1>
 
           <p className='mt-6 max-w-3xl text-lg leading-8 text-slate-300'>
@@ -131,7 +131,7 @@ export default function Home() {
             Consequence
           </div>
           <p className='mt-3 text-2xl font-bold text-white'>
-            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2–3 weeks.
+            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2â€“3 weeks.
           </p>
         </section>
       </section>
