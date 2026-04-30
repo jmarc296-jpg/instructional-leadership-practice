@@ -54,7 +54,7 @@ export default function Home() {
           </h1>
 
           <p className='mt-6 max-w-3xl text-lg leading-8 text-slate-300'>
-            LeadSharper shows what requires action this week, who owns it, what evidence is missing, and what needs executive attention before instability reaches students, staff, or the board.
+            This system shows what must be acted on this week, who is accountable, and what evidence is missing before risk impacts instruction.
           </p>
 
           <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
@@ -62,13 +62,13 @@ export default function Home() {
               href='/demo/run'
               className='rounded-xl bg-white px-5 py-3 text-center text-sm font-semibold text-slate-950 shadow-sm'
             >
-              View executive demo
+              See what requires action
             </Link>
             <Link
               href='/board-report'
               className='rounded-xl border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white'
             >
-              View board report
+              See executive output
             </Link>
           </div>
         </div>
@@ -138,3 +138,4 @@ export default function Home() {
     </main>
   )
 }
+
