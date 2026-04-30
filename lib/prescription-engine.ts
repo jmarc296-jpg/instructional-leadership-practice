@@ -1,5 +1,5 @@
 export type Prescription = {
-  risk: "Immediate" | "High" | "Moderate" | "Low";
+  risk: "System Alert" | "Critical" | "Immediate" | "High" | "Moderate" | "Low";
   action: string;
   owner: string;
 };

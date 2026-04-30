@@ -1,147 +1,80 @@
-﻿import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-const metrics = [
-  {
-    label: "At-Risk Leaders",
-    value: "12 Principals"
-  },
-  {
-    label: "Immediate Action Required",
-    value: "4 This Quarter"
-  },
-  {
-    label: "Vacancy Exposure",
-    value: "3 Schools"
-  },
-  {
-    label: "Succession Bench",
-    value: "7 Ready Now"
-  }
-];
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f8f7f4] text-[#071B4D]">
-      
-      {/* HEADER */}
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10">
-        <Image
-          src="/logo.png"
-          alt="LeadSharper"
-          width={240}
-          height={70}
-          priority
-          className="h-auto w-[280px]"
-        />
+    <main className="min-h-screen bg-white text-[#111827]">
 
-        <div className="flex items-center gap-4">
-          <Link
-            href="/risk-methodology"
-            className="hidden text-sm font-semibold text-[#31456E] hover:text-[#0057FF] sm:inline-flex"
-          >
-            Methodology
-          </Link>
-          <Link
-            href="/sign-in"
-            className="rounded-full border border-[#0D6EFD]/20 px-6 py-3 text-sm font-semibold hover:bg-white"
-          >
-            Sign In
-          </Link>
+      <section className="px-10 py-20 max-w-6xl mx-auto">
+        <h1 className="text-5xl font-bold leading-tight">
+          Prevent Leadership Failure Before It Impacts Schools
+        </h1>
 
-          <Link
-            href="/district-command-center"
-            className="rounded-full bg-[#0057FF] px-6 py-3 text-sm font-semibold text-white hover:bg-[#0046cc]"
-          >
-            Run District Risk Assessment
-          </Link>
+        <p className="mt-6 text-xl text-[#4b5563] max-w-3xl">
+          LeadSharper is an execution system that forces leadership action before school performance declines.
+        </p>
+
+        <div className="mt-8 flex gap-4">
+          <a href="/autonomous-command-center" className="bg-[#111827] text-white px-6 py-3 rounded-lg font-semibold">
+            See Execution System in Action
+          </a>
         </div>
-      </header>
+      </section>
 
-      {/* HERO */}
-      <section className="mx-auto grid max-w-7xl items-center gap-16 px-6 py-6 sm:px-10 lg:grid-cols-2">
-        
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#0D6EFD]">
-            Leadership Intelligence for Districts
+      <section className="px-10 py-16 bg-[#f8f7f4]">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold">
+            From Insight to Enforcement
+          </h2>
+
+          <p className="mt-6 text-lg text-[#4b5563] max-w-3xl">
+            Most systems identify problems. LeadSharper enforces action.
           </p>
 
-          <h1 className="mt-6 text-5xl font-semibold tracking-[-0.05em] sm:text-6xl lg:text-7xl">
-            Predict leadership failure before schools pay the price.
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-xl leading-8 text-[#31456E]">
-            Identify principal risk, intervene faster, and protect your succession pipeline before turnover, vacancies, and student outcomes decline.
-          </p>
-
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/district-command-center"
-              className="inline-flex items-center justify-center rounded-full bg-[#0057FF] px-8 py-4 text-sm font-bold text-white hover:bg-[#0046cc]"
-            >
-              Run District Risk Assessment
-            </Link>
-
-            <Link
-              href="/district-command-center"
-              className="inline-flex items-center justify-center rounded-full border border-[#0D6EFD]/20 bg-white px-8 py-4 text-sm font-bold hover:border-[#0D6EFD]"
-            >
-              View Command Center
-            </Link>
-          </div>
-        </div>
-
-        {/* DASHBOARD */}
-        <div className="rounded-[2rem] border border-[#D8E3F7] bg-white p-8 shadow-sm">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#0D6EFD]">
-            Executive Risk Snapshot
-          </p>
-
-          <div className="mt-8 space-y-4">
-            {metrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="flex items-center justify-between rounded-2xl bg-[#F7FAFF] px-6 py-5"
-              >
-                <p className="text-sm font-medium text-[#31456E]">
-                  {metric.label}
-                </p>
-
-                <p className="text-2xl font-bold text-[#071B4D]">
-                  {metric.value}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 rounded-2xl bg-[#071B4D] p-6 text-white">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-blue-300">
-              Top Risk School
-            </p>
-
-            <h3 className="mt-4 text-2xl font-semibold">
-              District Portfolio School A
-            </h3>
-
-            <div className="mt-4 space-y-2 text-sm text-blue-100">
-              <p>Principal tenure: 1.2 years</p>
-              <p>Teacher retention: 62%</p>
-              <p>Math proficiency: -14%</p>
+          <div className="mt-8 grid md:grid-cols-2 gap-6">
+            <div className="bg-white p-6 rounded-xl shadow">
+              Assign leadership action
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow">
+              Assign ownership
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow">
+              Set deadline
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow">
+              Require evidence
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow">
+              Escalate if ignored
             </div>
           </div>
         </div>
       </section>
 
-      {/* TRUST BAR */}
-      <section className="border-t border-[#D8E3F7] bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-10 sm:px-10">
-          <p className="text-center text-sm font-medium text-[#31456E]">
-            Built for superintendents, talent teams, and school boards making high-stakes leadership decisions.
+      <section className="px-10 py-16 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold">
+          If Leaders Don’t Act
+        </h2>
+
+        <div className="mt-8 space-y-4 text-lg text-[#4b5563]">
+          <p>Day 0 → Action assigned to principal</p>
+          <p>Day 3 → No evidence → flagged</p>
+          <p>Day 5 → Overdue → escalated to Critical</p>
+          <p>Day 7 → Ownership shifts beyond the school</p>
+        </div>
+      </section>
+
+      <section className="px-10 py-16 bg-[#111827] text-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold">
+            Built for Superintendents
+          </h2>
+
+          <p className="mt-6 text-lg max-w-3xl text-[#d1d5db]">
+            This system ensures leadership actions happen before they impact student outcomes.
           </p>
         </div>
       </section>
+
     </main>
   );
 }
-
-

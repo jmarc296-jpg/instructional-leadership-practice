@@ -31,6 +31,32 @@ export async function GET() {
   return Response.json({ data: data || [] });
 }
 
+export async function PATCH(request: Request) {
+  const body = await request.json();
+  const { id, evidence, status } = body;
+
+  if (!id) {
+    return Response.json({ error: "Missing action id" }, { status: 400 });
+  }
+
+  const updates = {
+    evidence,
+    status: status || "In Progress",
+    last_updated: new Date().toISOString()
+  };
+
+  const { data, error } = await supabase
+    .from("leadership_actions")
+    .update(updates)
+    .eq("id", id)
+    .select("id,campus,signal,action,owner,status,risk,evidence,due_date,last_reviewed,last_updated")
+    .single();
+
+  if (error) return Response.json({ error: error.message }, { status: 500 });
+
+  return Response.json({ data });
+}
+
 export async function POST() {
   const { data, error } = await supabase
     .from("leadership_actions")
@@ -49,11 +75,36 @@ export async function POST() {
 
     const overdue = isOverdue(dueDate, item.status);
 
-    const risk = overdue ? "Immediate" : prescription.risk;
+let daysLate = 0;
+if (overdue && dueDate) {
+  const today = new Date();
+  const due = new Date(dueDate);
+  daysLate = Math.floor((today.getTime() - due.getTime()) / (1000 * 60 * 60 * 24));
+}
 
-    const action = overdue
-      ? `OVERDUE: ${prescription.action}`
-      : prescription.action;
+    let risk = prescription.risk;
+
+if (overdue) {
+  if (daysLate <= 3) {
+    risk = "Immediate";
+  } else if (daysLate <= 7) {
+    risk = "Critical";
+  } else {
+    risk = "System Alert";
+  }
+}
+
+    let action = prescription.action;
+
+if (overdue) {
+  if (daysLate <= 3) {
+    action = `OVERDUE: ${prescription.action}`;
+  } else if (daysLate <= 7) {
+    action = `CRITICAL: Immediate leadership intervention required. ${prescription.action}`;
+  } else {
+    action = `SYSTEM ALERT: District-level escalation required. ${prescription.action}`;
+  }
+}
 
     const lastReviewed =
       item.status === "Complete" && !item.last_reviewed
@@ -73,7 +124,9 @@ export async function POST() {
         .update({
           risk,
           action,
-          owner: prescription.owner,
+          owner: overdue && daysLate > 3 
+  ? "Network Superintendent" 
+  : prescription.owner,
           due_date: dueDate,
           last_reviewed: lastReviewed,
           last_updated: new Date().toISOString()
