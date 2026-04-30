@@ -1,4 +1,5 @@
 import { buildExecutiveSummary } from '../utils/executiveSummary'
+import { districtScenario } from '../config/districtScenario'
 import EscalationBanner from '../components/EscalationBanner'
 import WhyItMatters from '../components/WhyItMatters'
 import ValueProof from '../components/ValueProof'
@@ -6,20 +7,8 @@ import BoardReportCTA from '../components/BoardReportCTA'
 import StabilizationPath from '../components/StabilizationPath'
 import DemoActionTable from '../components/DemoActionTable'
 
-type DemoRecord = {
-  risk: 'LOW' | 'MEDIUM' | 'HIGH'
-  escalation: 'LOW' | 'MEDIUM' | 'HIGH'
-  ownerChanged?: boolean
-}
-
-const mockData: DemoRecord[] = [
-  { risk: 'HIGH', escalation: 'HIGH', ownerChanged: true },
-  { risk: 'MEDIUM', escalation: 'LOW' },
-  { risk: 'HIGH', escalation: 'HIGH' }
-]
-
 export default function DemoRun() {
-  const summary = buildExecutiveSummary(mockData)
+  const summary = buildExecutiveSummary(districtScenario)
 
   return (
     <main className='min-h-screen bg-gray-100 p-6'>
@@ -46,14 +35,18 @@ export default function DemoRun() {
             </div>
 
             <div className='rounded-xl border p-4'>
-              <div className='text-sm text-gray-500'>Immediate Actions</div>
+              <div className='text-sm text-gray-500'>Actions Required This Week</div>
               <div className='text-3xl font-bold'>{summary.immediateActions}</div>
             </div>
 
             <div className='rounded-xl border p-4'>
-              <div className='text-sm text-gray-500'>Ownership Shifts</div>
+              <div className='text-sm text-gray-500'>Assigned Accountability Shifts</div>
               <div className='text-3xl font-bold'>{summary.ownershipShifts}</div>
             </div>
+          </div>
+
+          <div className='mt-4 text-xs font-medium text-gray-500'>
+            Data sources: walkthrough trends, unit assessment patterns, coaching logs, staffing exposure, and execution evidence.
           </div>
         </section>
 
@@ -70,4 +63,3 @@ export default function DemoRun() {
     </main>
   )
 }
-
