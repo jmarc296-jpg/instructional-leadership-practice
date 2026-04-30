@@ -1,5 +1,4 @@
-﻿import { supabase } from '@/lib/supabase/server'
-import { createClient } from "@supabase/supabase-js";
+﻿import { createClient } from "@supabase/supabase-js";
 import { prescribeFromSignal } from "@/lib/prescription-engine";
 
 const supabase = createClient(
@@ -140,4 +139,5 @@ if (overdue) {
 
   return Response.json({ updated });
 }
+
 
