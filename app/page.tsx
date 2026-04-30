@@ -43,18 +43,36 @@ const buyerReactions = [
 export default function Home() {
   return (
     <main className='min-h-screen bg-slate-950 text-white'>
-      <section className='mx-auto flex max-w-7xl flex-col gap-10 px-6 py-16 lg:px-8'>
+      
+
+        <div className='grid gap-3 md:grid-cols-3'>
+          <div className='rounded-xl border border-red-400/30 bg-red-500/10 p-4'>
+            <div className='text-xs font-semibold uppercase tracking-wide text-red-200'>Executive Escalations</div>
+            <div className='mt-1 text-2xl font-bold'>2</div>
+            <div className='text-xs text-red-200'>Action required this week</div>
+          </div>
+          <div className='rounded-xl border border-orange-400/30 bg-orange-500/10 p-4'>
+            <div className='text-xs font-semibold uppercase tracking-wide text-orange-200'>Unassigned Ownership</div>
+            <div className='mt-1 text-2xl font-bold'>1</div>
+            <div className='text-xs text-orange-200'>No clear owner</div>
+          </div>
+          <div className='rounded-xl border border-slate-400/30 bg-slate-500/10 p-4'>
+            <div className='text-xs font-semibold uppercase tracking-wide text-slate-200'>Overdue Actions</div>
+            <div className='mt-1 text-2xl font-bold'>3</div>
+            <div className='text-xs text-slate-200'>No evidence logged</div>
+          </div>
+        </div>
         <div className='max-w-4xl'>
           <div className='mb-5 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-slate-200'>
             
           </div>
 
           <h1 className='text-4xl font-bold tracking-tight text-white md:text-6xl'>
-            You have leadership risk right now. You just canÃ¢â‚¬â„¢t see it clearly.
+            You have leadership risk right now. You just canÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢t see it clearly.
           </h1>
 
           <p className='mt-6 max-w-3xl text-lg leading-8 text-slate-300'>
-            No clear owner. No consistent follow-up. No evidence.
+            No owner. No follow-up. No evidence.
           </p>
 
           <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
@@ -62,13 +80,13 @@ export default function Home() {
               href='/demo/run'
               className='rounded-xl bg-white px-5 py-3 text-center text-sm font-semibold text-slate-950 shadow-sm'
             >
-              Show me the issues
+              Open the issues
             </Link>
             <Link
               href='/board-report'
               className='rounded-xl border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white'
             >
-              Show the board view
+              Open board view
             </Link>
           </div>
         </div>
@@ -131,13 +149,14 @@ export default function Home() {
             Consequence
           </div>
           <p className='mt-3 text-2xl font-bold text-white'>
-            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2Ã¢â‚¬â€œ3 weeks.
+            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“3 weeks.
           </p>
         </section>
       </section>
     </main>
   )
 }
+
 
 
 
