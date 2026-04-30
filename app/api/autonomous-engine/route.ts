@@ -1,11 +1,6 @@
-﻿import { createClient } from "@supabase/supabase-js";
-import { prescribeFromSignal } from "@/lib/prescription-engine";
+﻿import { prescribeFromSignal } from "@/lib/prescription-engine";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
+import { supabase } from "@/lib/supabase/server"`r`n
 function addDays(days: number) {
   return new Date(Date.now() + days * 24 * 60 * 60 * 1000)
     .toISOString()
@@ -139,5 +134,6 @@ if (overdue) {
 
   return Response.json({ updated });
 }
+
 
 
