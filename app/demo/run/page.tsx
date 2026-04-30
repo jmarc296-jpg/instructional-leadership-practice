@@ -1,5 +1,6 @@
 import { buildExecutiveSummary } from '../utils/executiveSummary'
 import EscalationBanner from '../components/EscalationBanner'
+import WhyItMatters from '../components/WhyItMatters'
 
 type DemoRecord = {
   risk: 'LOW' | 'MEDIUM' | 'HIGH'
@@ -24,6 +25,8 @@ export default function DemoRun() {
       <div>At-Risk Leaders: {summary.atRiskLeaders}</div>
       <div>Immediate Actions: {summary.immediateActions}</div>
       <div>Ownership Shifts: {summary.ownershipShifts}</div>
+
+      <WhyItMatters />
 
       <div className='text-red-600 font-semibold'>
         {summary.summaryLine}
