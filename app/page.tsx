@@ -50,11 +50,11 @@ export default function Home() {
           </div>
 
           <h1 className='text-4xl font-bold tracking-tight text-white md:text-6xl'>
-            You have leadership risk right now. You just can’t see it clearly.
+            You have leadership risk right now. You just canâ€™t see it clearly.
           </h1>
 
           <p className='mt-6 max-w-3xl text-lg leading-8 text-slate-300'>
-            This system shows what must be acted on this week, who is accountable, and what evidence is missing before risk impacts instruction.
+            No clear owner. No consistent follow-up. No evidence.
           </p>
 
           <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
@@ -62,13 +62,13 @@ export default function Home() {
               href='/demo/run'
               className='rounded-xl bg-white px-5 py-3 text-center text-sm font-semibold text-slate-950 shadow-sm'
             >
-              See what requires action
+              Show me the issues
             </Link>
             <Link
               href='/board-report'
               className='rounded-xl border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white'
             >
-              See executive output
+              Show the board view
             </Link>
           </div>
         </div>
@@ -131,11 +131,12 @@ export default function Home() {
             Consequence
           </div>
           <p className='mt-3 text-2xl font-bold text-white'>
-            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2–3 weeks.
+            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2â€“3 weeks.
           </p>
         </section>
       </section>
     </main>
   )
 }
+
 
