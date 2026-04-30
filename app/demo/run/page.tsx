@@ -4,6 +4,7 @@ import WhyItMatters from '../components/WhyItMatters'
 import ValueProof from '../components/ValueProof'
 import BoardReportCTA from '../components/BoardReportCTA'
 import StabilizationPath from '../components/StabilizationPath'
+import DemoActionTable from '../components/DemoActionTable'
 
 type DemoRecord = {
   risk: 'LOW' | 'MEDIUM' | 'HIGH'
@@ -58,6 +59,7 @@ export default function DemoRun() {
 
         <ValueProof />
         <StabilizationPath />
+        <DemoActionTable />
         <WhyItMatters />
         <BoardReportCTA />
 
@@ -68,3 +70,4 @@ export default function DemoRun() {
     </main>
   )
 }
+
