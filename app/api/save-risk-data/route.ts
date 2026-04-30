@@ -1,3 +1,4 @@
+﻿import { supabase } from '@/lib/supabase/server'
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase/client";
 
@@ -19,3 +20,4 @@ export async function POST(req: Request) {
     data
   });
 }
+

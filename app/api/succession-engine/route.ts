@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { calculateReadiness } from "@/lib/succession/calculateReadiness";
 
 export async function POST(req: Request) {
@@ -8,3 +8,4 @@ export async function POST(req: Request) {
 
   return NextResponse.json(result);
 }
+

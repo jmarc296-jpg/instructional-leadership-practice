@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { calculatePrincipalRisk } from "@/lib/risk/principalRiskScorer";
 
 export async function POST(req: Request) {
@@ -8,3 +8,4 @@ export async function POST(req: Request) {
 
   return NextResponse.json(result);
 }
+
