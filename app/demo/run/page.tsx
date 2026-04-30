@@ -6,6 +6,7 @@ import ValueProof from '../components/ValueProof'
 import BoardReportCTA from '../components/BoardReportCTA'
 import StabilizationPath from '../components/StabilizationPath'
 import DemoActionTable from '../components/DemoActionTable'
+import ExecutiveDecisionPanel from '../components/ExecutiveDecisionPanel'
 
 export default function DemoRun() {
   const summary = buildExecutiveSummary(districtScenario)
@@ -50,6 +51,7 @@ export default function DemoRun() {
           </div>
         </section>
 
+        <ExecutiveDecisionPanel />
         <ValueProof />
         <StabilizationPath />
         <DemoActionTable />
@@ -63,3 +65,4 @@ export default function DemoRun() {
     </main>
   )
 }
+

@@ -5,13 +5,13 @@ type DemoRecord = {
 }
 
 export function buildExecutiveSummary(data: DemoRecord[]) {
-  const escalations = data.filter(d => d.escalation === 'HIGH')
+  const escalations = data.filter((d) => d.escalation === 'HIGH')
 
   return {
-    atRiskLeaders: data.filter(d => d.risk === 'HIGH').length,
+    atRiskLeaders: data.filter((d) => d.risk === 'HIGH').length,
     immediateActions: escalations.length,
-    ownershipShifts: data.filter(d => d.ownerChanged).length,
+    ownershipShifts: data.filter((d) => d.ownerChanged).length,
     escalationCount: escalations.length,
-    summaryLine: 'Immediate intervention required to stabilize leadership performance and prevent downstream impact.'
+    summaryLine: 'Decision needed: confirm owners, evidence expectations, and follow-up cadence for all high-risk signals this week.'
   }
 }
