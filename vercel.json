@@ -1,3 +1,9 @@
 {
-  "framework": "nextjs"
+  "redirects": [
+    {
+      "source": "/demo",
+      "destination": "/demo/run",
+      "permanent": true
+    }
+  ]
 }
