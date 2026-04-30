@@ -73,7 +73,7 @@ export default function DemoActionTable() {
                 <td className='p-3 text-gray-700'>{row.due}</td>
                 <td className='p-3 text-gray-700'>{row.evidence}</td>
                 <td className='p-3'>
-                  <span className={ounded-full border px-2 py-1 text-xs font-semibold \}>
+                  <span className={'rounded-full border px-2 py-1 text-xs font-semibold ' + escalationClass(row.escalation)}>
                     {row.escalation}
                   </span>
                 </td>
