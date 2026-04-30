@@ -1,8 +1,10 @@
-import Link from "next/link"
+import Link from "next/link"`nimport DemoHotkey from "@/app/components/DemoHotkey"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <>
+      <DemoHotkey />
+      <main className="min-h-screen bg-slate-950 text-white">
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 space-y-10">
 
         {/* Executive Risk Strip */}
@@ -49,10 +51,12 @@ export default function Home() {
 
         {/* Consequence */}
         <div className="text-sm font-semibold text-red-200">
-          If these are not addressed this week, instruction will be impacted within 2–3 weeks.
+          If these are not addressed this week, instruction will be impacted within 2â€“3 weeks.
         </div>
 
       </section>
     </main>
+    </>
   )
 }
+
