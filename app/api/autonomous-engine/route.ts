@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { prescribeFromSignal } from "@/lib/prescription-engine";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -25,19 +26,24 @@ export async function POST() {
 
   let updated = 0;
 
-  for (const a of data || []) {
-    const risk =
-      a.status === "Not Started"
-        ? "Immediate"
-        : a.status === "In Progress"
-        ? "High"
-        : "Low";
+  for (const item of data || []) {
+    const prescription = prescribeFromSignal(item.signal, item.status);
 
-    if (risk !== a.risk) {
+    const shouldUpdate =
+      prescription.risk !== item.risk ||
+      prescription.action !== item.action ||
+      prescription.owner !== item.owner;
+
+    if (shouldUpdate) {
       const { error: updateError } = await supabase
         .from("leadership_actions")
-        .update({ risk, last_updated: new Date().toISOString() })
-        .eq("id", a.id);
+        .update({
+          risk: prescription.risk,
+          action: prescription.action,
+          owner: prescription.owner,
+          last_updated: new Date().toISOString()
+        })
+        .eq("id", item.id);
 
       if (!updateError) updated++;
     }
