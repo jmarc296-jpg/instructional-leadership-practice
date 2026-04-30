@@ -46,11 +46,11 @@ export default function Home() {
       <section className='mx-auto flex max-w-7xl flex-col gap-10 px-6 py-16 lg:px-8'>
         <div className='max-w-4xl'>
           <div className='mb-5 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-slate-200'>
-            Leadership risk intelligence for district teams
+            
           </div>
 
           <h1 className='text-4xl font-bold tracking-tight text-white md:text-6xl'>
-            You have leadership risk right now. You just canâ€™t see it clearly.
+            You have leadership risk right now. You just canÃ¢â‚¬â„¢t see it clearly.
           </h1>
 
           <p className='mt-6 max-w-3xl text-lg leading-8 text-slate-300'>
@@ -77,7 +77,7 @@ export default function Home() {
           {executiveSignals.map((signal) => (
             <div key={signal} className='rounded-2xl border border-red-400/30 bg-red-500/10 p-5'>
               <div className='text-sm font-semibold uppercase tracking-wide text-red-200'>
-                Action Required
+                Act Now
               </div>
               <div className='mt-2 text-xl font-bold text-white'>
                 {signal}
@@ -131,12 +131,13 @@ export default function Home() {
             Consequence
           </div>
           <p className='mt-3 text-2xl font-bold text-white'>
-            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2â€“3 weeks.
+            If these issues are not addressed this week, leadership risk compounds and instructional execution weakens within the next 2Ã¢â‚¬â€œ3 weeks.
           </p>
         </section>
       </section>
     </main>
   )
 }
+
 
 
