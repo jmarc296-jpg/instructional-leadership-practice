@@ -3,3 +3,6 @@ node_modules
 .env.local
 
 .vercel
+
+# clerk configuration (can include secrets)
+/.clerk/
