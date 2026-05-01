@@ -22,7 +22,7 @@ export default function DemoRunPage() {
           Leadership Risk Snapshot
         </h1>
         <p className="mt-3 text-gray-700 max-w-3xl">
-          {summary}
+          {summary.summaryLine}
         </p>
       </section>
 
@@ -35,3 +35,4 @@ export default function DemoRunPage() {
     </main>
   )
 }
+
