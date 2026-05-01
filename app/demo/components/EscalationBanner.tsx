@@ -8,7 +8,7 @@ export default function EscalationBanner({ escalationCount }: Props) {
   return (
     <div className='bg-red-700 text-white p-5 rounded-xl shadow-lg'>
       <div className='text-lg font-semibold'>
-        You Have {escalationCount} Schools at Immediate Leadership Risk
+        You have {escalationCount} Schools at Immediate Leadership Risk
       </div>
       <div className='text-sm mt-1 opacity-90'>
         No action is currently assigned to stabilize them.

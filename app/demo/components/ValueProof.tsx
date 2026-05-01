@@ -5,7 +5,7 @@
         Without This System
       </div>
       <div className='mt-2 text-xl font-bold'>
-        These failures remain invisible until students are impacted.
+        Failure becomes visible only after student impact.
       </div>
       <div className='mt-2 text-sm text-gray-700'>
         No ownership. No intervention. No accountability.

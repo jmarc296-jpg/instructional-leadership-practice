@@ -9,19 +9,19 @@ export default function Home() {
         <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 space-y-10">
           <div className="grid gap-3 md:grid-cols-3">
             <div className="rounded-xl border border-red-400/30 bg-red-500/10 p-4">
-              <div className="text-xs font-semibold uppercase tracking-wide text-red-200">Executive Escalations</div>
+              <div className="text-xs font-semibold uppercase tracking-wide text-red-200">Active Leadership Risk</div>
               <div className="mt-1 text-2xl font-bold">2</div>
               <div className="text-xs text-red-200">Action required this week</div>
             </div>
 
             <div className="rounded-xl border border-orange-400/30 bg-orange-500/10 p-4">
-              <div className="text-xs font-semibold uppercase tracking-wide text-orange-200">Unassigned Ownership</div>
+              <div className="text-xs font-semibold uppercase tracking-wide text-orange-200">Unassigned Risk</div>
               <div className="mt-1 text-2xl font-bold">1</div>
               <div className="text-xs text-orange-200">No clear owner</div>
             </div>
 
             <div className="rounded-xl border border-slate-400/30 bg-slate-500/10 p-4">
-              <div className="text-xs font-semibold uppercase tracking-wide text-slate-200">Overdue Actions</div>
+              <div className="text-xs font-semibold uppercase tracking-wide text-slate-200">Unexecuted Actions</div>
               <div className="mt-1 text-2xl font-bold">3</div>
               <div className="text-xs text-slate-200">No evidence logged</div>
             </div>

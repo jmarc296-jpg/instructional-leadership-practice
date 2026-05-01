@@ -15,7 +15,7 @@ export default function DemoRunPage() {
 
         <section className="border-b border-gray-200 pb-6">
           <div className="text-xs font-medium text-gray-500">
-            District Leadership Exposure
+            Active Leadership Risk
           </div>
           <h1 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight">
             You are currently carrying uncontained leadership risk across multiple schools.
