@@ -1,4 +1,5 @@
-﻿import { buildExecutiveSummary } from '../utils/executiveSummary'
+﻿import { districtScenario } from '../config/districtScenario'
+import { buildExecutiveSummary } from '../utils/executiveSummary'
 export default function DemoRunPage() {
   return (
     <main className="min-h-screen p-10">
@@ -6,6 +7,7 @@ export default function DemoRunPage() {
     </main>
   );
 }
+
 
 
 
