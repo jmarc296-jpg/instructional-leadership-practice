@@ -6,6 +6,9 @@ import EscalationBanner from '../components/EscalationBanner'
 import ValueProof from '../components/ValueProof'
 import ExecutiveDecisionMoment from '../components/ExecutiveDecisionMoment'
 import AccountabilityReceipt from '../components/AccountabilityReceipt'
+import ContainmentProtocol from '../components/ContainmentProtocol'
+import BoardExposureNarrative from '../components/BoardExposureNarrative'
+import ExecutiveClose from '../components/ExecutiveClose'
 import TrackView from '../components/TrackView'
 
 export default function DemoRunPage() {
@@ -66,11 +69,15 @@ export default function DemoRunPage() {
           </div>
         </section>
 
+        <ContainmentProtocol />
         <ExecutiveDecisionPanel />
         <DemoActionTable />
+        <BoardExposureNarrative />
         <AccountabilityReceipt />
         <ValueProof />
+        <ExecutiveClose escalationCount={escalationCount} ownershipGaps={ownershipGaps} />
       </div>
     </main>
   )
 }
+
