@@ -27,21 +27,21 @@ export default function DemoRunPage() {
         <EscalationBanner escalationCount={escalationCount} />
 
         <section className="grid gap-3 md:grid-cols-4">
-          <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">At-Risk Leaders Identified</div>
-            <div className="mt-1 text-2xl font-semibold">{summary.atRiskLeaders}</div>
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <div className="text-xs font-medium text-gray-500">At-Risk Leaders Identified</div>
+            <div className="mt-1 text-2xl font-semibold tracking-tight">{summary.atRiskLeaders}</div>
           </div>
-          <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">Actions Needed This Week</div>
-            <div className="mt-1 text-2xl font-semibold">{summary.immediateActions}</div>
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <div className="text-xs font-medium text-gray-500">Actions Needed This Week</div>
+            <div className="mt-1 text-2xl font-semibold tracking-tight">{summary.immediateActions}</div>
           </div>
-          <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">Ownership Gaps Closed</div>
-            <div className="mt-1 text-2xl font-semibold">{summary.ownershipShifts}</div>
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <div className="text-xs font-medium text-gray-500">Ownership Gaps Closed</div>
+            <div className="mt-1 text-2xl font-semibold tracking-tight">{summary.ownershipShifts}</div>
           </div>
-          <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">Cabinet Escalations</div>
-            <div className="mt-1 text-2xl font-semibold">{summary.escalationCount}</div>
+          <div className="rounded-lg border bg-white p-4 shadow-sm">
+            <div className="text-xs font-medium text-gray-500">Cabinet Escalations</div>
+            <div className="mt-1 text-2xl font-semibold tracking-tight">{summary.escalationCount}</div>
           </div>
         </section>
         <ExecutiveDecisionPanel />
@@ -53,6 +53,7 @@ export default function DemoRunPage() {
     </main>
   )
 }
+
 
 
 
