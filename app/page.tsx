@@ -41,7 +41,7 @@ export default function Home() {
                 Open the issues
               </Link>
 
-              <Link href="/board-report" className="border border-white px-6 py-3 rounded-xl font-semibold">
+              <Link href="/demo/run" className="border border-white px-6 py-3 rounded-xl font-semibold">
                 Open board view
               </Link>
             </div>
@@ -55,4 +55,5 @@ export default function Home() {
     </>
   )
 }
+
 
