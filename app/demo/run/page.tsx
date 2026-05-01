@@ -28,19 +28,19 @@ export default function DemoRunPage() {
 
         <section className="grid gap-3 md:grid-cols-4">
           <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">At-Risk Leaders</div>
+            <div className="text-xs text-gray-500">At-Risk Leaders Identified</div>
             <div className="mt-1 text-2xl font-semibold">{summary.atRiskLeaders}</div>
           </div>
           <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">Immediate Actions</div>
+            <div className="text-xs text-gray-500">Actions Needed This Week</div>
             <div className="mt-1 text-2xl font-semibold">{summary.immediateActions}</div>
           </div>
           <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">Ownership Shifts</div>
+            <div className="text-xs text-gray-500">Ownership Gaps Closed</div>
             <div className="mt-1 text-2xl font-semibold">{summary.ownershipShifts}</div>
           </div>
           <div className="rounded-lg border bg-white p-4">
-            <div className="text-xs text-gray-500">Escalations</div>
+            <div className="text-xs text-gray-500">Cabinet Escalations</div>
             <div className="mt-1 text-2xl font-semibold">{summary.escalationCount}</div>
           </div>
         </section>
@@ -53,6 +53,7 @@ export default function DemoRunPage() {
     </main>
   )
 }
+
 
 
 
