@@ -27,7 +27,7 @@ export default function DemoActionTable() {
               <th className='p-3 font-semibold'>Action</th>
               <th className='p-3 font-semibold'>Owner</th>
               <th className='p-3 font-semibold'>Due</th>
-              <th className='p-3 font-semibold'>Evidence</th>
+              <th className='p-3 font-semibold'>Proof</th>
               <th className='p-3 font-semibold'>Escalation</th>
             </tr>
           </thead>
@@ -53,4 +53,5 @@ export default function DemoActionTable() {
     </div>
   )
 }
+
 
