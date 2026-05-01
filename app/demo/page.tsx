@@ -1,5 +1,4 @@
-﻿import DistrictDemoShell from "@/components/demo/DistrictDemoShell"
-
-export default function DemoPage() {
-  return <DistrictDemoShell />
+﻿import { redirect } from 'next/navigation'
+export default function Page() {
+  redirect('/demo/run')
 }

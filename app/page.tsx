@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import DemoHotkey from "@/app/components/DemoHotkey"
 
 export default function Home() {
@@ -48,10 +48,11 @@ export default function Home() {
           </div>
 
           <div className="text-sm font-semibold text-red-200">
-            If these are not addressed this week, instruction will be impacted within 2–3 weeks.
+            If these are not addressed this week, instruction will be impacted within 2â€“3 weeks.
           </div>
         </section>
       </main>
     </>
   )
 }
+
