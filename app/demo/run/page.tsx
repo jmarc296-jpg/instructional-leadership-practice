@@ -10,15 +10,15 @@ export default function DemoRunPage() {
   const summary = buildExecutiveSummary(districtScenario)
 
   return (
-    <main className="min-h-screen bg-[#f8f7f4] p-8 space-y-6">
+    <main className="min-h-screen bg-[#f8f7f4] p-6 space-y-4">
 
       <EscalationBanner escalationCount={escalationCount} />
 
       <section className="bg-white rounded-2xl p-6 shadow-sm border">
-        <div className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+        <div className="text-xs font-medium text-gray-500">
           Executive Summary
         </div>
-        <h1 className="text-2xl font-bold mt-2 text-gray-950">
+        <h1 className="text-xl font-semibold mt-1 text-gray-950">
           Leadership Risk Snapshot
         </h1>
         <p className="mt-3 text-gray-700 max-w-3xl">
@@ -35,4 +35,5 @@ export default function DemoRunPage() {
     </main>
   )
 }
+
 
