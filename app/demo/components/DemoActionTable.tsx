@@ -11,10 +11,10 @@ export default function DemoActionTable() {
     <div className='rounded-2xl border bg-white p-5 shadow-sm'>
       <div className='mb-4'>
         <div className='text-sm font-semibold uppercase tracking-wide text-gray-500'>
-          Accountability System
+          Accountability
         </div>
         <h2 className='mt-1 text-xl font-bold text-gray-950'>
-          Every unresolved risk is assigned, dated, evidenced, and reviewed.
+          Unresolved risk is assigned. Or it remains your exposure.
         </h2>
       </div>
 
@@ -28,6 +28,7 @@ export default function DemoActionTable() {
               <th className='p-3 font-semibold'>Owner</th>
               <th className='p-3 font-semibold'>Due</th>
               <th className='p-3 font-semibold'>Proof</th>
+              <th className='p-3 font-semibold'>Status</th>
               <th className='p-3 font-semibold'>Escalation</th>
             </tr>
           </thead>
@@ -37,9 +38,10 @@ export default function DemoActionTable() {
                 <td className='p-3 font-medium text-gray-950'>{row.school}</td>
                 <td className='p-3 text-gray-800'>{row.signal}</td>
                 <td className='p-3 text-gray-800'>{row.action}</td>
-                <td className='p-3 font-medium text-gray-950'>{row.owner}</td>
+                <td className='p-3 font-medium text-gray-950'>{row.owner || 'Unassigned'}</td>
                 <td className='p-3 text-gray-700'>{row.due}</td>
                 <td className='p-3 text-gray-700'>{row.evidence}</td>
+                <td className='p-3 text-red-700 font-semibold'>At Risk</td>
                 <td className='p-3'>
                   <span className={'rounded-full border px-2 py-1 text-xs font-semibold ' + escalationClass(row.escalation)}>
                     {row.escalation}
@@ -53,5 +55,3 @@ export default function DemoActionTable() {
     </div>
   )
 }
-
-
