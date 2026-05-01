@@ -18,7 +18,7 @@ export default function DemoRunPage() {
             District Leadership Exposure
           </div>
           <h1 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight">
-            You are currently exposed to leadership failure in multiple schools.
+            You are currently carrying uncontained leadership risk across multiple schools.
           </h1>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-gray-700">
             {summary.summaryLine}

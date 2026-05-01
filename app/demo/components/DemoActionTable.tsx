@@ -38,10 +38,10 @@ export default function DemoActionTable() {
                 <td className='p-3 font-medium text-gray-950'>{row.school}</td>
                 <td className='p-3 text-gray-800'>{row.signal}</td>
                 <td className='p-3 text-gray-800'>{row.action}</td>
-                <td className='p-3 font-medium text-gray-950'>{row.owner || 'Unassigned'}</td>
+                <td className={p-3 font-medium }>{row.owner || 'UNASSIGNED'}</td>
                 <td className='p-3 text-gray-700'>{row.due}</td>
                 <td className='p-3 text-gray-700'>{row.evidence}</td>
-                <td className='p-3 text-red-700 font-semibold'>At Risk</td>
+                <td className='p-3 text-red-700 font-semibold'>UNCONTAINED</td>
                 <td className='p-3'>
                   <span className={'rounded-full border px-2 py-1 text-xs font-semibold ' + escalationClass(row.escalation)}>
                     {row.escalation}

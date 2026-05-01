@@ -23,7 +23,7 @@ export default function ExecutiveDecisionPanel() {
               {row.signal}
             </div>
             <div className='mt-2 text-sm text-gray-800'>
-              Owner: {row.owner || 'Unassigned'}
+              Owner: {row.owner || 'UNASSIGNED'}
             </div>
             <div className='text-xs mt-1 text-red-700'>
               Delay Risk: Instructional inconsistency within 30 days
