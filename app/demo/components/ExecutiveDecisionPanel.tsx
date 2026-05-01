@@ -1,4 +1,4 @@
-import { districtScenario } from '../config/districtScenario'
+﻿import { districtScenario } from '../config/districtScenario'
 
 export default function ExecutiveDecisionPanel() {
   const highEscalations = districtScenario.filter((row) => row.escalation === 'HIGH')
@@ -6,7 +6,7 @@ export default function ExecutiveDecisionPanel() {
   return (
     <section className='rounded-2xl border bg-white p-6 shadow-sm'>
       <div className='text-sm font-semibold uppercase tracking-wide text-gray-500'>
-        Executive Decision Required
+        Decision Required This Week
       </div>
 
       <h2 className='mt-2 text-2xl font-bold text-gray-950'>
@@ -35,3 +35,4 @@ export default function ExecutiveDecisionPanel() {
     </section>
   )
 }
+

@@ -1,4 +1,4 @@
-export default function ValueProof() {
+﻿export default function ValueProof() {
   return (
     <div className='rounded-xl border bg-white p-5 shadow-sm'>
       <div className='text-sm font-semibold text-gray-500 uppercase tracking-wide'>
@@ -13,3 +13,4 @@ export default function ValueProof() {
     </div>
   )
 }
+

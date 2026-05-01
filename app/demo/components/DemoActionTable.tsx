@@ -1,4 +1,4 @@
-import { districtScenario } from '../config/districtScenario'
+﻿import { districtScenario } from '../config/districtScenario'
 
 function escalationClass(level: 'LOW' | 'MEDIUM' | 'HIGH') {
   if (level === 'HIGH') return 'bg-red-100 text-red-700 border-red-200'
@@ -11,10 +11,10 @@ export default function DemoActionTable() {
     <div className='rounded-2xl border bg-white p-5 shadow-sm'>
       <div className='mb-4'>
         <div className='text-sm font-semibold uppercase tracking-wide text-gray-500'>
-          Execution System
+          Accountability System
         </div>
         <h2 className='mt-1 text-xl font-bold text-gray-950'>
-          Every risk signal becomes an owned action.
+          Every unresolved risk is assigned, dated, evidenced, and reviewed.
         </h2>
       </div>
 
@@ -53,3 +53,4 @@ export default function DemoActionTable() {
     </div>
   )
 }
+
