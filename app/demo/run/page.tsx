@@ -4,7 +4,8 @@ import ExecutiveDecisionPanel from '../components/ExecutiveDecisionPanel'
 import DemoActionTable from '../components/DemoActionTable'
 import EscalationBanner from '../components/EscalationBanner'
 import ValueProof from '../components/ValueProof'
-import DecisionControlBar from '../components/DecisionControlBar'
+import ExecutiveDecisionMoment from '../components/ExecutiveDecisionMoment'
+import AccountabilityReceipt from '../components/AccountabilityReceipt'
 import TrackView from '../components/TrackView'
 
 export default function DemoRunPage() {
@@ -25,17 +26,20 @@ export default function DemoRunPage() {
           <div className="text-xs font-medium text-gray-500">
             Active Leadership Risk
           </div>
-          <h1 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight">
-            You are carrying uncontained leadership risk across multiple schools.
+
+          <h1 className="mt-2 max-w-4xl text-3xl font-semibold tracking-tight md:text-4xl">
+            Known leadership risk is no longer invisible. It is now an executive decision.
           </h1>
+
           <p className="mt-3 max-w-3xl text-sm leading-6 text-gray-700">
-            Inaction will result in classroom impact. {summary.summaryLine}
+            You are carrying uncontained risk across multiple schools. Inaction will surface in classrooms.
           </p>
         </section>
 
-        <DecisionControlBar
+        <ExecutiveDecisionMoment
           escalationCount={escalationCount}
           ownershipGaps={ownershipGaps}
+          atRiskLeaders={summary.atRiskLeaders}
         />
 
         <EscalationBanner escalationCount={escalationCount} />
@@ -64,6 +68,7 @@ export default function DemoRunPage() {
 
         <ExecutiveDecisionPanel />
         <DemoActionTable />
+        <AccountabilityReceipt />
         <ValueProof />
       </div>
     </main>
