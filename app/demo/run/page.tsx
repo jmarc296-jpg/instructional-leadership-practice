@@ -1,83 +1,236 @@
-﻿import { districtScenario } from '../config/districtScenario'
-import { buildExecutiveSummary } from '../utils/executiveSummary'
-import ExecutiveDecisionPanel from '../components/ExecutiveDecisionPanel'
-import DemoActionTable from '../components/DemoActionTable'
-import EscalationBanner from '../components/EscalationBanner'
-import ValueProof from '../components/ValueProof'
-import ExecutiveDecisionMoment from '../components/ExecutiveDecisionMoment'
-import AccountabilityReceipt from '../components/AccountabilityReceipt'
-import ContainmentProtocol from '../components/ContainmentProtocol'
-import BoardExposureNarrative from '../components/BoardExposureNarrative'
-import ExecutiveClose from '../components/ExecutiveClose'
-import TrackView from '../components/TrackView'
+﻿"use client";
+
+import Link from "next/link";
+import { useMemo, useState } from "react";
+
+type Stage = {
+  key: string;
+  label: string;
+  question: string;
+  title: string;
+  body: string;
+  decision: string;
+  evidence: string[];
+  next: string;
+  impact?: string[];
+  remaining?: string;
+};
+
+const stages: Stage[] = [
+  {
+    key: "detect",
+    label: "Detect",
+    question: "What is the system telling you right now?",
+    title: "Risk is emerging before the district is forced to react.",
+    body: "The signal is not one isolated data point. It is a pattern across instructional execution, follow-through, and school stability.",
+    decision: "Confirm elevated leadership risk.",
+    evidence: [
+      "Grade 9 Algebra proficiency dropped 18% across two units.",
+      "Checks for understanding are inconsistent across observed classrooms.",
+      "Reteach follow-through is not showing up in weekly evidence."
+    ],
+    next: "Move from signal recognition to support prescription."
+  },
+  {
+    key: "prescribe",
+    label: "Prescribe",
+    question: "What response matches this risk pattern?",
+    title: "The leader needs targeted support, not generic coaching.",
+    body: "The system translates the pattern into a precise response.",
+    decision: "Launch a 3-week instructional execution support cycle.",
+    evidence: [
+      "Primary issue is execution consistency.",
+      "Focus on CFU quality and reteach planning.",
+      "Weekly monitoring required."
+    ],
+    next: "Move from recommendation to ownership."
+  },
+  {
+    key: "execute",
+    label: "Execute",
+    question: "Who owns the next move?",
+    title: "Every decision needs an owner and timeline.",
+    body: "LeadSharper converts decision into accountable execution.",
+    decision: "Assign principal supervisor + math instructional coach.",
+    evidence: [
+      "Supervisor owns coaching cycle.",
+      "IC owns evidence collection.",
+      "Principal owns implementation."
+    ],
+    next: "Move from action to record."
+  },
+  {
+    key: "report",
+    label: "Report",
+    question: "What should cabinet know next?",
+    title: "Cabinet receives a concise decision record.",
+    body: "System shows what changed and what’s next.",
+    decision: "Review stability after 3 weeks.",
+    evidence: [
+      "Risk documented.",
+      "Action assigned.",
+      "Evidence defined."
+    ],
+    impact: [
+      "+ CFU consistency increased",
+      "+ Exit ticket mastery improved 42% → 68%",
+      "+ Reteach execution observed"
+    ],
+    remaining: "Moderate — continue support cycle.",
+    next: "Decision cycle complete."
+  }
+];
 
 export default function DemoRunPage() {
-  const escalationCount = districtScenario.filter(r => r.escalation === 'HIGH').length
-  const summary = buildExecutiveSummary(districtScenario)
-  const ownershipGaps = districtScenario.filter(r => !r.owner).length
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [captureStatus, setCaptureStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+
+  const active = stages[activeIndex];
+  const isFinal = activeIndex === stages.length - 1;
+  const progress = useMemo(() => `${activeIndex + 1} of ${stages.length}`, [activeIndex]);
+
+  async function captureSignal() {
+    setCaptureStatus("saving");
+
+    const response = await fetch("/api/capture-signal", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        district: "Pilot District",
+        leader: "Grade 9 Leadership Signal",
+        role: "Principal",
+        signal: stages[0].evidence[0],
+        pattern: "Low CFU and inconsistent reteach execution across observed classrooms.",
+        decision: active.decision,
+        owner: "Principal Supervisor + Math Instructional Coach",
+        evidence: active.evidence.join(" | "),
+        reviewDate: "3-week review"
+      })
+    });
+
+    setCaptureStatus(response.ok ? "saved" : "error");
+  }
 
   return (
-    <main className="min-h-screen bg-[#f8f7f4] px-6 py-8 text-gray-950">
-      <TrackView
-        escalationCount={escalationCount}
-        atRiskLeaders={summary.atRiskLeaders}
-        ownershipGaps={ownershipGaps}
-      />
+    <main className="min-h-screen bg-[#050B18] text-white">
+      <header className="border-b border-white/10 bg-[#071B4D]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+          <Link href="/" className="flex items-center gap-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white text-[#071B4D]">
+              <span className="text-sm font-bold">LS</span>
+            </div>
+            <div>
+              <p className="text-sm font-semibold tracking-[0.24em]">LEADSHARPER</p>
+              <p className="text-xs text-[#AFC4E8]">Executive Session</p>
+            </div>
+          </Link>
 
-      <div className="mx-auto max-w-6xl space-y-5">
-        <section className="border-b border-gray-200 pb-6">
-          <div className="text-xs font-medium text-gray-500">
-            Active Leadership Risk
+          <span className="text-xs text-[#C9D8F2]">{progress}</span>
+        </div>
+      </header>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8DB7FF]">
+          Guided Executive Flow
+        </p>
+
+        <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em]">
+          {active.question}
+        </h1>
+
+        <div className="mt-8 grid gap-6 rounded-[2rem] border border-white/10 bg-white p-7 text-[#071B4D] lg:grid-cols-[1fr_0.75fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#0D6EFD]">
+              {active.label}
+            </p>
+
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em]">
+              {active.title}
+            </h2>
+
+            <p className="mt-4 text-base leading-7 text-[#4E5D78]">
+              {active.body}
+            </p>
+
+            <div className="mt-6 space-y-3">
+              {active.evidence.map((item) => (
+                <div key={item} className="rounded-2xl border border-[#E6EDF8] bg-[#F7FAFF] p-4 text-sm text-[#4E5D78]">
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            {active.impact && (
+              <div className="mt-6 rounded-2xl border border-[#0D6EFD] bg-[#EAF1FF] p-5">
+                <p className="font-semibold text-[#071B4D]">What changed</p>
+                <div className="mt-3 space-y-2">
+                  {active.impact.map((item) => (
+                    <p key={item} className="text-sm font-semibold text-[#0D6EFD]">{item}</p>
+                  ))}
+                </div>
+                <p className="mt-4 text-sm font-semibold text-[#071B4D]">
+                  Remaining Risk: <span className="text-[#B35C00]">{active.remaining}</span>
+                </p>
+              </div>
+            )}
           </div>
 
-          <h1 className="mt-2 max-w-4xl text-3xl font-semibold tracking-tight md:text-4xl">
-            Known leadership risk is no longer invisible. It is now an executive decision.
-          </h1>
+          <div className="rounded-3xl bg-[#071B4D] p-6 text-white">
+            <p className="text-sm font-semibold text-[#8DB7FF]">Executive decision</p>
+            <p className="mt-4 text-2xl font-semibold tracking-[-0.03em]">
+              {active.decision}
+            </p>
+            <p className="mt-5 text-sm leading-6 text-[#C9D8F2]">
+              {active.next}
+            </p>
 
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-gray-700">
-            You are carrying uncontained risk across multiple schools. Inaction will surface in classrooms.
-          </p>
-        </section>
+            <button
+              type="button"
+              onClick={captureSignal}
+              disabled={captureStatus === "saving"}
+              className="mt-8 w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#071B4D] hover:bg-[#EAF1FF] disabled:opacity-50"
+            >
+              {captureStatus === "saving"
+                ? "Capturing Signal..."
+                : captureStatus === "saved"
+                  ? "Signal Captured"
+                  : "Capture Signal"}
+            </button>
 
-        <ExecutiveDecisionMoment
-          escalationCount={escalationCount}
-          ownershipGaps={ownershipGaps}
-          atRiskLeaders={summary.atRiskLeaders}
-        />
+            {captureStatus === "saved" && (
+              <p className="mt-4 text-sm font-semibold text-[#7EE2A8]">
+                Live capture confirmed.
+              </p>
+            )}
 
-        <EscalationBanner escalationCount={escalationCount} />
-
-        <section className="grid gap-3 md:grid-cols-4">
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
-            <div className="text-xs font-medium text-gray-500">At-Risk Leaders</div>
-            <div className="mt-1 text-2xl font-semibold tracking-tight">{summary.atRiskLeaders}</div>
+            {captureStatus === "error" && (
+              <p className="mt-4 text-sm font-semibold text-[#F7B955]">
+                Capture failed. Check endpoint.
+              </p>
+            )}
           </div>
+        </div>
 
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
-            <div className="text-xs font-medium text-gray-500">Immediate Actions</div>
-            <div className="mt-1 text-2xl font-semibold tracking-tight">{summary.immediateActions}</div>
-          </div>
+        <div className="mt-8 flex justify-between">
+          <button
+            onClick={() => setActiveIndex(Math.max(0, activeIndex - 1))}
+            disabled={activeIndex === 0}
+            className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold disabled:opacity-35"
+          >
+            Back
+          </button>
 
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
-            <div className="text-xs font-medium text-gray-500">Ownership Gaps</div>
-            <div className="mt-1 text-2xl font-semibold tracking-tight">{ownershipGaps}</div>
-          </div>
-
-          <div className="rounded-lg border bg-white p-4 shadow-sm">
-            <div className="text-xs font-medium text-gray-500">Escalations</div>
-            <div className="mt-1 text-2xl font-semibold tracking-tight">{summary.escalationCount}</div>
-          </div>
-        </section>
-
-        <ContainmentProtocol />
-        <ExecutiveDecisionPanel />
-        <DemoActionTable />
-        <BoardExposureNarrative />
-        <AccountabilityReceipt />
-        <ValueProof />
-        <ExecutiveClose escalationCount={escalationCount} ownershipGaps={ownershipGaps} />
-      </div>
+          <button
+            onClick={() => setActiveIndex(Math.min(stages.length - 1, activeIndex + 1))}
+            disabled={isFinal}
+            className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#071B4D] disabled:opacity-45"
+          >
+            {isFinal ? "Decision Cycle Complete" : "Continue"}
+          </button>
+        </div>
+      </section>
     </main>
-  )
+  );
 }
-
