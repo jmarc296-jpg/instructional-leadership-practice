@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useEffect, useMemo, useState } from "react"
 
@@ -18,6 +18,8 @@ type Signal = {
   leader_name?: string
   severity?: "high" | "medium" | "low"
   summary?: string
+  recommended_action?: string
+  evidence?: string
   created_at?: string
 }
 
@@ -38,13 +40,8 @@ export default function BoardReportPage() {
         const summaryJson = await summaryResponse.json()
         const signalsJson = await signalsResponse.json()
 
-        if (!summaryJson?.ok) {
-          throw new Error(summaryJson?.error || "Executive summary failed.")
-        }
-
-        if (!signalsJson?.ok) {
-          throw new Error(signalsJson?.error || "Signals feed failed.")
-        }
+        if (!summaryJson?.ok) throw new Error()
+        if (!signalsJson?.ok) throw new Error()
 
         setSummary(summaryJson)
         setSignals(signalsJson.signals || [])
@@ -58,172 +55,108 @@ export default function BoardReportPage() {
     loadReport()
   }, [])
 
-  const groupedSignals = useMemo(() => {
+  const insights = useMemo(() => {
+    const high = signals.filter(s => s.severity === "high")
+    const missingActions = signals.filter(s => !s.recommended_action).length
+    const missingEvidence = signals.filter(s => !s.evidence || s.evidence === "not_started").length
+    const schools = new Set(signals.map(s => s.school_name)).size
+
     return {
-      high: signals.filter((signal) => signal.severity === "high"),
-      medium: signals.filter((signal) => signal.severity === "medium"),
-      low: signals.filter((signal) => signal.severity === "low"),
+      high,
+      missingActions,
+      missingEvidence,
+      schools,
     }
   }, [signals])
 
   return (
     <main className="min-h-screen bg-[#F6F8FC] px-6 py-10 text-[#071B4D]">
-      <section className="mx-auto max-w-6xl">
-        <div className="mb-8 rounded-[2rem] border border-[#D8E3F7] bg-white p-8 shadow-sm">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-[#0D6EFD]">
-            Board Leadership Risk Report
-          </p>
+      <section className="mx-auto max-w-6xl space-y-8">
 
-          <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] md:text-5xl">
-            Leadership risk, ownership, evidence, and executive action.
+        {/* HEADER */}
+        <div className="rounded-[2rem] border border-[#D8E3F7] bg-white p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#0D6EFD]">
+            Superintendent Briefing
+          </p>
+          <h1 className="mt-3 text-5xl font-semibold tracking-[-0.04em]">
+            Leadership Risk & Required Action
           </h1>
-
-          <p className="mt-4 max-w-3xl text-base leading-7 text-[#475569]">
-            This report translates live leadership signals into a superintendent-ready briefing:
-            where risk is concentrated, what execution gaps remain, and what action should happen next.
-          </p>
         </div>
 
-        <section className="mb-8 rounded-[2rem] border border-[#D8E3F7] bg-[#071B4D] p-8 text-white shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8EC5FF]">
-            Executive Readout
+        {/* EXECUTIVE ACTION */}
+        <section className="rounded-[2rem] bg-[#071B4D] p-8 text-white">
+          <p className="text-xs uppercase tracking-[0.24em] text-[#8EC5FF]">
+            Immediate Action
           </p>
 
-          <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">
-            Recommended superintendent action
-          </h2>
-
-          {loading && (
-            <p className="mt-4 text-sm leading-7 text-[#D8E3F7]">
-              Loading live executive intelligence...
-            </p>
-          )}
-
-          {error && (
-            <p className="mt-4 text-sm leading-7 text-[#FECACA]">
-              {error}
-            </p>
-          )}
-
           {!loading && !error && (
-            <p className="mt-4 max-w-5xl whitespace-pre-line text-sm leading-7 text-[#D8E3F7]">
-              {summary?.executiveNarrative ||
-                "No leadership risk signals have been captured yet. Upload district evidence to begin."}
+            <p className="mt-4 text-sm leading-7 whitespace-pre-line text-[#D8E3F7]">
+              {summary?.executiveNarrative}
             </p>
           )}
         </section>
 
-        <div className="mb-8 grid gap-4 md:grid-cols-4">
-          <Metric label="Signals" value={summary?.count ?? 0} />
-          <Metric label="High Risk" value={summary?.highRisk ?? 0} tone="high" />
-          <Metric label="Medium Risk" value={summary?.mediumRisk ?? 0} tone="medium" />
-          <Metric label="Low Risk" value={summary?.lowRisk ?? 0} tone="low" />
-        </div>
+        {/* RISK POSTURE */}
+        <section className="grid md:grid-cols-3 gap-4">
+          <Card title="Total Signals" value={summary?.count ?? 0} />
+          <Card title="High Risk" value={summary?.highRisk ?? 0} tone="high" />
+          <Card title="Schools Impacted" value={insights.schools} />
+        </section>
 
-        {!loading && !error && signals.length === 0 && (
-          <div className="rounded-[2rem] border border-dashed border-[#CBD5E1] bg-white p-8 text-[#64748B]">
-            No leadership risk signals have been captured yet. Upload district evidence to begin.
-          </div>
-        )}
+        {/* EXECUTION BREAKDOWN */}
+        <section className="rounded-[2rem] border border-[#D8E3F7] bg-white p-6">
+          <h2 className="text-lg font-semibold">Execution Gaps</h2>
 
-        {!loading && !error && signals.length > 0 && (
-          <div className="space-y-6">
-            <SignalGroup title="High Risk" tone="high" signals={groupedSignals.high} />
-            <SignalGroup title="Medium Risk" tone="medium" signals={groupedSignals.medium} />
-            <SignalGroup title="Low Risk" tone="low" signals={groupedSignals.low} />
+          <div className="mt-4 grid md:grid-cols-2 gap-4">
+            <Card title="Missing Ownership" value={insights.missingActions} tone="high" />
+            <Card title="Missing Evidence" value={insights.missingEvidence} tone="medium" />
           </div>
-        )}
+        </section>
+
+        {/* PRIORITY SIGNALS */}
+        <section className="rounded-[2rem] border border-[#D8E3F7] bg-white p-6">
+          <h2 className="text-lg font-semibold">Top Priority Risks</h2>
+
+          <div className="mt-4 space-y-3">
+            {insights.high.slice(0, 5).map(signal => (
+              <div key={signal.id} className="p-4 rounded-xl border bg-[#F8FAFC]">
+                <div className="flex justify-between">
+                  <div>
+                    <p className="font-semibold">{signal.school_name}</p>
+                    <p className="text-sm text-[#64748B]">{signal.leader_name}</p>
+                  </div>
+                  <Badge />
+                </div>
+                <p className="mt-2 text-sm text-[#475569]">{signal.summary}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
       </section>
     </main>
   )
 }
 
-function Metric({
-  label,
-  value,
-  tone,
-}: {
-  label: string
-  value: number
-  tone?: "high" | "medium" | "low"
-}) {
+function Card({ title, value, tone }: any) {
   const color =
-    tone === "high"
-      ? "text-[#B42318]"
-      : tone === "medium"
-        ? "text-[#B54708]"
-        : tone === "low"
-          ? "text-[#027A48]"
-          : "text-[#071B4D]"
+    tone === "high" ? "text-red-600" :
+    tone === "medium" ? "text-orange-500" :
+    "text-[#071B4D]"
 
   return (
-    <div className="rounded-3xl border border-[#D8E3F7] bg-white p-5 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#64748B]">
-        {label}
-      </p>
-      <p className={`mt-3 text-4xl font-semibold tracking-[-0.04em] ${color}`}>
-        {value}
-      </p>
+    <div className="bg-white p-5 rounded-2xl border">
+      <p className="text-xs uppercase text-[#64748B]">{title}</p>
+      <p className={`text-4xl mt-2 font-semibold ${color}`}>{value}</p>
     </div>
   )
 }
 
-function SignalGroup({
-  title,
-  tone,
-  signals,
-}: {
-  title: string
-  tone: "high" | "medium" | "low"
-  signals: Signal[]
-}) {
-  if (signals.length === 0) return null
-
+function Badge() {
   return (
-    <section className="rounded-[2rem] border border-[#D8E3F7] bg-white p-6 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#0D6EFD]">
-        {title}
-      </p>
-
-      <div className="mt-5 grid gap-4">
-        {signals.map((signal) => (
-          <article
-            key={signal.id}
-            className="rounded-3xl border border-[#E2E8F0] bg-[#F8FAFC] p-5"
-          >
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h3 className="text-lg font-semibold text-[#071B4D]">
-                  {signal.school_name || "School not specified"}
-                </h3>
-                <p className="mt-1 text-sm text-[#64748B]">
-                  {signal.leader_name || "Leader not specified"}
-                </p>
-              </div>
-
-              <SeverityBadge tone={tone} />
-            </div>
-
-            <p className="mt-4 text-sm leading-6 text-[#475569]">
-              {signal.summary || "No summary provided."}
-            </p>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function SeverityBadge({ tone }: { tone: "high" | "medium" | "low" }) {
-  const styles = {
-    high: "bg-[#FEF3F2] text-[#B42318] border-[#FECDCA]",
-    medium: "bg-[#FFFAEB] text-[#B54708] border-[#FEDF89]",
-    low: "bg-[#ECFDF3] text-[#027A48] border-[#ABEFC6]",
-  }
-
-  return (
-    <span className={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] ${styles[tone]}`}>
-      {tone} risk
+    <span className="text-xs px-2 py-1 rounded-full bg-red-100 text-red-600">
+      HIGH
     </span>
   )
 }
+
