@@ -1,6 +1,7 @@
-﻿"use client"
+"use client";
 
-import Link from "next/link"
+import Link from "next/link";
+import { LeadSharperLogo } from "@/components/brand/leadsharper-logo";
 
 export default function HomePage() {
   return (
@@ -9,14 +10,11 @@ export default function HomePage() {
 
         {/* NAV */}
         <nav className="flex items-center justify-between rounded-full border border-[#D8E3F7] bg-white/90 px-5 py-3 shadow-sm backdrop-blur">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#071B4D] text-sm font-bold text-white">
-              LS
-            </div>
-            <div>
-              <p className="text-sm font-semibold tracking-[-0.02em]">LeadSharper</p>
-              <p className="text-xs text-[#64748B]">Leadership Intelligence</p>
-            </div>
+          <Link href="/" className="flex items-center">
+            <LeadSharperLogo
+              size="lg"
+              imageClassName="h-12 w-auto object-contain"
+            />
           </Link>
 
           <div className="hidden items-center gap-6 text-sm font-medium text-[#475569] md:flex">
@@ -70,7 +68,7 @@ export default function HomePage() {
             {/* TRUST STRIP */}
             <div className="mt-10 grid gap-3 sm:grid-cols-2">
               <Trust text="Built for superintendent and cabinet workflows" />
-              <Trust text="Connects detection → ownership → evidence → decision" />
+              <Trust text="Connects detection to ownership to evidence to decision" />
               <Trust text="Works with existing district data sources" />
               <Trust text="Pilot-ready in under 60 minutes" />
             </div>
@@ -170,7 +168,7 @@ export default function HomePage() {
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-[#D8E3F7]">
-                3–5 schools. Real data. Weekly executive review. Clear ownership. Documented follow-through.
+                3-5 schools. Real data. Weekly executive review. Clear ownership. Documented follow-through.
               </p>
             </div>
 

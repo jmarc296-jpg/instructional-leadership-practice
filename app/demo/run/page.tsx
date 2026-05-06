@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
+import { LeadSharperLogo } from "@/components/brand/leadsharper-logo";
 import { useMemo, useState } from "react";
 
 type Stage = {
@@ -64,7 +65,7 @@ const stages: Stage[] = [
     label: "Report",
     question: "What should cabinet know next?",
     title: "Cabinet receives a concise decision record.",
-    body: "System shows what changed and what’s next.",
+    body: "System shows what changed and whatÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢s next.",
     decision: "Review stability after 3 weeks.",
     evidence: [
       "Risk documented.",
@@ -73,10 +74,10 @@ const stages: Stage[] = [
     ],
     impact: [
       "+ CFU consistency increased",
-      "+ Exit ticket mastery improved 42% → 68%",
+      "+ Exit ticket mastery improved 42% ? 68%",
       "+ Reteach execution observed"
     ],
-    remaining: "Moderate — continue support cycle.",
+    remaining: "Moderate ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â continue support cycle.",
     next: "Decision cycle complete."
   }
 ];
@@ -117,15 +118,21 @@ export default function DemoRunPage() {
     <main className="min-h-screen bg-[#050B18] text-white">
       <header className="border-b border-white/10 bg-[#071B4D]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <Link href="/" className="flex items-center gap-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white text-[#071B4D]">
-              <span className="text-sm font-bold">LS</span>
+          <div className="flex items-center gap-4 rounded-2xl bg-white px-6 py-4 shadow-[0_18px_45px_rgba(0,0,0,0.18)] ring-1 ring-white/20">
+            <LeadSharperLogo
+              size="lg"
+              imageClassName="h-14 w-auto object-contain"
+            />
+            <div className="hidden h-12 w-px bg-slate-200 sm:block" />
+            <div className="hidden sm:block">
+              <p className="text-[11px] font-black uppercase tracking-[0.24em] text-[#071B4D]">
+                LeadSharper
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-600">
+                Instructional leadership intelligence for district teams
+              </p>
             </div>
-            <div>
-              <p className="text-sm font-semibold tracking-[0.24em]">LEADSHARPER</p>
-              <p className="text-xs text-[#AFC4E8]">Executive Session</p>
-            </div>
-          </Link>
+          </div>
 
           <span className="text-xs text-[#C9D8F2]">{progress}</span>
         </div>
@@ -234,3 +241,4 @@ export default function DemoRunPage() {
     </main>
   );
 }
+
