@@ -31,7 +31,7 @@ function validate(payload: unknown): { ok: true; value: WorkspaceExecutiveReport
   if (typeof body.evidence_submitted !== "number") return { ok: false, error: "evidence_submitted must be a number." };
   if (!body.summary?.trim()) return { ok: false, error: "summary is required." };
   if (body.created_by_role && !normalizeRole(body.created_by_role)) return { ok: false, error: "Invalid created_by_role." };
-  return { ok: true, value: { ...body, created_by_role: normalizeRole(body.created_by_role) ?? null } as WorkspaceExecutiveReportCreateInput };
+  return { ok: true, value: { ...body, created_by_role: normalizeRole(body.created_by_role) ?? "district" } as WorkspaceExecutiveReportCreateInput };
 }
 
 export async function GET(request: Request) {
@@ -82,7 +82,7 @@ export async function POST(request: Request) {
   try { raw = await request.json(); } catch { return NextResponse.json({ ok: false, error: "Invalid JSON." }, { status: 400 }); }
   const parsed = validate(raw);
   if (!parsed.ok) return NextResponse.json({ ok: false, error: parsed.error }, { status: 400 });
-  const payload = parsed.value;
+  const payload = { ...parsed.value, created_by_role: parsed.value.created_by_role ?? "district" };
 
   const supabaseState = getSupabaseServerState();
   if (!supabaseState.configured || !supabaseState.client) {
@@ -91,7 +91,17 @@ export async function POST(request: Request) {
 
   const { data, error } = await supabaseState.client
     .from("executive_records")
-    .insert({ ...payload, district_id: payload.district_id ?? districtId })
+    .insert([{
+      report_title: payload.report_title,
+      reporting_period: payload.reporting_period,
+      high_risk_signals: payload.high_risk_signals,
+      active_actions: payload.active_actions,
+      completed_actions: payload.completed_actions,
+      evidence_submitted: payload.evidence_submitted,
+      summary: payload.summary,
+      created_by_role: payload.created_by_role ?? "district",
+      district_id: payload.district_id ?? districtId,
+    }])
     .select("id, report_title, reporting_period, high_risk_signals, active_actions, completed_actions, evidence_submitted, summary, created_by_role, created_at")
     .single();
 
@@ -102,3 +112,7 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ ok: true, source: "supabase", report: data as WorkspaceExecutiveRecord }, { status: 201 });
 }
+
+
+
+
