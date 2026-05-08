@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { WorkspaceShell } from "@/components/workspace/workspace-shell";
 import { workspaceSummary } from "@/lib/workspace-mock";
 
@@ -22,3 +22,5 @@ export default function WorkspacePage() {
     </WorkspaceShell>
   );
 }
+
+
