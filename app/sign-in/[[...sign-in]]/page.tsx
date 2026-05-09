@@ -1,9 +1,9 @@
-import { SignIn } from "@clerk/nextjs";
+﻿import { SignIn } from "@clerk/nextjs";
 
-export default function Page() {
+export default function SignInPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#f8f7f4] px-6 py-12">
-      <SignIn />
+    <main className="min-h-screen bg-slate-950 flex items-center justify-center px-6 py-12">
+      <SignIn forceRedirectUrl="/workspace" />
     </main>
   );
 }
