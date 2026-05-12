@@ -1,4 +1,4 @@
-﻿import { talentLeaders, districtBenchStrength } from "@/lib/talent/mock-data"
+import { talentLeaders, districtBenchStrength } from "@/lib/talent/mock-data"
 import { getLeadershipIntelligenceSnapshots } from "@/lib/local-store"
 
 type UploadedDistrictRecord = {
@@ -15,7 +15,7 @@ function getUploadedDistrictData(): UploadedDistrictRecord[] {
 
   try {
     const raw = localStorage.getItem("districtUploadedData")
-    return raw ? JSON.parse(raw) : []
+    return raw?.trim() ? JSON.parse(raw) : []
   } catch {
     return []
   }
