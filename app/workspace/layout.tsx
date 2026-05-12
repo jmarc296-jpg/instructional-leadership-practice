@@ -6,9 +6,9 @@ export default async function WorkspaceLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { userId } = await auth()
+  const authResult = await auth()
 
-  if (!userId) {
+  if (!authResult.userId) {
     redirect("/sign-in")
   }
 
