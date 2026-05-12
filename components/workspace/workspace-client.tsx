@@ -1,415 +1,82 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useEffect, useMemo, useState } from "react"
-import { EnterpriseShell } from "@/components/shell/enterprise-shell"
-import { WorkspaceAssignment, workspaceModules, workspaceStatuses, WorkspaceStatus } from "@/lib/workspace-data"
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { EnterpriseShell } from "@/components/shell/enterprise-shell";
+import {
+  getWorkspaceAssignments,
+  resolveAssignmentStatus,
+  resolveAssignmentTiming,
+  resolveModuleFromAssignment,
+  updateWorkspaceAssignmentEvidence,
+  updateWorkspaceAssignmentStatus,
+  WorkspaceAssignment,
+  workspaceModules,
+  WorkspaceStatus,
+  type AssignmentTiming
+} from "@/lib/workspace-data";
 
-const STORAGE_KEY = "leadsharper-workspace-assignments"
+const statusLabel: Record<WorkspaceStatus, string> = { assigned: "Assigned", in_progress: "In Progress", evidence_submitted: "Evidence Submitted", complete: "Complete" };
+const starterAssignments: WorkspaceAssignment[] = [{ id: "assignment-1", title: "Complete DDI internalization review", module: "DDI Meeting Internalization", assignee: "A. Johnson", role: "Assistant Principal", dueDate: "2026-05-08", dueAt: new Date("2026-05-08T23:59:59Z").toISOString(), status: "in_progress", evidence: "Uploaded Unit 4 data analysis and reteach plan.", coachingNote: "Next step is tightening the misconception analysis before teacher facilitation.", createdAt: "2026-04-27T10:00:00.000Z", lastUpdatedAt: "2026-04-27T10:00:00.000Z" }];
 
-const activityFeed = [
-  {
-    leader: "A. Johnson",
-    action: "added coaching evidence to DDI internalization",
-    time: "2 hours ago",
-    signal: "Evidence"
-  },
-  {
-    leader: "M. Rivera",
-    action: "completed a walkthrough calibration cycle",
-    time: "Yesterday",
-    signal: "Simulation"
-  },
-  {
-    leader: "A. Johnson",
-    action: "readiness score increased by 6 points",
-    time: "3 days ago",
-    signal: "Growth"
-  },
-  {
-    leader: "District Admin",
-    action: "assigned a new leadership practice module",
-    time: "Today",
-    signal: "Assignment"
-  }
-]
-
-const starterAssignments: WorkspaceAssignment[] = [
-  {
-    id: "assignment-1",
-    title: "Complete DDI internalization review",
-    module: "DDI Meeting Internalization",
-    assignee: "A. Johnson",
-    role: "Assistant Principal",
-    dueDate: "2026-05-08",
-    status: "In Progress",
-    evidence: "Uploaded Unit 4 data analysis and reteach plan.",
-    coachingNote: "Next step is tightening the misconception analysis before teacher facilitation.",
-    createdAt: "2026-04-27"
-  },
-  {
-    id: "assignment-2",
-    title: "Submit walkthrough evidence cycle",
-    module: "Instructional Walkthrough Calibration",
-    assignee: "M. Rivera",
-    role: "Principal",
-    dueDate: "2026-05-10",
-    status: "Evidence Added",
-    evidence: "Three classroom notes added with trend summary.",
-    coachingNote: "Evidence is strong. Push next toward feedback quality and teacher-facing action.",
-    createdAt: "2026-04-27"
-  }
-]
-
-function getToday() {
-  return new Date().toISOString().slice(0, 10)
-}
-
-function getDaysUntil(date: string) {
-  const today = new Date(getToday()).getTime()
-  const due = new Date(date).getTime()
-  return Math.ceil((due - today) / 86400000)
-}
-
-function getProgress(status: WorkspaceStatus) {
-  if (status === "Not Started") return 10
-  if (status === "In Progress") return 45
-  if (status === "Evidence Added") return 75
-  return 100
-}
+const formatDateOnly = (value?: string) => { if (!value) return "Not available"; const parsed = new Date(value); return Number.isNaN(parsed.getTime()) ? "Not available" : parsed.toLocaleDateString(); };
+const getTimingDetail = (assignment: WorkspaceAssignment) => { if (!assignment.dueAt) return "No due date set"; const dueTime = new Date(assignment.dueAt).getTime(); if (Number.isNaN(dueTime)) return "No due date set"; const daysDelta = Math.ceil((dueTime - Date.now()) / (24 * 60 * 60 * 1000)); return daysDelta < 0 ? `${Math.abs(daysDelta)} day${Math.abs(daysDelta) === 1 ? "" : "s"} overdue` : `${daysDelta} day${daysDelta === 1 ? "" : "s"} remaining`; };
 
 export function WorkspaceClient() {
-  const [assignments, setAssignments] = useState<WorkspaceAssignment[]>([])
-  const [title, setTitle] = useState("")
-  const [module, setModule] = useState(workspaceModules[0])
-  const [assignee, setAssignee] = useState("")
-  const [role, setRole] = useState("")
-  const [dueDate, setDueDate] = useState("")
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [assignments, setAssignments] = useState<WorkspaceAssignment[]>([]);
+  const [title, setTitle] = useState("");
+  const [module, setModule] = useState(workspaceModules[0]);
+  const [assignee, setAssignee] = useState("");
+  const [role, setRole] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [evidenceDraft, setEvidenceDraft] = useState("");
+  const [followUpDraft, setFollowUpDraft] = useState("");
+
+  const refreshAssignments = useCallback(() => {
+    const list = getWorkspaceAssignments();
+    if (list.length === 0 && typeof window !== "undefined") {
+      window.localStorage.setItem("leadsharper-workspace-assignments", JSON.stringify(starterAssignments));
+      setAssignments(starterAssignments);
+      return;
+    }
+    setAssignments(list);
+  }, []);
+
+  useEffect(() => { refreshAssignments(); }, [refreshAssignments]);
+
+  const selectedAssignment = assignments.find((item) => item.id === selectedId) ?? assignments[0];
 
   useEffect(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY)
-    if (saved) {
-      setAssignments(JSON.parse(saved))
-    } else {
-      setAssignments(starterAssignments)
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(starterAssignments))
-    }
-  }, [])
+    setEvidenceDraft(selectedAssignment?.evidenceNote ?? "");
+    setFollowUpDraft(selectedAssignment?.followUpNote ?? "");
+  }, [selectedAssignment?.id, selectedAssignment?.evidenceNote, selectedAssignment?.followUpNote]);
 
-  useEffect(() => {
-    if (assignments.length > 0) {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(assignments))
-    }
-  }, [assignments])
-
-  const selectedAssignment = assignments.find((item) => item.id === selectedId) ?? assignments[0]
-
-  const metrics = useMemo(() => {
-    const total = assignments.length
-    const complete = assignments.filter((item) => item.status === "Complete").length
-    const evidence = assignments.filter((item) => item.evidence.trim().length > 0).length
-    const overdue = assignments.filter((item) => item.dueDate && item.dueDate < getToday() && item.status !== "Complete").length
-
-    return { total, complete, evidence, overdue }
-  }, [assignments])
+  const metrics = useMemo(() => ({
+    total: assignments.length,
+    complete: assignments.filter((item) => resolveAssignmentStatus(item) === "complete").length,
+    evidence: assignments.filter((item) => Boolean(item.evidenceNote?.trim())).length,
+    overdue: assignments.filter((item) => resolveAssignmentTiming(item) === "overdue" && resolveAssignmentStatus(item) !== "complete").length
+  }), [assignments]);
 
   function createAssignment() {
-    if (!title.trim() || !assignee.trim() || !dueDate) return
-
-    const nextAssignment: WorkspaceAssignment = {
-      id: crypto.randomUUID(),
-      title: title.trim(),
-      module,
-      assignee: assignee.trim(),
-      role: role.trim() || "Leader",
-      dueDate,
-      status: "Not Started",
-      evidence: "",
-      coachingNote: "",
-      createdAt: getToday()
-    }
-
-    setAssignments((current) => [nextAssignment, ...current])
-    setSelectedId(nextAssignment.id)
-    setTitle("")
-    setAssignee("")
-    setRole("")
-    setDueDate("")
-    setModule(workspaceModules[0])
-  }
-
-  function updateAssignment(id: string, updates: Partial<WorkspaceAssignment>) {
-    setAssignments((current) =>
-      current.map((item) => (item.id === id ? { ...item, ...updates } : item))
-    )
-  }
-
-  function deleteAssignment(id: string) {
-    setAssignments((current) => current.filter((item) => item.id !== id))
-    setSelectedId(null)
+    if (!title.trim() || !assignee.trim() || !dueDate || typeof window === "undefined") return;
+    const createdAt = new Date().toISOString();
+    const nextAssignment: WorkspaceAssignment = { id: crypto.randomUUID(), title: title.trim(), module, assignee: assignee.trim(), role: role.trim() || "Leader", dueDate, dueAt: new Date(`${dueDate}T23:59:59`).toISOString(), status: "assigned", evidence: "", coachingNote: "", createdAt, lastUpdatedAt: createdAt, evidenceNote: "", followUpNote: "" };
+    window.localStorage.setItem("leadsharper-workspace-assignments", JSON.stringify([nextAssignment, ...getWorkspaceAssignments()]));
+    refreshAssignments();
+    setSelectedId(nextAssignment.id); setTitle(""); setAssignee(""); setRole(""); setDueDate("");
   }
 
   return (
-    <EnterpriseShell>
-      <main>
-        <section className="border-b border-black/10 bg-[#111827] text-white">
-          <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-            <div className="flex flex-col justify-between gap-5 xl:flex-row xl:items-end">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">
-                  District Workspace
-                </p>
-                <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-[-0.05em] md:text-5xl">
-                  Manage leadership execution across the district pipeline.
-                </h1>
-              </div>
-              <div className="grid grid-cols-4 gap-2 xl:w-[560px]">
-                <Metric label="Active" value={metrics.total} />
-                <Metric label="Done" value={metrics.complete} />
-                <Metric label="Evidence" value={metrics.evidence} />
-                <Metric label="Past due" value={metrics.overdue} />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto grid max-w-7xl gap-5 px-6 py-6 lg:grid-cols-[320px_1fr_390px] lg:px-8">
-          <aside className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
-            <div className="mb-5">
-              <h2 className="text-lg font-semibold tracking-[-0.02em]">Quick assign</h2>
-              <p className="mt-1 text-sm leading-5 text-black/55">
-                Create a leadership task with owner, module, and due date.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <Field label="Assignment title">
-                <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder="Upload reteach plan evidence" className="input" />
-              </Field>
-
-              <Field label="Module">
-                <select value={module} onChange={(event) => setModule(event.target.value)} className="input">
-                  {workspaceModules.map((item) => (
-                    <option key={item}>{item}</option>
-                  ))}
-                </select>
-              </Field>
-
-              <Field label="Assigned leader">
-                <input value={assignee} onChange={(event) => setAssignee(event.target.value)} placeholder="Leader name" className="input" />
-              </Field>
-
-              <div className="grid grid-cols-2 gap-3">
-                <Field label="Role">
-                  <input value={role} onChange={(event) => setRole(event.target.value)} placeholder="AP" className="input" />
-                </Field>
-
-                <Field label="Due">
-                  <input type="date" value={dueDate} onChange={(event) => setDueDate(event.target.value)} className="input" />
-                </Field>
-              </div>
-
-              <button onClick={createAssignment} className="w-full rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-black">
-                Create assignment
-              </button>
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-black/10 bg-[#f7f5f0] p-4">
-              <p className="text-sm font-semibold">Filters coming next</p>
-              <p className="mt-1 text-xs leading-5 text-black/55">
-                Module, leader, due date, status, and readiness priority.
-              </p>
-            </div>
-          </aside>
-
-          <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <div>
-                <h2 className="text-lg font-semibold tracking-[-0.02em]">Assignment queue</h2>
-                <p className="mt-1 text-sm text-black/55">Execution view for active leader development work.</p>
-              </div>
-              <div className="rounded-full border border-black/10 px-3 py-1 text-xs font-semibold text-black/55">
-                Local workspace
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {assignments.map((assignment) => {
-                const days = getDaysUntil(assignment.dueDate)
-                const overdue = days < 0 && assignment.status !== "Complete"
-                const progress = getProgress(assignment.status)
-
-                return (
-                  <button
-                    key={assignment.id}
-                    onClick={() => setSelectedId(assignment.id)}
-                    className={`w-full rounded-3xl border p-4 text-left transition ${
-                      selectedAssignment?.id === assignment.id
-                        ? "border-[#111827] bg-[#f4f0e8]"
-                        : "border-black/10 bg-white hover:bg-black/[0.03]"
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <p className="font-semibold tracking-[-0.01em]">{assignment.title}</p>
-                          {overdue && <span className="rounded-full bg-red-100 px-2 py-1 text-[11px] font-semibold text-red-700">Overdue</span>}
-                        </div>
-                        <p className="mt-1 text-sm text-black/55">{assignment.module}</p>
-                      </div>
-                      <StatusBadge status={assignment.status} />
-                    </div>
-
-                    <div className="mt-4 grid gap-3 text-sm text-black/65 md:grid-cols-4">
-                      <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Owner</span><Link href={`/leader-profile/${assignment.id}`} className="font-semibold underline-offset-4 hover:underline">{assignment.assignee}</Link></p>
-                      <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Role</span>{assignment.role}</p>
-                      <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Due</span>{assignment.dueDate}</p>
-                      <p><span className="block text-xs font-semibold uppercase tracking-[0.12em] text-black/35">Signal</span>{days < 0 ? `${Math.abs(days)} days late` : `${days} days left`}</p>
-                    </div>
-
-                    <div className="mt-4">
-                      <div className="mb-2 flex items-center justify-between text-xs text-black/45">
-                        <span>Progress</span>
-                        <span>{progress}%</span>
-                      </div>
-                      <div className="h-2 overflow-hidden rounded-full bg-black/10">
-                        <div className="h-full rounded-full bg-[#111827]" style={{ width: `${progress}%` }} />
-                      </div>
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
-                      <div className="mt-5 rounded-3xl border border-black/10 bg-[#f7f5f0] p-4">
-              <div className="mb-4 flex items-center justify-between">
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-black/45">Recent activity</h3>
-                  <p className="mt-1 text-sm text-black/55">Live signals across coaching, evidence, and readiness work.</p>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                {activityFeed.map((item) => (
-                  <div key={item.leader + item.action} className="flex items-start justify-between gap-4 rounded-2xl border border-black/10 bg-white p-3">
-                    <div>
-                      <p className="text-sm font-semibold">{item.leader}</p>
-                      <p className="mt-1 text-sm leading-5 text-black/60">{item.action}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-semibold text-black/55">{item.signal}</span>
-                      <p className="mt-2 text-xs text-black/40">{item.time}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
-            {selectedAssignment ? (
-              <div>
-                <div className="mb-5 flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/35">Leader record</p>
-                    <Link href={`/leader-profile/${selectedAssignment.id}`} className="mt-2 block text-2xl font-semibold tracking-[-0.03em] underline-offset-4 hover:underline">{selectedAssignment.assignee}</Link>
-                    <p className="mt-1 text-sm text-black/55">{selectedAssignment.title}</p>
-                  </div>
-                  <button onClick={() => deleteAssignment(selectedAssignment.id)} className="rounded-xl border border-black/10 px-3 py-2 text-xs font-semibold text-black/60 hover:bg-red-50 hover:text-red-700">
-                    Remove
-                  </button>
-                </div>
-
-                <div className="mb-5 grid grid-cols-2 gap-3">
-                  <Insight label="Readiness" value="74%" />
-                  <Insight label="Simulations" value="3" />
-                  <Insight label="Risk" value="Moderate" />
-                  <Insight label="Evidence" value={selectedAssignment.evidence ? "Added" : "Missing"} />
-                </div>
-
-                <div className="space-y-4">
-                  <Field label="Status">
-                    <select
-                      value={selectedAssignment.status}
-                      onChange={(event) => updateAssignment(selectedAssignment.id, { status: event.target.value as WorkspaceStatus })}
-                      className="input"
-                    >
-                      {workspaceStatuses.map((status) => (
-                        <option key={status}>{status}</option>
-                      ))}
-                    </select>
-                  </Field>
-
-                  <Field label="Due date">
-                    <input
-                      type="date"
-                      value={selectedAssignment.dueDate}
-                      onChange={(event) => updateAssignment(selectedAssignment.id, { dueDate: event.target.value })}
-                      className="input"
-                    />
-                  </Field>
-
-                  <Field label="Coaching evidence">
-                    <textarea
-                      value={selectedAssignment.evidence}
-                      onChange={(event) => updateAssignment(selectedAssignment.id, { evidence: event.target.value })}
-                      placeholder="Add artifact notes, observed evidence, or completion signal."
-                      className="input min-h-28 resize-none"
-                    />
-                  </Field>
-
-                  <Field label="Coaching note">
-                    <textarea
-                      value={selectedAssignment.coachingNote}
-                      onChange={(event) => updateAssignment(selectedAssignment.id, { coachingNote: event.target.value })}
-                      placeholder="Capture the next best leadership move."
-                      className="input min-h-24 resize-none"
-                    />
-                  </Field>
-                </div>
-              </div>
-            ) : null}
-          </section>
-        </section>
-      </main>
-    </EnterpriseShell>
-  )
+    <EnterpriseShell><main><section className="border-b border-black/10 bg-[#111827] text-white"><div className="mx-auto max-w-7xl px-6 py-8 lg:px-8"><div className="flex flex-col justify-between gap-5 xl:flex-row xl:items-end"><div><p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/50">District Workspace</p><h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-[-0.05em] md:text-5xl">Manage leadership execution across the district pipeline.</h1></div><div className="grid grid-cols-4 gap-2 xl:w-[560px]"><Metric label="Active" value={metrics.total} /><Metric label="Done" value={metrics.complete} /><Metric label="Evidence" value={metrics.evidence} /><Metric label="Past due" value={metrics.overdue} /></div></div></div></section>
+      <section className="mx-auto grid max-w-7xl gap-5 px-6 py-6 lg:grid-cols-[320px_1fr_390px] lg:px-8"><aside className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm"><h2 className="text-lg font-semibold tracking-[-0.02em]">Assign execution</h2><div className="mt-4 space-y-4"><Field label="Assignment title"><input value={title} onChange={(event) => setTitle(event.target.value)} className="input" /></Field><Field label="Module"><select value={module} onChange={(event) => setModule(event.target.value)} className="input">{workspaceModules.map((item: string) => <option key={item}>{item}</option>)}</select></Field><Field label="Assigned leader"><input value={assignee} onChange={(event) => setAssignee(event.target.value)} className="input" /></Field><div className="grid grid-cols-2 gap-3"><Field label="Role"><input value={role} onChange={(event) => setRole(event.target.value)} className="input" /></Field><Field label="Due"><input type="date" value={dueDate} onChange={(event) => setDueDate(event.target.value)} className="input" /></Field></div><button onClick={createAssignment} className="w-full rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white">Create execution assignment</button></div></aside>
+      <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm"><h2 className="text-lg font-semibold tracking-[-0.02em]">Execution queue</h2><div className="mt-4 space-y-3">{assignments.map((assignment) => { const moduleDetails = resolveModuleFromAssignment(assignment); const status = resolveAssignmentStatus(assignment); const timing = resolveAssignmentTiming(assignment); return <button key={assignment.id} onClick={() => setSelectedId(assignment.id)} className="w-full rounded-3xl border border-black/10 bg-white p-4 text-left hover:bg-black/[0.03]"><div className="flex items-start justify-between gap-4"><div><p className="font-semibold">{assignment.title}</p><p className="mt-1 text-sm font-semibold text-black/70">{moduleDetails.title}</p><p className="mt-1 text-xs text-black/55">{moduleDetails.leadershipFocus}</p><p className="mt-2 text-xs text-black/60">Due / Overdue: {formatDateOnly(assignment.dueAt)}</p></div><div className="flex flex-col items-end gap-2"><StatusBadge status={status} /><TimingBadge timing={timing} /></div></div><div className="mt-3 rounded-2xl border border-black/10 bg-white p-3 text-xs text-black/70"><p><b>Leader action:</b> {moduleDetails.leaderAction}</p><p className="mt-1"><b>Evidence required:</b> {moduleDetails.evidenceRequired}</p><p className="mt-1"><b>Suggested timeline:</b> {moduleDetails.suggestedTimeline}</p>{assignment.evidenceNote && <p className="mt-1"><b>Evidence Required:</b> {assignment.evidenceNote}</p>}{assignment.evidenceUpdatedAt && <p className="mt-1"><b>Last evidence update:</b> {new Date(assignment.evidenceUpdatedAt).toLocaleString()}</p>}</div></button>; })}</div></section>
+      <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">{selectedAssignment ? <div><p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/35">Execution record</p><Link href={`/leader-profile/${selectedAssignment.id}`} className="mt-2 block text-2xl font-semibold">{selectedAssignment.assignee}</Link><div className="mt-2 flex items-center gap-2"><StatusBadge status={resolveAssignmentStatus(selectedAssignment)} /><TimingBadge timing={resolveAssignmentTiming(selectedAssignment)} /></div><p className="mt-2 text-xs font-semibold text-black/60">Execution Status</p><div className="mt-3 rounded-2xl border border-black/10 bg-[#f7f5f0] p-3 text-sm text-black/75"><p><b>Created:</b> {formatDateOnly(selectedAssignment.createdAt)}</p><p><b>Due:</b> {formatDateOnly(selectedAssignment.dueAt)}</p><p><b>Due / Overdue:</b> {getTimingDetail(selectedAssignment)}</p></div><div className="mt-4 rounded-2xl border border-black/10 bg-[#f7f5f0] p-4 text-sm">{(() => { const moduleDetails = resolveModuleFromAssignment(selectedAssignment); return <><p className="font-semibold">{moduleDetails.title}</p><p className="mt-1 text-black/60">{moduleDetails.leadershipFocus}</p><p className="mt-1"><b>Evidence required:</b> {moduleDetails.evidenceRequired}</p><p className="mt-1"><b>Suggested timeline:</b> {moduleDetails.suggestedTimeline}</p></>; })()}</div><div className="mt-4 space-y-3"><Field label="Evidence Required"><textarea value={evidenceDraft} onChange={(event) => setEvidenceDraft(event.target.value)} className="input min-h-24 resize-none" /></Field><Field label="Follow-Up Notes"><textarea value={followUpDraft} onChange={(event) => setFollowUpDraft(event.target.value)} className="input min-h-20 resize-none" /></Field><div className="flex flex-wrap gap-2"><button onClick={() => { updateWorkspaceAssignmentEvidence(selectedAssignment.id, evidenceDraft, followUpDraft); refreshAssignments(); }} className="rounded-full border border-[#0D6EFD] px-4 py-2 text-xs font-semibold text-[#0D6EFD]">Save Evidence</button><button onClick={() => { updateWorkspaceAssignmentStatus(selectedAssignment.id, "in_progress"); refreshAssignments(); }} className="rounded-full border border-black/15 px-4 py-2 text-xs font-semibold">Mark In Progress</button><button onClick={() => { updateWorkspaceAssignmentStatus(selectedAssignment.id, "complete"); refreshAssignments(); }} className="rounded-full border border-black/15 px-4 py-2 text-xs font-semibold">Mark Complete</button></div></div></div> : null}</section></section></main></EnterpriseShell>
+  );
 }
 
-function Metric({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/10 p-3">
-      <p className="text-2xl font-semibold tracking-[-0.04em]">{value}</p>
-      <p className="mt-1 text-xs text-white/55">{label}</p>
-    </div>
-  )
-}
-
-function Insight({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-black/10 bg-[#f7f5f0] p-3">
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/35">{label}</p>
-      <p className="mt-2 text-lg font-semibold tracking-[-0.03em]">{value}</p>
-    </div>
-  )
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="block">
-      <span className="mb-2 block text-sm font-semibold text-black/70">{label}</span>
-      {children}
-    </label>
-  )
-}
-
-function StatusBadge({ status }: { status: WorkspaceStatus }) {
-  return (
-    <span className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-semibold text-black/70">
-      {status}
-    </span>
-  )
-}
-
-
-
+function Metric({ label, value }: { label: string; value: number }) { return <div className="rounded-2xl border border-white/10 bg-white/10 p-3"><p className="text-2xl font-semibold tracking-[-0.04em]">{value}</p><p className="mt-1 text-xs text-white/55">{label}</p></div>; }
+function Field({ label, children }: { label: string; children: React.ReactNode }) { return <label className="block"><span className="mb-2 block text-sm font-semibold text-black/70">{label}</span>{children}</label>; }
+function StatusBadge({ status }: { status: WorkspaceStatus }) { return <span className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-semibold text-black/70">{statusLabel[status]}</span>; }
+function TimingBadge({ timing }: { timing: AssignmentTiming }) { const style = timing === "overdue" ? "border-red-200 bg-red-50 text-red-700" : timing === "due_soon" ? "border-orange-200 bg-orange-50 text-orange-700" : "border-black/10 bg-white text-black/70"; const label = timing === "overdue" ? "Overdue" : timing === "due_soon" ? "Due soon" : "On track"; return <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${style}`}>{label}</span>; }
