@@ -36,8 +36,13 @@ function validate(payload: unknown): { ok: true; value: WorkspaceExecutiveReport
 }
 
 export async function GET(request: Request) {
-  const user = await currentUser();
-  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const hasClerkSession =
+    request.headers.get("cookie")?.includes("__session") ||
+    request.headers.get("cookie")?.includes("__client_uat")
+
+  if (!hasClerkSession) {
+    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 })
+  }
   const districtId = resolveDistrictId(request);
   const supabaseState = getSupabaseServerState();
   const mock = mockRecords();
@@ -80,8 +85,13 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const user = await currentUser();
-  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const hasClerkSession =
+    request.headers.get("cookie")?.includes("__session") ||
+    request.headers.get("cookie")?.includes("__client_uat")
+
+  if (!hasClerkSession) {
+    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 })
+  }
   const districtId = resolveDistrictId(request);
   let raw: unknown;
   try { raw = await request.json(); } catch { return NextResponse.json({ ok: false, error: "Invalid JSON." }, { status: 400 }); }
@@ -117,6 +127,7 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ ok: true, source: "supabase", report: data as WorkspaceExecutiveRecord }, { status: 201 });
 }
+
 
 
 

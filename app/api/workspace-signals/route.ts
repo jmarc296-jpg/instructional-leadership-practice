@@ -20,8 +20,13 @@ function mapMockSignals(): WorkspaceSignalRecord[] {
 }
 
 export async function GET(request: Request) {
-  const user = await currentUser();
-  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const hasClerkSession =
+    request.headers.get("cookie")?.includes("__session") ||
+    request.headers.get("cookie")?.includes("__client_uat")
+
+  if (!hasClerkSession) {
+    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 })
+  }
   const districtId = resolveDistrictId(request);
   const supabaseState = getSupabaseServerState();
   const mockSignals = mapMockSignals();
@@ -43,6 +48,7 @@ export async function GET(request: Request) {
 
   return NextResponse.json({ ok: true, source: "supabase", signals: ((data ?? []) as WorkspaceSignalRecord[]).map((r) => ({ ...r, severity: normalizeRiskLevel(r.severity) ?? "MEDIUM" })) });
 }
+
 
 
 
