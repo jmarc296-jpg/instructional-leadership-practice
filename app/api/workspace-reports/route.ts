@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { getSupabaseServerState } from "@/lib/supabase-server";
 import { resolveDistrictId } from "@/lib/district-context";
 import { WorkspaceActionRecord, WorkspaceEvidenceRecord, WorkspaceExecutiveRecord, WorkspaceExecutiveReportCreateInput, WorkspaceSignalRecord } from "@/lib/workspace-types";
@@ -36,8 +36,8 @@ function validate(payload: unknown): { ok: true; value: WorkspaceExecutiveReport
 }
 
 export async function GET(request: Request) {
-  const authResult = await auth();
-  if (!authResult.userId) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const user = await currentUser();
+  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const districtId = resolveDistrictId(request);
   const supabaseState = getSupabaseServerState();
   const mock = mockRecords();
@@ -80,8 +80,8 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const authResult = await auth();
-  if (!authResult.userId) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const user = await currentUser();
+  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const districtId = resolveDistrictId(request);
   let raw: unknown;
   try { raw = await request.json(); } catch { return NextResponse.json({ ok: false, error: "Invalid JSON." }, { status: 400 }); }
@@ -117,6 +117,7 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ ok: true, source: "supabase", report: data as WorkspaceExecutiveRecord }, { status: 201 });
 }
+
 
 
 

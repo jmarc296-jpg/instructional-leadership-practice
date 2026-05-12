@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server"
+import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 
 export default async function WorkspaceLayout({
@@ -6,9 +6,9 @@ export default async function WorkspaceLayout({
 }: {
   children: React.ReactNode
 }) {
-  const authResult = await auth()
+  const user = await currentUser()
 
-  if (!authResult.userId) {
+  if (!user) {
     redirect("/sign-in")
   }
 

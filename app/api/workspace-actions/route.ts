@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { getSupabaseServerState } from "@/lib/supabase-server";
 import { resolveDistrictId } from "@/lib/district-context";
 import { actionRows } from "@/lib/workspace-mock";
@@ -30,8 +30,8 @@ function validatePatchPayload(payload: unknown): { ok: true; value: WorkspaceAct
 }
 
 export async function GET(request: Request) {
-  const authResult = await auth();
-  if (!authResult.userId) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const user = await currentUser();
+  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const districtId = resolveDistrictId(request);
   const supabaseState = getSupabaseServerState();
   if (!supabaseState.configured || !supabaseState.client) {
@@ -53,8 +53,8 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const authResult = await auth();
-  if (!authResult.userId) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const user = await currentUser();
+  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const districtId = resolveDistrictId(request);
   const supabaseState = getSupabaseServerState();
   let raw: unknown;
@@ -96,8 +96,8 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const authResult = await auth();
-  if (!authResult.userId) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const user = await currentUser();
+  if (!user) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const districtId = resolveDistrictId(request);
   const supabaseState = getSupabaseServerState();
   let raw: unknown;
@@ -132,4 +132,5 @@ export async function PATCH(request: Request) {
   }
   return NextResponse.json({ ok: true, source: "supabase", action: data as WorkspaceActionRecord });
 }
+
 
