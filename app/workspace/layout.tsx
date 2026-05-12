@@ -1,14 +1,16 @@
-import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
+import { headers } from "next/headers"
 
 export default async function WorkspaceLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const user = await currentUser()
+  const cookie = (await headers()).get("cookie") ?? ""
+  const hasClerkSession =
+    cookie.includes("__session") || cookie.includes("__client_uat")
 
-  if (!user) {
+  if (!hasClerkSession) {
     redirect("/sign-in")
   }
 

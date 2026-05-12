@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { currentUser } from "@clerk/nextjs/server";
+
 import { getSupabaseServerState } from "@/lib/supabase-server";
 import { resolveDistrictId } from "@/lib/district-context";
 import { signalRows } from "@/lib/workspace-mock";
@@ -43,5 +43,6 @@ export async function GET(request: Request) {
 
   return NextResponse.json({ ok: true, source: "supabase", signals: ((data ?? []) as WorkspaceSignalRecord[]).map((r) => ({ ...r, severity: normalizeRiskLevel(r.severity) ?? "MEDIUM" })) });
 }
+
 
 
