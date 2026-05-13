@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { LeadSharperLogo } from "@/components/brand/leadsharper-logo";
@@ -65,7 +65,7 @@ const stages: Stage[] = [
     label: "Report",
     question: "What should cabinet know next?",
     title: "Cabinet receives a concise decision record.",
-    body: "System shows what changed and whatÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢s next.",
+    body: "System shows what changed, what remains unresolved, and what cabinet should do next.",
     decision: "Review stability after 3 weeks.",
     evidence: [
       "Risk documented.",
@@ -74,10 +74,10 @@ const stages: Stage[] = [
     ],
     impact: [
       "+ CFU consistency increased",
-      "+ Exit ticket mastery improved 42% ? 68%",
+      "+ Exit ticket mastery improved 42% to 68%",
       "+ Reteach execution observed"
     ],
-    remaining: "Moderate ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â continue support cycle.",
+    remaining: "Moderate risk remains. Continue the support cycle and verify evidence before closure.",
     next: "Decision cycle complete."
   }
 ];
@@ -236,5 +236,6 @@ export default function DemoRunPage() {
     </main>
   );
 }
+
 
 
