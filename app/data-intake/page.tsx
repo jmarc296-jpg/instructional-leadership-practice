@@ -135,7 +135,7 @@ export default function DataIntakePage() {
                   Required CSV columns
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-[#475569]">
-                  school_name, leader_name, risk_level, issue, recommended_action
+                  school_name, leader_name, severity, summary, recommended_action, evidence_status
                 </p>
               </div>
 
