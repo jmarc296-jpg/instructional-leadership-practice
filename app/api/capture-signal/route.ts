@@ -1,5 +1,6 @@
-﻿import { NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { getSupabaseAdminClient } from "@/lib/supabase/admin"
+import { writeAuditEvent } from "@/lib/audit/write-audit-event"
 
 export async function POST(req: Request) {
   try {
@@ -50,6 +51,21 @@ export async function POST(req: Request) {
         { status: 500 }
       )
     }
+
+    const insertedSignalId = data?.[0]?.id ?? "unknown"
+
+    await writeAuditEvent({
+      eventType: "signal_captured",
+      entityType: "leadership_signal",
+      entityId: insertedSignalId,
+      payload: {
+        schoolName,
+        leaderName,
+        severity,
+        summary,
+        status: "new",
+      },
+    })
 
     return NextResponse.json({ ok: true, inserted: data?.length || 0 })
   } catch (error) {
