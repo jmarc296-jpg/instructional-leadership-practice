@@ -99,15 +99,10 @@ export default function DemoRunPage() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        district: "Pilot District",
-        leader: "Grade 9 Leadership Signal",
-        role: "Principal",
-        signal: stages[0].evidence[0],
-        pattern: "Low CFU and inconsistent reteach execution across observed classrooms.",
-        decision: active.decision,
-        owner: "Principal Supervisor + Math Instructional Coach",
-        evidence: active.evidence.join(" | "),
-        reviewDate: "3-week review"
+        schoolName: "Pilot District",
+        leaderName: "Grade 9 Leadership Signal",
+        severity: "high",
+        summary: `${stages[0].evidence[0]} ${active.decision} Evidence: ${active.evidence.join(" | ")}`
       })
     });
 
@@ -241,4 +236,5 @@ export default function DemoRunPage() {
     </main>
   );
 }
+
 
