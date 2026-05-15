@@ -9,6 +9,7 @@ import { WorkspaceSignalRecord } from "@/lib/workspace-types";
 import InterpretationTransparency from "@/components/executive/InterpretationTransparency";
 import { interpretLeadershipSignal } from "@/lib/interpretation/executive-interpretation";
 import { calculateEscalationPressure } from "@/lib/interpretation/escalation-pressure";
+import { calculateInstitutionalPattern } from "@/lib/interpretation/institutional-pattern-memory";
 
 export default function WorkspaceSignalsPage() {
   const [signals, setSignals] = useState<WorkspaceSignalRecord[]>([]);
@@ -32,6 +33,24 @@ export default function WorkspaceSignalsPage() {
       evidence_status: "Not started"
     }));
 
+const historicalSignals = [
+  {
+    school: "Lincoln Middle School",
+    moduleTitle: "Leadership Accountability Discipline",
+    pressureLevel: "elevated",
+  },
+  {
+    school: "Lincoln Middle School",
+    moduleTitle: "Leadership Accountability Discipline",
+    pressureLevel: "critical",
+  },
+  {
+    school: "Central High School",
+    moduleTitle: "Assessment and Intervention Reliability",
+    pressureLevel: "watch",
+  },
+];
+
 const interpretedSignals = rows.map((row) => {
   const interpretation = interpretLeadershipSignal({
     summary: row.summary,
@@ -48,10 +67,18 @@ const interpretedSignals = rows.map((row) => {
     row.evidence_status
   );
 
+  const institutionalPattern = calculateInstitutionalPattern(
+    row.school_name,
+    interpretation,
+    pressure,
+    historicalSignals
+  );
+
   return {
     row,
     interpretation,
     pressure,
+    institutionalPattern,
   };
 });
 
@@ -64,5 +91,7 @@ const interpretedSignals = rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
+
 
 
