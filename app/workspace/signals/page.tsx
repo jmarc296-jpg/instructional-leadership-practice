@@ -8,6 +8,8 @@ import { signalRows } from "@/lib/workspace-mock";
 import { WorkspaceSignalRecord } from "@/lib/workspace-types";
 import InterpretationTransparency from "@/components/executive/InterpretationTransparency";
 import LifecycleCommandCenter from "@/components/executive/LifecycleCommandCenter";
+import ExecutiveQueueCenter from "@/components/executive/ExecutiveQueueCenter";
+import { buildExecutiveQueues } from "@/lib/interpretation/executive-queues";
 import { interpretLeadershipSignal } from "@/lib/interpretation/executive-interpretation";
 import { calculateEscalationPressure } from "@/lib/interpretation/escalation-pressure";
 import { calculateInstitutionalPattern } from "@/lib/interpretation/institutional-pattern-memory";
@@ -108,6 +110,7 @@ const interpretedSignals = rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
 
 
 
