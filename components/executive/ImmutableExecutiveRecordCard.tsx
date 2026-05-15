@@ -1,4 +1,5 @@
 import { type ImmutableExecutiveRecord } from "@/lib/interpretation/immutable-executive-records";
+import ExecutiveSurface from "@/components/executive/ExecutiveSurface";
 
 type ImmutableExecutiveRecordCardProps = {
   record: ImmutableExecutiveRecord;
@@ -8,24 +9,12 @@ export default function ImmutableExecutiveRecordCard({
   record,
 }: ImmutableExecutiveRecordCardProps) {
   return (
-    <section className="rounded-[2rem] border border-[#D8E3F7] bg-white p-6 shadow-sm">
+    <ExecutiveSurface
+      eyebrow="Immutable Executive Record"
+      title="Institutional Accountability Ledger"
+      status="immutable"
+    >
       <div className="flex flex-col gap-6">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#0D6EFD]">
-              Immutable Executive Record
-            </p>
-
-            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[#071B4D]">
-              Executive Audit Lineage
-            </h2>
-          </div>
-
-          <div className="rounded-full border border-[#D8E3F7] bg-[#F8FAFC] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#071B4D]">
-            immutable
-          </div>
-        </div>
-
         <div className="grid gap-4 md:grid-cols-2">
           <Metric label="Lifecycle Stage" value={record.lifecycleStage} />
           <Metric label="Escalation Level" value={record.escalationLevel} />
@@ -33,7 +22,7 @@ export default function ImmutableExecutiveRecordCard({
           <Metric label="Created" value={record.createdAt} />
         </div>
 
-        <div className="rounded-3xl border border-[#E2E8F0] bg-[#F8FAFC] p-5">
+        <div className="rounded-[1.75rem] border border-[#E2E8F0] bg-[#F8FAFC] p-6 transition-all duration-200 hover:border-[#BFD3F2]">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
             Executive Action Summary
           </p>
@@ -43,7 +32,7 @@ export default function ImmutableExecutiveRecordCard({
           </p>
         </div>
 
-        <div className="rounded-3xl border border-[#E2E8F0] bg-[#F8FAFC] p-5">
+        <div className="rounded-[1.75rem] border border-[#E2E8F0] bg-[#F8FAFC] p-6 transition-all duration-200 hover:border-[#BFD3F2]">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#64748B]">
             Executive Rationale
           </p>
@@ -53,7 +42,7 @@ export default function ImmutableExecutiveRecordCard({
           </p>
         </div>
 
-        <div className="rounded-3xl bg-[#071B4D] p-5 text-white">
+        <div className="rounded-[1.75rem] bg-[#071B4D] p-6 text-white">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#CBD5E1]">
             Immutable Audit Hash
           </p>
@@ -63,7 +52,7 @@ export default function ImmutableExecutiveRecordCard({
           </p>
         </div>
       </div>
-    </section>
+    </ExecutiveSurface>
   );
 }
 
@@ -75,12 +64,12 @@ function Metric({
   value: string;
 }) {
   return (
-    <div className="rounded-3xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
+    <div className="rounded-[1.5rem] border border-[#E2E8F0] bg-[#F8FAFC] p-5">
       <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">
         {label}
       </p>
 
-      <p className="mt-2 text-sm font-semibold text-[#071B4D]">
+      <p className="mt-2 text-base font-semibold tracking-[-0.02em] text-[#071B4D]">
         {value}
       </p>
     </div>
