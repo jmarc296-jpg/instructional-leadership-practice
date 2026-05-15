@@ -8,6 +8,12 @@ type InterpretationTransparencyProps = {
   auditExposure: string;
   recommendedExecutiveAction: string;
   accountabilityWindow: string;
+  confidencePosture?: string;
+  pressureLevel?: string;
+  evidenceConfidence?: string;
+  interventionTiming?: string;
+  pressureScore?: number;
+  escalationRationale?: string;
 };
 
 export default function InterpretationTransparency({
@@ -20,6 +26,12 @@ export default function InterpretationTransparency({
   auditExposure,
   recommendedExecutiveAction,
   accountabilityWindow,
+  confidencePosture,
+  pressureLevel,
+  evidenceConfidence,
+  interventionTiming,
+  pressureScore,
+  escalationRationale,
 }: InterpretationTransparencyProps) {
   return (
     <section className="rounded-[2rem] border border-[#D8E3F7] bg-white p-6 shadow-sm">
@@ -36,6 +48,38 @@ export default function InterpretationTransparency({
           <p className="mt-3 text-sm leading-6 text-[#475569]">
             Operational Domain: {operationalDomain}
           </p>
+
+          {pressureLevel && (
+            <div className="mt-5 grid gap-3 md:grid-cols-4">
+              <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">Pressure</p>
+                <p className="mt-2 text-lg font-bold capitalize text-[#071B4D]">{pressureLevel}</p>
+              </div>
+              <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">Evidence</p>
+                <p className="mt-2 text-lg font-bold capitalize text-[#071B4D]">{evidenceConfidence}</p>
+              </div>
+              <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">Timing</p>
+                <p className="mt-2 text-lg font-bold capitalize text-[#071B4D]">{interventionTiming}</p>
+              </div>
+              <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] p-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#64748B]">Score</p>
+                <p className="mt-2 text-lg font-bold text-[#071B4D]">{pressureScore ?? 0}/100</p>
+              </div>
+            </div>
+          )}
+
+          {escalationRationale && (
+            <div className="mt-4 rounded-2xl border border-[#FACC15]/40 bg-[#FEFCE8] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#854D0E]">
+                Escalation Rationale
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[#713F12]">
+                {escalationRationale}
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
@@ -113,3 +157,6 @@ export default function InterpretationTransparency({
     </section>
   );
 }
+
+
+

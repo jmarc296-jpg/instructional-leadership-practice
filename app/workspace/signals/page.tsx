@@ -8,6 +8,7 @@ import { signalRows } from "@/lib/workspace-mock";
 import { WorkspaceSignalRecord } from "@/lib/workspace-types";
 import InterpretationTransparency from "@/components/executive/InterpretationTransparency";
 import { interpretLeadershipSignal } from "@/lib/interpretation/executive-interpretation";
+import { calculateEscalationPressure } from "@/lib/interpretation/escalation-pressure";
 
 export default function WorkspaceSignalsPage() {
   const [signals, setSignals] = useState<WorkspaceSignalRecord[]>([]);
@@ -31,17 +32,28 @@ export default function WorkspaceSignalsPage() {
       evidence_status: "Not started"
     }));
 
-const interpretedSignals = rows.map((row) => ({
-  row,
-  interpretation: interpretLeadershipSignal({
+const interpretedSignals = rows.map((row) => {
+  const interpretation = interpretLeadershipSignal({
     summary: row.summary,
     indicator: row.indicator,
     severity: row.severity,
     school_name: row.school_name,
     leader_name: row.leader_name,
     recommended_action: row.owner,
-  }),
-}));
+  });
+
+  const pressure = calculateEscalationPressure(
+    interpretation,
+    row.severity,
+    row.evidence_status
+  );
+
+  return {
+    row,
+    interpretation,
+    pressure,
+  };
+});
 
   return (
     <WorkspaceShell title="Leadership Signals Triage" subtitle="Review current school signals and convert each priority item into an owned plan.">
@@ -52,4 +64,5 @@ const interpretedSignals = rows.map((row) => ({
     </WorkspaceShell>
   );
 }
+
 
