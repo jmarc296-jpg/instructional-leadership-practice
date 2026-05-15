@@ -10,6 +10,7 @@ import InterpretationTransparency from "@/components/executive/InterpretationTra
 import { interpretLeadershipSignal } from "@/lib/interpretation/executive-interpretation";
 import { calculateEscalationPressure } from "@/lib/interpretation/escalation-pressure";
 import { calculateInstitutionalPattern } from "@/lib/interpretation/institutional-pattern-memory";
+import { generateContainmentProtocol } from "@/lib/interpretation/executive-containment";
 
 export default function WorkspaceSignalsPage() {
   const [signals, setSignals] = useState<WorkspaceSignalRecord[]>([]);
@@ -74,11 +75,17 @@ const interpretedSignals = rows.map((row) => {
     historicalSignals
   );
 
+  const containment = generateContainmentProtocol(
+    institutionalPattern,
+    pressure
+  );
+
   return {
     row,
     interpretation,
     pressure,
     institutionalPattern,
+    containment,
   };
 });
 
@@ -91,6 +98,7 @@ const interpretedSignals = rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
 
 
 
