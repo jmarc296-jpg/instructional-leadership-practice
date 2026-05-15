@@ -40,7 +40,7 @@ export default function WorkspaceSignalsPage() {
       evidence_status: "Not started"
     }));
 
-const historicalSignals = [
+const historicalSignals = useMemo(() => [
   {
     school: "Lincoln Middle School",
     moduleTitle: "Leadership Accountability Discipline",
@@ -56,7 +56,7 @@ const historicalSignals = [
     moduleTitle: "Assessment and Intervention Reliability",
     pressureLevel: "watch",
   },
-];
+], []);
 
 const interpretedSignals = useMemo(() => rows.map((row) => {
   const interpretation = interpretLeadershipSignal({
@@ -112,7 +112,7 @@ const interpretedSignals = useMemo(() => rows.map((row) => {
     lifecycle,
     executiveRecord,
   };
-}), [rows]);
+}), [rows, historicalSignals]);
 
   useEffect(() => {
     interpretedSignals.forEach(({ executiveRecord }) => {
@@ -149,6 +149,7 @@ const interpretedSignals = useMemo(() => rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
 
 
 
