@@ -112,7 +112,7 @@ const interpretedSignals = useMemo(() => rows.map((row) => {
     lifecycle,
     executiveRecord,
   };
-}})), [rows]);
+}), [rows]);
 
   useEffect(() => {
     interpretedSignals.forEach(({ executiveRecord }) => {
