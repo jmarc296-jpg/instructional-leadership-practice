@@ -10,6 +10,8 @@ import InterpretationTransparency from "@/components/executive/InterpretationTra
 import LifecycleCommandCenter from "@/components/executive/LifecycleCommandCenter";
 import ExecutiveQueueCenter from "@/components/executive/ExecutiveQueueCenter";
 import ImmutableExecutiveRecordCard from "@/components/executive/ImmutableExecutiveRecordCard";
+import GovernanceReplayTimeline from "@/components/executive/GovernanceReplayTimeline";
+import { buildGovernanceReplayTimeline } from "@/lib/interpretation/governance-replay";
 import { createImmutableExecutiveRecord } from "@/lib/interpretation/immutable-executive-records";
 import { buildExecutiveQueues } from "@/lib/interpretation/executive-queues";
 import { interpretLeadershipSignal } from "@/lib/interpretation/executive-interpretation";
@@ -103,6 +105,11 @@ const interpretedSignals = useMemo(() => rows.map((row) => {
     rationale: lifecycle.executiveSummary,
   });
 
+  const replayTimeline = buildGovernanceReplayTimeline(
+    row.id,
+    [executiveRecord]
+  );
+
   return {
     row,
     interpretation,
@@ -111,6 +118,7 @@ const interpretedSignals = useMemo(() => rows.map((row) => {
     containment,
     lifecycle,
     executiveRecord,
+    replayTimeline,
   };
 }), [rows, historicalSignals]);
 
@@ -149,6 +157,8 @@ const interpretedSignals = useMemo(() => rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
+
 
 
 
