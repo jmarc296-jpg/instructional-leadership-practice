@@ -6,6 +6,8 @@ import { districtQueryParam } from "@/lib/district-context";
 import { WorkspaceShell } from "@/components/workspace/workspace-shell";
 import { signalRows } from "@/lib/workspace-mock";
 import { WorkspaceSignalRecord } from "@/lib/workspace-types";
+import InterpretationTransparency from "@/components/executive/InterpretationTransparency";
+import { leadershipModules } from "@/lib/leadership-modules";
 
 export default function WorkspaceSignalsPage() {
   const [signals, setSignals] = useState<WorkspaceSignalRecord[]>([]);
@@ -16,7 +18,28 @@ export default function WorkspaceSignalsPage() {
     });
   }, []);
 
-  const rows = signals.length ? signals : signalRows.map((s) => ({ id: s.id, school_name: s.school, leader_name: s.leaderRole, indicator: s.source, severity: s.severity, summary: s.evidenceSummary, owner: null, evidence_status: "Not started" }));
+  const rows = signals.length
+  ? signals
+  : signalRows.map((s) => ({
+      id: s.id,
+      school_name: s.school,
+      leader_name: s.leaderRole,
+      indicator: s.source,
+      severity: s.severity,
+      summary: s.evidenceSummary,
+      owner: null,
+      evidence_status: "Not started"
+    }));
+
+const interpretedSignals = rows.map((row, index) => {
+  const mappedModule =
+    leadershipModules[index % leadershipModules.length];
+
+  return {
+    row,
+    module: mappedModule
+  };
+});
 
   return (
     <WorkspaceShell title="Leadership Signals Triage" subtitle="Review current school signals and convert each priority item into an owned plan.">
