@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { districtQueryParam } from "@/lib/district-context";
 import { WorkspaceShell } from "@/components/workspace/workspace-shell";
 import { signalRows } from "@/lib/workspace-mock";
@@ -58,7 +58,7 @@ const historicalSignals = [
   },
 ];
 
-const interpretedSignals = rows.map((row) => {
+const interpretedSignals = useMemo(() => rows.map((row) => {
   const interpretation = interpretLeadershipSignal({
     summary: row.summary,
     indicator: row.indicator,
@@ -112,7 +112,33 @@ const interpretedSignals = rows.map((row) => {
     lifecycle,
     executiveRecord,
   };
-});
+}})), [rows]);
+
+  useEffect(() => {
+    interpretedSignals.forEach(({ executiveRecord }) => {
+      fetch("/api/immutable-executive-records", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          signalId: executiveRecord.signalId,
+          lifecycleStage: executiveRecord.lifecycleStage,
+          escalationLevel: executiveRecord.escalationLevel,
+          executiveOwner: executiveRecord.executiveOwner,
+          actionSummary: executiveRecord.actionSummary,
+          evidenceReference: executiveRecord.evidenceReference,
+          rationale: executiveRecord.rationale,
+          immutableHash: executiveRecord.immutableHash,
+        }),
+      }).catch((error) => {
+        console.error(
+          "[immutable-record-persistence]",
+          error
+        );
+      });
+    });
+  }, [interpretedSignals]);
 
   return (
     <WorkspaceShell title="Leadership Signals Triage" subtitle="Review current school signals and convert each priority item into an owned plan.">
@@ -123,6 +149,8 @@ const interpretedSignals = rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
+
 
 
 
