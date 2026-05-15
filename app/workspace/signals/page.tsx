@@ -9,6 +9,8 @@ import { WorkspaceSignalRecord } from "@/lib/workspace-types";
 import InterpretationTransparency from "@/components/executive/InterpretationTransparency";
 import LifecycleCommandCenter from "@/components/executive/LifecycleCommandCenter";
 import ExecutiveQueueCenter from "@/components/executive/ExecutiveQueueCenter";
+import ImmutableExecutiveRecordCard from "@/components/executive/ImmutableExecutiveRecordCard";
+import { createImmutableExecutiveRecord } from "@/lib/interpretation/immutable-executive-records";
 import { buildExecutiveQueues } from "@/lib/interpretation/executive-queues";
 import { interpretLeadershipSignal } from "@/lib/interpretation/executive-interpretation";
 import { calculateEscalationPressure } from "@/lib/interpretation/escalation-pressure";
@@ -91,6 +93,16 @@ const interpretedSignals = rows.map((row) => {
     containmentLevel: containment.containmentLevel,
   });
 
+  const executiveRecord = createImmutableExecutiveRecord({
+    signalId: row.id,
+    lifecycleStage: lifecycle.currentStage,
+    escalationLevel: pressure.pressureLevel,
+    executiveOwner: containment.containmentOwner,
+    actionSummary: containment.evidenceRequirement,
+    evidenceReference: row.evidence_status ?? "pending-evidence",
+    rationale: lifecycle.executiveSummary,
+  });
+
   return {
     row,
     interpretation,
@@ -98,6 +110,7 @@ const interpretedSignals = rows.map((row) => {
     institutionalPattern,
     containment,
     lifecycle,
+    executiveRecord,
   };
 });
 
@@ -110,6 +123,8 @@ const interpretedSignals = rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
+
 
 
 
