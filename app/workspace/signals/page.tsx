@@ -11,6 +11,7 @@ import { interpretLeadershipSignal } from "@/lib/interpretation/executive-interp
 import { calculateEscalationPressure } from "@/lib/interpretation/escalation-pressure";
 import { calculateInstitutionalPattern } from "@/lib/interpretation/institutional-pattern-memory";
 import { generateContainmentProtocol } from "@/lib/interpretation/executive-containment";
+import { orchestrateExecutiveLifecycle } from "@/lib/interpretation/executive-lifecycle";
 
 export default function WorkspaceSignalsPage() {
   const [signals, setSignals] = useState<WorkspaceSignalRecord[]>([]);
@@ -80,12 +81,20 @@ const interpretedSignals = rows.map((row) => {
     pressure
   );
 
+  const lifecycle = orchestrateExecutiveLifecycle({
+    evidenceStatus: row.evidence_status,
+    pressureLevel: pressure.pressureLevel,
+    institutionalSeverity: institutionalPattern.institutionalSeverity,
+    containmentLevel: containment.containmentLevel,
+  });
+
   return {
     row,
     interpretation,
     pressure,
     institutionalPattern,
     containment,
+    lifecycle,
   };
 });
 
@@ -98,6 +107,7 @@ const interpretedSignals = rows.map((row) => {
     </WorkspaceShell>
   );
 }
+
 
 
 
