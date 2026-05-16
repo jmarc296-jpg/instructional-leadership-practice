@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { LeadSharperLogo } from "@/components/brand/leadsharper-logo";
@@ -124,7 +124,7 @@ export default function DemoRunPage() {
                 LeadSharper
               </p>
               <p className="mt-1 text-sm font-semibold text-slate-600">
-                Instructional leadership intelligence for district teams
+                District executive accountability infrastructure
               </p>
             </div>
           </div>
@@ -135,7 +135,7 @@ export default function DemoRunPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#8DB7FF]">
-          Guided Executive Flow
+          Executive Operating Sequence
         </p>
 
         <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em]">
@@ -198,12 +198,12 @@ export default function DemoRunPage() {
                 ? "Capturing Signal..."
                 : captureStatus === "saved"
                   ? "Signal Captured"
-                  : "Capture Signal"}
+                  : "Create Executive Record"}
             </button>
 
             {captureStatus === "saved" && (
               <p className="mt-4 text-sm font-semibold text-[#7EE2A8]">
-                Live capture confirmed.
+                Executive record captured.
               </p>
             )}
 

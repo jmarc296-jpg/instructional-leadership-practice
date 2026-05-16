@@ -37,7 +37,7 @@ export default function HomePage() {
           {/* LEFT - CORE MESSAGE */}
           <div>
             <div className="mb-5 inline-flex rounded-full border border-[#B2DDFF] bg-[#EFF6FF] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#175CD3]">
-              District Leadership Intelligence Platform
+              District Executive Accountability Infrastructure
             </div>
 
             <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.055em] md:text-7xl leading-[1.05]">
@@ -45,7 +45,7 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#475569]">
-              Upload district evidence. LeadSharper converts it into leadership signals, assigns ownership,
+              Review Data Intake Model. LeadSharper converts it into leadership signals, assigns ownership,
               tracks follow-through, and generates executive-ready reports for superintendent decision cycles.
             </p>
 
@@ -54,14 +54,14 @@ export default function HomePage() {
                 href="/demo/run"
                 className="rounded-full bg-[#071B4D] px-7 py-4 text-center text-sm font-semibold text-white transition hover:bg-[#0D6EFD]"
               >
-                Run Leadership Risk Demo
+                Run Executive Demo
               </Link>
 
               <Link
                 href="/data-intake"
                 className="rounded-full border border-[#CBD5E1] bg-white px-7 py-4 text-center text-sm font-semibold text-[#071B4D] transition hover:border-[#0D6EFD] hover:text-[#0D6EFD]"
               >
-                Upload District Evidence
+                Review Data Intake Model
               </Link>
             </div>
 
@@ -82,11 +82,11 @@ export default function HomePage() {
             </p>
 
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] leading-tight">
-              Data becomes action.
+              Evidence becomes executive action.
             </h2>
 
             <p className="mt-3 text-sm text-[#64748B] leading-6">
-              Not another dashboard. A system that moves leadership decisions.
+              Not a dashboard. Executive accountability infrastructure for district operating cycles.
             </p>
 
             <div className="mt-6 space-y-4">
@@ -117,8 +117,8 @@ export default function HomePage() {
 
               <Step
                 num="05"
-                title="Executive report"
-                body="Live intelligence for superintendent decision cycles."
+                title="Executive record"
+                body="Board-aware executive record for superintendent decision cycles."
               />
 
             </div>
@@ -135,7 +135,7 @@ export default function HomePage() {
               </p>
 
               <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] leading-tight">
-                This is not a dashboard. It is an operating system.
+                Built for executive accountability, not dashboard viewing.
               </h2>
 
               <p className="mt-4 text-base leading-7 text-[#475569]">
@@ -184,7 +184,7 @@ export default function HomePage() {
                 href="/board-report"
                 className="rounded-full border border-white/30 px-6 py-4 text-center text-sm font-semibold text-white hover:bg-white/10"
               >
-                View Executive Report
+                View Executive record
               </Link>
             </div>
 

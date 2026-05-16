@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -63,18 +63,18 @@ export default function DataIntakeCenter() {
             </p>
 
             <h1 className="mt-6 max-w-3xl text-5xl font-semibold tracking-[-0.05em] sm:text-6xl">
-              Turn district files into leadership intelligence.
+              Turn district evidence into executive accountability records.
             </h1>
 
             <p className="mt-6 max-w-2xl text-xl leading-8 text-[#31456E]">
-              Upload evaluation, talent, performance, and succession files. LeadSharper maps district fields, checks data quality, and prepares records for risk, prescription, and succession analysis.
+              Upload evaluation, talent, performance, and succession files. LeadSharper maps district fields, checks data quality, and prepares records for risk signals, ownership, evidence verification, and executive records.
             </p>
 
             <div className="mt-10 rounded-[2rem] border border-[#D8E3F7] bg-white p-8 shadow-sm">
               <h2 className="text-2xl font-bold">Upload source file</h2>
 
               <p className="mt-3 text-[#31456E]">
-                Existing district exports are enough for an initial risk assessment.
+                Structured district exports are enough for a pilot without live integrations.
               </p>
 
               <label className="mt-6 flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-[#0D6EFD]/30 bg-[#F7FAFF] px-6 py-12 text-center transition hover:border-[#0D6EFD]">
@@ -197,7 +197,7 @@ export default function DataIntakeCenter() {
               disabled={!readyToProcess}
               className="mt-6 w-full rounded-full bg-[#0057FF] px-6 py-4 text-sm font-bold text-white transition hover:bg-[#0046cc] disabled:cursor-not-allowed disabled:opacity-45"
             >
-              {readyToProcess ? "Run LeadSharper Analysis" : "Upload file to continue"}
+              {readyToProcess ? "Generate Executive Accountability Review" : "Upload file to continue"}
             </button>
           </section>
         </div>
