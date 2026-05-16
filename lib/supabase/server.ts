@@ -1,7 +1,25 @@
-﻿import { createClient } from "@supabase/supabase-js"
+import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co"
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-key"
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  "https://placeholder.supabase.co";
 
-export const supabase = createClient(supabaseUrl, supabaseServiceKey || supabaseAnonKey)
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "placeholder-key";
+
+const supabaseServiceKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+
+const activeKey = supabaseServiceKey || supabaseAnonKey;
+
+const hasValidSupabaseEnv =
+  !!process.env.NEXT_PUBLIC_SUPABASE_URL &&
+  !!activeKey &&
+  supabaseUrl !== "https://placeholder.supabase.co";
+
+export const supabase = createClient(supabaseUrl, activeKey);
+
+export function isSupabaseConfigured() {
+  return hasValidSupabaseEnv;
+}

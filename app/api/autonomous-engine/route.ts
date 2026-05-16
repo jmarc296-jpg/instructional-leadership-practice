@@ -1,6 +1,6 @@
-﻿import { prescribeFromSignal } from "@/lib/prescription-engine";
+import { prescribeFromSignal } from "@/lib/prescription-engine";
 
-import { supabase } from "@/lib/supabase/server";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase/server";
 function addDays(days: number) {
   return new Date(Date.now() + days * 24 * 60 * 60 * 1000)
     .toISOString()
@@ -16,6 +16,14 @@ function isOverdue(dueDate: string | null, status: string | null) {
 }
 
 export async function GET() {
+  if (!isSupabaseConfigured()) {
+    return Response.json({
+      data: [],
+      mode: "demo",
+      message:
+        "Supabase environment variables are not configured. Returning deterministic demo-safe response."
+    });
+  }
   const { data, error } = await supabase
     .from("leadership_actions")
     .select("id,campus,signal,action,owner,status,risk,evidence,due_date,last_reviewed,last_updated")
@@ -134,6 +142,7 @@ if (overdue) {
 
   return Response.json({ updated });
 }
+
 
 
 
